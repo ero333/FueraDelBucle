@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 1189612549}
   - component: {fileID: 1189612546}
   - component: {fileID: 1189612550}
+  - component: {fileID: 1189612551}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -306,6 +307,25 @@ MonoBehaviour:
   capaPlataformas:
     serializedVersion: 2
     m_Bits: 8
+--- !u!114 &1189612551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1189612545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 413b18d9807193845bd3994c843d2d93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  fuerzasalto: 5
+  velocidad: 3.2
+  enSuelo: 0
+  longitudRaycast: 0.5
+  Suelo:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &1402737416
 GameObject:
   m_ObjectHideFlags: 0
@@ -408,7 +428,7 @@ GameObject:
   - component: {fileID: 1411853364}
   - component: {fileID: 1411853363}
   - component: {fileID: 1411853362}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plataforma V1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
