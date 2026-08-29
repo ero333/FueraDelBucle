@@ -3,7 +3,6 @@ using UnityEngine;
 public class PlayerPhysics : MonoBehaviour
 {
     [Header("Configuración de Caída")]
-
     [SerializeField] private float multiplicadorCaida = 2.5f;
 
     [Header("Detección de Suelo")]
@@ -17,12 +16,20 @@ public class PlayerPhysics : MonoBehaviour
     [Header("Salto")]
     [SerializeField] private float fuerzaSalto = 8f;
 
-   
+    [Header("Dash")]
+    [SerializeField] private float fuerzaDash = 15f;
+    [SerializeField] private float duracionDash = 0.2f;
+    [SerializeField] private float cooldownDash = 1f;
 
     private Rigidbody2D rb;
     private bool estaEnElSuelo;
     private float inputHorizontal;
     private bool quiereSaltar;
+
+    private bool estaDasheando;
+    private float tiempoRestanteDash;
+    private float tiempoRestanteCooldown;
+    private float direccionDash;
 
     void Start()
     {
@@ -31,13 +38,12 @@ public class PlayerPhysics : MonoBehaviour
 
     void Update()
     {
-
+        // Detección de suelo
         estaEnElSuelo = Physics2D.OverlapCircle(detectorSuelo.position, radioDeteccion, capaPlataformas);
 
-
+        // Gravedad extra al caer
         if (rb.linearVelocity.y < 0 && !estaEnElSuelo)
         {
-
             rb.gravityScale = multiplicadorCaida;
         }
         else
@@ -45,7 +51,7 @@ public class PlayerPhysics : MonoBehaviour
             rb.gravityScale = 1f;
         }
 
-        // Lectura del input de movimiento horizontal (A = izquierda, D = derecha)
+        // Movimiento horizontal (A = izquierda, D = derecha)
         inputHorizontal = 0f;
         if (Input.GetKey(KeyCode.D))
         {
@@ -56,16 +62,48 @@ public class PlayerPhysics : MonoBehaviour
             inputHorizontal = -1f;
         }
 
-        // Lectura del input de salto
-        if (Input.GetKeyDown(KeyCode.Space) && estaEnElSuelo)
+        // Salto (Espacio o W), solo si está en el suelo
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) && estaEnElSuelo)
         {
             quiereSaltar = true;
+        }
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W))
+        {
+            Debug.Log("Tecla de salto detectada. estaEnElSuelo = " + estaEnElSuelo);
+        }
+        // Cooldown del dash
+        if (tiempoRestanteCooldown > 0f)
+        {
+            tiempoRestanteCooldown -= Time.deltaTime;
+        }
+
+        // Dash (Shift), solo si A o D están sostenidas
+        // Dash (Shift), solo si A o D están sostenidas
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            Debug.Log("SHIFT presionado | inputHorizontal = " + inputHorizontal + " | estaDasheando = " + estaDasheando + " | cooldown restante = " + tiempoRestanteCooldown);
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftShift) && inputHorizontal != 0f && !estaDasheando && tiempoRestanteCooldown <= 0f)
+        {
+            estaDasheando = true;
+            tiempoRestanteDash = duracionDash;
+            tiempoRestanteCooldown = cooldownDash;
+            direccionDash = inputHorizontal;
+            Debug.Log("DASH ACTIVADO, dirección = " + direccionDash);
         }
     }
 
     void FixedUpdate()
     {
-        rb.linearVelocity = new Vector2(inputHorizontal * velocidadMovimiento, rb.linearVelocity.y);
+        if (estaDasheando)
+        {
+            rb.linearVelocity = new Vector2(direccionDash * fuerzaDash, 0f);
+        }
+        else
+        {
+            rb.linearVelocity = new Vector2(inputHorizontal * velocidadMovimiento, rb.linearVelocity.y);
+        }
 
         if (quiereSaltar)
         {
@@ -82,7 +120,4 @@ public class PlayerPhysics : MonoBehaviour
             Gizmos.DrawWireSphere(detectorSuelo.position, radioDeteccion);
         }
     }
-
-
-    
 }
