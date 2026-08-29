@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerPhysics : MonoBehaviour
 {
     [Header("Configuración de Caída")]
-    // Ajustar velocidad de caída
+    
     [SerializeField] private float multiplicadorCaida = 2.5f;
 
     [Header("Detección de Suelo")]
@@ -21,13 +21,13 @@ public class PlayerPhysics : MonoBehaviour
 
     void Update()
     {
-        // Verificar caída desde plataformas
+        
         estaEnElSuelo = Physics2D.OverlapCircle(detectorSuelo.position, radioDeteccion, capaPlataformas);
 
-        // Evitar flotación / Ajustar velocidad de caída
+      
         if (rb.linearVelocity.y < 0 && !estaEnElSuelo)
         {
-            // Programar gravedad del personaje
+          
             rb.gravityScale = multiplicadorCaida;
         }
         else
