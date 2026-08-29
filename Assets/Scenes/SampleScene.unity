@@ -239,9 +239,9 @@ GameObject:
   - component: {fileID: 958288150}
   - component: {fileID: 958288149}
   - component: {fileID: 958288148}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Plataforma V1 (1)
-  m_TagString: Untagged
+  m_TagString: Suelo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -554,6 +554,8 @@ MonoBehaviour:
   capaPlataformas:
     serializedVersion: 2
     m_Bits: 8
+  velocidadMovimiento: 5
+  fuerzaSalto: 5
 --- !u!114 &1189612551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -563,10 +565,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1189612545}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af94dde6c492eb54d8f4eefbcdbe69b7, type: 3}
+  m_Script: {fileID: 11500000, guid: 413b18d9807193845bd3994c843d2d93, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
-  cantidadDeVida: 3
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerSALTO
+  fuerzasalto: 5
+  velocidad: 3.2
+  enSuelo: 0
+  longitudRaycast: 0.5
+  Suelo:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &1281641359 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7323252962293113382, guid: 130f3555a2657bc4b9b0dd4d32fde71f, type: 3}
@@ -589,8 +597,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b449c2a8bf7a337408e244a98d4a50cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Proyectil
-  velocidad: 10
-  "da\xF1o": 1
 --- !u!58 &1281641363
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -756,9 +762,9 @@ GameObject:
   - component: {fileID: 1411853364}
   - component: {fileID: 1411853363}
   - component: {fileID: 1411853362}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Plataforma V1
-  m_TagString: Untagged
+  m_TagString: Suelo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -915,14 +921,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eeeeb3721ef413448940d72d97483928, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  controladorDisparo: {fileID: 895593783}
-  distanciaLinea: 10
-  capaJugador:
-    serializedVersion: 2
-    m_Bits: 64
-  jugadorEnRango: 0
-  proyectil: {fileID: 1281641359}
-  tiempoEntreDisparos: 1.5
 --- !u!212 &1460567613
 SpriteRenderer:
   serializedVersion: 2
