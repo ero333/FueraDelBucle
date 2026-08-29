@@ -20,6 +20,16 @@ public class DisparoEnemigo : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        
+        jugadorEnRango = Physics2D.Raycast(controladorDisparo.position, transform.right, distanciaLinea, capaJugador);
+        if (jugadorEnRango) 
+        { 
+         
+        }
+    }
+
+    private void OnDrawGizmos () 
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(controladorDisparo.position, controladorDisparo.position + transform.right * distanciaLinea);
     }
 }
