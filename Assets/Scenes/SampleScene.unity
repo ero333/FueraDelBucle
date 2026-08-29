@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 8535973}
   - component: {fileID: 8535972}
   - component: {fileID: 8535971}
-  - component: {fileID: 8535970}
+  - component: {fileID: 8535976}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -140,19 +140,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &8535970
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8535969}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0088975e2b0f1f4cb0c2e894ac0c783, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::VidaJugador
-  cantidadDeVida: 3
 --- !u!114 &8535971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -324,6 +311,19 @@ Transform:
   - {fileID: 195208246}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8535976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8535969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5080912d0d6c6d498984c605dfcbe48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  cantidadDeVida: 3
 --- !u!1001 &159463041
 PrefabInstance:
   m_ObjectHideFlags: 0
