@@ -380,6 +380,7 @@ GameObject:
   - component: {fileID: 1189612546}
   - component: {fileID: 1189612550}
   - component: {fileID: 1189612551}
+  - component: {fileID: 1189612552}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -575,6 +576,19 @@ MonoBehaviour:
   Suelo:
     serializedVersion: 2
     m_Bits: 128
+--- !u!114 &1189612552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1189612545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b4a18622d4492c47bd2eb44992c12ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VidaJugador
+  cantidadDeVida: 3
 --- !u!1 &1281641359 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7323252962293113382, guid: 130f3555a2657bc4b9b0dd4d32fde71f, type: 3}
@@ -597,6 +611,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b449c2a8bf7a337408e244a98d4a50cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Proyectil
+  velocidad: 0
+  "da\xF1o": 0
 --- !u!58 &1281641363
 CircleCollider2D:
   m_ObjectHideFlags: 0

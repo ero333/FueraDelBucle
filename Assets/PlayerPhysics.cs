@@ -17,6 +17,8 @@ public class PlayerPhysics : MonoBehaviour
     [Header("Salto")]
     [SerializeField] private float fuerzaSalto = 8f;
 
+   
+
     private Rigidbody2D rb;
     private bool estaEnElSuelo;
     private float inputHorizontal;
@@ -80,4 +82,7 @@ public class PlayerPhysics : MonoBehaviour
             Gizmos.DrawWireSphere(detectorSuelo.position, radioDeteccion);
         }
     }
+
+
+    
 }
