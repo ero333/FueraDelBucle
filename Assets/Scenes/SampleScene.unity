@@ -158,12 +158,13 @@ MonoBehaviour:
   capaPlataformas:
     serializedVersion: 2
     m_Bits: 128
-  velocidadMovimiento: 5
+  velocidadMovimiento: 5.5
   fuerzaSalto: 8
   multiplicadorSubida: 2
-  fuerzaDash: 15
+  fuerzaDash: 13
   duracionDash: 0.2
   cooldownDash: 1
+  velocidadCaidaDespuesDash: 2.5
 --- !u!61 &8535972
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -22,6 +22,7 @@ public class PlayerPhysics : MonoBehaviour
     [SerializeField] private float fuerzaDash = 15f;
     [SerializeField] private float duracionDash = 0.2f;
     [SerializeField] private float cooldownDash = 1f;
+    [SerializeField] private float velocidadCaidaDespuesDash = 2f;
 
     private Rigidbody2D rb;
     private bool estaEnElSuelo;
@@ -82,6 +83,22 @@ public class PlayerPhysics : MonoBehaviour
         {
             tiempoRestanteCooldown -= Time.deltaTime;
         }
+        if (estaDasheando)
+        {
+            tiempoRestanteDash -= Time.deltaTime;
+
+            if (tiempoRestanteDash <= 0f)
+            {
+                estaDasheando = false;
+
+                rb.gravityScale = multiplicadorCaida;
+
+                rb.linearVelocity = new Vector2(
+                    rb.linearVelocity.x,
+                    -velocidadCaidaDespuesDash
+                );
+            }
+        }
 
         // Dash (Shift), solo si A o D están sostenidas
         // Dash (Shift), solo si A o D están sostenidas
@@ -104,19 +121,28 @@ public class PlayerPhysics : MonoBehaviour
     {
         if (estaDasheando)
         {
-            rb.linearVelocity = new Vector2(direccionDash * fuerzaDash, 0f);
+            rb.linearVelocity = new Vector2(
+                direccionDash * fuerzaDash,
+                0f
+            );
         }
         else
         {
-            rb.linearVelocity = new Vector2(inputHorizontal * velocidadMovimiento, rb.linearVelocity.y);
+            rb.linearVelocity = new Vector2(
+                inputHorizontal * velocidadMovimiento,
+                rb.linearVelocity.y
+            );
         }
 
         if (quiereSaltar)
         {
-            // Se compensa la velocidad inicial con la raiz del multiplicador de subida
-            // para que el salto llegue a la MISMA altura, solo que mas rapido.
             float velSalto = fuerzaSalto * Mathf.Sqrt(multiplicadorSubida);
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, velSalto);
+
+            rb.linearVelocity = new Vector2(
+                rb.linearVelocity.x,
+                velSalto
+            );
+
             quiereSaltar = false;
         }
     }
