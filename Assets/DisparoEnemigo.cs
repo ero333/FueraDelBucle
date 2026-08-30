@@ -17,15 +17,6 @@ public class DisparoEnemigo : MonoBehaviour
 
     private float cronometro;
 
-    private void Awake()
-    {
-        // Si "proyectil" es un objeto de la escena en vez de un prefab, lo usamos
-        // solo como plantilla: lo desactivamos para que no se mueva, no choque ni
-        // se autodestruya. Cada disparo activa su propia copia.
-        if (proyectil != null && proyectil.scene.IsValid())
-            proyectil.SetActive(false);
-    }
-
     private void Start()
     {
         cronometro = 0f;

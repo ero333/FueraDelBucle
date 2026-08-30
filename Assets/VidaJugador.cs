@@ -8,7 +8,7 @@ public class VidaJugador : MonoBehaviour
 
     [Header("Feedback de impacto")]
     public Color colorImpacto = Color.red;
-    public float duracionImpacto = 1f;   // segundos en rojo, ajustable en el Inspector
+    public float duracionImpacto = 1f;  
 
     [Header("Game Over")]
     [Tooltip("Segundos de espera antes de reiniciar la escena al quedarse sin vida.")]
@@ -43,7 +43,7 @@ public class VidaJugador : MonoBehaviour
         if (spriteRenderer != null)
         {
             if (parpadeoActual != null)
-                StopCoroutine(parpadeoActual);   // reinicia el conteo si lo golpean de nuevo
+                StopCoroutine(parpadeoActual);  
             parpadeoActual = StartCoroutine(ParpadeoImpacto());
         }
     }
@@ -58,12 +58,11 @@ public class VidaJugador : MonoBehaviour
 
     private IEnumerator ReiniciarJuego()
     {
-        // Corta cualquier parpadeo en curso.
+       
         if (parpadeoActual != null)
             StopCoroutine(parpadeoActual);
 
-        // Bloquea el movimiento: desactiva todos los demás scripts del jugador
-        // (PlayerPhysics, salto, dash, etc.) sin depender de sus nombres.
+       
         foreach (var script in GetComponents<MonoBehaviour>())
         {
             if (script != this)
@@ -82,7 +81,7 @@ public class VidaJugador : MonoBehaviour
         var col = GetComponent<Collider2D>();
         if (col != null) col.enabled = false;
 
-        // El cuadrado desaparece (sin desactivar el GameObject, para no cortar esta corrutina).
+        
         if (spriteRenderer != null)
             spriteRenderer.enabled = false;
 
