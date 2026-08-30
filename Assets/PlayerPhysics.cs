@@ -15,6 +15,8 @@ public class PlayerPhysics : MonoBehaviour
 
     [Header("Salto")]
     [SerializeField] private float fuerzaSalto = 8f;
+    [Tooltip("Gravedad durante la subida. Mayor a 1 = llega al punto más alto más rápido, sin cambiar la altura del salto.")]
+    [SerializeField] private float multiplicadorSubida = 2f;
 
     [Header("Dash")]
     [SerializeField] private float fuerzaDash = 15f;
@@ -41,10 +43,14 @@ public class PlayerPhysics : MonoBehaviour
         // Detección de suelo
         estaEnElSuelo = Physics2D.OverlapCircle(detectorSuelo.position, radioDeteccion, capaPlataformas);
 
-        // Gravedad extra al caer
-        if (rb.linearVelocity.y < 0 && !estaEnElSuelo)
+        // Gravedad segun la fase del salto
+        if (rb.linearVelocity.y > 0.01f && !estaEnElSuelo)
         {
-            rb.gravityScale = multiplicadorCaida;
+            rb.gravityScale = multiplicadorSubida;   // subida: apex mas rapido
+        }
+        else if (rb.linearVelocity.y < 0f && !estaEnElSuelo)
+        {
+            rb.gravityScale = multiplicadorCaida;    // caida: igual que antes
         }
         else
         {
@@ -107,7 +113,10 @@ public class PlayerPhysics : MonoBehaviour
 
         if (quiereSaltar)
         {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, fuerzaSalto);
+            // Se compensa la velocidad inicial con la raiz del multiplicador de subida
+            // para que el salto llegue a la MISMA altura, solo que mas rapido.
+            float velSalto = fuerzaSalto * Mathf.Sqrt(multiplicadorSubida);
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, velSalto);
             quiereSaltar = false;
         }
     }
