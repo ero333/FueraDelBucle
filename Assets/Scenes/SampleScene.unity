@@ -466,7 +466,7 @@ GameObject:
   m_Component:
   - component: {fileID: 895593783}
   m_Layer: 0
-  m_Name: ControldorDisparo
+  m_Name: ControladorDisparo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -752,11 +752,11 @@ MonoBehaviour:
   distanciaLinea: 10
   capaJugador:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   jugadorEnRango: 1
   proyectil: {fileID: 7323252962293113382, guid: 3159d34860195f0498ee5faf79f19dc0, type: 3}
   tiempoEntreDisparos: 1.5
-  dispararSiempre: 1
+  dispararSiempre: 0
 --- !u!212 &1460567613
 SpriteRenderer:
   serializedVersion: 2
