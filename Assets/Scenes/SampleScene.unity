@@ -163,7 +163,7 @@ MonoBehaviour:
   multiplicadorSubida: 2
   fuerzaDash: 13
   duracionDash: 0.2
-  cooldownDash: 1.25
+  cooldownDash: 1.2
   velocidadCaidaDespuesDash: 2.5
 --- !u!61 &8535972
 BoxCollider2D:
@@ -1060,7 +1060,7 @@ SpriteRenderer:
   m_Size: {x: 1.65, y: 0.48}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1402737418
 Transform:
