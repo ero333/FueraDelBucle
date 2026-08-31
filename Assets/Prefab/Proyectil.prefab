@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2572605522765085517}
   - component: {fileID: 6129215137178865636}
   - component: {fileID: 6129215137178865637}
+  - component: {fileID: 8533100527277429215}
   - component: {fileID: 6129215137178865638}
   - component: {fileID: 6129215137178865639}
   m_Layer: 0
@@ -104,11 +105,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 028b5596affebf34e878bc70dd1cf370, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   velocidad: 10
   "da\xF1o": 1
   tiempoDeVida: 5
+--- !u!114 &8533100527277429215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7323252962293113382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc927fa0354c3884096f3b79f74fa285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimadorSprites
+  frames:
+  - {fileID: -8558359520366776293, guid: a6c4cef1182cdc8439a43f08ac4d249e, type: 3}
+  cuadrosPorSegundo: 12
+  enBucle: 1
 --- !u!58 &6129215137178865638
 CircleCollider2D:
   m_ObjectHideFlags: 0
