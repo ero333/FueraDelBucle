@@ -8,22 +8,29 @@ public class VidaJugador : MonoBehaviour
 
     [Header("Feedback de impacto")]
     public Color colorImpacto = Color.red;
-    public float duracionImpacto = 1f;  
+    public float duracionImpacto = 1f;
 
     [Header("Game Over")]
     [Tooltip("Segundos de espera antes de reiniciar la escena al quedarse sin vida.")]
     public float retrasoReinicio = 1f;
 
-    private SpriteRenderer spriteRenderer;
-    private Color colorOriginal;
+    private SpriteRenderer[] spriteRenderers;
+    private Color[] coloresOriginales;
     private Coroutine parpadeoActual;
     private bool muerto;
 
     void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        if (spriteRenderer != null)
-            colorOriginal = spriteRenderer.color;
+        
+        spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+
+       
+        coloresOriginales = new Color[spriteRenderers.Length];
+
+        for (int i = 0; i < spriteRenderers.Length; i++)
+        {
+            coloresOriginales[i] = spriteRenderers[i].color;
+        }
     }
 
     public void TomarDaño(int daño)
@@ -40,25 +47,33 @@ public class VidaJugador : MonoBehaviour
             return;
         }
 
-        if (spriteRenderer != null)
-        {
-            if (parpadeoActual != null)
-                StopCoroutine(parpadeoActual);  
-            parpadeoActual = StartCoroutine(ParpadeoImpacto());
-        }
+        if (parpadeoActual != null)
+            StopCoroutine(parpadeoActual);
+
+        parpadeoActual = StartCoroutine(ParpadeoImpacto());
     }
 
     private IEnumerator ParpadeoImpacto()
     {
-        spriteRenderer.color = colorImpacto;
+        
+        for (int i = 0; i < spriteRenderers.Length; i++)
+        {
+            spriteRenderers[i].color = colorImpacto;
+        }
+
         yield return new WaitForSeconds(duracionImpacto);
-        spriteRenderer.color = colorOriginal;
+
+        
+        for (int i = 0; i < spriteRenderers.Length; i++)
+        {
+            spriteRenderers[i].color = coloresOriginales[i];
+        }
+
         parpadeoActual = null;
     }
 
     private IEnumerator ReiniciarJuego()
     {
-       
         if (parpadeoActual != null)
             StopCoroutine(parpadeoActual);
 
@@ -69,8 +84,9 @@ public class VidaJugador : MonoBehaviour
                 script.enabled = false;
         }
 
-        // ...y congela la física para que no siga desplazándose ni cayendo.
+        
         var rb = GetComponent<Rigidbody2D>();
+
         if (rb != null)
         {
             rb.linearVelocity = Vector2.zero;
@@ -78,12 +94,17 @@ public class VidaJugador : MonoBehaviour
             rb.simulated = false;
         }
 
+       
         var col = GetComponent<Collider2D>();
-        if (col != null) col.enabled = false;
 
-        
-        if (spriteRenderer != null)
-            spriteRenderer.enabled = false;
+        if (col != null)
+            col.enabled = false;
+
+       
+        foreach (var renderer in spriteRenderers)
+        {
+            renderer.enabled = false;
+        }
 
         yield return new WaitForSeconds(retrasoReinicio);
 
