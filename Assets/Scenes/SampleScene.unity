@@ -664,6 +664,7 @@ GameObject:
   - component: {fileID: 588318745}
   - component: {fileID: 588318744}
   - component: {fileID: 588318748}
+  - component: {fileID: 588318749}
   m_Layer: 5
   m_Name: Vidas
   m_TagString: Untagged
@@ -764,6 +765,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b144cd6d683eea54693d340007d8edf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VidasUI
+--- !u!114 &588318749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 588318743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19879cfcfac05f24d9a800394c73fe40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VidasUI
   imagenes:
@@ -1945,14 +1958,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1992107403}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b144cd6d683eea54693d340007d8edf9, type: 3}
+  m_Script: {fileID: 11500000, guid: 19879cfcfac05f24d9a800394c73fe40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
   imagenes:
   - {fileID: 261322038175085421, guid: c9de6a00486745d44ba6bfefdca65c5a, type: 3}
   - {fileID: 2348866115593714266, guid: 8d585596b29878c4f82b1fa3df7f13be, type: 3}
   - {fileID: -484510988744694614, guid: 08cff3cc601beef4481ba38fe29b0acb, type: 3}
-  - {fileID: 3887318459202446560, guid: 8c9d67003a4260048a907294501ddf4e, type: 3}
+  - {fileID: 1538246600204512625, guid: 141862d53cdf7434bb07be9a55032bb7, type: 3}
   jugador: {fileID: 0}
   imagen: {fileID: 0}
 --- !u!1 &2104616556
