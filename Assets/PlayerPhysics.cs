@@ -43,6 +43,20 @@ public class PlayerPhysics : MonoBehaviour
     private float tiempoRestanteCooldown;
     private float direccionDash;
 
+    // ---- Propiedades públicas para la UI del cooldown ----
+    public float ProgresoCooldownDash
+    {
+        get
+        {
+            if (cooldownDash <= 0f) return 1f;
+            return 1f - Mathf.Clamp01(tiempoRestanteCooldown / cooldownDash);
+        }
+    }
+
+    public float TiempoRestanteCooldown => tiempoRestanteCooldown;
+    public bool PuedeDashear => tiempoRestanteCooldown <= 0f;
+    // --------------------------------------------------------
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -134,7 +148,6 @@ public class PlayerPhysics : MonoBehaviour
             }
         }
 
-        // Dash (Shift), solo si A o D están sostenidas
         // Dash (Shift), solo si A o D están sostenidas
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
