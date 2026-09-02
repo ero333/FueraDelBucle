@@ -1,30 +1,19 @@
+
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class DashCooldownUI : MonoBehaviour
 {
+    [Header("Referencias")]
     [SerializeField] private PlayerPhysics jugador;
-    [SerializeField] private Image barraRelleno; // La barra OSCURA (Filled)
-    [SerializeField] private TMP_Text textoCooldown; // Opcional, podés dejarlo vacío
+    [SerializeField] private Image imagenCooldown;
 
     void Update()
     {
-        if (jugador == null || barraRelleno == null) return;
+        if (jugador == null || imagenCooldown == null)
+            return;
 
-        barraRelleno.fillAmount = jugador.ProgresoCooldownDash;
-
-        if (textoCooldown != null)
-        {
-            if (!jugador.PuedeDashear)
-            {
-                textoCooldown.text = Mathf.Ceil(jugador.TiempoRestanteCooldown).ToString();
-                textoCooldown.gameObject.SetActive(true);
-            }
-            else
-            {
-                textoCooldown.gameObject.SetActive(false);
-            }
-        }
+        // Actualiza la barra según el progreso del cooldown
+        imagenCooldown.fillAmount = jugador.ProgresoCooldownDash;
     }
 }
