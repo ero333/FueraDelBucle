@@ -633,9 +633,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 271585339}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a157d75b92e57934182d6bb193aef9bf, type: 3}
+  m_Script: {fileID: 11500000, guid: aad59314b53b79049ae04b590204e9c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DashCooldownUI
+  jugador: {fileID: 295255243}
+  imagenCooldown: {fileID: 271585341}
 --- !u!1 &295255233 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4066701399928486806, guid: 6fced0bc383c63343936eb68ebe0b99f, type: 3}
@@ -821,18 +823,6 @@ MonoBehaviour:
   velocidadCaidaDespuesDash: 2.5
   spriteMiraDerecha: 1
   visualAGirar: {fileID: 0}
---- !u!114 &295255244
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 295255233}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a157d75b92e57934182d6bb193aef9bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DashCooldownUI
 --- !u!1 &298656310 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -8653719598885068355, guid: 3638322d25fb3914bb5a32d4796af31b, type: 3}
@@ -1153,7 +1143,7 @@ MonoBehaviour:
   - {fileID: 2348866115593714266, guid: 8d585596b29878c4f82b1fa3df7f13be, type: 3}
   - {fileID: -484510988744694614, guid: 08cff3cc601beef4481ba38fe29b0acb, type: 3}
   - {fileID: 3887318459202446560, guid: 8c9d67003a4260048a907294501ddf4e, type: 3}
-  jugador: {fileID: 0}
+  jugador: {fileID: 295255242}
   imagen: {fileID: 1992107405}
 --- !u!1 &628861741
 GameObject:
@@ -2136,7 +2126,7 @@ MonoBehaviour:
   - {fileID: 2348866115593714266, guid: 8d585596b29878c4f82b1fa3df7f13be, type: 3}
   - {fileID: -484510988744694614, guid: 08cff3cc601beef4481ba38fe29b0acb, type: 3}
   - {fileID: 1538246600204512625, guid: 141862d53cdf7434bb07be9a55032bb7, type: 3}
-  jugador: {fileID: 0}
+  jugador: {fileID: 295255242}
   imagen: {fileID: 0}
 --- !u!1 &2104616556
 GameObject:
@@ -2793,9 +2783,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4066701399928486806, guid: 6fced0bc383c63343936eb68ebe0b99f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 295255242}
-    - targetCorrespondingSourceObject: {fileID: 4066701399928486806, guid: 6fced0bc383c63343936eb68ebe0b99f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 295255244}
   m_SourcePrefab: {fileID: 100100000, guid: 6fced0bc383c63343936eb68ebe0b99f, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
