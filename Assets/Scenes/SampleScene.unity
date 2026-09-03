@@ -820,7 +820,8 @@ MonoBehaviour:
   duracionDash: 0.2
   cooldownDash: 1.3
   velocidadCaidaDespuesDash: 2.5
-<<<<<<< HEAD
+  spriteMiraDerecha: 1
+  visualAGirar: {fileID: 0}
 --- !u!95 &295255244
 Animator:
   serializedVersion: 7
@@ -843,10 +844,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
-=======
-  spriteMiraDerecha: 1
-  visualAGirar: {fileID: 0}
->>>>>>> 9be547d60f1b07094076157a782cd47b70092f96
 --- !u!1 &298656310 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -8653719598885068355, guid: 3638322d25fb3914bb5a32d4796af31b, type: 3}

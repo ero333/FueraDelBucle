@@ -32,12 +32,9 @@ public class PlayerPhysics : MonoBehaviour
     [SerializeField] private Transform visualAGirar;
 
     private Rigidbody2D rb;
-<<<<<<< HEAD
     private Animator anim;
-=======
     private Transform transformAGirar;
     private Vector3 escalaAGirarInicial;
->>>>>>> 9be547d60f1b07094076157a782cd47b70092f96
     private bool estaEnElSuelo;
     private float inputHorizontal;
     private bool quiereSaltar;
@@ -64,9 +61,7 @@ public class PlayerPhysics : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-<<<<<<< HEAD
         anim = GetComponent<Animator>();
-=======
 
         // Si no se asigna nada, se gira este mismo objeto (la raíz del rig).
         transformAGirar = (visualAGirar != null) ? visualAGirar : transform;
@@ -89,7 +84,6 @@ public class PlayerPhysics : MonoBehaviour
             escala.x = objetivoX;
             transformAGirar.localScale = escala;
         }
->>>>>>> 9be547d60f1b07094076157a782cd47b70092f96
     }
 
     void Update()
