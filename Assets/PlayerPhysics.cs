@@ -25,6 +25,7 @@ public class PlayerPhysics : MonoBehaviour
     [SerializeField] private float velocidadCaidaDespuesDash = 2f;
 
     private Rigidbody2D rb;
+    private Animator anim;
     private bool estaEnElSuelo;
     private float inputHorizontal;
     private bool quiereSaltar;
@@ -37,6 +38,7 @@ public class PlayerPhysics : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     void Update()
@@ -63,10 +65,12 @@ public class PlayerPhysics : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
         {
             inputHorizontal = 1f;
+            anim.SetBool("mover", true);
         }
         else if (Input.GetKey(KeyCode.A))
         {
             inputHorizontal = -1f;
+            anim.SetBool("mover", true);
         }
 
         // Salto (Espacio o W), solo si está en el suelo

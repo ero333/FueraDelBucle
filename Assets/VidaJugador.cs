@@ -10,6 +10,10 @@ public class VidaJugador : MonoBehaviour
     public Color colorImpacto = Color.red;
     public float duracionImpacto = 1f;
 
+    [Header("Invulnerabilidad")]
+    public float duraciondeinvulnerabilidad = 1.5f;
+    private bool esInvulnerable = false;
+   
     [Header("Game Over")]
     [Tooltip("Segundos de espera antes de reiniciar la escena al quedarse sin vida.")]
     public float retrasoReinicio = 1f;
@@ -17,6 +21,7 @@ public class VidaJugador : MonoBehaviour
     private SpriteRenderer[] spriteRenderers;
     private Color[] coloresOriginales;
     private Coroutine parpadeoActual;
+    private Coroutine invulnerabilidadActual;
     private bool muerto;
 
     void Start()
@@ -35,9 +40,12 @@ public class VidaJugador : MonoBehaviour
 
     public void TomarDaño(int daño)
     {
-        if (muerto) return;
+        if (muerto || esInvulnerable) return;
 
         cantidadDeVida -= daño;
+
+       
+        
 
         if (cantidadDeVida <= 0)
         {
@@ -51,6 +59,8 @@ public class VidaJugador : MonoBehaviour
             StopCoroutine(parpadeoActual);
 
         parpadeoActual = StartCoroutine(ParpadeoImpacto());
+        if (invulnerabilidadActual != null) StopCoroutine(invulnerabilidadActual);
+        invulnerabilidadActual = StartCoroutine(Invulnerabilidad());
     }
 
     private IEnumerator ParpadeoImpacto()
@@ -70,6 +80,14 @@ public class VidaJugador : MonoBehaviour
         }
 
         parpadeoActual = null;
+    }
+
+    private IEnumerator Invulnerabilidad()
+    {
+        esInvulnerable = true;
+        yield return new WaitForSeconds(duraciondeinvulnerabilidad);
+        esInvulnerable = false;
+        invulnerabilidadActual = null;
     }
 
     private IEnumerator ReiniciarJuego()
@@ -112,5 +130,6 @@ public class VidaJugador : MonoBehaviour
         SceneManager.LoadScene(escenaActual.buildIndex);
     }
 
+   
     void Update() { }
 }
