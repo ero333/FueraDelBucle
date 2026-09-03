@@ -32,6 +32,7 @@ public class PlayerPhysics : MonoBehaviour
     [SerializeField] private Transform visualAGirar;
 
     private Rigidbody2D rb;
+    private Animator anim;
     private Transform transformAGirar;
     private Vector3 escalaAGirarInicial;
     private bool estaEnElSuelo;
@@ -60,6 +61,7 @@ public class PlayerPhysics : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
 
         // Si no se asigna nada, se gira este mismo objeto (la raíz del rig).
         transformAGirar = (visualAGirar != null) ? visualAGirar : transform;
@@ -108,10 +110,12 @@ public class PlayerPhysics : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
         {
             inputHorizontal = 1f;
+            anim.SetBool("mover", true);
         }
         else if (Input.GetKey(KeyCode.A))
         {
             inputHorizontal = -1f;
+            anim.SetBool("mover", true);
         }
 
         // Orientar el sprite segun la ultima direccion pulsada (D = derecha, A = izquierda)
