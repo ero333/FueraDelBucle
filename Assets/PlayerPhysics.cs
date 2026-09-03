@@ -91,6 +91,19 @@ public class PlayerPhysics : MonoBehaviour
         // Detección de suelo
         estaEnElSuelo = Physics2D.OverlapCircle(detectorSuelo.position, radioDeteccion, capaPlataformas);
 
+        // Animación de Salto y Caida
+        anim.SetBool("enSuelo", !estaEnElSuelo);
+        anim.SetFloat("velocidadY", rb.linearVelocity.y);
+
+        if (estaEnElSuelo)
+        {
+            anim.SetFloat("velocidadY", 0f);
+        }
+        else
+        {
+            anim.SetFloat("velocidadY", rb.linearVelocity.y);
+        }
+
         // Gravedad segun la fase del salto
         if (rb.linearVelocity.y > 0.01f && !estaEnElSuelo)
         {
@@ -129,6 +142,7 @@ public class PlayerPhysics : MonoBehaviour
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) && estaEnElSuelo)
         {
             quiereSaltar = true;
+            
         }
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W))
         {
@@ -201,6 +215,7 @@ public class PlayerPhysics : MonoBehaviour
             );
 
             quiereSaltar = false;
+            
         }
     }
 
