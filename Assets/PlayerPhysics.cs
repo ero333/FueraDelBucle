@@ -24,7 +24,16 @@ public class PlayerPhysics : MonoBehaviour
     [SerializeField] private float cooldownDash = 1f;
     [SerializeField] private float velocidadCaidaDespuesDash = 2f;
 
+    [Header("Sprite")]
+    [Tooltip("Marcá esto si el personaje mira hacia la derecha con escala X positiva. Desmarcá si mira a la izquierda.")]
+    [SerializeField] private bool spriteMiraDerecha = true;
+    [Tooltip("Objeto que se gira al cambiar de direccion. Si lo dejás vacío se usa este mismo GameObject " +
+             "(la raíz del rig). Se invierte su escala en X: espeja todo el rig sin cambiar su tamaño.")]
+    [SerializeField] private Transform visualAGirar;
+
     private Rigidbody2D rb;
+    private Transform transformAGirar;
+    private Vector3 escalaAGirarInicial;
     private bool estaEnElSuelo;
     private float inputHorizontal;
     private bool quiereSaltar;
@@ -34,9 +43,45 @@ public class PlayerPhysics : MonoBehaviour
     private float tiempoRestanteCooldown;
     private float direccionDash;
 
+    // ---- Propiedades públicas para la UI del cooldown ----
+    public float ProgresoCooldownDash
+    {
+        get
+        {
+            if (cooldownDash <= 0f) return 1f;
+            return 1f - Mathf.Clamp01(tiempoRestanteCooldown / cooldownDash);
+        }
+    }
+
+    public float TiempoRestanteCooldown => tiempoRestanteCooldown;
+    public bool PuedeDashear => tiempoRestanteCooldown <= 0f;
+    // --------------------------------------------------------
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        // Si no se asigna nada, se gira este mismo objeto (la raíz del rig).
+        transformAGirar = (visualAGirar != null) ? visualAGirar : transform;
+        escalaAGirarInicial = transformAGirar.localScale;
+    }
+
+    private void OrientarSprite()
+    {
+        if (inputHorizontal == 0f) return;
+
+        bool mirandoDerecha = inputHorizontal > 0f;
+
+        // Espeja el rig invirtiendo el signo de la escala en X (no cambia su tamaño).
+        float signo = (mirandoDerecha == spriteMiraDerecha) ? 1f : -1f;
+
+        Vector3 escala = transformAGirar.localScale;
+        float objetivoX = Mathf.Abs(escalaAGirarInicial.x) * signo;
+        if (!Mathf.Approximately(escala.x, objetivoX))
+        {
+            escala.x = objetivoX;
+            transformAGirar.localScale = escala;
+        }
     }
 
     void Update()
@@ -69,6 +114,9 @@ public class PlayerPhysics : MonoBehaviour
             inputHorizontal = -1f;
         }
 
+        // Orientar el sprite segun la ultima direccion pulsada (D = derecha, A = izquierda)
+        OrientarSprite();
+
         // Salto (Espacio o W), solo si está en el suelo
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) && estaEnElSuelo)
         {
@@ -100,7 +148,6 @@ public class PlayerPhysics : MonoBehaviour
             }
         }
 
-        // Dash (Shift), solo si A o D están sostenidas
         // Dash (Shift), solo si A o D están sostenidas
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
