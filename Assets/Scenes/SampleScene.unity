@@ -636,8 +636,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aad59314b53b79049ae04b590204e9c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DashCooldownUI
-  jugador: {fileID: 295255243}
-  imagenCooldown: {fileID: 271585341}
 --- !u!1 &295255233 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4066701399928486806, guid: 6fced0bc383c63343936eb68ebe0b99f, type: 3}
@@ -1217,9 +1215,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b144cd6d683eea54693d340007d8edf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VidasUI
-  imagenes: []
-  jugador: {fileID: 0}
-  imagen: {fileID: 0}
 --- !u!114 &588318749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1989,6 +1984,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1717990932
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8653719598885068355, guid: 6503d1ac95bff5844a0d244cd89974f0, type: 3}
+      propertyPath: m_Name
+      value: "SENTINEL-DISE\xD1O-RIG"
+      objectReference: {fileID: 0}
+    - target: {fileID: -7552582706839291426, guid: 6503d1ac95bff5844a0d244cd89974f0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -23.802328
+      objectReference: {fileID: 0}
+    - target: {fileID: -7552582706839291426, guid: 6503d1ac95bff5844a0d244cd89974f0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.022642612
+      objectReference: {fileID: 0}
+    - target: {fileID: -7552582706839291426, guid: 6503d1ac95bff5844a0d244cd89974f0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7552582706839291426, guid: 6503d1ac95bff5844a0d244cd89974f0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7552582706839291426, guid: 6503d1ac95bff5844a0d244cd89974f0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7552582706839291426, guid: 6503d1ac95bff5844a0d244cd89974f0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7552582706839291426, guid: 6503d1ac95bff5844a0d244cd89974f0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7552582706839291426, guid: 6503d1ac95bff5844a0d244cd89974f0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7552582706839291426, guid: 6503d1ac95bff5844a0d244cd89974f0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7552582706839291426, guid: 6503d1ac95bff5844a0d244cd89974f0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 4843985084834002234, guid: 6503d1ac95bff5844a0d244cd89974f0, type: 3}
 --- !u!1 &1824042758
 GameObject:
   m_ObjectHideFlags: 0
@@ -2894,3 +2946,4 @@ SceneRoots:
   - {fileID: 655529127}
   - {fileID: 124435938}
   - {fileID: 363082023}
+  - {fileID: 1717990932}
