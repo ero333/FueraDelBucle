@@ -117,6 +117,10 @@ public class PlayerPhysics : MonoBehaviour
             inputHorizontal = -1f;
             anim.SetBool("mover", true);
         }
+        else
+        {
+            anim.SetBool("mover", false);
+        }
 
         // Orientar el sprite segun la ultima direccion pulsada (D = derecha, A = izquierda)
         OrientarSprite();
@@ -165,6 +169,8 @@ public class PlayerPhysics : MonoBehaviour
             tiempoRestanteCooldown = cooldownDash;
             direccionDash = inputHorizontal;
             Debug.Log("DASH ACTIVADO, dirección = " + direccionDash);
+
+            anim.SetTrigger("dash");
         }
     }
 
