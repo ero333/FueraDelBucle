@@ -636,8 +636,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aad59314b53b79049ae04b590204e9c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DashCooldownUI
-  jugador: {fileID: 0}
-  imagenCooldown: {fileID: 0}
 --- !u!1 &295255233 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4066701399928486806, guid: 6fced0bc383c63343936eb68ebe0b99f, type: 3}
@@ -1240,9 +1238,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b144cd6d683eea54693d340007d8edf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VidasUI
-  imagenes: []
-  jugador: {fileID: 0}
-  imagen: {fileID: 0}
 --- !u!114 &588318749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1878,6 +1873,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1475908851 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -8653719598885068355, guid: 6503d1ac95bff5844a0d244cd89974f0, type: 3}
+  m_PrefabInstance: {fileID: 1717990932}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1475908853
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1475908851}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2461645f5665d8041bd27a4cfb1abc85, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1593388978
 GameObject:
   m_ObjectHideFlags: 0
@@ -2071,7 +2093,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 6503d1ac95bff5844a0d244cd89974f0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1475908853}
   m_SourcePrefab: {fileID: 4843985084834002234, guid: 6503d1ac95bff5844a0d244cd89974f0, type: 3}
 --- !u!1 &1824042758
 GameObject:
