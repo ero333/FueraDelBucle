@@ -633,9 +633,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 271585339}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aad59314b53b79049ae04b590204e9c0, type: 3}
+  m_Script: {fileID: 11500000, guid: a187c90b59b32584c95ab9de829dfb7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DashCooldownUI
+  jugador: {fileID: 295255243}
+  imagenCooldown: {fileID: 271585341}
 --- !u!1 &295255233 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4066701399928486806, guid: 6fced0bc383c63343936eb68ebe0b99f, type: 3}
