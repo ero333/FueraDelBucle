@@ -7,13 +7,11 @@ public class Proyectil : MonoBehaviour
     public int daño;
     public float tiempoDeVida = 5f;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
      void Start()
     {
         Destroy(gameObject, tiempoDeVida);
     }
 
-    // Update is called once per frame
     private void Update()
     {
         transform.Translate(Time.deltaTime * velocidad * Vector2.right);
@@ -24,6 +22,7 @@ public class Proyectil : MonoBehaviour
         if (other.TryGetComponent(out VidaJugador vidaJugador))
         {
             vidaJugador.TomarDaño(daño);
+            Destroy(gameObject);
         }
     }
 }

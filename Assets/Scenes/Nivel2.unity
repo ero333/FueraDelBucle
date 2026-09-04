@@ -312,7 +312,7 @@ MonoBehaviour:
   jugadorEnRango: 0
   proyectil: {fileID: 7323252962293113382, guid: 3159d34860195f0498ee5faf79f19dc0, type: 3}
   tiempoEntreDisparos: 1.5
-  dispararSiempre: 1
+  dispararSiempre: 0
 --- !u!212 &112126221
 SpriteRenderer:
   serializedVersion: 2
@@ -1167,6 +1167,7 @@ GameObject:
   - component: {fileID: 397489929}
   - component: {fileID: 397489928}
   - component: {fileID: 397489927}
+  - component: {fileID: 397489930}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1248,6 +1249,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &397489930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 397489926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c1a4e2b9d3f45a8b6e0c2d7f1a83b54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CamaraSeguir
+  objetivo: {fileID: 175978352}
+  desplazamiento: {x: 0, y: 1}
+  suavizado: 0.15
+  usarLimites: 1
+  limiteIzquierdo: 0
+  limiteDerecho: 86.5
+  limiteAbajo: -4
+  limiteArriba: 2
 --- !u!1 &435571733
 GameObject:
   m_ObjectHideFlags: 0
@@ -1380,7 +1401,7 @@ Transform:
   m_GameObject: {fileID: 435571733}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.42, y: 0.45, z: 0}
+  m_LocalPosition: {x: 19.42, y: -1.12, z: 0}
   m_LocalScale: {x: 3.2705, y: 2.721056, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1559,7 +1580,7 @@ MonoBehaviour:
   jugadorEnRango: 0
   proyectil: {fileID: 7323252962293113382, guid: 3159d34860195f0498ee5faf79f19dc0, type: 3}
   tiempoEntreDisparos: 1.5
-  dispararSiempre: 1
+  dispararSiempre: 0
 --- !u!212 &447024621
 SpriteRenderer:
   serializedVersion: 2
@@ -1676,7 +1697,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 3638322d25fb3914bb5a32d4796af31b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 36.4
+      value: 35.29
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 3638322d25fb3914bb5a32d4796af31b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1842,7 +1863,7 @@ MonoBehaviour:
   jugadorEnRango: 0
   proyectil: {fileID: 7323252962293113382, guid: 3159d34860195f0498ee5faf79f19dc0, type: 3}
   tiempoEntreDisparos: 1.5
-  dispararSiempre: 1
+  dispararSiempre: 0
 --- !u!212 &501193903
 SpriteRenderer:
   serializedVersion: 2
@@ -2061,7 +2082,7 @@ Transform:
   m_GameObject: {fileID: 605231507}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.22, y: 0.08, z: 0}
+  m_LocalPosition: {x: -2.42, y: -2.17, z: 0}
   m_LocalScale: {x: 3.2705, y: 2.721056, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2113,7 +2134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LuzRoja
   luzRoja: {fileID: 324999727}
-  tiempoEntreDisparos: 1.2
+  tiempoEntreDisparos: 1.6
   duracionTitileo: 0.4
 --- !u!1 &648798227
 GameObject:
@@ -2247,7 +2268,7 @@ Transform:
   m_GameObject: {fileID: 648798227}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.49, y: 0.1, z: 0}
+  m_LocalPosition: {x: 5.59, y: -0.8, z: 0}
   m_LocalScale: {x: 3.2705, y: 2.721056, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2385,7 +2406,7 @@ Transform:
   m_GameObject: {fileID: 653693128}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 89.8, y: 2.12, z: 0}
+  m_LocalPosition: {x: 82.52, y: -0.65, z: 0}
   m_LocalScale: {x: 3.2705, y: 2.721056, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2421,7 +2442,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 3638322d25fb3914bb5a32d4796af31b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 66.21
+      value: 66.11
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 3638322d25fb3914bb5a32d4796af31b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2535,7 +2556,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LuzRoja
   luzRoja: {fileID: 1452348831}
-  tiempoEntreDisparos: 1.2
+  tiempoEntreDisparos: 1.6
   duracionTitileo: 0.4
 --- !u!1 &787512398
 GameObject:
@@ -2669,7 +2690,7 @@ Transform:
   m_GameObject: {fileID: 787512398}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 49.64, y: 2.12, z: 0}
+  m_LocalPosition: {x: 46.57, y: -4, z: 0}
   m_LocalScale: {x: 3.2705, y: 2.721056, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2807,7 +2828,7 @@ Transform:
   m_GameObject: {fileID: 814110610}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 41.47, y: -2.8, z: 0}
+  m_LocalPosition: {x: 38.62, y: -5.68, z: 0}
   m_LocalScale: {x: 3.2705, y: 2.721056, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2905,11 +2926,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 3638322d25fb3914bb5a32d4796af31b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.39
+      value: 5.49
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 3638322d25fb3914bb5a32d4796af31b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.52
+      value: -0.38
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 3638322d25fb3914bb5a32d4796af31b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3226,7 +3247,7 @@ Transform:
   m_GameObject: {fileID: 1072553522}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 31.98, y: -7.13, z: 0}
+  m_LocalPosition: {x: 30.87, y: -7.13, z: 0}
   m_LocalScale: {x: 2.9362001, y: 1.3832, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3317,8 +3338,8 @@ Transform:
   m_GameObject: {fileID: 1168962547}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.34757, y: -9.92, z: 0}
-  m_LocalScale: {x: 50.28, y: 1, z: 1}
+  m_LocalPosition: {x: 37.5, y: -9.92, z: 0}
+  m_LocalScale: {x: 125, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -3369,7 +3390,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LuzRoja
   luzRoja: {fileID: 381585431}
-  tiempoEntreDisparos: 1.2
+  tiempoEntreDisparos: 1.6
   duracionTitileo: 0.4
 --- !u!1 &1320087131
 GameObject:
@@ -3502,6 +3523,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b144cd6d683eea54693d340007d8edf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VidasUI
+  imagenes: []
+  jugador: {fileID: 0}
+  imagen: {fileID: 0}
 --- !u!114 &1325165024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3825,7 +3849,7 @@ Transform:
   m_GameObject: {fileID: 1533376925}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 103.05, y: -1.55, z: 0}
+  m_LocalPosition: {x: 93.56, y: -1.55, z: 0}
   m_LocalScale: {x: 0.5135, y: 0.5135, z: 0.5135}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3929,7 +3953,7 @@ MonoBehaviour:
   jugadorEnRango: 0
   proyectil: {fileID: 7323252962293113382, guid: 3159d34860195f0498ee5faf79f19dc0, type: 3}
   tiempoEntreDisparos: 1.5
-  dispararSiempre: 1
+  dispararSiempre: 0
 --- !u!212 &1591261579
 SpriteRenderer:
   serializedVersion: 2
@@ -4722,7 +4746,7 @@ Transform:
   m_GameObject: {fileID: 1776215748}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 65.54, y: -2.37, z: 0}
+  m_LocalPosition: {x: 65.44, y: -2.37, z: 0}
   m_LocalScale: {x: 3.2705, y: 2.721056, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4774,7 +4798,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LuzRoja
   luzRoja: {fileID: 304268980}
-  tiempoEntreDisparos: 1.2
+  tiempoEntreDisparos: 1.6
   duracionTitileo: 0.4
 --- !u!1001 &1858843961
 PrefabInstance:
@@ -4806,11 +4830,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 3638322d25fb3914bb5a32d4796af31b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 90.82
+      value: 83.54
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 3638322d25fb3914bb5a32d4796af31b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.45
+      value: -0.32
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 3638322d25fb3914bb5a32d4796af31b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5037,7 +5061,7 @@ Transform:
   m_GameObject: {fileID: 1917424980}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 103, y: -3.9, z: 0}
+  m_LocalPosition: {x: 93.51, y: -3.9, z: 0}
   m_LocalScale: {x: 3.2705, y: 2.721056, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5175,7 +5199,7 @@ Transform:
   m_GameObject: {fileID: 2008796227}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 56.14, y: -2.37, z: 0}
+  m_LocalPosition: {x: 55.94, y: -2.37, z: 0}
   m_LocalScale: {x: 3.2705, y: 2.721056, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5344,7 +5368,7 @@ Transform:
   m_GameObject: {fileID: 2090622176}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 77.2, y: -2.1, z: 0}
+  m_LocalPosition: {x: 74.77, y: -2.1, z: 0}
   m_LocalScale: {x: 2.9362001, y: 1.3832, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
