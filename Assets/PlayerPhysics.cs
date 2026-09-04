@@ -63,6 +63,20 @@ public class PlayerPhysics : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
 
+        // Sin fricción: evita que el jugador quede "pegado" al collider de una
+        // plataforma cuando el input lo empuja contra ella. El movimiento ya lo
+        // controlamos 100% seteando la velocidad a mano, así que la fricción no
+        // hace falta para nada y solo generaba ese enganche.
+        var colisionador = GetComponent<Collider2D>();
+        if (colisionador != null)
+        {
+            colisionador.sharedMaterial = new PhysicsMaterial2D("PlayerSinFriccion")
+            {
+                friction = 0f,
+                bounciness = 0f
+            };
+        }
+
         // Si no se asigna nada, se gira este mismo objeto (la raíz del rig).
         transformAGirar = (visualAGirar != null) ? visualAGirar : transform;
         escalaAGirarInicial = transformAGirar.localScale;
