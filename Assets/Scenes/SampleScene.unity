@@ -660,6 +660,11 @@ MonoBehaviour:
   nombreEscenaSiguiente: Nivel2
   tagJugador: Player
   botonCambioEscena: {fileID: 1231297884}
+  esperarAterrizaje: 1
+  velocidadVerticalMaxima: 0.5
+  pausarAlMostrar: 1
+  fundido: {fileID: 0}
+  duracionFundido: 0.4
 --- !u!212 &124435937
 SpriteRenderer:
   serializedVersion: 2
@@ -728,7 +733,7 @@ Transform:
   m_GameObject: {fileID: 124435934}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.77, y: 1.27, z: 0}
+  m_LocalPosition: {x: 0.8, y: 1.4, z: 0}
   m_LocalScale: {x: 0.5135, y: 0.5135, z: 0.5135}
   m_ConstrainProportionsScale: 0
   m_Children: []
