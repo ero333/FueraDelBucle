@@ -109,7 +109,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -206,7 +206,7 @@ TextureImporter:
         width: 118
         height: 76
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -223,12 +223,12 @@ TextureImporter:
       name: Proyectil_SpriteSheet_1
       rect:
         serializedVersion: 2
-        x: 240
-        y: 254
-        width: 259
-        height: 82
+        x: 223
+        y: 257
+        width: 271
+        height: 81
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -242,81 +242,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Proyectil_SpriteSheet_2
-      rect:
-        serializedVersion: 2
-        x: 310
-        y: 330
-        width: 15
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4d5c20699dc6c1c80800000000000000
-      internalID: -8350679927271275052
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Proyectil_SpriteSheet_3
-      rect:
-        serializedVersion: 2
-        x: 394
-        y: 325
-        width: 19
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 02786be2ffce199a0800000000000000
-      internalID: -6227936228932155616
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Proyectil_SpriteSheet_4
-      rect:
-        serializedVersion: 2
-        x: 423
-        y: 326
-        width: 25
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 60224696014d38a90800000000000000
-      internalID: -7312768202966818298
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Proyectil_SpriteSheet_5
       rect:
         serializedVersion: 2
-        x: 526
+        x: 511
         y: 257
-        width: 258
-        height: 81
+        width: 270
+        height: 80
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -330,81 +264,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Proyectil_SpriteSheet_6
-      rect:
-        serializedVersion: 2
-        x: 221
-        y: 296
-        width: 16
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 270eec8092f68f890800000000000000
-      internalID: -7424061763688144782
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Proyectil_SpriteSheet_7
-      rect:
-        serializedVersion: 2
-        x: 511
-        y: 293
-        width: 13
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 06105df96d455d650800000000000000
-      internalID: 6257000538082443616
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Proyectil_SpriteSheet_8
-      rect:
-        serializedVersion: 2
-        x: 709
-        y: 254
-        width: 19
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: de47c371dbe9cbcb0800000000000000
-      internalID: -4846824563981650707
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Proyectil_SpriteSheet_9
       rect:
         serializedVersion: 2
         x: 898
         y: 215
-        width: 523
+        width: 158
         height: 59
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -421,12 +289,12 @@ TextureImporter:
       name: Proyectil_SpriteSheet_10
       rect:
         serializedVersion: 2
-        x: 111
-        y: 158
-        width: 257
-        height: 76
+        x: 97
+        y: 156
+        width: 268
+        height: 81
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -440,103 +308,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Proyectil_SpriteSheet_11
-      rect:
-        serializedVersion: 2
-        x: 257
-        y: 224
-        width: 15
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5578e1e4042104810800000000000000
-      internalID: 1747416722817582933
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Proyectil_SpriteSheet_12
-      rect:
-        serializedVersion: 2
-        x: 292
-        y: 226
-        width: 18
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 34b32fd906a54f680800000000000000
-      internalID: -8722247207296550077
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Proyectil_SpriteSheet_13
-      rect:
-        serializedVersion: 2
-        x: 445
-        y: 206
-        width: 32
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 20b6173d0a7798d10800000000000000
-      internalID: 2128363831535168258
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Proyectil_SpriteSheet_14
-      rect:
-        serializedVersion: 2
-        x: 554
-        y: 221
-        width: 12
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3f9a09dcd823c4e60800000000000000
-      internalID: 7947783027022670323
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Proyectil_SpriteSheet_15
       rect:
         serializedVersion: 2
-        x: 564
-        y: 156
-        width: 78
-        height: 83
+        x: 409
+        y: 158
+        width: 233
+        height: 75
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -550,199 +330,45 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Proyectil_SpriteSheet_16
+      name: Proyectil_SpriteSheet_2
       rect:
         serializedVersion: 2
-        x: 406
-        y: 199
-        width: 22
-        height: 13
+        x: 1070
+        y: 215
+        width: 159
+        height: 59
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8e4c5645883fc7d60800000000000000
-      internalID: 7889448414103323880
+      spriteID: 6288172dd85ac4344ae00a95ca8ccfc8
+      internalID: -8350679927271275052
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Proyectil_SpriteSheet_17
+      name: Proyectil_SpriteSheet_3
       rect:
         serializedVersion: 2
-        x: 436
-        y: 205
-        width: 9
-        height: 8
+        x: 1229
+        y: 215
+        width: 179
+        height: 59
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d75b1c0529a26c510800000000000000
-      internalID: 1568988328093660541
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Proyectil_SpriteSheet_18
-      rect:
-        serializedVersion: 2
-        x: 468
-        y: 193
-        width: 19
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a653ff1232b16dc80800000000000000
-      internalID: -8298415425675381398
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Proyectil_SpriteSheet_19
-      rect:
-        serializedVersion: 2
-        x: 496
-        y: 194
-        width: 22
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 845efba20ac20c830800000000000000
-      internalID: 4089317528076019016
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Proyectil_SpriteSheet_20
-      rect:
-        serializedVersion: 2
-        x: 522
-        y: 184
-        width: 50
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e623bb184d5fe6680800000000000000
-      internalID: -8759793932130635154
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Proyectil_SpriteSheet_21
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 194
-        width: 13
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3409473f9461c17b0800000000000000
-      internalID: -5252298558547914685
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Proyectil_SpriteSheet_22
-      rect:
-        serializedVersion: 2
-        x: 447
-        y: 184
-        width: 14
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2c80cb0484f4e4740800000000000000
-      internalID: 5138131396618619074
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Proyectil_SpriteSheet_23
-      rect:
-        serializedVersion: 2
-        x: 535
-        y: 165
-        width: 23
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4ef082ddaab69f0d0800000000000000
-      internalID: -3388558863020584988
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Proyectil_SpriteSheet_24
-      rect:
-        serializedVersion: 2
-        x: 299
-        y: 155
-        width: 16
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0380fd0d0c89a3050800000000000000
-      internalID: 5781101025588873264
+      spriteID: 789827d5daf6a7e4aaba52c95cd5093f
+      internalID: -6227936228932155616
       vertices: []
       indices: 
       edges: []
@@ -751,7 +377,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
