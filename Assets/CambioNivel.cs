@@ -17,7 +17,10 @@ public class CambioNivel : MonoBehaviour
     public Button botonCambioEscena;
 
     [Header("Aparición del botón")]
-    [Tooltip("Espera a que el jugador aterrice antes de mostrar el botón.")]
+    [Tooltip("Desactivalo si el boton vive dentro del panel de victoria y lo muestra ese script.")]
+    public bool mostrarBotonPorContacto = true;
+
+    [Tooltip("Espera a que el jugador aterrice antes de mostrar el boton.")]
     public bool esperarAterrizaje = true;
 
     [Tooltip("Velocidad vertical por debajo de la cual se considera que ya aterrizó.")]
@@ -55,7 +58,7 @@ public class CambioNivel : MonoBehaviour
 
         if (botonCambioEscena != null)
         {
-            botonCambioEscena.gameObject.SetActive(false);
+            if (mostrarBotonPorContacto) botonCambioEscena.gameObject.SetActive(false);
             botonCambioEscena.onClick.AddListener(CargarSiguienteEscena);
         }
         else
@@ -67,6 +70,7 @@ public class CambioNivel : MonoBehaviour
     private void OnTriggerStay2D(Collider2D other)
     {
         if (cambiando || esperando || botonCambioEscena == null) return;
+        if (!mostrarBotonPorContacto) return;
         if (!other.CompareTag(tagJugador)) return;
         if (botonCambioEscena.gameObject.activeSelf) return;
 
