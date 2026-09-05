@@ -48,4 +48,12 @@ public class PauseManager : MonoBehaviour
             Application.Quit();
 #endif
     }
+
+
+
+    public void Reiniciar()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 }
