@@ -33,6 +33,7 @@ public class PlayerPhysics : MonoBehaviour
 
     private Rigidbody2D rb;
     private Animator anim;
+    private Collider2D colisionadorJugador;
     private Transform transformAGirar;
     private Vector3 escalaAGirarInicial;
     private bool estaEnElSuelo;
@@ -67,10 +68,10 @@ public class PlayerPhysics : MonoBehaviour
         // plataforma cuando el input lo empuja contra ella. El movimiento ya lo
         // controlamos 100% seteando la velocidad a mano, así que la fricción no
         // hace falta para nada y solo generaba ese enganche.
-        var colisionador = GetComponent<Collider2D>();
-        if (colisionador != null)
+        colisionadorJugador = GetComponent<Collider2D>();
+        if (colisionadorJugador != null)
         {
-            colisionador.sharedMaterial = new PhysicsMaterial2D("PlayerSinFriccion")
+            colisionadorJugador.sharedMaterial = new PhysicsMaterial2D("PlayerSinFriccion")
             {
                 friction = 0f,
                 bounciness = 0f
@@ -100,10 +101,24 @@ public class PlayerPhysics : MonoBehaviour
         }
     }
 
+    // El punto de chequeo queda siempre centrado en X bajo el personaje (usa
+    // transform.position, que no cambia al girar). La altura Y se toma del
+    // borde inferior REAL del collider del jugador en este mismo frame, no de
+    // un Transform calibrado a mano: así da igual el alto/grosor de cada
+    // plataforma, siempre se compara contra donde están literalmente los pies.
+    // (Antes, al ser detectorSuelo hijo del objeto que espejamos en
+    // OrientarSprite(), su X se corría al cambiar de lado y en las esquinas
+    // quedaba fuera de la plataforma aunque el personaje siguiera apoyado.)
+    private Vector2 PuntoDeteccionSuelo()
+    {
+        float y = colisionadorJugador != null ? colisionadorJugador.bounds.min.y : detectorSuelo.position.y;
+        return new Vector2(transform.position.x, y);
+    }
+
     void Update()
     {
         // Detección de suelo
-        estaEnElSuelo = Physics2D.OverlapCircle(detectorSuelo.position, radioDeteccion, capaPlataformas);
+        estaEnElSuelo = Physics2D.OverlapCircle(PuntoDeteccionSuelo(), radioDeteccion, capaPlataformas);
 
         // Animación de Salto y Caida
         anim.SetBool("enSuelo", !estaEnElSuelo);
@@ -238,7 +253,7 @@ public class PlayerPhysics : MonoBehaviour
         if (detectorSuelo != null)
         {
             Gizmos.color = Color.green;
-            Gizmos.DrawWireSphere(detectorSuelo.position, radioDeteccion);
+            Gizmos.DrawWireSphere(PuntoDeteccionSuelo(), radioDeteccion);
         }
     }
 }
