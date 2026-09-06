@@ -265,6 +265,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 76215011}
+  - component: {fileID: 76215012}
   m_Layer: 0
   m_Name: ControladorNiveles
   m_TagString: Untagged
@@ -287,6 +288,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &76215012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 76215010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 399c9526880c83f40900c299bbefb67a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SeleccionNiveles
 --- !u!1 &115285055
 GameObject:
   m_ObjectHideFlags: 0
@@ -373,13 +386,13 @@ MonoBehaviour:
       - m_Target: {fileID: 490197422}
         m_TargetAssemblyTypeName: SeleccionNiveles, Assembly-CSharp
         m_MethodName: CambiarNivel
-        m_Mode: 3
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Nivel9
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &115285058
@@ -506,13 +519,13 @@ MonoBehaviour:
       - m_Target: {fileID: 490197422}
         m_TargetAssemblyTypeName: SeleccionNiveles, Assembly-CSharp
         m_MethodName: CambiarNivel
-        m_Mode: 3
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Nivel4
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &182389882
@@ -776,13 +789,13 @@ MonoBehaviour:
       - m_Target: {fileID: 490197422}
         m_TargetAssemblyTypeName: SeleccionNiveles, Assembly-CSharp
         m_MethodName: CambiarNivel
-        m_Mode: 3
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Nivel2
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &330238459
@@ -909,13 +922,13 @@ MonoBehaviour:
       - m_Target: {fileID: 490197422}
         m_TargetAssemblyTypeName: SeleccionNiveles, Assembly-CSharp
         m_MethodName: CambiarNivel
-        m_Mode: 3
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Nivel3
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &391208192
@@ -1042,13 +1055,13 @@ MonoBehaviour:
       - m_Target: {fileID: 490197422}
         m_TargetAssemblyTypeName: SeleccionNiveles, Assembly-CSharp
         m_MethodName: CambiarNivel
-        m_Mode: 3
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Nivel6
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &473086305
@@ -1573,13 +1586,13 @@ MonoBehaviour:
       - m_Target: {fileID: 490197422}
         m_TargetAssemblyTypeName: SeleccionNiveles, Assembly-CSharp
         m_MethodName: CambiarNivel
-        m_Mode: 3
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Nivel8
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1015441590
@@ -1785,13 +1798,13 @@ MonoBehaviour:
       - m_Target: {fileID: 490197422}
         m_TargetAssemblyTypeName: SeleccionNiveles, Assembly-CSharp
         m_MethodName: CambiarNivel
-        m_Mode: 3
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Nivel10
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1231365640
@@ -2055,13 +2068,13 @@ MonoBehaviour:
       - m_Target: {fileID: 490197422}
         m_TargetAssemblyTypeName: SeleccionNiveles, Assembly-CSharp
         m_MethodName: CambiarNivel
-        m_Mode: 3
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Nivel7
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1456023776
@@ -2549,7 +2562,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -211, y: -142}
+  m_AnchoredPosition: {x: -212, y: -148}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1685325027
@@ -2599,13 +2612,13 @@ MonoBehaviour:
       - m_Target: {fileID: 490197422}
         m_TargetAssemblyTypeName: SeleccionNiveles, Assembly-CSharp
         m_MethodName: CambiarNivel
-        m_Mode: 3
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Nivel5
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1685325028
@@ -2682,7 +2695,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 339.5, y: -119.5}
+  m_AnchoredPosition: {x: 79.5, y: -15.5}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1844102127
@@ -2732,13 +2745,13 @@ MonoBehaviour:
       - m_Target: {fileID: 490197422}
         m_TargetAssemblyTypeName: SeleccionNiveles, Assembly-CSharp
         m_MethodName: CambiarNivel
-        m_Mode: 3
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: SampleScene
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1844102128
