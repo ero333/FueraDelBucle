@@ -117,6 +117,10 @@ public class PlayerPhysics : MonoBehaviour
 
     void Update()
     {
+        // En pausa (Time.timeScale == 0) no se procesa input: evita que girar,
+        // saltar o dashear mientras el juego esta pausado.
+        if (Time.timeScale == 0f) return;
+
         // Detección de suelo
         estaEnElSuelo = Physics2D.OverlapCircle(PuntoDeteccionSuelo(), radioDeteccion, capaPlataformas);
 
