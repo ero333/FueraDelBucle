@@ -217,7 +217,10 @@ public class PlayerPhysics : MonoBehaviour
             direccionDash = inputHorizontal;
             Debug.Log("DASH ACTIVADO, dirección = " + direccionDash);
 
-            anim.SetTrigger("dash");
+            // Play fuerza el estado YA, sin esperar transiciones ni exit time
+            // (con SetTrigger no había transición desde SALTAR y el dash se veía
+            // recién al aterrizar). "DASH" es el nombre del estado en el Animator.
+            anim.Play("DASH", 0, 0f);
         }
     }
 
