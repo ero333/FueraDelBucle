@@ -16,7 +16,7 @@ public class VidaJugador : MonoBehaviour
    
     [Header("Game Over")]
     [Tooltip("Segundos de espera antes de reiniciar la escena al quedarse sin vida.")]
-    public float retrasoReinicio = 1f;
+    public float retrasoReinicio = 1.5f;
 
     private SpriteRenderer[] spriteRenderers;
     private Color[] coloresOriginales;
@@ -24,11 +24,14 @@ public class VidaJugador : MonoBehaviour
     private Coroutine invulnerabilidadActual;
     private bool muerto;
 
+    private Animator anim;
+
     void Start()
     {
         
         spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
 
+        anim = GetComponent<Animator>();
        
         coloresOriginales = new Color[spriteRenderers.Length];
 
@@ -51,8 +54,11 @@ public class VidaJugador : MonoBehaviour
         {
             cantidadDeVida = 0;
             muerto = true;
+            anim.SetTrigger("Muerte");
             StartCoroutine(ReiniciarJuego());
             return;
+
+         
         }
 
         if (parpadeoActual != null)
@@ -95,37 +101,36 @@ public class VidaJugador : MonoBehaviour
         if (parpadeoActual != null)
             StopCoroutine(parpadeoActual);
 
-       
-        foreach (var script in GetComponents<MonoBehaviour>())
+
+        for (int i = 0; i < spriteRenderers.Length; i++)
         {
-            if (script != this)
-                script.enabled = false;
+            spriteRenderers[i].color = coloresOriginales[i];
         }
 
-        
+       
         var rb = GetComponent<Rigidbody2D>();
-
         if (rb != null)
         {
             rb.linearVelocity = Vector2.zero;
-            rb.angularVelocity = 0f;
-            rb.simulated = false;
+
+          
+            rb.bodyType = RigidbodyType2D.Kinematic;
         }
 
-       
         var col = GetComponent<Collider2D>();
 
         if (col != null)
             col.enabled = false;
 
-       
-        foreach (var renderer in spriteRenderers)
+        foreach (var script in GetComponents<MonoBehaviour>())
         {
-            renderer.enabled = false;
+            if (script != this)
+                script.enabled = false;
+
+            yield return new WaitForSeconds(retrasoReinicio);
+
+
         }
-
-        yield return new WaitForSeconds(retrasoReinicio);
-
         Scene escenaActual = SceneManager.GetActiveScene();
         SceneManager.LoadScene(escenaActual.buildIndex);
     }
