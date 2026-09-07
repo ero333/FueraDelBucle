@@ -1098,7 +1098,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 3.78, y: 4.66}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 3.78, y: 4.66}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -1118,7 +1118,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   caminoOculto: {fileID: 781581351}
-  spriteActivado: {fileID: -3333604174124428489, guid: 5bd290ac2eb55b94898e802d69421803, type: 3}
+  spriteActivado: {fileID: -3333604174124428489, guid: 77b2ebd45d989514bba968df16fa5f4a, type: 3}
 --- !u!212 &144996093
 SpriteRenderer:
   serializedVersion: 2
@@ -1168,12 +1168,12 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -3333604174124428489, guid: 5bd290ac2eb55b94898e802d69421803, type: 3}
+  m_Sprite: {fileID: -3333604174124428489, guid: 77b2ebd45d989514bba968df16fa5f4a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3.78, y: 4.66}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
