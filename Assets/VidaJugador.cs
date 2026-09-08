@@ -15,7 +15,7 @@ public class VidaJugador : MonoBehaviour
     private bool esInvulnerable = false;
    
     [Header("Game Over")]
-    [Tooltip("Segundos de espera antes de reiniciar la escena al quedarse sin vida.")]
+    [Tooltip("Segundos de espera antes de reiniciar la escena al quedarse sin vida (mínimo 1.5s).")]
     public float retrasoReinicio = 1.5f;
 
     private SpriteRenderer[] spriteRenderers;
@@ -122,15 +122,19 @@ public class VidaJugador : MonoBehaviour
         if (col != null)
             col.enabled = false;
 
+        // Desactiva TODOS los demás scripts de una (movimiento, dash, disparo...)
+        // para que el jugador quede congelado apenas muere.
         foreach (var script in GetComponents<MonoBehaviour>())
         {
             if (script != this)
                 script.enabled = false;
-
-            yield return new WaitForSeconds(retrasoReinicio);
-
-
         }
+
+        // Recién ahora se espera (una sola vez) para que se vea la animación de
+        // muerte, y después se reinicia. Mínimo 1.5s aunque el campo serializado
+        // en las escenas haya quedado en 0.5.
+        yield return new WaitForSeconds(Mathf.Max(retrasoReinicio, 1.5f));
+
         Scene escenaActual = SceneManager.GetActiveScene();
         SceneManager.LoadScene(escenaActual.buildIndex);
     }
