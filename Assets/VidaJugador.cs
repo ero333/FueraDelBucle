@@ -41,11 +41,11 @@ public class VidaJugador : MonoBehaviour
         }
     }
 
-    public void TomarDanio(int danio)
+    public void TomarDaño(int daño)
     {
         if (muerto || esInvulnerable) return;
 
-        cantidadDeVida -= danio;
+        cantidadDeVida -= daño;
 
        
         
