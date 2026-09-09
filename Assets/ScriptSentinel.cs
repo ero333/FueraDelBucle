@@ -63,7 +63,7 @@ public class ScriptSentinel : MonoBehaviour
 
             if (vida != null)
             {
-                vida.TomarDaño(vida.cantidadDeVida);
+                vida.TomarDanio(vida.cantidadDeVida);
             }
         }
     }

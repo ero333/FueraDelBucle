@@ -4,7 +4,7 @@ public class Proyectil : MonoBehaviour
 {
 
     public float velocidad;
-    public int daño;
+    public int danio;
     public float tiempoDeVida = 5f;
 
      void Start()
@@ -21,7 +21,7 @@ public class Proyectil : MonoBehaviour
     {
         if (other.TryGetComponent(out VidaJugador vidaJugador))
         {
-            vidaJugador.TomarDaño(daño);
+            vidaJugador.TomarDanio(danio);
             Destroy(gameObject);
         }
     }
