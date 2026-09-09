@@ -152,7 +152,7 @@ MonoBehaviour:
   objectiveText: {fileID: 0}
   closeButton: {fileID: 311667135}
   levelObjective: "\xA1Llega a la puerta para ganar!"
-  pauseGameOnStart: 1
+  pauseGameOnStart: 0
 --- !u!224 &3452755
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5858,7 +5858,7 @@ MonoBehaviour:
   objetivo: {fileID: 927441317}
   desplazamiento: {x: 0, y: 1}
   suavizado: 0.15
-  usarLimites: 1
+  usarLimites: 0
   limiteIzquierdo: 0
   limiteDerecho: 86.5
   limiteAbajo: -4
@@ -5931,7 +5931,7 @@ Transform:
   m_GameObject: {fileID: 1515505794}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: -8.44, y: -2.3382, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6784,7 +6784,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &1777690583
 AudioListener:
   m_ObjectHideFlags: 0

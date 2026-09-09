@@ -481,9 +481,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: 789b70a5951c3cc43b8b18389c5caf54, type: 3}
+      - m_Target: {fileID: 1098849668}
         m_TargetAssemblyTypeName: PauseManager, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: Pause
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1530,7 +1530,7 @@ Transform:
   m_GameObject: {fileID: 397489926}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: -8.44, y: -2.3382, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1551,7 +1551,7 @@ MonoBehaviour:
   objetivo: {fileID: 175978352}
   desplazamiento: {x: 0, y: 1}
   suavizado: 0.15
-  usarLimites: 1
+  usarLimites: 0
   limiteIzquierdo: 0
   limiteDerecho: 86.5
   limiteAbajo: -4
@@ -6963,7 +6963,7 @@ MonoBehaviour:
   objectiveText: {fileID: 0}
   closeButton: {fileID: 850988952}
   levelObjective: "\xA1Llega a la puerta para ganar!"
-  pauseGameOnStart: 1
+  pauseGameOnStart: 0
 --- !u!224 &1801016622
 RectTransform:
   m_ObjectHideFlags: 0
