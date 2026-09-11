@@ -52,13 +52,8 @@ public class VidaJugador : MonoBehaviour
 
         if (cantidadDeVida <= 0)
         {
-            cantidadDeVida = 0;
-            muerto = true;
-            anim.SetTrigger("Muerte");
-            StartCoroutine(ReiniciarJuego());
+            Morir();
             return;
-
-         
         }
 
         if (parpadeoActual != null)
@@ -67,6 +62,22 @@ public class VidaJugador : MonoBehaviour
         parpadeoActual = StartCoroutine(ParpadeoImpacto());
         if (invulnerabilidadActual != null) StopCoroutine(invulnerabilidadActual);
         invulnerabilidadActual = StartCoroutine(Invulnerabilidad());
+    }
+
+    // Muerte instantánea, ignora la invulnerabilidad. La usa ZonaMuerte cuando
+    // el jugador se cae del mapa, para que pase por el mismo flujo (animación de
+    // muerte + PanelDerrota) en vez de recargar la escena de golpe.
+    public void Morir()
+    {
+        if (muerto) return;
+
+        cantidadDeVida = 0;
+        muerto = true;
+
+        if (anim != null)
+            anim.SetTrigger("Muerte");
+
+        StartCoroutine(ReiniciarJuego());
     }
 
     private IEnumerator ParpadeoImpacto()
