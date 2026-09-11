@@ -12,6 +12,7 @@ public class PlayerPhysics : MonoBehaviour
 
     [Header("Movimiento")]
     [SerializeField] private float velocidadMovimiento = 5f;
+    [SerializeField] private float velocidadAgachado = 2.5f;
 
     [Header("Salto")]
     [SerializeField] private float fuerzaSalto = 8f;
@@ -44,6 +45,11 @@ public class PlayerPhysics : MonoBehaviour
     private float tiempoRestanteDash;
     private float tiempoRestanteCooldown;
     private float direccionDash;
+
+    private bool estaAgachado;
+    private BoxCollider2D boxCollider;
+    private Vector2 tamanoOriginalCollider;
+    private Vector2 offsetOriginalCollider;
 
     // ---- Propiedades públicas para la UI del cooldown ----
     public float ProgresoCooldownDash
@@ -81,6 +87,12 @@ public class PlayerPhysics : MonoBehaviour
             };
         }
 
+        boxCollider = colisionadorJugador as BoxCollider2D;
+        if (boxCollider != null)
+        {
+            tamanoOriginalCollider = boxCollider.size;
+            offsetOriginalCollider = boxCollider.offset;
+        }
         // Si no se asigna nada, se gira este mismo objeto (la raíz del rig).
         transformAGirar = (visualAGirar != null) ? visualAGirar : transform;
         escalaAGirarInicial = transformAGirar.localScale;
@@ -126,6 +138,19 @@ public class PlayerPhysics : MonoBehaviour
 
         // Detección de suelo
         estaEnElSuelo = Physics2D.OverlapCircle(PuntoDeteccionSuelo(), radioDeteccion, capaPlataformas);
+
+        if (Input.GetKey(KeyCode.S) && estaEnElSuelo && !estaDasheando)
+        {
+            estaAgachado = true;
+        }
+        else
+        {
+            estaAgachado = false;
+        }
+
+        AjustarColliderAgachado();
+
+        anim.SetBool("agachado", estaAgachado);
 
         // Animación de Salto y Caida
         anim.SetBool("enSuelo", !estaEnElSuelo);
@@ -175,7 +200,7 @@ public class PlayerPhysics : MonoBehaviour
         OrientarSprite();
 
         // Salto (Espacio o W), solo si está en el suelo
-        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) && estaEnElSuelo)
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) && estaEnElSuelo && !estaAgachado)
         {
             quiereSaltar = true;
 
@@ -212,7 +237,7 @@ public class PlayerPhysics : MonoBehaviour
             Debug.Log("SHIFT presionado | inputHorizontal = " + inputHorizontal + " | estaDasheando = " + estaDasheando + " | cooldown restante = " + tiempoRestanteCooldown);
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && inputHorizontal != 0f && !estaDasheando && tiempoRestanteCooldown <= 0f)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && inputHorizontal != 0f && !estaDasheando && tiempoRestanteCooldown <= 0f && !estaAgachado)
         {
             estaDasheando = true;
             tiempoRestanteDash = duracionDash;
@@ -238,8 +263,10 @@ public class PlayerPhysics : MonoBehaviour
         }
         else
         {
+            float velActual = estaAgachado ? velocidadAgachado : velocidadMovimiento;
+
             rb.linearVelocity = new Vector2(
-                inputHorizontal * velocidadMovimiento,
+                inputHorizontal * velActual,
                 rb.linearVelocity.y
             );
         }
@@ -257,6 +284,23 @@ public class PlayerPhysics : MonoBehaviour
 
         }
     }
+
+    private void AjustarColliderAgachado()
+    {
+        if (boxCollider == null) return;
+
+        if (estaAgachado)
+        {
+            boxCollider.size = new Vector2(tamanoOriginalCollider.x, tamanoOriginalCollider.y * 0.5f);
+            boxCollider.offset = new Vector2(offsetOriginalCollider.x, offsetOriginalCollider.y - (tamanoOriginalCollider.y * 0.25f));
+        }
+        else
+        {
+            boxCollider.size = tamanoOriginalCollider;
+            boxCollider.offset = offsetOriginalCollider;
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("CabezaEnemigo") && rb.linearVelocity.y <= 0f)
