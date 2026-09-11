@@ -32,13 +32,22 @@ public class LevelUIManager : MonoBehaviour
             Time.timeScale = 0f;
     }
 
+    public void MostrarObjetivo()
+    {
+        if (objectivePanel == null)
+            return;
+
+        objectivePanel.transform.SetAsLastSibling();
+        objectivePanel.SetActive(true);
+    }
+
     public void CloseObjectivePanel()
     {
         if (objectivePanel != null)
             objectivePanel.SetActive(false);
 
-        // Reanudar el paso del tiempo
-        Time.timeScale = 1f;
+        if (!PauseManager.GameIsPaused)
+            Time.timeScale = 1f;
     }
 
     private void OnDestroy()
