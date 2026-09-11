@@ -57,6 +57,9 @@ public class PlayerPhysics : MonoBehaviour
 
     public float TiempoRestanteCooldown => tiempoRestanteCooldown;
     public bool PuedeDashear => tiempoRestanteCooldown <= 0f;
+
+    [Header("Fuerza de Rebote sobre el enemigo")]
+    public float Rebote = 0f;
     // --------------------------------------------------------
 
     void Start()
@@ -175,7 +178,7 @@ public class PlayerPhysics : MonoBehaviour
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) && estaEnElSuelo)
         {
             quiereSaltar = true;
-            
+
         }
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W))
         {
@@ -251,8 +254,20 @@ public class PlayerPhysics : MonoBehaviour
             );
 
             quiereSaltar = false;
-            
+
         }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("CabezaEnemigo") && rb.linearVelocity.y <= 0f)
+        {
+            Rebotar();
+        }
+    }
+
+    private void Rebotar()
+    {
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, Rebote);
     }
 
     private void OnDrawGizmosSelected()
@@ -263,4 +278,6 @@ public class PlayerPhysics : MonoBehaviour
             Gizmos.DrawWireSphere(PuntoDeteccionSuelo(), radioDeteccion);
         }
     }
+
+    
 }
