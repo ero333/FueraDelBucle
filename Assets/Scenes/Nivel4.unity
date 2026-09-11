@@ -2458,6 +2458,8 @@ MonoBehaviour:
   limiteDerecho: 86.5
   limiteAbajo: -4
   limiteArriba: 2
+  jugador: {fileID: 41884361}
+  distanciaSeguimientoCaida: 3
 --- !u!81 &655705279
 AudioListener:
   m_ObjectHideFlags: 0
@@ -6831,6 +6833,8 @@ MonoBehaviour:
   limiteDerecho: 86.5
   limiteAbajo: -4
   limiteArriba: 2
+  jugador: {fileID: 41884361}
+  distanciaSeguimientoCaida: 3
 --- !u!1 &1745431143
 GameObject:
   m_ObjectHideFlags: 0
