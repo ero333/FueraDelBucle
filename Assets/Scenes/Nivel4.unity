@@ -7295,15 +7295,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 3638322d25fb3914bb5a32d4796af31b, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.18
+      value: 0.39
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 3638322d25fb3914bb5a32d4796af31b, type: 3}
       propertyPath: m_LocalScale.y
-      value: -0.18
+      value: -0.39
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 3638322d25fb3914bb5a32d4796af31b, type: 3}
       propertyPath: m_LocalScale.z
-      value: -0.18
+      value: -0.39
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 3638322d25fb3914bb5a32d4796af31b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7347,7 +7347,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 3638322d25fb3914bb5a32d4796af31b, type: 3}
       propertyPath: m_ConstrainProportionsScale
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8903,6 +8903,10 @@ MonoBehaviour:
   proyectil: {fileID: 7323252962293113382, guid: 3159d34860195f0498ee5faf79f19dc0, type: 3}
   tiempoEntreDisparos: 4
   dispararSiempre: 0
+  girarHaciaJugador: 1
+  distanciaGiro: 12
+  tagJugador: Player
+  jugadorDetectado: 0
 --- !u!61 &1897584259
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -15,15 +15,34 @@ public class RepeaterSegundo : MonoBehaviour
     [Tooltip("Si está activado, dispara desde el arranque en bucle sin necesitar detectar al jugador con el raycast.")]
     public bool dispararSiempre = false;
 
+    [Header("Giro hacia el jugador")]
+    [Tooltip("Si está activado, el enemigo se da vuelta para quedar mirando al jugador.")]
+    public bool girarHaciaJugador = true;
+
+    [Tooltip("Distancia horizontal a la que detecta al jugador para darse vuelta.")]
+    public float distanciaGiro = 12f;
+
+    [Tooltip("Tag del jugador.")]
+    public string tagJugador = "Player";
+
+    public bool jugadorDetectado;
+
     private float cronometro;
+    private Transform jugador;
 
     private void Start()
     {
         cronometro = 0f;
+        BuscarJugador();
     }
 
     private void Update()
     {
+        if (girarHaciaJugador)
+        {
+            MirarAlJugador();
+        }
+
         if (controladorDisparo == null) return;
 
         if (dispararSiempre)
@@ -60,6 +79,45 @@ public class RepeaterSegundo : MonoBehaviour
         }
     }
 
+    private void BuscarJugador()
+    {
+        GameObject objetivo = GameObject.FindGameObjectWithTag(tagJugador);
+
+        if (objetivo != null)
+        {
+            jugador = objetivo.transform;
+        }
+    }
+
+    private void MirarAlJugador()
+    {
+        if (jugador == null)
+        {
+            BuscarJugador();
+
+            if (jugador == null) return;
+        }
+
+        float diferencia = jugador.position.x - transform.position.x;
+
+        jugadorDetectado = Mathf.Abs(diferencia) <= distanciaGiro;
+
+        if (!jugadorDetectado) return;
+
+        Girar(diferencia > 0f);
+    }
+
+    private void Girar(bool haciaLaDerecha)
+    {
+        Vector3 angulos = transform.eulerAngles;
+        angulos.z = haciaLaDerecha ? 0f : 180f;
+        transform.eulerAngles = angulos;
+
+        Vector3 escala = transform.localScale;
+        escala.y = haciaLaDerecha ? Mathf.Abs(escala.y) : -Mathf.Abs(escala.y);
+        transform.localScale = escala;
+    }
+
     private void Disparar()
     {
         if (proyectil == null) return;
@@ -70,6 +128,12 @@ public class RepeaterSegundo : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        if (girarHaciaJugador)
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawLine(transform.position + Vector3.left * distanciaGiro, transform.position + Vector3.right * distanciaGiro);
+        }
+
         if (controladorDisparo == null) return;
 
         Gizmos.color = Color.red;
