@@ -6531,9 +6531,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b144cd6d683eea54693d340007d8edf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VidasUI
-  imagenes: []
-  jugador: {fileID: 0}
-  imagen: {fileID: 0}
 --- !u!114 &1237670369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8904,7 +8901,7 @@ MonoBehaviour:
     m_Bits: 64
   jugadorEnRango: 0
   proyectil: {fileID: 7323252962293113382, guid: 3159d34860195f0498ee5faf79f19dc0, type: 3}
-  tiempoEntreDisparos: 1.5
+  tiempoEntreDisparos: 4
   dispararSiempre: 0
 --- !u!61 &1897584259
 BoxCollider2D:
