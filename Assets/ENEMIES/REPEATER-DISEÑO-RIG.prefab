@@ -347,7 +347,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8653719598885068355, guid: 3638322d25fb3914bb5a32d4796af31b, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: CabezaEnemigo
       objectReference: {fileID: 0}
     - target: {fileID: -7967595641980257510, guid: 3638322d25fb3914bb5a32d4796af31b, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -640,5 +640,5 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 3.4882622, y: 6.4103317}
+  m_Size: {x: 3.4882622, y: 6.4103312}
   m_EdgeRadius: 0

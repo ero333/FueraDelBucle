@@ -60,6 +60,21 @@ public class DisparoEnemigo : MonoBehaviour
         }
     }
 
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            PlayerPhysics jugador = collision.gameObject.GetComponent<PlayerPhysics>();
+            Golpe();
+        }
+    }
+
+    public void Golpe()
+    {
+
+        Destroy(gameObject);
+    }
+
     private void Disparar()
     {
         if (proyectil == null) return;
