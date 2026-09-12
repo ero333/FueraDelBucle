@@ -25,6 +25,12 @@ public class PlayerPhysics : MonoBehaviour
     [SerializeField] private float cooldownDash = 1f;
     [SerializeField] private float velocidadCaidaDespuesDash = 2f;
 
+    [Header("Habilidad Phase (Traspasar Paredes)")]
+    [SerializeField] private KeyCode teclaPhase = KeyCode.P;
+    [SerializeField] private float cooldownPhase = 3f;
+    [SerializeField] private LayerMask capaParedesAtravesables;
+    [SerializeField] private float opacidadPhase = 0.5f; // Transparencia visual durante el Phase
+
     [Header("Sprite")]
     [Tooltip("Marcá esto si el personaje mira hacia la derecha con escala X positiva. Desmarcá si mira a la izquierda.")]
     [SerializeField] private bool spriteMiraDerecha = true;
@@ -35,6 +41,7 @@ public class PlayerPhysics : MonoBehaviour
     private Rigidbody2D rb;
     private Animator anim;
     private Collider2D colisionadorJugador;
+    private SpriteRenderer spriteRenderer;
     private Transform transformAGirar;
     private Vector3 escalaAGirarInicial;
     private bool estaEnElSuelo;
@@ -46,12 +53,16 @@ public class PlayerPhysics : MonoBehaviour
     private float tiempoRestanteCooldown;
     private float direccionDash;
 
+    // Variables Phase
+    private bool estaEnPhase = false;
+    private float tiempoRestanteCooldownPhase;
+
     private bool estaAgachado;
     private BoxCollider2D boxCollider;
     private Vector2 tamanoOriginalCollider;
     private Vector2 offsetOriginalCollider;
 
-    // ---- Propiedades públicas para la UI del cooldown ----
+    // ---- Propiedades públicas para la UI ----
     public float ProgresoCooldownDash
     {
         get
@@ -61,23 +72,29 @@ public class PlayerPhysics : MonoBehaviour
         }
     }
 
+    public float ProgresoCooldownPhase
+    {
+        get
+        {
+            if (cooldownPhase <= 0f) return 1f;
+            return 1f - Mathf.Clamp01(tiempoRestanteCooldownPhase / cooldownPhase);
+        }
+    }
+
     public float TiempoRestanteCooldown => tiempoRestanteCooldown;
     public bool PuedeDashear => tiempoRestanteCooldown <= 0f;
+    public bool PuedeHacerPhase => tiempoRestanteCooldownPhase <= 0f && !estaEnPhase;
     public bool EstaEnElSuelo => estaEnElSuelo;
 
     [Header("Fuerza de Rebote sobre el enemigo")]
     public float Rebote = 0f;
-    // --------------------------------------------------------
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
-        // Sin fricción: evita que el jugador quede "pegado" al collider de una
-        // plataforma cuando el input lo empuja contra ella. El movimiento ya lo
-        // controlamos 100% seteando la velocidad a mano, así que la fricción no
-        // hace falta para nada y solo generaba ese enganche.
         colisionadorJugador = GetComponent<Collider2D>();
         if (colisionadorJugador != null)
         {
@@ -94,7 +111,7 @@ public class PlayerPhysics : MonoBehaviour
             tamanoOriginalCollider = boxCollider.size;
             offsetOriginalCollider = boxCollider.offset;
         }
-        // Si no se asigna nada, se gira este mismo objeto (la raíz del rig).
+
         transformAGirar = (visualAGirar != null) ? visualAGirar : transform;
         escalaAGirarInicial = transformAGirar.localScale;
     }
@@ -104,8 +121,6 @@ public class PlayerPhysics : MonoBehaviour
         if (inputHorizontal == 0f) return;
 
         bool mirandoDerecha = inputHorizontal > 0f;
-
-        // Espeja el rig invirtiendo el signo de la escala en X (no cambia su tamaño).
         float signo = (mirandoDerecha == spriteMiraDerecha) ? 1f : -1f;
 
         Vector3 escala = transformAGirar.localScale;
@@ -117,14 +132,6 @@ public class PlayerPhysics : MonoBehaviour
         }
     }
 
-    // El punto de chequeo queda siempre centrado en X bajo el personaje (usa
-    // transform.position, que no cambia al girar). La altura Y se toma del
-    // borde inferior REAL del collider del jugador en este mismo frame, no de
-    // un Transform calibrado a mano: así da igual el alto/grosor de cada
-    // plataforma, siempre se compara contra donde están literalmente los pies.
-    // (Antes, al ser detectorSuelo hijo del objeto que espejamos en
-    // OrientarSprite(), su X se corría al cambiar de lado y en las esquinas
-    // quedaba fuera de la plataforma aunque el personaje siguiera apoyado.)
     private Vector2 PuntoDeteccionSuelo()
     {
         float y = colisionadorJugador != null ? colisionadorJugador.bounds.min.y : detectorSuelo.position.y;
@@ -133,11 +140,8 @@ public class PlayerPhysics : MonoBehaviour
 
     void Update()
     {
-        // En pausa (Time.timeScale == 0) no se procesa input: evita que girar,
-        // saltar o dashear mientras el juego esta pausado.
         if (Time.timeScale == 0f) return;
 
-        // Detección de suelo
         estaEnElSuelo = Physics2D.OverlapCircle(PuntoDeteccionSuelo(), radioDeteccion, capaPlataformas);
 
         if (Input.GetKey(KeyCode.S) && estaEnElSuelo && !estaDasheando)
@@ -152,35 +156,24 @@ public class PlayerPhysics : MonoBehaviour
         AjustarColliderAgachado();
 
         anim.SetBool("agachado", estaAgachado);
-
-        // Animación de Salto y Caida
         anim.SetBool("enSuelo", !estaEnElSuelo);
-        anim.SetFloat("velocidadY", rb.linearVelocity.y);
+        anim.SetFloat("velocidadY", estaEnElSuelo ? 0f : rb.linearVelocity.y);
 
-        if (estaEnElSuelo)
-        {
-            anim.SetFloat("velocidadY", 0f);
-        }
-        else
-        {
-            anim.SetFloat("velocidadY", rb.linearVelocity.y);
-        }
-
-        // Gravedad segun la fase del salto
+        // Gravedad según la fase del salto
         if (rb.linearVelocity.y > 0.01f && !estaEnElSuelo)
         {
-            rb.gravityScale = multiplicadorSubida;   // subida: apex mas rapido
+            rb.gravityScale = multiplicadorSubida;
         }
         else if (rb.linearVelocity.y < 0f && !estaEnElSuelo)
         {
-            rb.gravityScale = multiplicadorCaida;    // caida: igual que antes
+            rb.gravityScale = multiplicadorCaida;
         }
         else
         {
             rb.gravityScale = 1f;
         }
 
-        // Movimiento horizontal (A = izquierda, D = derecha)
+        // Movimiento horizontal
         inputHorizontal = 0f;
         if (Input.GetKey(KeyCode.D))
         {
@@ -197,24 +190,20 @@ public class PlayerPhysics : MonoBehaviour
             anim.SetBool("mover", false);
         }
 
-        // Orientar el sprite segun la ultima direccion pulsada (D = derecha, A = izquierda)
         OrientarSprite();
 
-        // Salto (Espacio o W), solo si está en el suelo
+        // Salto
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) && estaEnElSuelo && !estaAgachado)
         {
             quiereSaltar = true;
+        }
 
-        }
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W))
-        {
-            Debug.Log("Tecla de salto detectada. estaEnElSuelo = " + estaEnElSuelo);
-        }
-        // Cooldown del dash
+        // Cooldown Dash
         if (tiempoRestanteCooldown > 0f)
         {
             tiempoRestanteCooldown -= Time.deltaTime;
         }
+
         if (estaDasheando)
         {
             tiempoRestanteDash -= Time.deltaTime;
@@ -222,34 +211,41 @@ public class PlayerPhysics : MonoBehaviour
             if (tiempoRestanteDash <= 0f)
             {
                 estaDasheando = false;
-
                 rb.gravityScale = multiplicadorCaida;
-
-                rb.linearVelocity = new Vector2(
-                    rb.linearVelocity.x,
-                    -velocidadCaidaDespuesDash
-                );
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, -velocidadCaidaDespuesDash);
             }
         }
 
-        // Dash (Shift), solo si A o D están sostenidas
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            Debug.Log("SHIFT presionado | inputHorizontal = " + inputHorizontal + " | estaDasheando = " + estaDasheando + " | cooldown restante = " + tiempoRestanteCooldown);
-        }
-
+        // Dash
         if (Input.GetKeyDown(KeyCode.LeftShift) && inputHorizontal != 0f && !estaDasheando && tiempoRestanteCooldown <= 0f && !estaAgachado)
         {
             estaDasheando = true;
             tiempoRestanteDash = duracionDash;
             tiempoRestanteCooldown = cooldownDash;
             direccionDash = inputHorizontal;
-            Debug.Log("DASH ACTIVADO, dirección = " + direccionDash);
-
-            // Play fuerza el estado YA, sin esperar transiciones ni exit time
-            // (con SetTrigger no había transición desde SALTAR y el dash se veía
-            // recién al aterrizar). "DASH" es el nombre del estado en el Animator.
             anim.Play("DASH", 0, 0f);
+        }
+
+        // Cooldown del Phase
+        if (tiempoRestanteCooldownPhase > 0f)
+        {
+            tiempoRestanteCooldownPhase -= Time.deltaTime;
+        }
+
+        // Activa el Phase mientras se sostiene la tecla P
+        if (Input.GetKey(teclaPhase) && tiempoRestanteCooldownPhase <= 0f)
+        {
+            if (!estaEnPhase)
+            {
+                ActivarPhase();
+            }
+        }
+
+        // Desactiva el Phase al soltar la tecla P
+        if (Input.GetKeyUp(teclaPhase) && estaEnPhase)
+        {
+            DesactivarPhase();
+            tiempoRestanteCooldownPhase = cooldownPhase; // Inicia el cooldown
         }
     }
 
@@ -257,32 +253,64 @@ public class PlayerPhysics : MonoBehaviour
     {
         if (estaDasheando)
         {
-            rb.linearVelocity = new Vector2(
-                direccionDash * fuerzaDash,
-                0f
-            );
+            rb.linearVelocity = new Vector2(direccionDash * fuerzaDash, 0f);
         }
         else
         {
             float velActual = estaAgachado ? velocidadAgachado : velocidadMovimiento;
-
-            rb.linearVelocity = new Vector2(
-                inputHorizontal * velActual,
-                rb.linearVelocity.y
-            );
+            rb.linearVelocity = new Vector2(inputHorizontal * velActual, rb.linearVelocity.y);
         }
 
         if (quiereSaltar)
         {
             float velSalto = fuerzaSalto * Mathf.Sqrt(multiplicadorSubida);
-
-            rb.linearVelocity = new Vector2(
-                rb.linearVelocity.x,
-                velSalto
-            );
-
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, velSalto);
             quiereSaltar = false;
+        }
+    }
 
+    private void ActivarPhase()
+    {
+        estaEnPhase = true;
+
+        // Desactiva colisiones con la capa asignada
+        IgnorarColisionesParedes(true);
+
+        // Feedback visual (Semi-transparente)
+        if (spriteRenderer != null)
+        {
+            Color colorActual = spriteRenderer.color;
+            colorActual.a = opacidadPhase;
+            spriteRenderer.color = colorActual;
+        }
+    }
+
+    private void DesactivarPhase()
+    {
+        estaEnPhase = false;
+
+        // Restablece colisiones
+        IgnorarColisionesParedes(false);
+
+        // Restaura opacidad completa
+        if (spriteRenderer != null)
+        {
+            Color colorActual = spriteRenderer.color;
+            colorActual.a = 1f;
+            spriteRenderer.color = colorActual;
+        }
+    }
+
+    private void IgnorarColisionesParedes(bool ignorar)
+    {
+        int playerLayer = gameObject.layer;
+
+        for (int i = 0; i < 32; i++)
+        {
+            if ((capaParedesAtravesables.value & (1 << i)) != 0)
+            {
+                Physics2D.IgnoreLayerCollision(playerLayer, i, ignorar);
+            }
         }
     }
 
@@ -323,6 +351,4 @@ public class PlayerPhysics : MonoBehaviour
             Gizmos.DrawWireSphere(PuntoDeteccionSuelo(), radioDeteccion);
         }
     }
-
-
 }
