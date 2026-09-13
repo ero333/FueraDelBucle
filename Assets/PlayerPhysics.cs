@@ -29,7 +29,13 @@ public class PlayerPhysics : MonoBehaviour
     [SerializeField] private KeyCode teclaPhase = KeyCode.P;
     [SerializeField] private float cooldownPhase = 3f;
     [SerializeField] private LayerMask capaParedesAtravesables;
-    [SerializeField] private float opacidadPhase = 0.5f; // Transparencia visual durante el Phase
+    [SerializeField] private float opacidadPhase = 0.7f; // Transparencia visual durante el Phase
+    [Tooltip("Color del leve glow violeta que tiñe el sprite mientras dura el Phase.")]
+    [SerializeField] private Color colorGlowPhase = new Color(0.65f, 0.35f, 1f);
+    [Tooltip("Qué tan rápido pulsa el brillo del glow.")]
+    [SerializeField] private float velocidadPulsoGlow = 4f;
+    [Tooltip("Qué tan fuerte es la variación de brillo del pulso (0 = sin pulso).")]
+    [SerializeField] private float intensidadPulsoGlow = 0.25f;
 
     [Header("Sprite")]
     [Tooltip("Marcá esto si el personaje mira hacia la derecha con escala X positiva. Desmarcá si mira a la izquierda.")]
@@ -41,7 +47,7 @@ public class PlayerPhysics : MonoBehaviour
     private Rigidbody2D rb;
     private Animator anim;
     private Collider2D colisionadorJugador;
-    private SpriteRenderer spriteRenderer;
+    private SpriteRenderer[] spriteRenderers;
     private Transform transformAGirar;
     private Vector3 escalaAGirarInicial;
     private bool estaEnElSuelo;
@@ -56,6 +62,7 @@ public class PlayerPhysics : MonoBehaviour
     // Variables Phase
     private bool estaEnPhase = false;
     private float tiempoRestanteCooldownPhase;
+    private Color[] coloresOriginalesPhase;
 
     private bool estaAgachado;
     private BoxCollider2D boxCollider;
@@ -93,7 +100,7 @@ public class PlayerPhysics : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
 
         colisionadorJugador = GetComponent<Collider2D>();
         if (colisionadorJugador != null)
@@ -247,6 +254,13 @@ public class PlayerPhysics : MonoBehaviour
             DesactivarPhase();
             tiempoRestanteCooldownPhase = cooldownPhase; // Inicia el cooldown
         }
+
+        // Pulso leve del glow violeta mientras dura el Phase
+        if (estaEnPhase)
+        {
+            float pulso = 1f + Mathf.Sin(Time.time * velocidadPulsoGlow) * intensidadPulsoGlow;
+            AplicarColorPhase(pulso);
+        }
     }
 
     void FixedUpdate()
@@ -276,13 +290,21 @@ public class PlayerPhysics : MonoBehaviour
         // Desactiva colisiones con la capa asignada
         IgnorarColisionesParedes(true);
 
-        // Feedback visual (Semi-transparente)
-        if (spriteRenderer != null)
+        // Guarda el color actual de CADA sprite del rig (cabeza, torso, etc.)
+        // para poder restaurarlos tal cual al salir del Phase.
+        if (spriteRenderers != null && spriteRenderers.Length > 0)
         {
-            Color colorActual = spriteRenderer.color;
-            colorActual.a = opacidadPhase;
-            spriteRenderer.color = colorActual;
+            coloresOriginalesPhase = new Color[spriteRenderers.Length];
+            for (int i = 0; i < spriteRenderers.Length; i++)
+            {
+                if (spriteRenderers[i] != null)
+                    coloresOriginalesPhase[i] = spriteRenderers[i].color;
+            }
         }
+
+        // Feedback visual: semi-transparente + glow violeta (el pulso se
+        // actualiza cuadro a cuadro en Update mientras estaEnPhase).
+        AplicarColorPhase(1f);
     }
 
     private void DesactivarPhase()
@@ -292,12 +314,30 @@ public class PlayerPhysics : MonoBehaviour
         // Restablece colisiones
         IgnorarColisionesParedes(false);
 
-        // Restaura opacidad completa
-        if (spriteRenderer != null)
+        // Restaura el color y la opacidad que tenía cada sprite antes del Phase.
+        if (spriteRenderers != null && coloresOriginalesPhase != null)
         {
-            Color colorActual = spriteRenderer.color;
-            colorActual.a = 1f;
-            spriteRenderer.color = colorActual;
+            for (int i = 0; i < spriteRenderers.Length && i < coloresOriginalesPhase.Length; i++)
+            {
+                if (spriteRenderers[i] != null)
+                    spriteRenderers[i].color = coloresOriginalesPhase[i];
+            }
+        }
+    }
+
+    // Aplica el color de glow (con el multiplicador de brillo del pulso) a
+    // TODOS los SpriteRenderer del rig, no solo a uno.
+    private void AplicarColorPhase(float multiplicadorBrillo)
+    {
+        if (spriteRenderers == null) return;
+
+        Color colorConGlow = colorGlowPhase * multiplicadorBrillo;
+        colorConGlow.a = opacidadPhase;
+
+        foreach (SpriteRenderer sr in spriteRenderers)
+        {
+            if (sr != null)
+                sr.color = colorConGlow;
         }
     }
 
