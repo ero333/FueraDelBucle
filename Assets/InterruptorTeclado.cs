@@ -30,10 +30,10 @@ public class InterruptorTeclado : MonoBehaviour
                 caminoOculto.SetActive(true);
             }
 
-            // if (spriteActivado != null && spriteRenderer != null)
-            // {
-            //   spriteRenderer.sprite = spriteActivado;
-            // }
+             if (spriteActivado != null && spriteRenderer != null)
+             {
+              spriteRenderer.sprite = spriteActivado;
+             }
         }
     }
 
