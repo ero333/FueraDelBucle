@@ -97,7 +97,7 @@ public class PlayerPhysics : MonoBehaviour
     public bool PuedeDashear => tiempoRestanteCooldown <= 0f;
     public bool PuedeHacerPhase => tiempoRestanteCooldownPhase <= 0f && !estaEnPhase;
     public bool EstaEnElSuelo => estaEnElSuelo;
-    public bool EstaEnPhase => estaEnPhase;
+    
 
     [Header("Fuerza de Rebote sobre el enemigo")]
     public float Rebote = 0f;
