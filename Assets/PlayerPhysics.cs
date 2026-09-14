@@ -64,6 +64,8 @@ public class PlayerPhysics : MonoBehaviour
     private float tiempoRestanteCooldownPhase;
     private Color[] coloresOriginalesPhase;
 
+
+
     private bool estaAgachado;
     private BoxCollider2D boxCollider;
     private Vector2 tamanoOriginalCollider;
@@ -87,6 +89,8 @@ public class PlayerPhysics : MonoBehaviour
             return 1f - Mathf.Clamp01(tiempoRestanteCooldownPhase / cooldownPhase);
         }
     }
+
+    public bool EstaEnPhase => estaEnPhase;
 
     public float TiempoRestanteCooldown => tiempoRestanteCooldown;
     public bool PuedeDashear => tiempoRestanteCooldown <= 0f;
