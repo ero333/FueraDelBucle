@@ -1608,7 +1608,7 @@ MonoBehaviour:
   intensidadPulsoGlow: 0.25
   spriteMiraDerecha: 1
   visualAGirar: {fileID: 0}
-  Rebote: 0
+  Rebote: 10.23
 --- !u!61 &175978344
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3341,7 +3341,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5779546442867524048, guid: 69e3b98965fa1de48a1afda1361dfc53, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 65.04006
+      value: 66.15
       objectReference: {fileID: 0}
     - target: {fileID: 5779546442867524048, guid: 69e3b98965fa1de48a1afda1361dfc53, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6429,7 +6429,7 @@ Transform:
   m_GameObject: {fileID: 1533376925}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 91.60999, y: 2.94, z: 0}
+  m_LocalPosition: {x: 87.71, y: 1.22, z: 0}
   m_LocalScale: {x: 0.5135, y: 0.5135, z: 0.5135}
   m_ConstrainProportionsScale: 0
   m_Children: []
