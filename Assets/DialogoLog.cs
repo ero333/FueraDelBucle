@@ -57,7 +57,7 @@ public class DialogoLog : MonoBehaviour
     {
         if (EstaTypeando)
         {
-    
+
             StopAllCoroutines();
             dialogoTexto.SetText(dialogodata.lineasDialogo[dialogoIndex]);
             EstaTypeando = false;
@@ -82,24 +82,24 @@ public class DialogoLog : MonoBehaviour
         EstaTypeando = true;
         dialogoTexto.SetText("");
 
-        foreach(char letter in dialogodata.lineasDialogo[dialogoIndex])
+        foreach (char letter in dialogodata.lineasDialogo[dialogoIndex])
         {
             dialogoTexto.text += letter;
-            yield return new WaitForSeconds(dialogodata.velocidadTypeo);
+            yield return new WaitForSecondsRealtime(dialogodata.velocidadTypeo);
         }
 
         EstaTypeando = false;
 
-        if (dialogodata.autoProgresLineas.Length > dialogoIndex && dialogodata.autoProgresLineas[dialogoIndex])
+        if (DebeAutoProgresar(dialogoIndex))
         {
-            yield return new WaitForSeconds(dialogodata.autoProgresDelay);
+            yield return new WaitForSecondsRealtime(dialogodata.autoProgresDelay);
             SigLinea();
         }
     }
 
     void ProcesarAutoProgresion()
     {
-        if (dialogodata.autoProgresLineas.Length > dialogoIndex && dialogodata.autoProgresLineas[dialogoIndex]) ;
+        if (DebeAutoProgresar(dialogoIndex))
         {
             StartCoroutine(PasarSigLineaXTiempo());
         }
@@ -107,9 +107,9 @@ public class DialogoLog : MonoBehaviour
 
     IEnumerator PasarSigLineaXTiempo()
     {
-        yield return new WaitForSeconds(dialogodata.autoProgresDelay);
+        yield return new WaitForSecondsRealtime(dialogodata.autoProgresDelay);
 
-        if(dialogoIndex + 1 < dialogodata.lineasDialogo.Length)
+        if (dialogoIndex + 1 < dialogodata.lineasDialogo.Length)
         {
             dialogoIndex++;
             StartCoroutine(LineadeType());
@@ -121,12 +121,22 @@ public class DialogoLog : MonoBehaviour
         }
     }
 
+    // Chequea si la linea en el indice dado debe auto-progresar,
+    // sin romperse si el array autoProgresLineas es mas corto que lineasDialogo
+    // (en ese caso, se asume "false" para los indices faltantes).
+    bool DebeAutoProgresar(int index)
+    {
+        return dialogodata.autoProgresLineas != null
+            && index < dialogodata.autoProgresLineas.Length
+            && dialogodata.autoProgresLineas[index];
+    }
+
     public void TerminarDialog()
     {
         StopAllCoroutines();
         DialogoActivo = false;
         dialogoTexto.SetText("");
         PanelDialogo.SetActive(false);
-        
+
     }
 }

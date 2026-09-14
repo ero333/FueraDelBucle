@@ -15,10 +15,12 @@ MonoBehaviour:
   NombreNPC: LOG
   LogRetrato: {fileID: 0}
   lineasDialogo:
-  - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin dignissim maximus
-    ipsum, blandit ornare eros consectetur et. Suspendisse placerat egestas enim,
-  - blablablablabalbsdljadsjadasd
-  autoProgresLineas: 0100
+  - "Detecto m\xF3dulos interactivos cerca. Usa la tecla [E] para activar la funci\xF3n
+    Switch."
+  - "Mantente atento al entorno: los objetos con los que puedes interactuar se iluminar\xE1n.
+    Si ves que un objeto resalta, act\xEDvalo con [E] para alterar la estructura
+    y abrirte paso."
+  autoProgresLineas: 01010000
   autoProgresDelay: 1.5
   velocidadTypeo: 0.03
   sonidoVoz: {fileID: 0}
