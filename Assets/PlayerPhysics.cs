@@ -48,6 +48,7 @@ public class PlayerPhysics : MonoBehaviour
     private Animator anim;
     private Collider2D colisionadorJugador;
     private SpriteRenderer[] spriteRenderers;
+    private VidaJugador vidaJugador;
     private Transform transformAGirar;
     private Vector3 escalaAGirarInicial;
     private bool estaEnElSuelo;
@@ -96,6 +97,7 @@ public class PlayerPhysics : MonoBehaviour
     public bool PuedeDashear => tiempoRestanteCooldown <= 0f;
     public bool PuedeHacerPhase => tiempoRestanteCooldownPhase <= 0f && !estaEnPhase;
     public bool EstaEnElSuelo => estaEnElSuelo;
+    public bool EstaEnPhase => estaEnPhase;
 
     [Header("Fuerza de Rebote sobre el enemigo")]
     public float Rebote = 0f;
@@ -105,6 +107,7 @@ public class PlayerPhysics : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+        vidaJugador = GetComponent<VidaJugador>();
 
         colisionadorJugador = GetComponent<Collider2D>();
         if (colisionadorJugador != null)
@@ -259,8 +262,11 @@ public class PlayerPhysics : MonoBehaviour
             tiempoRestanteCooldownPhase = cooldownPhase; // Inicia el cooldown
         }
 
-        // Pulso leve del glow violeta mientras dura el Phase
-        if (estaEnPhase)
+        // Pulso leve del glow violeta mientras dura el Phase. Si VidaJugador
+        // está mostrando el flash de daño en este momento, no lo pisamos: se
+        // deja ver el rojo semi-transparente y el glow retoma al terminar.
+        bool hayFlashDeDaño = vidaJugador != null && vidaJugador.EstaParpadeando;
+        if (estaEnPhase && !hayFlashDeDaño)
         {
             float pulso = 1f + Mathf.Sin(Time.time * velocidadPulsoGlow) * intensidadPulsoGlow;
             AplicarColorPhase(pulso);

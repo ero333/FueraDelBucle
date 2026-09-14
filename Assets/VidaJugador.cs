@@ -9,6 +9,9 @@ public class VidaJugador : MonoBehaviour
     [Header("Feedback de impacto")]
     public Color colorImpacto = Color.red;
     public float duracionImpacto = 1f;
+    [Tooltip("Opacidad del flash rojo cuando te golpean mientras estás en modo Phase (para diferenciarlo del golpe normal, que usa el rojo a opacidad completa).")]
+    [Range(0f, 1f)]
+    public float opacidadImpactoPhase = 0.5f;
 
     [Header("Invulnerabilidad")]
     public float duraciondeinvulnerabilidad = 1.5f;
@@ -25,14 +28,20 @@ public class VidaJugador : MonoBehaviour
     private bool muerto;
 
     private Animator anim;
+    private PlayerPhysics playerPhysics;
+
+    // Expuesto para que PlayerPhysics sepa cuándo hay un flash de daño en
+    // curso y no lo pise con el pulso del glow de Phase.
+    public bool EstaParpadeando => parpadeoActual != null;
 
     void Start()
     {
-        
+
         spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
 
         anim = GetComponent<Animator>();
-       
+        playerPhysics = GetComponent<PlayerPhysics>();
+
         coloresOriginales = new Color[spriteRenderers.Length];
 
         for (int i = 0; i < spriteRenderers.Length; i++)
@@ -59,7 +68,15 @@ public class VidaJugador : MonoBehaviour
         if (parpadeoActual != null)
             StopCoroutine(parpadeoActual);
 
-        parpadeoActual = StartCoroutine(ParpadeoImpacto());
+        // En modo Phase el flash es rojo pero semi-transparente, para
+        // distinguirlo del golpe normal (rojo a opacidad completa).
+        Color colorFlash = colorImpacto;
+        if (playerPhysics != null && playerPhysics.EstaEnPhase)
+        {
+            colorFlash.a = opacidadImpactoPhase;
+        }
+
+        parpadeoActual = StartCoroutine(ParpadeoImpacto(colorFlash));
         if (invulnerabilidadActual != null) StopCoroutine(invulnerabilidadActual);
         invulnerabilidadActual = StartCoroutine(Invulnerabilidad());
     }
@@ -80,12 +97,12 @@ public class VidaJugador : MonoBehaviour
         StartCoroutine(ReiniciarJuego());
     }
 
-    private IEnumerator ParpadeoImpacto()
+    private IEnumerator ParpadeoImpacto(Color colorFlash)
     {
-        
+
         for (int i = 0; i < spriteRenderers.Length; i++)
         {
-            spriteRenderers[i].color = colorImpacto;
+            spriteRenderers[i].color = colorFlash;
         }
 
         yield return new WaitForSeconds(duracionImpacto);
