@@ -41,11 +41,23 @@ public class DialogoLog : MonoBehaviour
         StartCoroutine(LineadeType());
     }
 
+    public void SkipearAnimacion()
+    {
+        if (DialogoActivo && EstaTypeando)
+        {
+            StopAllCoroutines();
+            dialogoTexto.SetText(dialogodata.lineasDialogo[dialogoIndex]);
+            EstaTypeando = false;
+
+            ProcesarAutoProgresion();
+        }
+    }
+
     void SigLinea()
     {
         if (EstaTypeando)
         {
-            //Skipea la animación de typeo y muestra las lineas completas
+    
             StopAllCoroutines();
             dialogoTexto.SetText(dialogodata.lineasDialogo[dialogoIndex]);
             EstaTypeando = false;
@@ -85,6 +97,29 @@ public class DialogoLog : MonoBehaviour
         }
     }
 
+    void ProcesarAutoProgresion()
+    {
+        if (dialogodata.autoProgresLineas.Length > dialogoIndex && dialogodata.autoProgresLineas[dialogoIndex]) ;
+        {
+            StartCoroutine(PasarSigLineaXTiempo());
+        }
+    }
+
+    IEnumerator PasarSigLineaXTiempo()
+    {
+        yield return new WaitForSeconds(dialogodata.autoProgresDelay);
+
+        if(dialogoIndex + 1 < dialogodata.lineasDialogo.Length)
+        {
+            dialogoIndex++;
+            StartCoroutine(LineadeType());
+        }
+
+        else
+        {
+            TerminarDialog();
+        }
+    }
 
     public void TerminarDialog()
     {
