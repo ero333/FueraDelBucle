@@ -3984,6 +3984,7 @@ MonoBehaviour:
   cantidadDeVida: 3
   colorImpacto: {r: 1, g: 0, b: 0, a: 1}
   duracionImpacto: 0.4
+  opacidadImpactoPhase: 0.5
   duraciondeinvulnerabilidad: 1.5
   retrasoReinicio: 0.5
 --- !u!114 &892600882
@@ -4021,6 +4022,7 @@ MonoBehaviour:
   colorGlowPhase: {r: 0.65, g: 0.35, b: 1, a: 1}
   velocidadPulsoGlow: 4
   intensidadPulsoGlow: 0.25
+  nivelMinimoParaPhase: 6
   spriteMiraDerecha: 1
   visualAGirar: {fileID: 0}
   Rebote: 10.23
@@ -4562,7 +4564,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
   m_ApplyToSortingLayers: 00000000
