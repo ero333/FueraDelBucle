@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerPhysics : MonoBehaviour
 {
@@ -36,6 +37,8 @@ public class PlayerPhysics : MonoBehaviour
     [SerializeField] private float velocidadPulsoGlow = 4f;
     [Tooltip("Qué tan fuerte es la variación de brillo del pulso (0 = sin pulso).")]
     [SerializeField] private float intensidadPulsoGlow = 0.25f;
+    [Tooltip("Número de nivel a partir del cual se puede usar Phase (según el nombre de escena \"NivelX\"). Escenas que no siguen ese formato (ej. SampleScene) la tienen habilitada.")]
+    [SerializeField] private int nivelMinimoParaPhase = 6;
 
     [Header("Sprite")]
     [Tooltip("Marcá esto si el personaje mira hacia la derecha con escala X positiva. Desmarcá si mira a la izquierda.")]
@@ -64,6 +67,7 @@ public class PlayerPhysics : MonoBehaviour
     private bool estaEnPhase = false;
     private float tiempoRestanteCooldownPhase;
     private Color[] coloresOriginalesPhase;
+    private bool phaseDisponibleEnEsteNivel = true;
 
 
 
@@ -95,7 +99,7 @@ public class PlayerPhysics : MonoBehaviour
 
     public float TiempoRestanteCooldown => tiempoRestanteCooldown;
     public bool PuedeDashear => tiempoRestanteCooldown <= 0f;
-    public bool PuedeHacerPhase => tiempoRestanteCooldownPhase <= 0f && !estaEnPhase;
+    public bool PuedeHacerPhase => tiempoRestanteCooldownPhase <= 0f && !estaEnPhase && phaseDisponibleEnEsteNivel;
     public bool EstaEnElSuelo => estaEnElSuelo;
     
 
@@ -108,6 +112,7 @@ public class PlayerPhysics : MonoBehaviour
         anim = GetComponent<Animator>();
         spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
         vidaJugador = GetComponent<VidaJugador>();
+        phaseDisponibleEnEsteNivel = CalcularSiPhaseEstaDisponible();
 
         colisionadorJugador = GetComponent<Collider2D>();
         if (colisionadorJugador != null)
@@ -150,6 +155,26 @@ public class PlayerPhysics : MonoBehaviour
     {
         float y = colisionadorJugador != null ? colisionadorJugador.bounds.min.y : detectorSuelo.position.y;
         return new Vector2(transform.position.x, y);
+    }
+
+    // Las escenas de nivel se llaman "NivelX" (Nivel1, Nivel2, ...). Si el
+    // número es menor a nivelMinimoParaPhase, Phase queda bloqueado. Cualquier
+    // escena que no siga ese formato (ej. SampleScene) lo deja disponible.
+    private bool CalcularSiPhaseEstaDisponible()
+    {
+        string nombreEscena = SceneManager.GetActiveScene().name;
+        const string prefijo = "Nivel";
+
+        if (nombreEscena.StartsWith(prefijo))
+        {
+            string sufijo = nombreEscena.Substring(prefijo.Length);
+            if (int.TryParse(sufijo, out int numeroNivel))
+            {
+                return numeroNivel >= nivelMinimoParaPhase;
+            }
+        }
+
+        return true;
     }
 
     void Update()
@@ -246,8 +271,8 @@ public class PlayerPhysics : MonoBehaviour
             tiempoRestanteCooldownPhase -= Time.deltaTime;
         }
 
-        // Activa el Phase mientras se sostiene la tecla P
-        if (Input.GetKey(teclaPhase) && tiempoRestanteCooldownPhase <= 0f)
+        // Activa el Phase mientras se sostiene la tecla P (solo si el nivel actual lo habilita)
+        if (Input.GetKey(teclaPhase) && tiempoRestanteCooldownPhase <= 0f && phaseDisponibleEnEsteNivel)
         {
             if (!estaEnPhase)
             {
