@@ -1261,6 +1261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dac86954303cb74eb1603940bbb44dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TriggerDialogoInicio
+  dialogoLog: {fileID: 1069066664}
 --- !u!4 &113093018
 Transform:
   m_ObjectHideFlags: 0
@@ -3647,7 +3648,7 @@ PrefabInstance:
     - target: {fileID: 2627796686816019753, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
       propertyPath: dialogodata
       value: 
-      objectReference: {fileID: 11400000, guid: 1a56c2dcc05d6e64caae9e1a2139258d, type: 2}
+      objectReference: {fileID: 11400000, guid: e16da75bdc54ece47804c6d9d85772fe, type: 2}
     - target: {fileID: 2627796686816019753, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
       propertyPath: PanelDialogo
       value: 
