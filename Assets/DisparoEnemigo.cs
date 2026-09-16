@@ -20,6 +20,15 @@ public class DisparoEnemigo : MonoBehaviour
     private void Start()
     {
         cronometro = 0f;
+
+        // Congela la rotación física: sin esto, un empujón del jugador le mete
+        // torque y lo hace girar sin control como un trompo (y la caída se ve
+        // distinta y errática según el ángulo del golpe).
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        }
     }
 
     private void Update()
@@ -58,21 +67,6 @@ public class DisparoEnemigo : MonoBehaviour
         {
             cronometro = 0f; 
         }
-    }
-
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            PlayerPhysics jugador = collision.gameObject.GetComponent<PlayerPhysics>();
-            Golpe();
-        }
-    }
-
-    public void Golpe()
-    {
-
-        Destroy(gameObject);
     }
 
     private void Disparar()
