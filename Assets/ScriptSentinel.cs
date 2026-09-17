@@ -25,14 +25,14 @@ public class ScriptSentinel : MonoBehaviour
     {
         Physics2D.queriesStartInColliders = false;
 
-        // Movimiento según dirección
+        // Movimiento segï¿½n direcciï¿½n
         float dir = moviendoDerecha ? 1f : -1f;
         rb.linearVelocity = new Vector2(dir * Mathf.Abs(velocidad), rb.linearVelocity.y);
 
         // Raycast
         RaycastHit2D informacionSuelo = Physics2D.Raycast(controladorSuelo.position, Vector2.down, distancia);
 
-        // Solo gira si no hay suelo Y pasó el tiempo suficiente desde el último giro
+        // Solo gira si no hay suelo Y pasï¿½ el tiempo suficiente desde el ï¿½ltimo giro
         if (informacionSuelo.collider == null && Time.time >= ultimoGiro + tiempoGiro)
         {
             Girar();
@@ -63,7 +63,7 @@ public class ScriptSentinel : MonoBehaviour
 
             if (vida != null)
             {
-                vida.TomarDaño(vida.cantidadDeVida);
+                vida.TomarDaÃ±o(vida.cantidadDeVida);
             }
         }
     }
