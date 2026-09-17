@@ -29,6 +29,8 @@ public class PanelDerrota : MonoBehaviour
     [Tooltip("Si se deja vacío, se busca por el tag Player al iniciar.")]
     public string tagJugador = "Player";
 
+    private DialogoLog dialogoLog;
+
     [Header("Aparición")]
     [Tooltip("Segundos de espera tras morir, para que se vea la animación de muerte.")]
     public float retrasoAparicion = 1.2f;
@@ -61,6 +63,8 @@ public class PanelDerrota : MonoBehaviour
 
             if (j != null) vidaJugador = j.GetComponent<VidaJugador>();
         }
+
+        dialogoLog = FindFirstObjectByType<DialogoLog>();
     }
 
     private void Update()
@@ -84,6 +88,13 @@ public class PanelDerrota : MonoBehaviour
     public void MostrarDerrota()
     {
         activado = true;
+
+        // Corta cualquier diálogo en curso (typeo y panel del LOG) apenas
+        // aparece el cartel de game over.
+        if (dialogoLog != null)
+        {
+            dialogoLog.TerminarDialog();
+        }
 
         MostrarResultados();
 
