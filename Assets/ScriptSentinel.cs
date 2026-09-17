@@ -9,50 +9,116 @@ public class ScriptSentinel : MonoBehaviour
     [SerializeField] private Transform controladorSuelo;
     [SerializeField] private float distancia = 0.5f;
 
+    [Header("Seguir al jugador")]
+    [Tooltip("Si está activado, cuando ve al jugador se da vuelta hacia él y sigue patrullando en esa dirección.")]
+    [SerializeField] private bool seguirJugador = false;
+    [SerializeField] private float distanciaDeteccion = 8f;
+    [SerializeField] private float alturaDeteccion = 2.5f;
+    [SerializeField] private float velocidadPersecucion = 3f;
+    [SerializeField] private string tagJugador = "Player";
+    public bool jugadorDetectado;
+
     private Rigidbody2D rb;
-    private SpriteRenderer spriteRenderer;
+    private Transform jugador;
     private bool moviendoDerecha = true;
     private float tiempoGiro = 0.2f;
     private float ultimoGiro;
+    private const float zonaMuerta = 0.3f;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        BuscarJugador();
+        AplicarOrientacion();
     }
 
     void FixedUpdate()
     {
         Physics2D.queriesStartInColliders = false;
 
-        // Movimiento seg�n direcci�n
+        jugadorDetectado = seguirJugador && DetectarJugador();
+
+        if (jugadorDetectado)
+        {
+            float diferencia = jugador.position.x - transform.position.x;
+            bool jugadorALaDerecha = diferencia > 0f;
+
+            if (Mathf.Abs(diferencia) > zonaMuerta && jugadorALaDerecha != moviendoDerecha && Time.time >= ultimoGiro + tiempoGiro)
+            {
+                Girar();
+            }
+        }
+
         float dir = moviendoDerecha ? 1f : -1f;
-        rb.linearVelocity = new Vector2(dir * Mathf.Abs(velocidad), rb.linearVelocity.y);
+        float rapidez = jugadorDetectado ? velocidadPersecucion : velocidad;
 
         // Raycast
         RaycastHit2D informacionSuelo = Physics2D.Raycast(controladorSuelo.position, Vector2.down, distancia);
+        bool haySuelo = informacionSuelo.collider != null;
 
-        // Solo gira si no hay suelo Y pas� el tiempo suficiente desde el �ltimo giro
-        if (informacionSuelo.collider == null && Time.time >= ultimoGiro + tiempoGiro)
+        if (haySuelo)
         {
-            Girar();
+            rb.linearVelocity = new Vector2(dir * Mathf.Abs(rapidez), rb.linearVelocity.y);
         }
+        else if (jugadorDetectado)
+        {
+            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+        }
+        else
+        {
+            rb.linearVelocity = new Vector2(dir * Mathf.Abs(rapidez), rb.linearVelocity.y);
+
+            // Solo gira si no hay suelo Y pasó el tiempo suficiente desde el último giro
+            if (Time.time >= ultimoGiro + tiempoGiro)
+            {
+                Girar();
+            }
+        }
+    }
+
+    private void BuscarJugador()
+    {
+        GameObject objetivo = GameObject.FindGameObjectWithTag(tagJugador);
+
+        if (objetivo != null)
+        {
+            jugador = objetivo.transform;
+        }
+    }
+
+    private bool DetectarJugador()
+    {
+        if (jugador == null)
+        {
+            BuscarJugador();
+
+            if (jugador == null) return false;
+        }
+
+        Vector2 diferencia = jugador.position - transform.position;
+
+        return Mathf.Abs(diferencia.x) <= distanciaDeteccion && Mathf.Abs(diferencia.y) <= alturaDeteccion;
     }
 
     private void Girar()
     {
         ultimoGiro = Time.time;
         moviendoDerecha = !moviendoDerecha;
+        AplicarOrientacion();
+    }
 
-        if (spriteRenderer != null)
+    private void AplicarOrientacion()
+    {
+        Vector3 escala = transform.localScale;
+        escala.x = Mathf.Abs(escala.x) * (moviendoDerecha ? 1f : -1f);
+        transform.localScale = escala;
+
+        if (controladorSuelo != null)
         {
-            spriteRenderer.flipX = !moviendoDerecha;
+            Vector3 posRelativa = controladorSuelo.localPosition;
+            posRelativa.x = Mathf.Abs(posRelativa.x);
+            controladorSuelo.localPosition = posRelativa;
         }
-
-        // Mueve el punto detector hacia el otro extremo en X
-        Vector3 posRelativa = controladorSuelo.localPosition;
-        posRelativa.x = Mathf.Abs(posRelativa.x) * (moviendoDerecha ? 1 : -1);
-        controladorSuelo.localPosition = posRelativa;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -74,6 +140,12 @@ public class ScriptSentinel : MonoBehaviour
         {
             Gizmos.color = Color.red;
             Gizmos.DrawLine(controladorSuelo.position, controladorSuelo.position + Vector3.down * distancia);
+        }
+
+        if (seguirJugador)
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireCube(transform.position, new Vector3(distanciaDeteccion * 2f, alturaDeteccion * 2f, 0f));
         }
     }
 }
