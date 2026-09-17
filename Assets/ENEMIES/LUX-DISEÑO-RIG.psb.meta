@@ -3452,8 +3452,8 @@ ScriptedImporter:
     - name: R Brazo
       guid: 3c5084fab655a42e9acd0f82ce373ebb
       position: {x: 241.08203, y: 0.000028750968, z: 0}
-      rotation: {x: 0, y: 0, z: -0.2031699, w: 0.97914356}
-      length: 175.12181
+      rotation: {x: 0, y: 0, z: -0.20317008, w: 0.97914344}
+      length: 175.12169
       parentId: 0
       color:
         serializedVersion: 2
@@ -3853,8 +3853,8 @@ ScriptedImporter:
     - name: L Mano
       guid: 4f3ebaf3958df4c859f0c7fecc43b89c
       position: {x: -115.00366, y: -453.90326, z: 0}
-      rotation: {x: 0, y: 0, z: 0.8850223, w: -0.46554878}
-      length: 222.69817
+      rotation: {x: 0, y: 0, z: 0.8850222, w: -0.46554875}
+      length: 222.69823
       parentId: -1
       color:
         serializedVersion: 2
@@ -4287,8 +4287,8 @@ ScriptedImporter:
     - name: L Brazo
       guid: eaf9e68e1791e4ed4b9fc7f7f541c032
       position: {x: -913.9104, y: 197.60913, z: 0}
-      rotation: {x: 0, y: 0, z: 0.8661707, w: -0.49974832}
-      length: 211.97298
+      rotation: {x: 0, y: 0, z: 0.86617076, w: -0.4997483}
+      length: 211.97296
       parentId: -1
       color:
         serializedVersion: 2
@@ -4427,28 +4427,28 @@ ScriptedImporter:
         boneIndex3: 0
     - position: {x: 53.984, y: 289.591}
       boneWeight:
-        weight0: 1
-        weight1: 0
+        weight0: 0.58000004
+        weight1: 0.41999996
         weight2: 0
         weight3: 0
-        boneIndex0: 1
-        boneIndex1: 0
+        boneIndex0: 0
+        boneIndex1: 1
         boneIndex2: 0
         boneIndex3: 0
     - position: {x: 34.39, y: 267.617}
       boneWeight:
-        weight0: 1
-        weight1: 0
+        weight0: 0.59000003
+        weight1: 0.40999997
         weight2: 0
         weight3: 0
-        boneIndex0: 1
-        boneIndex1: 0
+        boneIndex0: 0
+        boneIndex1: 1
         boneIndex2: 0
         boneIndex3: 0
     - position: {x: 16.399002, y: 239.511}
       boneWeight:
-        weight0: 1
-        weight1: 0
+        weight0: 0.99
+        weight1: 0.01
         weight2: 0
         weight3: 0
         boneIndex0: 1
@@ -4507,8 +4507,8 @@ ScriptedImporter:
         boneIndex3: 0
     - position: {x: 5.4850006, y: 57.198}
       boneWeight:
-        weight0: 1
-        weight1: 0
+        weight0: 0.7
+        weight1: 0.3
         weight2: 0
         weight3: 0
         boneIndex0: 1
@@ -4521,7 +4521,7 @@ ScriptedImporter:
         weight1: 0
         weight2: 0
         weight3: 0
-        boneIndex0: 1
+        boneIndex0: 0
         boneIndex1: 0
         boneIndex2: 0
         boneIndex3: 0
@@ -4531,7 +4531,7 @@ ScriptedImporter:
         weight1: 0
         weight2: 0
         weight3: 0
-        boneIndex0: 1
+        boneIndex0: 0
         boneIndex1: 0
         boneIndex2: 0
         boneIndex3: 0
@@ -4541,7 +4541,7 @@ ScriptedImporter:
         weight1: 0
         weight2: 0
         weight3: 0
-        boneIndex0: 1
+        boneIndex0: 0
         boneIndex1: 0
         boneIndex2: 0
         boneIndex3: 0
@@ -4551,7 +4551,7 @@ ScriptedImporter:
         weight1: 0
         weight2: 0
         weight3: 0
-        boneIndex0: 1
+        boneIndex0: 0
         boneIndex1: 0
         boneIndex2: 0
         boneIndex3: 0
@@ -4561,7 +4561,7 @@ ScriptedImporter:
         weight1: 0
         weight2: 0
         weight3: 0
-        boneIndex0: 1
+        boneIndex0: 0
         boneIndex1: 0
         boneIndex2: 0
         boneIndex3: 0
@@ -4596,7 +4596,7 @@ ScriptedImporter:
         boneIndex2: 0
         boneIndex3: 0
     spritePhysicsOutline: []
-    indices: 000000001c00000001000000000000001d0000001c000000010000001c00000002000000020000001400000003000000020000001b00000014000000020000001c0000001b000000030000001300000004000000030000001400000013000000040000001200000005000000040000001300000012000000050000001100000006000000050000001200000011000000060000001000000007000000060000001100000010000000070000000b00000008000000070000000f0000000b00000007000000100000000f000000080000000a00000009000000080000000b0000000a0000000b0000000e0000000c0000000b0000000f0000000e0000000c0000000e0000000d000000140000001b00000015000000150000001a00000016000000150000001b0000001a000000160000001a00000017000000170000001a00000018000000180000001a00000019000000
+    indices: 000000001c00000001000000160000001a00000017000000150000001b0000001a000000150000001a00000016000000140000001b000000150000000c0000000e0000000d0000000b0000000f0000000e0000000b0000000e0000000c000000080000000b0000000a000000080000000a0000000900000007000000100000000f000000070000000f0000000b000000070000000b00000008000000060000001100000010000000060000001000000007000000050000001200000011000000050000001100000006000000040000001300000012000000040000001200000005000000030000001400000013000000030000001300000004000000020000001c0000001b000000020000001b00000014000000020000001400000003000000010000001c00000002000000000000001d0000001c000000170000001a00000018000000180000001a00000019000000
     edges:
     - {x: 0, y: 1}
     - {x: 0, y: 29}
@@ -4657,8 +4657,8 @@ ScriptedImporter:
     - name: R Brazo
       guid: 3c5084fab655a42e9acd0f82ce373ebb
       position: {x: 241.0821, y: -0.000030555653, z: 0}
-      rotation: {x: 0, y: 0, z: -0.2031699, w: 0.97914356}
-      length: 175.12181
+      rotation: {x: 0, y: 0, z: -0.20317008, w: 0.97914344}
+      length: 175.12169
       parentId: 0
       color:
         serializedVersion: 2
@@ -4666,8 +4666,8 @@ ScriptedImporter:
     - name: L Brazo
       guid: eaf9e68e1791e4ed4b9fc7f7f541c032
       position: {x: -1011.9104, y: 224.60913, z: 0}
-      rotation: {x: 0, y: 0, z: 0.8661707, w: -0.49974832}
-      length: 211.97298
+      rotation: {x: 0, y: 0, z: 0.86617076, w: -0.4997483}
+      length: 211.97296
       parentId: -1
       color:
         serializedVersion: 2
@@ -4807,7 +4807,7 @@ ScriptedImporter:
     - position: {x: 176.332, y: 208.694}
       boneWeight:
         weight0: 0.78999996
-        weight1: 0.21000001
+        weight1: 0.21000004
         weight2: 0
         weight3: 0
         boneIndex0: 0
@@ -4817,7 +4817,7 @@ ScriptedImporter:
     - position: {x: 154.312, y: 226.736}
       boneWeight:
         weight0: 0.90000004
-        weight1: 0.09999999
+        weight1: 0.099999964
         weight2: 0
         weight3: 0
         boneIndex0: 0
@@ -4837,7 +4837,7 @@ ScriptedImporter:
     - position: {x: 101.93, y: 250.626}
       boneWeight:
         weight0: 0.99
-        weight1: 0.01
+        weight1: 0.00999999
         weight2: 0
         weight3: 0
         boneIndex0: 0
@@ -5026,9 +5026,9 @@ ScriptedImporter:
     spriteBone:
     - name: R Dedo
       guid: 713fea4f89c1d4b95a15cb358bb4f7d0
-      position: {x: -31.977884, y: -59.01732, z: 0}
+      position: {x: -31.978134, y: -59.016968, z: 0}
       rotation: {x: 0, y: 0, z: -0.4101901, w: 0.91200006}
-      length: 134.76714
+      length: 134.76712
       parentId: 2
       color:
         serializedVersion: 2
@@ -5036,17 +5036,17 @@ ScriptedImporter:
     - name: R Brazo
       guid: 3c5084fab655a42e9acd0f82ce373ebb
       position: {x: 54.84961, y: 184.84216, z: 0}
-      rotation: {x: 0, y: 0, z: -0.42510474, w: 0.90514416}
-      length: 175.12183
+      rotation: {x: 0, y: 0, z: -0.42510495, w: 0.90514416}
+      length: 175.12166
       parentId: -1
       color:
         serializedVersion: 2
         rgba: 4294967040
     - name: 'R Mano '
       guid: a2b0a467118b34311a682dec10b728af
-      position: {x: 175.12166, y: -0.000004549016, z: 0}
-      rotation: {x: 0, y: 0, z: 0.076268196, w: 0.9970874}
-      length: 203.11911
+      position: {x: 175.12177, y: 0.00016853394, z: 0}
+      rotation: {x: 0, y: 0, z: 0.07626838, w: 0.99708736}
+      length: 203.11908
       parentId: 1
       color:
         serializedVersion: 2
@@ -5373,8 +5373,8 @@ ScriptedImporter:
     - name: R Brazo
       guid: 3c5084fab655a42e9acd0f82ce373ebb
       position: {x: 241.08206, y: 0.000086350585, z: 0}
-      rotation: {x: 0, y: 0, z: -0.20316987, w: 0.97914356}
-      length: 175.12181
+      rotation: {x: 0, y: 0, z: -0.20317009, w: 0.9791435}
+      length: 175.12169
       parentId: 1
       color:
         serializedVersion: 2
@@ -5390,9 +5390,9 @@ ScriptedImporter:
         rgba: 4278255360
     - name: 'R Mano '
       guid: a2b0a467118b34311a682dec10b728af
-      position: {x: 175.12166, y: -0.0000713703, z: 0}
-      rotation: {x: 0, y: 0, z: 0.07626816, w: 0.9970874}
-      length: 203.11908
+      position: {x: 175.12177, y: 0.00012884171, z: 0}
+      rotation: {x: 0, y: 0, z: 0.07626838, w: 0.9970873}
+      length: 203.1191
       parentId: 0
       color:
         serializedVersion: 2
@@ -5729,9 +5729,9 @@ ScriptedImporter:
     spriteBone:
     - name: 'R Mano '
       guid: a2b0a467118b34311a682dec10b728af
-      position: {x: 175.12167, y: -0.00005980252, z: 0}
-      rotation: {x: 0, y: 0, z: 0.076268196, w: 0.9970874}
-      length: 203.11911
+      position: {x: 175.12187, y: 0.00029084648, z: 0}
+      rotation: {x: 0, y: 0, z: 0.07626838, w: 0.99708736}
+      length: 203.11908
       parentId: 1
       color:
         serializedVersion: 2
@@ -5739,8 +5739,8 @@ ScriptedImporter:
     - name: R Brazo
       guid: 3c5084fab655a42e9acd0f82ce373ebb
       position: {x: -54.15039, y: 303.84216, z: 0}
-      rotation: {x: 0, y: 0, z: -0.42510474, w: 0.90514416}
-      length: 175.12183
+      rotation: {x: 0, y: 0, z: -0.42510495, w: 0.90514416}
+      length: 175.12166
       parentId: -1
       color:
         serializedVersion: 2
@@ -6099,7 +6099,7 @@ ScriptedImporter:
     spriteBone:
     - name: R Dedo
       guid: 713fea4f89c1d4b95a15cb358bb4f7d0
-      position: {x: -31.977795, y: -59.01732, z: 0}
+      position: {x: -31.977913, y: -59.01721, z: 0}
       rotation: {x: 0, y: 0, z: -0.4101901, w: 0.91200006}
       length: 134.76714
       parentId: 1
@@ -6108,9 +6108,9 @@ ScriptedImporter:
         rgba: 4294902015
     - name: 'R Mano '
       guid: a2b0a467118b34311a682dec10b728af
-      position: {x: 175.12173, y: -0.00008078031, z: 0}
-      rotation: {x: 0, y: 0, z: 0.076268196, w: 0.9970874}
-      length: 203.11911
+      position: {x: 175.12178, y: 0.00017139496, z: 0}
+      rotation: {x: 0, y: 0, z: 0.07626838, w: 0.99708736}
+      length: 203.11908
       parentId: 2
       color:
         serializedVersion: 2
@@ -6118,8 +6118,8 @@ ScriptedImporter:
     - name: R Brazo
       guid: 3c5084fab655a42e9acd0f82ce373ebb
       position: {x: 41.84961, y: 322.84216, z: 0}
-      rotation: {x: 0, y: 0, z: -0.42510474, w: 0.90514416}
-      length: 175.12183
+      rotation: {x: 0, y: 0, z: -0.42510495, w: 0.90514416}
+      length: 175.12166
       parentId: -1
       color:
         serializedVersion: 2
@@ -6467,8 +6467,8 @@ ScriptedImporter:
     spriteBone:
     - name: L Dedo
       guid: eaeae4c3ff8e14ff6affaf3bc22382a2
-      position: {x: -7.383729, y: 71.47627, z: 0}
-      rotation: {x: 0, y: 0, z: 0.42287633, w: 0.9061875}
+      position: {x: -7.38366, y: 71.47617, z: 0}
+      rotation: {x: 0, y: 0, z: 0.4228762, w: 0.9061874}
       length: 160.7014
       parentId: 2
       color:
@@ -6477,24 +6477,24 @@ ScriptedImporter:
     - name: L Brazo
       guid: eaf9e68e1791e4ed4b9fc7f7f541c032
       position: {x: 193.0896, y: 246.60913, z: 0}
-      rotation: {x: 0, y: 0, z: 0.8661707, w: -0.49974832}
-      length: 211.97298
+      rotation: {x: 0, y: 0, z: 0.86617076, w: -0.4997483}
+      length: 211.97296
       parentId: -1
       color:
         serializedVersion: 2
         rgba: 4278255488
     - name: L Mano
       guid: 4f3ebaf3958df4c859f0c7fecc43b89c
-      position: {x: 211.97299, y: 0.00006182765, z: 0}
-      rotation: {x: 0, y: 0, z: -0.039043676, w: 0.9992375}
-      length: 222.69817
+      position: {x: 211.97302, y: -0.000021379998, z: 0}
+      rotation: {x: 0, y: 0, z: -0.039043624, w: 0.9992375}
+      length: 222.6982
       parentId: 1
       color:
         serializedVersion: 2
         rgba: 4286643968
     - name: 'R Mano '
       guid: a2b0a467118b34311a682dec10b728af
-      position: {x: 1477.6772, y: -22.924896, z: 0}
+      position: {x: 1477.6775, y: -22.924896, z: 0}
       rotation: {x: 0, y: 0, z: -0.35483286, w: 0.9349297}
       length: 203.11911
       parentId: -1
@@ -6887,8 +6887,8 @@ ScriptedImporter:
     - name: L Brazo
       guid: eaf9e68e1791e4ed4b9fc7f7f541c032
       position: {x: 217.0895, y: -0.000072786024, z: 0}
-      rotation: {x: 0, y: 0, z: 0.40487197, w: 0.91437346}
-      length: 211.97298
+      rotation: {x: 0, y: 0, z: 0.40487188, w: 0.91437346}
+      length: 211.97296
       parentId: 2
       color:
         serializedVersion: 2
@@ -7255,15 +7255,15 @@ ScriptedImporter:
     - name: L Brazo
       guid: eaf9e68e1791e4ed4b9fc7f7f541c032
       position: {x: 217.08968, y: -0.00016198438, z: 0}
-      rotation: {x: 0, y: 0, z: 0.40487194, w: 0.91437346}
-      length: 211.97298
+      rotation: {x: 0, y: 0, z: 0.40487185, w: 0.9143734}
+      length: 211.97296
       parentId: 0
       color:
         serializedVersion: 2
         rgba: 4278255488
     - name: 'R Mano '
       guid: a2b0a467118b34311a682dec10b728af
-      position: {x: 1214.6772, y: -169.92493, z: 0}
+      position: {x: 1214.6775, y: -169.92493, z: 0}
       rotation: {x: 0, y: 0, z: -0.35483286, w: 0.9349297}
       length: 203.11911
       parentId: -1
@@ -7624,9 +7624,9 @@ ScriptedImporter:
     spriteBone:
     - name: L Dedo
       guid: eaeae4c3ff8e14ff6affaf3bc22382a2
-      position: {x: -7.383682, y: 71.47624, z: 0}
-      rotation: {x: 0, y: 0, z: 0.4228762, w: 0.9061874}
-      length: 160.7014
+      position: {x: -7.3837276, y: 71.47629, z: 0}
+      rotation: {x: 0, y: 0, z: 0.42287624, w: 0.9061875}
+      length: 160.70143
       parentId: 1
       color:
         serializedVersion: 2
@@ -7634,8 +7634,8 @@ ScriptedImporter:
     - name: L Mano
       guid: 4f3ebaf3958df4c859f0c7fecc43b89c
       position: {x: 6.996338, y: 226.09674, z: 0}
-      rotation: {x: 0, y: 0, z: 0.8850223, w: -0.46554878}
-      length: 222.69817
+      rotation: {x: 0, y: 0, z: 0.8850222, w: -0.46554875}
+      length: 222.69823
       parentId: -1
       color:
         serializedVersion: 2
@@ -7972,9 +7972,9 @@ ScriptedImporter:
     spriteBone:
     - name: L Mano
       guid: 4f3ebaf3958df4c859f0c7fecc43b89c
-      position: {x: 211.97314, y: -0.000003825946, z: 0}
-      rotation: {x: 0, y: 0, z: -0.039043676, w: 0.99923754}
-      length: 222.69817
+      position: {x: 211.9731, y: 0.000019181884, z: 0}
+      rotation: {x: 0, y: 0, z: -0.039043624, w: 0.99923754}
+      length: 222.6982
       parentId: 1
       color:
         serializedVersion: 2
@@ -7982,8 +7982,8 @@ ScriptedImporter:
     - name: L Brazo
       guid: eaf9e68e1791e4ed4b9fc7f7f541c032
       position: {x: 298.0896, y: 412.60913, z: 0}
-      rotation: {x: 0, y: 0, z: 0.8661707, w: -0.49974832}
-      length: 211.97298
+      rotation: {x: 0, y: 0, z: 0.86617076, w: -0.4997483}
+      length: 211.97296
       parentId: -1
       color:
         serializedVersion: 2
@@ -8332,8 +8332,8 @@ ScriptedImporter:
     - name: L Brazo
       guid: eaf9e68e1791e4ed4b9fc7f7f541c032
       position: {x: 217.08963, y: -0.00014275622, z: 0}
-      rotation: {x: 0, y: 0, z: 0.40487197, w: 0.91437346}
-      length: 211.97298
+      rotation: {x: 0, y: 0, z: 0.40487188, w: 0.91437346}
+      length: 211.97296
       parentId: 1
       color:
         serializedVersion: 2
@@ -9100,16 +9100,16 @@ ScriptedImporter:
     - name: R Brazo
       guid: 3c5084fab655a42e9acd0f82ce373ebb
       position: {x: 241.08203, y: 0.0000326432, z: 0}
-      rotation: {x: 0, y: 0, z: -0.20316991, w: 0.9791435}
-      length: 175.12181
+      rotation: {x: 0, y: 0, z: -0.20317008, w: 0.9791435}
+      length: 175.12169
       parentId: 2
       color:
         serializedVersion: 2
         rgba: 4294967040
     - name: 'R Mano '
       guid: a2b0a467118b34311a682dec10b728af
-      position: {x: 175.12173, y: -0.000006270726, z: 0}
-      rotation: {x: 0, y: 0, z: 0.076268226, w: 0.9970874}
+      position: {x: 175.12177, y: 0.00007430221, z: 0}
+      rotation: {x: 0, y: 0, z: 0.076268375, w: 0.99708736}
       length: 203.1191
       parentId: 3
       color:
@@ -9136,7 +9136,7 @@ ScriptedImporter:
     - name: L Brazo
       guid: eaf9e68e1791e4ed4b9fc7f7f541c032
       position: {x: 217.08958, y: -0.000010687392, z: 0}
-      rotation: {x: 0, y: 0, z: 0.4048719, w: 0.9143734}
+      rotation: {x: 0, y: 0, z: 0.40487188, w: 0.91437346}
       length: 211.973
       parentId: 6
       color:
@@ -9144,8 +9144,8 @@ ScriptedImporter:
         rgba: 4278255488
     - name: L Mano
       guid: 4f3ebaf3958df4c859f0c7fecc43b89c
-      position: {x: 211.973, y: -0.000014207497, z: 0}
-      rotation: {x: 0, y: 0, z: -0.039043687, w: 0.99923754}
+      position: {x: 211.973, y: 0.0000054086304, z: 0}
+      rotation: {x: 0, y: 0, z: -0.03904364, w: 0.99923754}
       length: 222.69823
       parentId: 7
       color:
