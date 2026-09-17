@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class RepeaterSegundo : MonoBehaviour
 {
+    [Header("DISPARO")]
     public Transform controladorDisparo;
     public float distanciaLinea = 10f;
     public LayerMask capaJugador;
@@ -12,17 +13,14 @@ public class RepeaterSegundo : MonoBehaviour
     public float tiempoEntreDisparos = 1.5f;
 
     [Header("Comportamiento")]
-    [Tooltip("Si está activado, dispara desde el arranque en bucle sin necesitar detectar al jugador con el raycast.")]
+    [Tooltip("Si está activado, dispara siempre sin necesitar raycast.")]
     public bool dispararSiempre = false;
 
     [Header("Giro hacia el jugador")]
-    [Tooltip("Si está activado, el enemigo se da vuelta para quedar mirando al jugador.")]
     public bool girarHaciaJugador = true;
 
-    [Tooltip("Distancia horizontal a la que detecta al jugador para darse vuelta.")]
     public float distanciaGiro = 12f;
 
-    [Tooltip("Tag del jugador.")]
     public string tagJugador = "Player";
 
     public bool jugadorDetectado;
@@ -30,20 +28,38 @@ public class RepeaterSegundo : MonoBehaviour
     private float cronometro;
     private Transform jugador;
 
+    private Vector3 escalaOriginal;
+
+    // true = actualmente mira a la derecha
+    private bool mirandoDerecha;
+
     private void Start()
     {
         cronometro = 0f;
+
+        escalaOriginal = transform.localScale;
+
         BuscarJugador();
     }
 
     private void Update()
     {
+        // ============================
+        // MIRAR AL JUGADOR
+        // ============================
+
         if (girarHaciaJugador)
         {
             MirarAlJugador();
         }
 
-        if (controladorDisparo == null) return;
+        if (controladorDisparo == null)
+            return;
+
+
+        // ============================
+        // DETECCIÓN
+        // ============================
 
         if (dispararSiempre)
         {
@@ -51,17 +67,32 @@ public class RepeaterSegundo : MonoBehaviour
         }
         else
         {
-            bool originalSetting = Physics2D.queriesStartInColliders;
+            Vector2 direccion = mirandoDerecha
+                ? Vector2.right
+                : Vector2.left;
+
+            bool originalSetting =
+                Physics2D.queriesStartInColliders;
+
             Physics2D.queriesStartInColliders = false;
 
+            RaycastHit2D hit = Physics2D.Raycast(
+                controladorDisparo.position,
+                direccion,
+                distanciaLinea,
+                capaJugador
+            );
 
-            RaycastHit2D hit = Physics2D.Raycast(controladorDisparo.position, transform.right, distanciaLinea, capaJugador);
-
-
-            Physics2D.queriesStartInColliders = originalSetting;
+            Physics2D.queriesStartInColliders =
+                originalSetting;
 
             jugadorEnRango = hit.collider != null;
         }
+
+
+        // ============================
+        // DISPARO
+        // ============================
 
         if (jugadorEnRango)
         {
@@ -70,6 +101,7 @@ public class RepeaterSegundo : MonoBehaviour
             if (cronometro <= 0f)
             {
                 Disparar();
+
                 cronometro = tiempoEntreDisparos;
             }
         }
@@ -79,9 +111,15 @@ public class RepeaterSegundo : MonoBehaviour
         }
     }
 
+
+    // =====================================================
+    // BUSCAR JUGADOR
+    // =====================================================
+
     private void BuscarJugador()
     {
-        GameObject objetivo = GameObject.FindGameObjectWithTag(tagJugador);
+        GameObject objetivo =
+            GameObject.FindGameObjectWithTag(tagJugador);
 
         if (objetivo != null)
         {
@@ -89,54 +127,148 @@ public class RepeaterSegundo : MonoBehaviour
         }
     }
 
+
+    // =====================================================
+    // MIRAR JUGADOR
+    // =====================================================
+
     private void MirarAlJugador()
     {
         if (jugador == null)
         {
             BuscarJugador();
 
-            if (jugador == null) return;
+            if (jugador == null)
+                return;
         }
 
-        float diferencia = jugador.position.x - transform.position.x;
+        float diferenciaX =
+            jugador.position.x - transform.position.x;
 
-        jugadorDetectado = Mathf.Abs(diferencia) <= distanciaGiro;
+        jugadorDetectado =
+            Mathf.Abs(diferenciaX) <= distanciaGiro;
 
-        if (!jugadorDetectado) return;
+        if (!jugadorDetectado)
+            return;
 
-        Girar(diferencia > 0f);
+
+        if (diferenciaX > 0f)
+        {
+            // JUGADOR A LA DERECHA
+            MirarDerecha();
+        }
+        else if (diferenciaX < 0f)
+        {
+            // JUGADOR A LA IZQUIERDA
+            MirarIzquierda();
+        }
     }
 
-    private void Girar(bool haciaLaDerecha)
-    {
-        Vector3 angulos = transform.eulerAngles;
-        angulos.z = haciaLaDerecha ? 0f : 180f;
-        transform.eulerAngles = angulos;
 
-        Vector3 escala = transform.localScale;
-        escala.y = haciaLaDerecha ? Mathf.Abs(escala.y) : -Mathf.Abs(escala.y);
+    // =====================================================
+    // GIRO DEL RIG
+    // =====================================================
+
+    private void MirarDerecha()
+    {
+        mirandoDerecha = true;
+
+        Vector3 escala = escalaOriginal;
+
+        // IMPORTANTE:
+        // En tu rig la orientación original está invertida.
+        escala.x = -Mathf.Abs(escalaOriginal.x);
+
         transform.localScale = escala;
     }
 
+
+    private void MirarIzquierda()
+    {
+        mirandoDerecha = false;
+
+        Vector3 escala = escalaOriginal;
+
+        escala.x = Mathf.Abs(escalaOriginal.x);
+
+        transform.localScale = escala;
+    }
+
+
+    // =====================================================
+    // DISPARAR
+    // =====================================================
+
     private void Disparar()
     {
-        if (proyectil == null) return;
+        if (proyectil == null ||
+            controladorDisparo == null)
+            return;
 
-        GameObject copia = Instantiate(proyectil, controladorDisparo.position, controladorDisparo.rotation);
+
+        Quaternion rotacion;
+
+
+        if (mirandoDerecha)
+        {
+            // Proyectil.cs avanza hacia su Vector2.right
+            rotacion = Quaternion.Euler(0f, 0f, 0f);
+        }
+        else
+        {
+            // Giramos el prefab 180° para que su
+            // Vector2.right apunte hacia la izquierda
+            rotacion = Quaternion.Euler(0f, 0f, 180f);
+        }
+
+
+        GameObject copia = Instantiate(
+            proyectil,
+            controladorDisparo.position,
+            rotacion
+        );
+
         copia.SetActive(true);
     }
+
+
+    // =====================================================
+    // GIZMOS
+    // =====================================================
 
     private void OnDrawGizmos()
     {
         if (girarHaciaJugador)
         {
             Gizmos.color = Color.yellow;
-            Gizmos.DrawLine(transform.position + Vector3.left * distanciaGiro, transform.position + Vector3.right * distanciaGiro);
+
+            Gizmos.DrawLine(
+                transform.position +
+                Vector3.left * distanciaGiro,
+
+                transform.position +
+                Vector3.right * distanciaGiro
+            );
         }
 
-        if (controladorDisparo == null) return;
+
+        if (controladorDisparo == null)
+            return;
+
+
+        Vector3 direccion =
+            mirandoDerecha
+            ? Vector3.right
+            : Vector3.left;
+
 
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(controladorDisparo.position, controladorDisparo.position + transform.right * distanciaLinea);
+
+        Gizmos.DrawLine(
+            controladorDisparo.position,
+
+            controladorDisparo.position +
+            direccion * distanciaLinea
+        );
     }
 }
