@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class DisparoEnemigo : MonoBehaviour
@@ -17,8 +18,13 @@ public class DisparoEnemigo : MonoBehaviour
 
     private float cronometro;
 
+    private Animator anim;
+    private bool estamuerto = false;
+
     private void Start()
     {
+
+        anim = GetComponent<Animator>();
         cronometro = 0f;
 
         // Congela la rotación física: sin esto, un empujón del jugador le mete
@@ -97,10 +103,24 @@ public class DisparoEnemigo : MonoBehaviour
             
             if (contacto.normal.y <= -0.5f)
             {
-                Destroy(gameObject);
+
+
+                StartCoroutine(DestruirEnemigo());
 
                 
             }
         }
     }
+
+    IEnumerator DestruirEnemigo()
+    {
+        estamuerto = true;
+
+        anim.SetTrigger("muerteRepeater");
+
+        yield return new WaitForSeconds(0.5f);
+
+        Destroy(gameObject);
+    }
+
 }
