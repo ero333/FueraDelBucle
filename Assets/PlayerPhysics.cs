@@ -96,6 +96,15 @@ public class PlayerPhysics : MonoBehaviour
         }
     }
 
+    public float ProgresoDuracionPhase
+    {
+        get
+        {
+            if (duracionPhase <= 0f) return 0f;
+            return Mathf.Clamp01(tiempoRestantePhase / duracionPhase);
+        }
+    }
+
     public bool EstaEnPhase => estaEnPhase;
 
     public float TiempoRestanteCooldown => tiempoRestanteCooldown;

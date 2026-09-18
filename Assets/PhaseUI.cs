@@ -25,7 +25,7 @@ public class PhaseUI : MonoBehaviour
        
         if (jugador.EstaEnPhase)
         {
-            imagenRelleno.fillAmount = 1f;
+            imagenRelleno.fillAmount = jugador.ProgresoDuracionPhase;
         }
         else
         {
