@@ -13,15 +13,14 @@ public class DialogoLog : MonoBehaviour
     private int dialogoIndex;
     private bool EstaTypeando, DialogoActivo;
 
-
-
     public void Interactuar()
     {
+        if (PauseManager.GameIsPaused) return; // Bloquea la interacción si el juego está pausado
+
         if (DialogoActivo)
         {
             SigLinea();
         }
-
         else
         {
             EmpezarDialog();
@@ -43,6 +42,8 @@ public class DialogoLog : MonoBehaviour
 
     public void SkipearAnimacion()
     {
+        if (PauseManager.GameIsPaused) return;
+
         if (DialogoActivo && EstaTypeando)
         {
             StopAllCoroutines();
@@ -57,20 +58,16 @@ public class DialogoLog : MonoBehaviour
     {
         if (EstaTypeando)
         {
-
             StopAllCoroutines();
             dialogoTexto.SetText(dialogodata.lineasDialogo[dialogoIndex]);
             EstaTypeando = false;
             return;
         }
-
         else if (dialogoIndex + 1 < dialogodata.lineasDialogo.Length)
         {
-            //Si hay otra linea de texto, typea la sig linea
             dialogoIndex++;
             StartCoroutine(LineadeType());
         }
-
         else
         {
             TerminarDialog();
@@ -85,14 +82,19 @@ public class DialogoLog : MonoBehaviour
         foreach (char letter in dialogodata.lineasDialogo[dialogoIndex])
         {
             dialogoTexto.text += letter;
-            yield return new WaitForSecondsRealtime(dialogodata.velocidadTypeo);
+
+            // Reemplazo de WaitForSecondsRealtime: Espera el tiempo de typeo considerando la pausa
+            yield return EsperarTiempoRespetandoPausa(dialogodata.velocidadTypeo);
         }
 
         EstaTypeando = false;
 
         if (DebeAutoProgresar(dialogoIndex))
         {
-            yield return new WaitForSecondsRealtime(dialogodata.autoProgresDelay);
+            yield return EsperarTiempoRespetandoPausa(dialogodata.autoProgresDelay);
+
+            // Verifica que no haya quedado pausado antes de cambiar de línea
+            yield return new WaitUntil(() => !PauseManager.GameIsPaused);
             SigLinea();
         }
     }
@@ -107,23 +109,35 @@ public class DialogoLog : MonoBehaviour
 
     IEnumerator PasarSigLineaXTiempo()
     {
-        yield return new WaitForSecondsRealtime(dialogodata.autoProgresDelay);
+        yield return EsperarTiempoRespetandoPausa(dialogodata.autoProgresDelay);
+
+        yield return new WaitUntil(() => !PauseManager.GameIsPaused);
 
         if (dialogoIndex + 1 < dialogodata.lineasDialogo.Length)
         {
             dialogoIndex++;
             StartCoroutine(LineadeType());
         }
-
         else
         {
             TerminarDialog();
         }
     }
 
-    // Chequea si la linea en el indice dado debe auto-progresar,
-    // sin romperse si el array autoProgresLineas es mas corto que lineasDialogo
-    // (en ese caso, se asume "false" para los indices faltantes).
+    // Método auxiliar para contar el tiempo manualmente ignorando la velocidad del juego pero respetando la pausa
+    IEnumerator EsperarTiempoRespetandoPausa(float tiempo)
+    {
+        float timer = 0f;
+        while (timer < tiempo)
+        {
+            if (!PauseManager.GameIsPaused)
+            {
+                timer += Time.unscaledDeltaTime;
+            }
+            yield return null;
+        }
+    }
+
     bool DebeAutoProgresar(int index)
     {
         return dialogodata.autoProgresLineas != null
@@ -137,6 +151,5 @@ public class DialogoLog : MonoBehaviour
         DialogoActivo = false;
         dialogoTexto.SetText("");
         PanelDialogo.SetActive(false);
-
     }
 }
