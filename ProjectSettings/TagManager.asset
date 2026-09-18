@@ -12,6 +12,7 @@ TagManager:
   - IVisibilidadJugador
   - E
   - OI
+  - Lux
   layers:
   - Default
   - TransparentFX
@@ -46,8 +47,14 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Boss
+    uniqueID: 1936241027
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Plataformas
+    uniqueID: 2714247447
     locked: 0
   m_RenderingLayers:
   - Default
