@@ -5392,7 +5392,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1920f00a1d63cd4468d619c6997f686a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InterruptorTeclado
-  caminoOculto: {fileID: 1123672620}
+  caminosOcultos: []
   spriteActivado: {fileID: 0}
 --- !u!114 &966079531 stripped
 MonoBehaviour:
@@ -5673,7 +5673,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1920f00a1d63cd4468d619c6997f686a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InterruptorTeclado
-  caminoOculto: {fileID: 279175974}
+  caminosOcultos: []
   spriteActivado: {fileID: 0}
 --- !u!1001 &1041774210
 PrefabInstance:
@@ -6238,6 +6238,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b144cd6d683eea54693d340007d8edf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VidasUI
+  imagenes: []
+  jugador: {fileID: 0}
+  imagen: {fileID: 0}
 --- !u!114 &1237670369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10103,6 +10106,18 @@ PrefabInstance:
       propertyPath: spriteActivado
       value: 
       objectReference: {fileID: 8030451996311251740, guid: 322fb989ecce84442ae6a1155725baa0, type: 3}
+    - target: {fileID: 6384676788775248325, guid: 8c7312d2a1478ff4387333b337c8bcc5, type: 3}
+      propertyPath: caminosOcultos.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6384676788775248325, guid: 8c7312d2a1478ff4387333b337c8bcc5, type: 3}
+      propertyPath: 'caminosOcultos.Array.data[0]'
+      value: 
+      objectReference: {fileID: 781581351}
+    - target: {fileID: 6384676788775248325, guid: 8c7312d2a1478ff4387333b337c8bcc5, type: 3}
+      propertyPath: 'caminosOcultos.Array.data[1]'
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

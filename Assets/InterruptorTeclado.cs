@@ -2,38 +2,57 @@ using UnityEngine;
 
 public class InterruptorTeclado : MonoBehaviour
 {
-    public GameObject caminoOculto;
+    public GameObject[] caminosOcultos;
     public Sprite spriteActivado;
-    private SpriteRenderer spriteRenderer;
 
-    private bool yaActivado = false;
+    private Sprite spriteDesactivado;
+    private SpriteRenderer spriteRenderer;
+    private bool estaActivado = false;
     private bool jugadorCerca = false;
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        if (caminoOculto != null)
+        if (spriteRenderer != null)
         {
-            caminoOculto.SetActive(false);
+            spriteDesactivado = spriteRenderer.sprite;
+        }
+
+        foreach (GameObject camino in caminosOcultos)
+        {
+            if (camino != null)
+            {
+                camino.SetActive(false);
+            }
         }
     }
 
     void Update()
     {
-        if (jugadorCerca && !yaActivado && Input.GetKeyDown(KeyCode.E))
+        if (jugadorCerca && Input.GetKeyDown(KeyCode.E))
         {
-            yaActivado = true;
+            estaActivado = !estaActivado;
 
-            if (caminoOculto != null)
+            foreach (GameObject camino in caminosOcultos)
             {
-                caminoOculto.SetActive(true);
+                if (camino != null)
+                {
+                    camino.SetActive(estaActivado);
+                }
             }
 
-             if (spriteActivado != null && spriteRenderer != null)
-             {
-              spriteRenderer.sprite = spriteActivado;
-             }
+            if (spriteRenderer != null)
+            {
+                if (estaActivado && spriteActivado != null)
+                {
+                    spriteRenderer.sprite = spriteActivado;
+                }
+                else if (!estaActivado && spriteDesactivado != null)
+                {
+                    spriteRenderer.sprite = spriteDesactivado;
+                }
+            }
         }
     }
 
