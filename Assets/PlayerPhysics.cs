@@ -293,7 +293,7 @@ public class PlayerPhysics : MonoBehaviour
         {
             tiempoRestantePhase -= Time.deltaTime;
 
-            if (!Input.GetKey(teclaPhase) || tiempoRestantePhase <= 0f)
+            if (tiempoRestantePhase <= 0f)
             {
                 DesactivarPhase();
             }
