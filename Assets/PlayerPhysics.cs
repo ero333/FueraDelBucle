@@ -29,6 +29,8 @@ public class PlayerPhysics : MonoBehaviour
     [Header("Habilidad Phase (Traspasar Paredes)")]
     [SerializeField] private KeyCode teclaPhase = KeyCode.P;
     [SerializeField] private float cooldownPhase = 3f;
+    [Tooltip("Cuánto puede durar el Phase como máximo. Al agotarse se corta solo y arranca el cooldown.")]
+    [SerializeField] private float duracionPhase = 2f;
     [SerializeField] private LayerMask capaParedesAtravesables;
     [SerializeField] private float opacidadPhase = 0.7f; // Transparencia visual durante el Phase
     [Tooltip("Color del leve glow violeta que tiñe el sprite mientras dura el Phase.")]
@@ -65,11 +67,10 @@ public class PlayerPhysics : MonoBehaviour
 
     // Variables Phase
     private bool estaEnPhase = false;
+    private float tiempoRestantePhase;
     private float tiempoRestanteCooldownPhase;
     private Color[] coloresOriginalesPhase;
     private bool phaseDisponibleEnEsteNivel = true;
-
-
 
     private bool estaAgachado;
     private BoxCollider2D boxCollider;
@@ -101,7 +102,7 @@ public class PlayerPhysics : MonoBehaviour
     public bool PuedeDashear => tiempoRestanteCooldown <= 0f;
     public bool PuedeHacerPhase => tiempoRestanteCooldownPhase <= 0f && !estaEnPhase && phaseDisponibleEnEsteNivel;
     public bool EstaEnElSuelo => estaEnElSuelo;
-    
+
 
     [Header("Fuerza de Rebote sobre el enemigo")]
     public float Rebote = 0f;
@@ -271,20 +272,22 @@ public class PlayerPhysics : MonoBehaviour
             tiempoRestanteCooldownPhase -= Time.deltaTime;
         }
 
-        // Activa el Phase mientras se sostiene la tecla P (solo si el nivel actual lo habilita)
-        if (Input.GetKey(teclaPhase) && tiempoRestanteCooldownPhase <= 0f && phaseDisponibleEnEsteNivel)
+        // Activar: hay que APRETAR la tecla (no alcanza con mantenerla), y solo si no hay cooldown
+        if (Input.GetKeyDown(teclaPhase) && !estaEnPhase
+            && tiempoRestanteCooldownPhase <= 0f && phaseDisponibleEnEsteNivel)
         {
-            if (!estaEnPhase)
-            {
-                ActivarPhase();
-            }
+            ActivarPhase();
         }
 
-        // Desactiva el Phase al soltar la tecla P
-        if (Input.GetKeyUp(teclaPhase) && estaEnPhase)
+        // Terminar: al soltar la tecla O cuando se agota la duración
+        if (estaEnPhase)
         {
-            DesactivarPhase();
-            tiempoRestanteCooldownPhase = cooldownPhase; // Inicia el cooldown
+            tiempoRestantePhase -= Time.deltaTime;
+
+            if (!Input.GetKey(teclaPhase) || tiempoRestantePhase <= 0f)
+            {
+                DesactivarPhase();
+            }
         }
 
         // Pulso leve del glow violeta mientras dura el Phase. Si VidaJugador
@@ -321,6 +324,7 @@ public class PlayerPhysics : MonoBehaviour
     private void ActivarPhase()
     {
         estaEnPhase = true;
+        tiempoRestantePhase = duracionPhase;
 
         // Desactiva colisiones con la capa asignada
         IgnorarColisionesParedes(true);
@@ -345,6 +349,10 @@ public class PlayerPhysics : MonoBehaviour
     private void DesactivarPhase()
     {
         estaEnPhase = false;
+
+        // El cooldown arranca acá, sea cual sea el motivo del corte
+        // (soltar la tecla o agotarse la duración).
+        tiempoRestanteCooldownPhase = cooldownPhase;
 
         // Restablece colisiones
         IgnorarColisionesParedes(false);
