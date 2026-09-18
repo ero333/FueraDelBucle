@@ -84,4 +84,23 @@ public class DisparoEnemigo : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawLine(controladorDisparo.position, controladorDisparo.position + transform.right * distanciaLinea);
     }
+
+
+    private void OnCollisionEnter2D(Collision2D colision)
+    {
+        
+        if (colision.gameObject.CompareTag("Player"))
+        {
+            
+            ContactPoint2D contacto = colision.GetContact(0);
+
+            
+            if (contacto.normal.y <= -0.5f)
+            {
+                Destroy(gameObject);
+
+                
+            }
+        }
+    }
 }
