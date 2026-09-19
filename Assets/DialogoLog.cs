@@ -54,6 +54,17 @@ public class DialogoLog : MonoBehaviour
         }
     }
 
+
+    public void SkipTodoElDialogo()
+    {
+        if (PauseManager.GameIsPaused) return;
+
+        if (DialogoActivo)
+        {
+            TerminarDialog();
+        }
+    }
+
     void SigLinea()
     {
         if (EstaTypeando)
