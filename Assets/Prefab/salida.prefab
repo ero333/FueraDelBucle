@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5066029568109520354}
   - component: {fileID: 5830032724887902536}
-  - component: {fileID: 7789463125219632933}
   - component: {fileID: 4232648465776164764}
   m_Layer: 0
   m_Name: salida
@@ -93,18 +92,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &7789463125219632933
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3557762350398390109}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87107a4dc3445da45b15140ffd8e9dda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NextScene
 --- !u!61 &4232648465776164764
 BoxCollider2D:
   m_ObjectHideFlags: 0

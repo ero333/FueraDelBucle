@@ -2798,7 +2798,7 @@ Transform:
   m_GameObject: {fileID: 737064826}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.3333373, y: 2.3166666, z: 0}
+  m_LocalPosition: {x: 1.3333373, y: 6.25, z: 0}
   m_LocalScale: {x: 5.5555553, y: 5.5555553, z: 5.5555553}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4523,7 +4523,7 @@ Transform:
   m_GameObject: {fileID: 924805529}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.3333373, y: 2.3166666, z: 0}
+  m_LocalPosition: {x: 1.3333373, y: 6.25, z: 0}
   m_LocalScale: {x: 5.5555553, y: 5.5555553, z: 5.5555553}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6079,7 +6079,7 @@ Transform:
   m_GameObject: {fileID: 1289987319}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.3333373, y: 2.3166666, z: 0}
+  m_LocalPosition: {x: 1.3333373, y: 6.25, z: 0}
   m_LocalScale: {x: 5.5555553, y: 5.5555553, z: 5.5555553}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7105,7 +7105,7 @@ Transform:
   m_GameObject: {fileID: 1629224140}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.3333373, y: 2.3166666, z: 0}
+  m_LocalPosition: {x: 1.3333373, y: 6.25, z: 0}
   m_LocalScale: {x: 5.5555553, y: 5.5555553, z: 5.5555553}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8862,7 +8862,6 @@ GameObject:
   - component: {fileID: 1967961357}
   - component: {fileID: 1967961356}
   - component: {fileID: 1967961355}
-  - component: {fileID: 1967961354}
   - component: {fileID: 1967961353}
   - component: {fileID: 822000070}
   m_Layer: 5
@@ -8916,18 +8915,6 @@ MonoBehaviour:
   - {fileID: 3887318459202446560, guid: 8c9d67003a4260048a907294501ddf4e, type: 3}
   jugador: {fileID: 830972481}
   imagen: {fileID: 1901857486}
---- !u!114 &1967961354
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1967961351}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b144cd6d683eea54693d340007d8edf9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::VidasUI
 --- !u!114 &1967961355
 MonoBehaviour:
   m_ObjectHideFlags: 0
