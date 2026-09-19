@@ -1663,7 +1663,7 @@ Transform:
   m_GameObject: {fileID: 197408943}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.3333373, y: 2.3166666, z: 0}
+  m_LocalPosition: {x: 1.3333373, y: 6.25, z: 0}
   m_LocalScale: {x: 5.5555553, y: 5.5555553, z: 5.5555553}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6321,7 +6321,7 @@ Transform:
   m_GameObject: {fileID: 983536842}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.3333373, y: 2.3166666, z: 0}
+  m_LocalPosition: {x: 1.3333373, y: 6.25, z: 0}
   m_LocalScale: {x: 5.5555553, y: 5.5555553, z: 5.5555553}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6352,7 +6352,7 @@ Transform:
   m_GameObject: {fileID: 1024312292}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.3333373, y: 2.3166666, z: 0}
+  m_LocalPosition: {x: 1.3333373, y: 6.25, z: 0}
   m_LocalScale: {x: 5.5555553, y: 5.5555553, z: 5.5555553}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7015,7 +7015,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1363307879}
   - component: {fileID: 1363307878}
-  - component: {fileID: 1363307880}
   - component: {fileID: 1363307877}
   m_Layer: 7
   m_Name: Plataforma V1 (26)
@@ -7144,18 +7143,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1363307880
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1363307876}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a2c4e6f81b3d5079c1e3f5a7b9d0c24, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlataformaDestruible
 --- !u!1 &1387545292
 GameObject:
   m_ObjectHideFlags: 0
@@ -7443,7 +7430,7 @@ Transform:
   m_GameObject: {fileID: 1458313410}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.3333373, y: 2.3166666, z: 0}
+  m_LocalPosition: {x: 1.3333373, y: 6.25, z: 0}
   m_LocalScale: {x: 5.5555553, y: 5.5555553, z: 5.5555553}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8609,7 +8596,6 @@ GameObject:
   - component: {fileID: 1751401479}
   - component: {fileID: 1751401478}
   - component: {fileID: 1751401477}
-  - component: {fileID: 1751401476}
   - component: {fileID: 1751401475}
   - component: {fileID: 822000070}
   m_Layer: 5
@@ -8664,18 +8650,6 @@ MonoBehaviour:
   - {fileID: 3887318459202446560, guid: 8c9d67003a4260048a907294501ddf4e, type: 3}
   jugador: {fileID: 913427939}
   imagen: {fileID: 1578147289}
---- !u!114 &1751401476
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1751401473}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b144cd6d683eea54693d340007d8edf9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::VidasUI
 --- !u!114 &1751401477
 MonoBehaviour:
   m_ObjectHideFlags: 0

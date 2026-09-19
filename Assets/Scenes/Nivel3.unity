@@ -6135,7 +6135,6 @@ GameObject:
   - component: {fileID: 1511011270}
   - component: {fileID: 1511011269}
   - component: {fileID: 1511011268}
-  - component: {fileID: 1511011267}
   - component: {fileID: 1511011266}
   - component: {fileID: 822000070}
   m_Layer: 5
@@ -6164,18 +6163,6 @@ MonoBehaviour:
   - {fileID: 3887318459202446560, guid: 8c9d67003a4260048a907294501ddf4e, type: 3}
   jugador: {fileID: 684962430}
   imagen: {fileID: 1214009540}
---- !u!114 &1511011267
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1511011265}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b144cd6d683eea54693d340007d8edf9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::VidasUI
 --- !u!114 &1511011268
 MonoBehaviour:
   m_ObjectHideFlags: 0
