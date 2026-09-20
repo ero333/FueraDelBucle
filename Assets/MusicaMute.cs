@@ -3,23 +3,22 @@ using UnityEngine;
 public class MusicaMute : MonoBehaviour
 {
     [SerializeField] private AudioSource musicSource;
+    private bool isMuted = true;
 
+    private void Start()
+    {
+        if (musicSource != null)
+        {
+
+            musicSource.mute = isMuted;
+        }
+    }
     public void ToggleMusic()
     {
         if (musicSource != null)
         {
-            musicSource.mute = !musicSource.mute;
+            isMuted = !isMuted;
+            musicSource.mute = isMuted;
         }
-    }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
