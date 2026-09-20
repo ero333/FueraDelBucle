@@ -1276,6 +1276,7 @@ MonoBehaviour:
   textoTiempo: {fileID: 1082859446}
   textoVidas: {fileID: 392731864}
   vidaJugador: {fileID: 295255242}
+  dialogoFinal: {fileID: 0}
   tagJugador: Player
   activarPorContacto: 1
   esperarAterrizaje: 1
@@ -3479,8 +3480,16 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 922540508792047734, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1069066665}
   m_SourcePrefab: {fileID: 100100000, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+--- !u!1 &853741276 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 922540508792047734, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+  m_PrefabInstance: {fileID: 853741275}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &864461154
 GameObject:
   m_ObjectHideFlags: 0
@@ -3956,12 +3965,32 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2627796686816019753, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
   m_PrefabInstance: {fileID: 853741275}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 853741276}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d99d75bf03b1b9b49b1928d018708530, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+--- !u!114 &1069066665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 853741276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d99d75bf03b1b9b49b1928d018708530, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  dialogodata: {fileID: 11400000, guid: 868d69d719ffb554faa3246b5c720a21, type: 2}
+  PanelDialogo: {fileID: 149087366}
+  dialogoTexto: {fileID: 948514851}
+  NombreText: {fileID: 192308729}
+  RetratoAnim: {fileID: 1906733728}
+  teclaAvanzar: 13
+  teclaAvanzarAlternativa: 101
+  teclaSaltarTodo: 120
 --- !u!1 &1082859444
 GameObject:
   m_ObjectHideFlags: 0

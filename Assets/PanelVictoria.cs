@@ -19,6 +19,10 @@ public class PanelVictoria : MonoBehaviour
     [Tooltip("Arrastra aquí el jugador para leer sus vidas.")]
     public VidaJugador vidaJugador;
 
+    [Header("Diálogo final")]
+    [Tooltip("DialogoLog que se reproduce al llegar a la meta, antes del panel de victoria. Si se deja vacío, se muestra la victoria directamente.")]
+    public DialogoLog dialogoFinal;
+
     [Header("Activación")]
     [Tooltip("Tag que debe tener el jugador.")]
     public string tagJugador = "Player";
@@ -94,6 +98,24 @@ public class PanelVictoria : MonoBehaviour
                     yield return null;
                 }
             }
+        }
+
+        // Diálogo final: se reproduce y se espera a que termine antes de la victoria.
+        if (dialogoFinal != null)
+        {
+            bool dialogoTerminado = false;
+            System.Action alTerminar = () => dialogoTerminado = true;
+
+            dialogoFinal.AlTerminarDialogo += alTerminar;
+
+            // Si el juego está en pausa, Interactuar() no haría nada: se espera.
+            yield return new WaitUntil(() => !PauseManager.GameIsPaused);
+
+            dialogoFinal.Interactuar();
+
+            yield return new WaitUntil(() => dialogoTerminado);
+
+            dialogoFinal.AlTerminarDialogo -= alTerminar;
         }
 
         esperando = false;

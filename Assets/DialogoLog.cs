@@ -20,6 +20,9 @@ public class DialogoLog : MonoBehaviour
     [Tooltip("Tecla para saltear el dialogo entero y cerrarlo, como el boton de la X.")]
     public KeyCode teclaSaltarTodo = KeyCode.X;
 
+    // Se dispara cuando el dialogo termina (por la ultima linea o al saltearlo).
+    public event System.Action AlTerminarDialogo;
+
     private int dialogoIndex;
     private bool EstaTypeando, DialogoActivo;
 
@@ -186,9 +189,13 @@ public class DialogoLog : MonoBehaviour
 
     public void TerminarDialog()
     {
+        bool estabaActivo = DialogoActivo;
+
         StopAllCoroutines();
         DialogoActivo = false;
         dialogoTexto.SetText("");
         PanelDialogo.SetActive(false);
+
+        if (estabaActivo) AlTerminarDialogo?.Invoke();
     }
 }
