@@ -1775,6 +1775,7 @@ GameObject:
   - component: {fileID: 1844102129}
   - component: {fileID: 1844102128}
   - component: {fileID: 1844102127}
+  - component: {fileID: 1844102130}
   m_Layer: 5
   m_Name: NodoNivel1
   m_TagString: Untagged
@@ -1895,6 +1896,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1844102125}
   m_CullTransparentMesh: 1
+--- !u!114 &1844102130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1844102125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96964aca2d4a75d4aa704a555145cab5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  cuadradoCompletado: {fileID: 0}
+  claveNivel: 
 --- !u!1 &1971747685
 GameObject:
   m_ObjectHideFlags: 0
