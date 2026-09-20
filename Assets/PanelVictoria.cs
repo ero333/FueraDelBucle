@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PanelVictoria : MonoBehaviour
@@ -105,6 +106,8 @@ public class PanelVictoria : MonoBehaviour
         if (activado) return;
 
         activado = true;
+
+        ProgresoNiveles.MarcarCompletado(SceneManager.GetActiveScene().name);
 
         MostrarResultados();
 
