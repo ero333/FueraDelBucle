@@ -10,8 +10,36 @@ public class DialogoLog : MonoBehaviour
     public TMP_Text dialogoTexto, NombreText;
     public Image RetratoAnim;
 
+    [Header("Teclas para pasar el dialogo")]
+    [Tooltip("Tecla principal para pasar a la linea siguiente.")]
+    public KeyCode teclaAvanzar = KeyCode.Return;
+
+    [Tooltip("Tecla alternativa, la misma que se usa para interactuar.")]
+    public KeyCode teclaAvanzarAlternativa = KeyCode.E;
+
+    [Tooltip("Tecla para saltear el dialogo entero y cerrarlo, como el boton de la X.")]
+    public KeyCode teclaSaltarTodo = KeyCode.X;
+
     private int dialogoIndex;
     private bool EstaTypeando, DialogoActivo;
+
+    private void Update()
+    {
+        if (!DialogoActivo) return;
+
+        if (Input.GetKeyDown(teclaSaltarTodo))
+        {
+            SkipTodoElDialogo();
+            return;
+        }
+
+        if (Input.GetKeyDown(teclaAvanzar)
+            || Input.GetKeyDown(KeyCode.KeypadEnter)
+            || Input.GetKeyDown(teclaAvanzarAlternativa))
+        {
+            Interactuar();
+        }
+    }
 
     public void Interactuar()
     {
