@@ -1272,11 +1272,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e8b1f7a45c26d94ab0f83e5c71d92b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  claveNivel: Nivel1
   panelVictoria: {fileID: 1198746871}
   textoTiempo: {fileID: 1082859446}
   textoVidas: {fileID: 392731864}
   vidaJugador: {fileID: 295255242}
-  dialogoFinal: {fileID: 1700269966}
+  dialogoFinal: {fileID: 0}
   tagJugador: Player
   activarPorContacto: 1
   esperarAterrizaje: 1

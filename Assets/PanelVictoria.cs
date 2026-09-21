@@ -5,6 +5,10 @@ using UnityEngine.UI;
 
 public class PanelVictoria : MonoBehaviour
 {
+    [Header("Configuración de Progreso")]
+    [Tooltip("Clave con la que se guardará este nivel en PlayerPrefs (debe ser idéntica a la del menú de niveles).")]
+    public string claveNivel = "Nivel1";
+
     [Header("Panel")]
     [Tooltip("Arrastra aquí el panel de victoria desde la jerarquía.")]
     public GameObject panelVictoria;
@@ -129,7 +133,10 @@ public class PanelVictoria : MonoBehaviour
 
         activado = true;
 
-        // ProgresoNiveles.MarcarCompletado(SceneManager.GetActiveScene().name);
+        // GUARDAR PROGRESO EN PLAYERPREFS:
+        PlayerPrefs.SetInt(claveNivel, 1);
+        PlayerPrefs.Save();
+        Debug.Log("¡Nivel " + claveNivel + " guardado como completado!");
 
         MostrarResultados();
 
