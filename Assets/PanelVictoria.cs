@@ -129,7 +129,7 @@ public class PanelVictoria : MonoBehaviour
 
         activado = true;
 
-        ProgresoNiveles.MarcarCompletado(SceneManager.GetActiveScene().name);
+        // ProgresoNiveles.MarcarCompletado(SceneManager.GetActiveScene().name);
 
         MostrarResultados();
 

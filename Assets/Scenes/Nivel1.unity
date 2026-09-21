@@ -1276,7 +1276,7 @@ MonoBehaviour:
   textoTiempo: {fileID: 1082859446}
   textoVidas: {fileID: 392731864}
   vidaJugador: {fileID: 295255242}
-  dialogoFinal: {fileID: 0}
+  dialogoFinal: {fileID: 1700269967}
   tagJugador: Player
   activarPorContacto: 1
   esperarAterrizaje: 1
@@ -3983,7 +3983,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d99d75bf03b1b9b49b1928d018708530, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  dialogodata: {fileID: 11400000, guid: 868d69d719ffb554faa3246b5c720a21, type: 2}
+  dialogodata: {fileID: 11400000, guid: 6ea7beba799f2024a90d3e0fbb51be95, type: 2}
   PanelDialogo: {fileID: 149087366}
   dialogoTexto: {fileID: 948514851}
   NombreText: {fileID: 192308729}
@@ -5322,6 +5322,42 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1 &1700269965 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 922540508792047734, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+  m_PrefabInstance: {fileID: 1979765621}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1700269966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700269965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d99d75bf03b1b9b49b1928d018708530, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  dialogodata: {fileID: 11400000, guid: 868d69d719ffb554faa3246b5c720a21, type: 2}
+  PanelDialogo: {fileID: 149087366}
+  dialogoTexto: {fileID: 948514851}
+  NombreText: {fileID: 192308729}
+  RetratoAnim: {fileID: 1906733728}
+  teclaAvanzar: 13
+  teclaAvanzarAlternativa: 101
+  teclaSaltarTodo: 120
+--- !u!114 &1700269967 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2627796686816019753, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+  m_PrefabInstance: {fileID: 1979765621}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700269965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d99d75bf03b1b9b49b1928d018708530, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!114 &1906733728 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 848537743171968549, guid: dfb8c8748f72de24aabe6c25f2418dc8, type: 3}
@@ -5430,6 +5466,86 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1979765621
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 922540508792047734, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+      propertyPath: m_Name
+      value: Dialogo Final
+      objectReference: {fileID: 0}
+    - target: {fileID: 2170224607636161062, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 511.42996
+      objectReference: {fileID: 0}
+    - target: {fileID: 2170224607636161062, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 136.40315
+      objectReference: {fileID: 0}
+    - target: {fileID: 2170224607636161062, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2170224607636161062, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2170224607636161062, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2170224607636161062, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2170224607636161062, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2170224607636161062, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2170224607636161062, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2170224607636161062, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2627796686816019753, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+      propertyPath: NombreText
+      value: 
+      objectReference: {fileID: 192308729}
+    - target: {fileID: 2627796686816019753, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+      propertyPath: RetratoAnim
+      value: 
+      objectReference: {fileID: 1906733728}
+    - target: {fileID: 2627796686816019753, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+      propertyPath: dialogodata
+      value: 
+      objectReference: {fileID: 11400000, guid: 868d69d719ffb554faa3246b5c720a21, type: 2}
+    - target: {fileID: 2627796686816019753, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+      propertyPath: PanelDialogo
+      value: 
+      objectReference: {fileID: 149087366}
+    - target: {fileID: 2627796686816019753, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+      propertyPath: dialogoTexto
+      value: 
+      objectReference: {fileID: 948514851}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 922540508792047734, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1700269966}
+  m_SourcePrefab: {fileID: 100100000, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
 --- !u!1 &1992107403
 GameObject:
   m_ObjectHideFlags: 0
@@ -6792,6 +6908,7 @@ SceneRoots:
   - {fileID: 1453999286}
   - {fileID: 1102166143}
   - {fileID: 853741275}
+  - {fileID: 1979765621}
   - {fileID: 1961351607}
   - {fileID: 113093018}
   - {fileID: 1631975428}
