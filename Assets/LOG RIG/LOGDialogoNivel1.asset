@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcebe531d811c6a48a2ffeba6770ed6b, type: 3}
+  m_Name: LOGDialogoNivel1
+  m_EditorClassIdentifier: Assembly-CSharp::NPCDialogos
+  NombreNPC: LOG
+  LogRetrato: {fileID: 21300000, guid: c3f26dad6b09422999ba6e5a25facc1b, type: 3}
+  lineasDialogo:
+  - "Anomal\xEDa detectada... No te preocupes, no voy a reportarte. Mi funci\xF3n
+    es registrar datos y tu presencia rompe la monoton\xEDa."
+  - Para desplazarte por esta zona usa [A] y [D] para moverte a los lados, y [Espacio]
+    para saltar.
+  - "Cuidado m\xE1s adelante: las unidades Repeater disparan en intervalos fijos.
+    Observa su patr\xF3n, calcula tu tiempo y esquiva los proyectiles. "
+  - "Avanza y llega a la salida antes de que el sistema entienda qu\xE9 sos."
+  autoProgresLineas: 01010101
+  autoProgresDelay: 1.5
+  velocidadTypeo: 0.03
+  sonidoVoz: {fileID: 0}
+  pitchVoz: 1
