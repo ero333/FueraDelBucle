@@ -27,5 +27,9 @@ public class TriggerDialogoInicio : MonoBehaviour
             Time.timeScale = 1f;
             dialogoEnCurso = false;
         }
+        else if (!PauseManager.GameIsPaused && Time.timeScale != 0f)
+        {
+            Time.timeScale = 0f;
+        }
     }
 }

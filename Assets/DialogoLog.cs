@@ -25,10 +25,15 @@ public class DialogoLog : MonoBehaviour
 
     private int dialogoIndex;
     private bool EstaTypeando, DialogoActivo;
+    private CanvasGroup grupoPanel;
+    private bool ocultoPorPausa;
 
     private void Update()
     {
+        ActualizarVisibilidadPorPausa();
+
         if (!DialogoActivo) return;
+        if (PauseManager.GameIsPaused) return;
 
         if (Input.GetKeyDown(teclaSaltarTodo))
         {
@@ -187,9 +192,33 @@ public class DialogoLog : MonoBehaviour
             && dialogodata.autoProgresLineas[index];
     }
 
+    void ActualizarVisibilidadPorPausa()
+    {
+        bool debeOcultarse = DialogoActivo && PauseManager.GameIsPaused;
+        if (debeOcultarse == ocultoPorPausa) return;
+        MostrarPanel(!debeOcultarse);
+    }
+
+    void MostrarPanel(bool visible)
+    {
+        ocultoPorPausa = !visible;
+        if (PanelDialogo == null) return;
+
+        if (grupoPanel == null)
+        {
+            grupoPanel = PanelDialogo.GetComponent<CanvasGroup>();
+            if (grupoPanel == null) grupoPanel = PanelDialogo.AddComponent<CanvasGroup>();
+        }
+
+        grupoPanel.alpha = visible ? 1f : 0f;
+        grupoPanel.interactable = visible;
+        grupoPanel.blocksRaycasts = visible;
+    }
+
     public void TerminarDialog()
     {
         bool estabaActivo = DialogoActivo;
+        if (ocultoPorPausa) MostrarPanel(true);
 
         StopAllCoroutines();
         DialogoActivo = false;
