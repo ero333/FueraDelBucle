@@ -3,29 +3,29 @@ using UnityEngine;
 public class MusicaMute : MonoBehaviour
 {
     [SerializeField] private AudioSource musicSource;
-    private bool isMuted = true;
 
-    private void Start()
-    {
-        int savedMute = PlayerPrefs.GetInt("MusicMuted", 1);
+    [Header("Botones")]
+    [SerializeField] private GameObject otroBoton;
 
-        isMuted = (savedMute == 1);
-
-        if (musicSource != null)
-        {
-            musicSource.mute = isMuted;
-        }
-    }
+    [Header("Estado de este botón")]
+    [SerializeField] private bool prenderMusica;
 
     public void ToggleMusic()
     {
         if (musicSource != null)
         {
-            isMuted = !isMuted;
-            musicSource.mute = isMuted;
+            // Este botón decide directamente el estado
+            musicSource.mute = !prenderMusica;
 
-            PlayerPrefs.SetInt("MusicMuted", isMuted ? 1 : 0);
+            PlayerPrefs.SetInt("MusicMuted", prenderMusica ? 0 : 1);
             PlayerPrefs.Save();
         }
+
+        // Activa el otro botón
+        if (otroBoton != null)
+            otroBoton.SetActive(true);
+
+        // Desactiva este
+        gameObject.SetActive(false);
     }
 }
