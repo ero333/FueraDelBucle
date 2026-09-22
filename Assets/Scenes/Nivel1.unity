@@ -229,6 +229,18 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 1748295520237544280, guid: dfb8c8748f72de24aabe6c25f2418dc8, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 229.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2358783219053520830, guid: dfb8c8748f72de24aabe6c25f2418dc8, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 269.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2358783219053520830, guid: dfb8c8748f72de24aabe6c25f2418dc8, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -37.04
+      objectReference: {fileID: 0}
     - target: {fileID: 2878058917502599301, guid: dfb8c8748f72de24aabe6c25f2418dc8, type: 3}
       propertyPath: m_Name
       value: BarraDialogo
@@ -237,6 +249,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3619675122126826223, guid: dfb8c8748f72de24aabe6c25f2418dc8, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1709785787510983580, guid: 5dbcc6c4cc82bac43866fd7ae14cda2b, type: 3}
     - target: {fileID: 4596189391156666078, guid: dfb8c8748f72de24aabe6c25f2418dc8, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -316,6 +332,10 @@ PrefabInstance:
     - target: {fileID: 4596189391156666078, guid: dfb8c8748f72de24aabe6c25f2418dc8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4738566828817934569, guid: dfb8c8748f72de24aabe6c25f2418dc8, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 180.44
       objectReference: {fileID: 0}
     - target: {fileID: 6064073709544336699, guid: dfb8c8748f72de24aabe6c25f2418dc8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -5317,6 +5337,9 @@ MonoBehaviour:
   dialogoTexto: {fileID: 948514851}
   NombreText: {fileID: 192308729}
   RetratoAnim: {fileID: 1906733728}
+  teclaAvanzar: 13
+  teclaAvanzarAlternativa: 101
+  teclaSaltarTodo: 120
 --- !u!114 &1906733728 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 848537743171968549, guid: dfb8c8748f72de24aabe6c25f2418dc8, type: 3}
