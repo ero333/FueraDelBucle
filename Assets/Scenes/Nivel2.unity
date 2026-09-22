@@ -1987,7 +1987,7 @@ PrefabInstance:
     - target: {fileID: 2627796686816019753, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
       propertyPath: dialogodata
       value: 
-      objectReference: {fileID: 11400000, guid: 20f42294a9c91cc40bee20e8304ec5d0, type: 2}
+      objectReference: {fileID: 11400000, guid: 9617d8ad44c4ef048bc923e81c8886bd, type: 2}
     - target: {fileID: 2627796686816019753, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
       propertyPath: PanelDialogo
       value: 
@@ -3233,7 +3233,7 @@ MonoBehaviour:
   textoTiempo: {fileID: 811000032}
   textoVidas: {fileID: 811000012}
   vidaJugador: {fileID: 175978342}
-  dialogoFinal: {fileID: 0}
+  dialogoFinal: {fileID: 1594540588}
   tagJugador: Player
   activarPorContacto: 1
   esperarAterrizaje: 1
@@ -5706,7 +5706,7 @@ PrefabInstance:
     - target: {fileID: 2627796686816019753, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
       propertyPath: dialogodata
       value: 
-      objectReference: {fileID: 11400000, guid: aa37ce73fe6752e4490d35405930a69a, type: 2}
+      objectReference: {fileID: 11400000, guid: 07924ca12b2b15c4d97bebb4011de2f4, type: 2}
     - target: {fileID: 2627796686816019753, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
       propertyPath: PanelDialogo
       value: 
@@ -5718,10 +5718,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 922540508792047734, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1594540587}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
 --- !u!1 &1533376925
 GameObject:
@@ -5887,31 +5884,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1594540586 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 922540508792047734, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+--- !u!114 &1594540588 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2627796686816019753, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
   m_PrefabInstance: {fileID: 1527236567}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1594540587
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1594540586}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d99d75bf03b1b9b49b1928d018708530, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  dialogodata: {fileID: 11400000, guid: 868d69d719ffb554faa3246b5c720a21, type: 2}
-  PanelDialogo: {fileID: 0}
-  dialogoTexto: {fileID: 0}
-  NombreText: {fileID: 0}
-  RetratoAnim: {fileID: 0}
-  teclaAvanzar: 13
-  teclaAvanzarAlternativa: 101
-  teclaSaltarTodo: 120
 --- !u!1001 &1648835152
 PrefabInstance:
   m_ObjectHideFlags: 0

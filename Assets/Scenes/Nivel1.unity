@@ -195,7 +195,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 70450260199394382, guid: dfb8c8748f72de24aabe6c25f2418dc8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 70450260199394382, guid: dfb8c8748f72de24aabe6c25f2418dc8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
@@ -208,22 +208,22 @@ PrefabInstance:
     - target: {fileID: 70450260199394382, guid: dfb8c8748f72de24aabe6c25f2418dc8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1069066664}
+      objectReference: {fileID: 124435940}
     - target: {fileID: 70450260199394382, guid: dfb8c8748f72de24aabe6c25f2418dc8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 70450260199394382, guid: dfb8c8748f72de24aabe6c25f2418dc8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SkipearAnimacion
+      value: SkipearDialogoCompleto
       objectReference: {fileID: 0}
     - target: {fileID: 70450260199394382, guid: dfb8c8748f72de24aabe6c25f2418dc8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: SkipearAnimacion
+      value: SaltarDialogoYMostrarVictoria
       objectReference: {fileID: 0}
     - target: {fileID: 70450260199394382, guid: dfb8c8748f72de24aabe6c25f2418dc8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: DialogoLog, Assembly-CSharp
+      value: PanelVictoria, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 70450260199394382, guid: dfb8c8748f72de24aabe6c25f2418dc8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -1280,9 +1280,9 @@ MonoBehaviour:
   dialogoFinal: {fileID: 1700269966}
   tagJugador: Player
   activarPorContacto: 1
-  esperarAterrizaje: 1
+  esperarAterrizaje: 0
   velocidadVerticalMaxima: 0.5
-  esperarIdle: 1
+  esperarIdle: 0
   estadoIdle: Iddle
   esperaMaximaIdle: 1.5
   pausarAlGanar: 1
@@ -3481,16 +3481,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 922540508792047734, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1069066665}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
---- !u!1 &853741276 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 922540508792047734, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
-  m_PrefabInstance: {fileID: 853741275}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &864461154
 GameObject:
   m_ObjectHideFlags: 0
@@ -3966,29 +3958,12 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2627796686816019753, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
   m_PrefabInstance: {fileID: 853741275}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 853741276}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d99d75bf03b1b9b49b1928d018708530, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
---- !u!114 &1069066665
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 853741276}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d99d75bf03b1b9b49b1928d018708530, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  dialogodata: {fileID: 11400000, guid: 6ea7beba799f2024a90d3e0fbb51be95, type: 2}
-  PanelDialogo: {fileID: 149087366}
-  dialogoTexto: {fileID: 948514851}
-  NombreText: {fileID: 192308729}
-  RetratoAnim: {fileID: 1906733728}
 --- !u!1 &1082859444
 GameObject:
   m_ObjectHideFlags: 0
@@ -5337,7 +5312,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d99d75bf03b1b9b49b1928d018708530, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  dialogodata: {fileID: 11400000, guid: 4304c2e07f3134447be4786837b2e598, type: 2}
+  dialogodata: {fileID: 11400000, guid: ee329c18d2d1f74488b0d8093e9d0441, type: 2}
   PanelDialogo: {fileID: 149087366}
   dialogoTexto: {fileID: 948514851}
   NombreText: {fileID: 192308729}

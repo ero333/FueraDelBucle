@@ -1,70 +1,46 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PanelVictoria : MonoBehaviour
 {
     [Header("Configuración de Progreso")]
-    [Tooltip("Clave con la que se guardará este nivel en PlayerPrefs (debe ser idéntica a la del menú de niveles).")]
     public string claveNivel = "Nivel1";
 
     [Header("Panel")]
-    [Tooltip("Arrastra aquí el panel de victoria desde la jerarquía.")]
     public GameObject panelVictoria;
 
     [Header("Resultados")]
-    [Tooltip("Texto donde se muestra el tiempo del nivel.")]
     public Text textoTiempo;
-
-    [Tooltip("Texto donde se muestran las vidas restantes.")]
     public Text textoVidas;
-
-    [Tooltip("Arrastra aquí el jugador para leer sus vidas.")]
     public VidaJugador vidaJugador;
 
     [Header("Diálogo final")]
-    [Tooltip("DialogoLog que se reproduce al llegar a la meta, antes del panel de victoria. Si se deja vacío, se muestra la victoria directamente.")]
     public DialogoLog dialogoFinal;
 
     [Header("Activación")]
-    [Tooltip("Tag que debe tener el jugador.")]
     public string tagJugador = "Player";
-
-    [Tooltip("Se activa solo cuando el jugador toca este objeto.")]
     public bool activarPorContacto = true;
 
-    [Tooltip("Espera a que el jugador aterrice antes de mostrar el panel.")]
+    [Header("Espera para Lectura Normal (Sin Skip)")]
     public bool esperarAterrizaje = true;
-
-    [Tooltip("Velocidad vertical por debajo de la cual se considera que ya aterrizó.")]
     public float velocidadVerticalMaxima = 0.5f;
-
-    [Tooltip("Espera a que el Animator entre en el estado de reposo.")]
     public bool esperarIdle = true;
-
-    [Tooltip("Nombre exacto del estado de reposo en el Animator.")]
     public string estadoIdle = "Iddle";
-
-    [Tooltip("Segundos máximos de espera del estado de reposo antes de mostrar igual.")]
     public float esperaMaximaIdle = 1.5f;
 
     [Header("Gameplay")]
-    [Tooltip("Congela el juego al ganar. Corresponde a la tarea de pausar gameplay.")]
     public bool pausarAlGanar = false;
 
     private bool activado;
     private bool esperando;
+    private Coroutine rutinaEsperando;
 
     private void Start()
     {
         if (panelVictoria != null)
         {
             panelVictoria.SetActive(false);
-        }
-        else
-        {
-            Debug.LogWarning("No se ha asignado el panel de victoria en el Inspector de PanelVictoria.");
         }
     }
 
@@ -76,12 +52,11 @@ public class PanelVictoria : MonoBehaviour
         if (esperarAterrizaje)
         {
             Rigidbody2D rb = other.attachedRigidbody;
-
             if (rb != null && Mathf.Abs(rb.linearVelocity.y) > velocidadVerticalMaxima) return;
         }
 
         esperando = true;
-        StartCoroutine(EsperarReposoYMostrar(other));
+        rutinaEsperando = StartCoroutine(EsperarReposoYMostrar(other));
     }
 
     private IEnumerator EsperarReposoYMostrar(Collider2D other)
@@ -89,31 +64,25 @@ public class PanelVictoria : MonoBehaviour
         if (esperarIdle)
         {
             Animator anim = other.GetComponentInChildren<Animator>();
-
             if (anim != null)
             {
                 float t = 0f;
-
+                // Usamos Realtime para que no se congele si hay pausas
                 while (t < esperaMaximaIdle)
                 {
                     if (anim.GetCurrentAnimatorStateInfo(0).IsName(estadoIdle)) break;
-
-                    t += Time.deltaTime;
+                    t += Time.unscaledDeltaTime;
                     yield return null;
                 }
             }
         }
 
-        // Diálogo final: se reproduce y se espera a que termine antes de la victoria.
         if (dialogoFinal != null)
         {
             bool dialogoTerminado = false;
             System.Action alTerminar = () => dialogoTerminado = true;
 
             dialogoFinal.AlTerminarDialogo += alTerminar;
-
-            // Si el juego está en pausa, Interactuar() no haría nada: se espera.
-            yield return new WaitUntil(() => !PauseManager.GameIsPaused);
 
             dialogoFinal.Interactuar();
 
@@ -123,7 +92,30 @@ public class PanelVictoria : MonoBehaviour
         }
 
         esperando = false;
+        MostrarVictoria();
+    }
 
+    /// <summary>
+    /// Función ejecutada al hacer clic en el botón SKIP
+    /// </summary>
+    public void SaltarDialogoYMostrarVictoria()
+    {
+        // 1. Detiene la corrutina en ejecución si existía
+        if (rutinaEsperando != null)
+        {
+            StopCoroutine(rutinaEsperando);
+            rutinaEsperando = null;
+        }
+
+        // 2. Apaga el diálogo si está activo
+        if (dialogoFinal != null)
+        {
+            dialogoFinal.TerminarDialog();
+        }
+
+        esperando = false;
+
+        // 3. Muestra la pantalla de victoria al instante
         MostrarVictoria();
     }
 
@@ -133,10 +125,8 @@ public class PanelVictoria : MonoBehaviour
 
         activado = true;
 
-        // GUARDAR PROGRESO EN PLAYERPREFS:
         PlayerPrefs.SetInt(claveNivel, 1);
         PlayerPrefs.Save();
-        Debug.Log("¡Nivel " + claveNivel + " guardado como completado!");
 
         MostrarResultados();
 
@@ -151,11 +141,6 @@ public class PanelVictoria : MonoBehaviour
         }
     }
 
-    public bool YaSeActivo()
-    {
-        return activado;
-    }
-
     private void MostrarResultados()
     {
         if (textoTiempo != null)
@@ -163,7 +148,6 @@ public class PanelVictoria : MonoBehaviour
             float total = Time.timeSinceLevelLoad;
             int minutos = Mathf.FloorToInt(total / 60f);
             int segundos = Mathf.FloorToInt(total % 60f);
-
             textoTiempo.text = string.Format("Tiempo: {0:00}:{1:00}", minutos, segundos);
         }
 

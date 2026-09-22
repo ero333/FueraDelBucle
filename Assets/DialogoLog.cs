@@ -42,9 +42,15 @@ public class DialogoLog : MonoBehaviour
         StartCoroutine(LineadeType());
     }
 
+    /// <summary>
+    /// Si está escribiendo una línea, la completa de inmediato.
+    /// Si el texto ya está completo y se vuelve a presionar Skip/Interactuar, avanza a la siguiente o termina.
+    /// </summary>
     public void SkipearAnimacion()
     {
-        if (DialogoActivo && EstaTypeando)
+        if (!DialogoActivo) return;
+
+        if (EstaTypeando)
         {
             StopAllCoroutines();
             dialogoTexto.SetText(dialogodata.lineasDialogo[dialogoIndex]);
@@ -52,6 +58,21 @@ public class DialogoLog : MonoBehaviour
 
             ProcesarAutoProgresion();
         }
+        else
+        {
+            SigLinea();
+        }
+    }
+
+    /// <summary>
+    /// Salta todo el diálogo restante inmediatamente y activa el cierre/evento final.
+    /// Úsalo en un botón de 'Skip Total' o para omitir la cinemática.
+    /// </summary>
+    public void SkipearDialogoCompleto()
+    {
+        if (!DialogoActivo) return;
+
+        TerminarDialog();
     }
 
     void SigLinea()
