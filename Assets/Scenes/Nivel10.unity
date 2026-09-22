@@ -3866,6 +3866,71 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &781029382
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 527534610899630151, guid: f8bc8ea4278f646fc83d7c79d48dfa55, type: 3}
+      propertyPath: m_Name
+      value: ControladorVisibilidad
+      objectReference: {fileID: 0}
+    - target: {fileID: 3718360139419858348, guid: f8bc8ea4278f646fc83d7c79d48dfa55, type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 2007955947}
+    - target: {fileID: 3718360139419858348, guid: f8bc8ea4278f646fc83d7c79d48dfa55, type: 3}
+      propertyPath: Transicion
+      value: 2.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644884239513626820, guid: f8bc8ea4278f646fc83d7c79d48dfa55, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644884239513626820, guid: f8bc8ea4278f646fc83d7c79d48dfa55, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644884239513626820, guid: f8bc8ea4278f646fc83d7c79d48dfa55, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644884239513626820, guid: f8bc8ea4278f646fc83d7c79d48dfa55, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644884239513626820, guid: f8bc8ea4278f646fc83d7c79d48dfa55, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644884239513626820, guid: f8bc8ea4278f646fc83d7c79d48dfa55, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644884239513626820, guid: f8bc8ea4278f646fc83d7c79d48dfa55, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644884239513626820, guid: f8bc8ea4278f646fc83d7c79d48dfa55, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644884239513626820, guid: f8bc8ea4278f646fc83d7c79d48dfa55, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644884239513626820, guid: f8bc8ea4278f646fc83d7c79d48dfa55, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f8bc8ea4278f646fc83d7c79d48dfa55, type: 3}
 --- !u!1 &822000010
 GameObject:
   m_ObjectHideFlags: 0
@@ -6936,11 +7001,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: f36957c0a4b71e34e93ece8ea318174f, type: 2}
     - target: {fileID: 5481254117640650753, guid: 6fced0bc383c63343936eb68ebe0b99f, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.99914503
+      value: 0.9991449
       objectReference: {fileID: 0}
     - target: {fileID: 5481254117640650753, guid: 6fced0bc383c63343936eb68ebe0b99f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.04134463
+      value: 0.041345116
       objectReference: {fileID: 0}
     - target: {fileID: 5545509351192803457, guid: 6fced0bc383c63343936eb68ebe0b99f, type: 3}
       propertyPath: m_Layer
@@ -7172,11 +7237,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9056337968594913314, guid: 6fced0bc383c63343936eb68ebe0b99f, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.99891645
+      value: 0.9989165
       objectReference: {fileID: 0}
     - target: {fileID: 9056337968594913314, guid: 6fced0bc383c63343936eb68ebe0b99f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.046539377
+      value: 0.046538893
       objectReference: {fileID: 0}
     - target: {fileID: 9063863737649999936, guid: 6fced0bc383c63343936eb68ebe0b99f, type: 3}
       propertyPath: m_Layer
@@ -8831,62 +8896,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1674749380
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1674749382}
-  - component: {fileID: 1674749381}
-  m_Layer: 0
-  m_Name: ControladorVisibilidad
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1674749381
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1674749380}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fceefb539bbfc94fb642075cc612d51, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LuXVisibilidad
-  tagGlobal: Oscuridad
-  tagJugador: IVisibilidadJugador
-  intensidadNormal: 1
-  intensidadOscuridad: 0.02
-  Transicion: 2
-  anim: {fileID: 0}
-  triggerAnim: Apagado
-  Inicio: 1
-  Espera: 1
-  usarTrigger: 0
-  tagTriggerJugador: Player
-  tagLux: Lux
---- !u!4 &1674749382
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1674749380}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 47.01599, y: 0.98616, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1678026897
 GameObject:
   m_ObjectHideFlags: 0
@@ -10082,6 +10091,11 @@ MonoBehaviour:
   luzRoja: {fileID: 825235868}
   tiempoEntreDisparos: 1.6
   duracionTitileo: 0.4
+--- !u!95 &2007955947 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6591308531884952771, guid: 84d73402f3f3840ad91d4677612144bc, type: 3}
+  m_PrefabInstance: {fileID: 1526005838}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2026285053
 GameObject:
   m_ObjectHideFlags: 0
@@ -10808,4 +10822,4 @@ SceneRoots:
   - {fileID: 254372771}
   - {fileID: 441788664}
   - {fileID: 1526005838}
-  - {fileID: 1674749382}
+  - {fileID: 781029382}
