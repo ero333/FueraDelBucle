@@ -7,11 +7,17 @@ using UnityEditor;
 public class PauseManager : MonoBehaviour
 {
     public static bool GameIsPaused = false;
+    public static bool CerrandoEscena = false;
 
     public GameObject pauseMenuUI;
 
     [Header("Nombre exacto de la escena del menú principal")]
     public string nombreEscenaMenu = "MenuPrincipal"; // Cambiá esto por el nombre real de tu escena
+
+    void Awake()
+    {
+        CerrandoEscena = false;
+    }
 
     void Update()
     {
@@ -40,6 +46,7 @@ public class PauseManager : MonoBehaviour
 
     public void ExitGame()
     {
+        CerrandoEscena = true;
         Time.timeScale = 1f;
         GameIsPaused = false;
 
@@ -52,6 +59,7 @@ public class PauseManager : MonoBehaviour
 
     public void Reiniciar()
     {
+        CerrandoEscena = true;
         Time.timeScale = 1f;
         GameIsPaused = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -59,6 +67,7 @@ public class PauseManager : MonoBehaviour
 
     public void VolverAlMenu()
     {
+        CerrandoEscena = true;
         Time.timeScale = 1f;
         GameIsPaused = false;
         SceneManager.LoadScene(nombreEscenaMenu);

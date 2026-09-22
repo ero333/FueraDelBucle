@@ -11,14 +11,49 @@ public class DialogoLog : MonoBehaviour
     public TMP_Text dialogoTexto, NombreText;
     public Image RetratoAnim;
 
+    [Header("Teclas para pasar el dialogo")]
+    [Tooltip("Tecla principal para pasar a la linea siguiente.")]
+    public KeyCode teclaAvanzar = KeyCode.Return;
+
+    [Tooltip("Tecla alternativa, la misma que se usa para interactuar.")]
+    public KeyCode teclaAvanzarAlternativa = KeyCode.E;
+
+    [Tooltip("Tecla para saltear el dialogo entero y cerrarlo, como el boton de la X.")]
+    public KeyCode teclaSaltarTodo = KeyCode.X;
+
     // Evento que escucha PanelVictoria para saber cuándo se cierra el cartel
     public event Action AlTerminarDialogo;
 
     private int dialogoIndex;
     private bool EstaTypeando, DialogoActivo;
+    private CanvasGroup grupoPanel;
+    private bool ocultoPorPausa;
+
+    private void Update()
+    {
+        ActualizarVisibilidadPorPausa();
+
+        if (!DialogoActivo) return;
+        if (PauseManager.GameIsPaused) return;
+
+        if (Input.GetKeyDown(teclaSaltarTodo))
+        {
+            SkipearDialogoCompleto();
+            return;
+        }
+
+        if (Input.GetKeyDown(teclaAvanzar)
+            || Input.GetKeyDown(KeyCode.KeypadEnter)
+            || Input.GetKeyDown(teclaAvanzarAlternativa))
+        {
+            Interactuar();
+        }
+    }
 
     public void Interactuar()
     {
+        if (PauseManager.GameIsPaused) return;
+
         if (DialogoActivo)
         {
             SigLinea();
@@ -48,6 +83,7 @@ public class DialogoLog : MonoBehaviour
     /// </summary>
     public void SkipearAnimacion()
     {
+        if (PauseManager.GameIsPaused) return;
         if (!DialogoActivo) return;
 
         if (EstaTypeando)
@@ -70,6 +106,7 @@ public class DialogoLog : MonoBehaviour
     /// </summary>
     public void SkipearDialogoCompleto()
     {
+        if (PauseManager.GameIsPaused) return;
         if (!DialogoActivo) return;
 
         TerminarDialog();
@@ -104,14 +141,15 @@ public class DialogoLog : MonoBehaviour
         foreach (char letter in dialogodata.lineasDialogo[dialogoIndex])
         {
             dialogoTexto.text += letter;
-            yield return new WaitForSecondsRealtime(dialogodata.velocidadTypeo);
+            yield return EsperarTiempoRespetandoPausa(dialogodata.velocidadTypeo);
         }
 
         EstaTypeando = false;
 
         if (DebeAutoProgresar(dialogoIndex))
         {
-            yield return new WaitForSecondsRealtime(dialogodata.autoProgresDelay);
+            yield return EsperarTiempoRespetandoPausa(dialogodata.autoProgresDelay);
+            yield return new WaitUntil(() => !PauseManager.GameIsPaused);
             SigLinea();
         }
     }
@@ -126,7 +164,8 @@ public class DialogoLog : MonoBehaviour
 
     IEnumerator PasarSigLineaXTiempo()
     {
-        yield return new WaitForSecondsRealtime(dialogodata.autoProgresDelay);
+        yield return EsperarTiempoRespetandoPausa(dialogodata.autoProgresDelay);
+        yield return new WaitUntil(() => !PauseManager.GameIsPaused);
 
         if (dialogoIndex + 1 < dialogodata.lineasDialogo.Length)
         {
@@ -139,6 +178,42 @@ public class DialogoLog : MonoBehaviour
         }
     }
 
+    IEnumerator EsperarTiempoRespetandoPausa(float tiempo)
+    {
+        float timer = 0f;
+        while (timer < tiempo)
+        {
+            if (!PauseManager.GameIsPaused)
+            {
+                timer += Time.unscaledDeltaTime;
+            }
+            yield return null;
+        }
+    }
+
+    void ActualizarVisibilidadPorPausa()
+    {
+        bool debeOcultarse = DialogoActivo && (PauseManager.GameIsPaused || PauseManager.CerrandoEscena);
+        if (debeOcultarse == ocultoPorPausa) return;
+        MostrarPanel(!debeOcultarse);
+    }
+
+    void MostrarPanel(bool visible)
+    {
+        ocultoPorPausa = !visible;
+        if (PanelDialogo == null) return;
+
+        if (grupoPanel == null)
+        {
+            grupoPanel = PanelDialogo.GetComponent<CanvasGroup>();
+            if (grupoPanel == null) grupoPanel = PanelDialogo.AddComponent<CanvasGroup>();
+        }
+
+        grupoPanel.alpha = visible ? 1f : 0f;
+        grupoPanel.interactable = visible;
+        grupoPanel.blocksRaycasts = visible;
+    }
+
     bool DebeAutoProgresar(int index)
     {
         return dialogodata.autoProgresLineas != null
@@ -148,6 +223,8 @@ public class DialogoLog : MonoBehaviour
 
     public void TerminarDialog()
     {
+        if (ocultoPorPausa) MostrarPanel(true);
+
         StopAllCoroutines();
         DialogoActivo = false;
         dialogoTexto.SetText("");
