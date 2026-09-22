@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -10,49 +11,14 @@ public class DialogoLog : MonoBehaviour
     public TMP_Text dialogoTexto, NombreText;
     public Image RetratoAnim;
 
-    [Header("Teclas para pasar el dialogo")]
-    [Tooltip("Tecla principal para pasar a la linea siguiente.")]
-    public KeyCode teclaAvanzar = KeyCode.Return;
-
-    [Tooltip("Tecla alternativa, la misma que se usa para interactuar.")]
-    public KeyCode teclaAvanzarAlternativa = KeyCode.E;
-
-    [Tooltip("Tecla para saltear el dialogo entero y cerrarlo, como el boton de la X.")]
-    public KeyCode teclaSaltarTodo = KeyCode.X;
-
-    // Se dispara cuando el dialogo termina (por la ultima linea o al saltearlo).
-    public event System.Action AlTerminarDialogo;
+    // Evento que escucha PanelVictoria para saber cuándo se cierra el cartel
+    public event Action AlTerminarDialogo;
 
     private int dialogoIndex;
     private bool EstaTypeando, DialogoActivo;
-    private CanvasGroup grupoPanel;
-    private bool ocultoPorPausa;
-
-    private void Update()
-    {
-        ActualizarVisibilidadPorPausa();
-
-        if (!DialogoActivo) return;
-        if (PauseManager.GameIsPaused) return;
-
-        if (Input.GetKeyDown(teclaSaltarTodo))
-        {
-            SkipTodoElDialogo();
-            return;
-        }
-
-        if (Input.GetKeyDown(teclaAvanzar)
-            || Input.GetKeyDown(KeyCode.KeypadEnter)
-            || Input.GetKeyDown(teclaAvanzarAlternativa))
-        {
-            Interactuar();
-        }
-    }
 
     public void Interactuar()
     {
-        if (PauseManager.GameIsPaused) return; // Bloquea la interacción si el juego está pausado
-
         if (DialogoActivo)
         {
             SigLinea();
@@ -78,8 +44,6 @@ public class DialogoLog : MonoBehaviour
 
     public void SkipearAnimacion()
     {
-        if (PauseManager.GameIsPaused) return;
-
         if (DialogoActivo && EstaTypeando)
         {
             StopAllCoroutines();
@@ -87,17 +51,6 @@ public class DialogoLog : MonoBehaviour
             EstaTypeando = false;
 
             ProcesarAutoProgresion();
-        }
-    }
-
-
-    public void SkipTodoElDialogo()
-    {
-        if (PauseManager.GameIsPaused) return;
-
-        if (DialogoActivo)
-        {
-            TerminarDialog();
         }
     }
 
@@ -112,6 +65,7 @@ public class DialogoLog : MonoBehaviour
         }
         else if (dialogoIndex + 1 < dialogodata.lineasDialogo.Length)
         {
+            // Si hay otra línea de texto, tipea la siguiente
             dialogoIndex++;
             StartCoroutine(LineadeType());
         }
@@ -129,19 +83,14 @@ public class DialogoLog : MonoBehaviour
         foreach (char letter in dialogodata.lineasDialogo[dialogoIndex])
         {
             dialogoTexto.text += letter;
-
-            // Reemplazo de WaitForSecondsRealtime: Espera el tiempo de typeo considerando la pausa
-            yield return EsperarTiempoRespetandoPausa(dialogodata.velocidadTypeo);
+            yield return new WaitForSecondsRealtime(dialogodata.velocidadTypeo);
         }
 
         EstaTypeando = false;
 
         if (DebeAutoProgresar(dialogoIndex))
         {
-            yield return EsperarTiempoRespetandoPausa(dialogodata.autoProgresDelay);
-
-            // Verifica que no haya quedado pausado antes de cambiar de línea
-            yield return new WaitUntil(() => !PauseManager.GameIsPaused);
+            yield return new WaitForSecondsRealtime(dialogodata.autoProgresDelay);
             SigLinea();
         }
     }
@@ -156,9 +105,7 @@ public class DialogoLog : MonoBehaviour
 
     IEnumerator PasarSigLineaXTiempo()
     {
-        yield return EsperarTiempoRespetandoPausa(dialogodata.autoProgresDelay);
-
-        yield return new WaitUntil(() => !PauseManager.GameIsPaused);
+        yield return new WaitForSecondsRealtime(dialogodata.autoProgresDelay);
 
         if (dialogoIndex + 1 < dialogodata.lineasDialogo.Length)
         {
@@ -171,20 +118,6 @@ public class DialogoLog : MonoBehaviour
         }
     }
 
-    // Método auxiliar para contar el tiempo manualmente ignorando la velocidad del juego pero respetando la pausa
-    IEnumerator EsperarTiempoRespetandoPausa(float tiempo)
-    {
-        float timer = 0f;
-        while (timer < tiempo)
-        {
-            if (!PauseManager.GameIsPaused)
-            {
-                timer += Time.unscaledDeltaTime;
-            }
-            yield return null;
-        }
-    }
-
     bool DebeAutoProgresar(int index)
     {
         return dialogodata.autoProgresLineas != null
@@ -192,39 +125,14 @@ public class DialogoLog : MonoBehaviour
             && dialogodata.autoProgresLineas[index];
     }
 
-    void ActualizarVisibilidadPorPausa()
-    {
-        bool debeOcultarse = DialogoActivo && PauseManager.GameIsPaused;
-        if (debeOcultarse == ocultoPorPausa) return;
-        MostrarPanel(!debeOcultarse);
-    }
-
-    void MostrarPanel(bool visible)
-    {
-        ocultoPorPausa = !visible;
-        if (PanelDialogo == null) return;
-
-        if (grupoPanel == null)
-        {
-            grupoPanel = PanelDialogo.GetComponent<CanvasGroup>();
-            if (grupoPanel == null) grupoPanel = PanelDialogo.AddComponent<CanvasGroup>();
-        }
-
-        grupoPanel.alpha = visible ? 1f : 0f;
-        grupoPanel.interactable = visible;
-        grupoPanel.blocksRaycasts = visible;
-    }
-
     public void TerminarDialog()
     {
-        bool estabaActivo = DialogoActivo;
-        if (ocultoPorPausa) MostrarPanel(true);
-
         StopAllCoroutines();
         DialogoActivo = false;
         dialogoTexto.SetText("");
         PanelDialogo.SetActive(false);
 
-        if (estabaActivo) AlTerminarDialogo?.Invoke();
+        // Notificar a PanelVictoria que el diálogo concluyó
+        AlTerminarDialogo?.Invoke();
     }
 }

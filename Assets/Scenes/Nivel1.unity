@@ -1277,7 +1277,7 @@ MonoBehaviour:
   textoTiempo: {fileID: 1082859446}
   textoVidas: {fileID: 392731864}
   vidaJugador: {fileID: 295255242}
-  dialogoFinal: {fileID: 0}
+  dialogoFinal: {fileID: 1700269966}
   tagJugador: Player
   activarPorContacto: 1
   esperarAterrizaje: 1
@@ -3989,9 +3989,6 @@ MonoBehaviour:
   dialogoTexto: {fileID: 948514851}
   NombreText: {fileID: 192308729}
   RetratoAnim: {fileID: 1906733728}
-  teclaAvanzar: 13
-  teclaAvanzarAlternativa: 101
-  teclaSaltarTodo: 120
 --- !u!1 &1082859444
 GameObject:
   m_ObjectHideFlags: 0
@@ -5340,14 +5337,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d99d75bf03b1b9b49b1928d018708530, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  dialogodata: {fileID: 11400000, guid: cd0269fe0a3a1d94fbce59ecc0fd9bdc, type: 2}
+  dialogodata: {fileID: 11400000, guid: 4304c2e07f3134447be4786837b2e598, type: 2}
   PanelDialogo: {fileID: 149087366}
   dialogoTexto: {fileID: 948514851}
   NombreText: {fileID: 192308729}
   RetratoAnim: {fileID: 1906733728}
-  teclaAvanzar: 13
-  teclaAvanzarAlternativa: 101
-  teclaSaltarTodo: 120
 --- !u!114 &1906733728 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 848537743171968549, guid: dfb8c8748f72de24aabe6c25f2418dc8, type: 3}
