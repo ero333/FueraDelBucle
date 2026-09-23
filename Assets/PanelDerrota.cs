@@ -30,6 +30,7 @@ public class PanelDerrota : MonoBehaviour
     public string tagJugador = "Player";
 
     private DialogoLog dialogoLog;
+    private LevelUIManager levelUIManager;
 
     [Header("Aparición")]
     [Tooltip("Segundos de espera tras morir, para que se vea la animación de muerte.")]
@@ -65,6 +66,7 @@ public class PanelDerrota : MonoBehaviour
         }
 
         dialogoLog = FindFirstObjectByType<DialogoLog>();
+        levelUIManager = FindFirstObjectByType<LevelUIManager>();
     }
 
     private void Update()
@@ -94,6 +96,12 @@ public class PanelDerrota : MonoBehaviour
         if (dialogoLog != null)
         {
             dialogoLog.TerminarDialog();
+        }
+
+        // Cierra el cartel de OBJETIVO si estaba abierto, para que se vea la derrota.
+        if (levelUIManager != null)
+        {
+            levelUIManager.CloseObjectivePanel();
         }
 
         MostrarResultados();
