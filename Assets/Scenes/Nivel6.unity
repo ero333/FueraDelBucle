@@ -198,11 +198,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3193883}
   m_CullTransparentMesh: 1
---- !u!1 &10209897 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7596353616722143816, guid: 962fbccc2715b4dd181132a667eda2f0, type: 3}
-  m_PrefabInstance: {fileID: 469844195}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &10209898 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7937749884018153853, guid: 962fbccc2715b4dd181132a667eda2f0, type: 3}
@@ -1991,9 +1986,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 582a694b3e775ad4d9f20de80f3c56cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PATCHEjecutarPlatform
-  PatchActivar: {fileID: 136960074}
-  tagActivador: PATCHactv
-  Romperplatform: {fileID: 611961226}
 --- !u!1 &115519594
 GameObject:
   m_ObjectHideFlags: 0
@@ -2172,9 +2164,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 582a694b3e775ad4d9f20de80f3c56cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PATCHEjecutarPlatform
-  PatchActivar: {fileID: 136960074}
-  tagActivador: PATCHactv
-  Romperplatform: {fileID: 611961226}
 --- !u!61 &129684366
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2236,11 +2225,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &136960074 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -8653719598885068355, guid: fca537f2794ac4c488d67842c840b658, type: 3}
-  m_PrefabInstance: {fileID: 1371812588}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &157044051
 GameObject:
   m_ObjectHideFlags: 0
@@ -2333,11 +2317,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &163604509 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2373498453144049250, guid: f15a78358f9cc44439e7c6b6ebca3ada, type: 3}
-  m_PrefabInstance: {fileID: 323418399}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &163604510 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5779546442867524048, guid: f15a78358f9cc44439e7c6b6ebca3ada, type: 3}
@@ -3543,11 +3522,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f15a78358f9cc44439e7c6b6ebca3ada, type: 3}
---- !u!1 &437577708 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7596353616722143816, guid: 962fbccc2715b4dd181132a667eda2f0, type: 3}
-  m_PrefabInstance: {fileID: 669385224}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &437577709 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7937749884018153853, guid: 962fbccc2715b4dd181132a667eda2f0, type: 3}
@@ -3644,9 +3618,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 582a694b3e775ad4d9f20de80f3c56cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PATCHEjecutarPlatform
-  PatchActivar: {fileID: 136960074}
-  tagActivador: PATCHactv
-  Romperplatform: {fileID: 611961226}
 --- !u!1001 &452585046
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3953,11 +3924,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!1 &457797456 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2373498453144049250, guid: f15a78358f9cc44439e7c6b6ebca3ada, type: 3}
-  m_PrefabInstance: {fileID: 300004786}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &457797457 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5779546442867524048, guid: f15a78358f9cc44439e7c6b6ebca3ada, type: 3}
@@ -4203,7 +4169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PhaseUI
   jugador: {fileID: 913427940}
-  imagenRelleno: {fileID: 0}
+  imagenRelleno: {fileID: 493490631}
 --- !u!1 &548643855
 GameObject:
   m_ObjectHideFlags: 0
@@ -4480,11 +4446,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &583901284 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2373498453144049250, guid: f15a78358f9cc44439e7c6b6ebca3ada, type: 3}
-  m_PrefabInstance: {fileID: 1195722838}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &583901285 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5779546442867524048, guid: f15a78358f9cc44439e7c6b6ebca3ada, type: 3}
@@ -4967,31 +4928,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ec8961a04c5a064cb7bd6ce0f8b3ef4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  tandasDePlatform:
-  - nombreTanda: 1 incio
-    plataformasaRomper:
-    - {fileID: 1477817510}
-    - {fileID: 1386200680}
-    - {fileID: 2034175181}
-    - {fileID: 1343695413}
-  - nombreTanda: 2 intermedio
-    plataformasaRomper:
-    - {fileID: 2008964975}
-    - {fileID: 163604509}
-    - {fileID: 2134541860}
-    - {fileID: 828089692}
-    - {fileID: 437577708}
-  - nombreTanda: 3 ultimo
-    plataformasaRomper:
-    - {fileID: 10209897}
-    - {fileID: 583901284}
-    - {fileID: 1635898102}
-    - {fileID: 1570796366}
-  - nombreTanda: 4 ultimo
-    plataformasaRomper:
-    - {fileID: 1710145977}
-    - {fileID: 1163867858}
-    - {fileID: 457797456}
 --- !u!4 &611961227
 Transform:
   m_ObjectHideFlags: 0
@@ -6990,11 +6926,6 @@ MonoBehaviour:
   tagJugador: Player
   retrasoAparicion: 1.2
   pausarAlPerder: 1
---- !u!1 &828089692 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2373498453144049250, guid: f15a78358f9cc44439e7c6b6ebca3ada, type: 3}
-  m_PrefabInstance: {fileID: 200155206}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &828089695 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5779546442867524048, guid: f15a78358f9cc44439e7c6b6ebca3ada, type: 3}
@@ -8571,9 +8502,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 582a694b3e775ad4d9f20de80f3c56cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PATCHEjecutarPlatform
-  PatchActivar: {fileID: 136960074}
-  tagActivador: PATCHactv
-  Romperplatform: {fileID: 611961226}
 --- !u!61 &957340447
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8999,11 +8927,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f15a78358f9cc44439e7c6b6ebca3ada, type: 3}
---- !u!1 &1163867858 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2373498453144049250, guid: f15a78358f9cc44439e7c6b6ebca3ada, type: 3}
-  m_PrefabInstance: {fileID: 400882416}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1163867859 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5779546442867524048, guid: f15a78358f9cc44439e7c6b6ebca3ada, type: 3}
@@ -9100,9 +9023,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 582a694b3e775ad4d9f20de80f3c56cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PATCHEjecutarPlatform
-  PatchActivar: {fileID: 136960074}
-  tagActivador: PATCHactv
-  Romperplatform: {fileID: 611961226}
 --- !u!1 &1185120487
 GameObject:
   m_ObjectHideFlags: 0
@@ -9194,9 +9114,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 582a694b3e775ad4d9f20de80f3c56cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PATCHEjecutarPlatform
-  PatchActivar: {fileID: 136960074}
-  tagActivador: PATCHactv
-  Romperplatform: {fileID: 611961226}
 --- !u!1001 &1195722838
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9706,11 +9623,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5779546442867524048, guid: f15a78358f9cc44439e7c6b6ebca3ada, type: 3}
   m_PrefabInstance: {fileID: 369224132}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1343695413 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2373498453144049250, guid: f15a78358f9cc44439e7c6b6ebca3ada, type: 3}
-  m_PrefabInstance: {fileID: 607152676}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1343695414 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5779546442867524048, guid: f15a78358f9cc44439e7c6b6ebca3ada, type: 3}
@@ -10118,11 +10030,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 4843985084834002234, guid: fca537f2794ac4c488d67842c840b658, type: 3}
---- !u!1 &1386200680 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2373498453144049250, guid: 69e3b98965fa1de48a1afda1361dfc53, type: 3}
-  m_PrefabInstance: {fileID: 1467256594}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1386200681 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5779546442867524048, guid: 69e3b98965fa1de48a1afda1361dfc53, type: 3}
@@ -10720,11 +10627,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1477817510 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2373498453144049250, guid: 69e3b98965fa1de48a1afda1361dfc53, type: 3}
-  m_PrefabInstance: {fileID: 2135554013}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1477817511 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5779546442867524048, guid: 69e3b98965fa1de48a1afda1361dfc53, type: 3}
@@ -10963,9 +10865,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 582a694b3e775ad4d9f20de80f3c56cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PATCHEjecutarPlatform
-  PatchActivar: {fileID: 136960074}
-  tagActivador: PATCHactv
-  Romperplatform: {fileID: 611961226}
 --- !u!1001 &1544870319
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11144,11 +11043,6 @@ Transform:
   - {fileID: 1477817511}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1570796366 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2373498453144049250, guid: f15a78358f9cc44439e7c6b6ebca3ada, type: 3}
-  m_PrefabInstance: {fileID: 1926138656}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1570796367 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5779546442867524048, guid: f15a78358f9cc44439e7c6b6ebca3ada, type: 3}
@@ -11807,11 +11701,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1635898102 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2373498453144049250, guid: f15a78358f9cc44439e7c6b6ebca3ada, type: 3}
-  m_PrefabInstance: {fileID: 1518718598}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1635898103 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5779546442867524048, guid: f15a78358f9cc44439e7c6b6ebca3ada, type: 3}
@@ -11821,11 +11710,6 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 5779546442867524048, guid: f15a78358f9cc44439e7c6b6ebca3ada, type: 3}
   m_PrefabInstance: {fileID: 326378272}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1710145977 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2373498453144049250, guid: 69e3b98965fa1de48a1afda1361dfc53, type: 3}
-  m_PrefabInstance: {fileID: 1579894771}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1710145978 stripped
 Transform:
@@ -13230,9 +13114,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 582a694b3e775ad4d9f20de80f3c56cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PATCHEjecutarPlatform
-  PatchActivar: {fileID: 136960074}
-  tagActivador: PATCHactv
-  Romperplatform: {fileID: 611961226}
 --- !u!1 &1972615679
 GameObject:
   m_ObjectHideFlags: 0
@@ -13370,9 +13251,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 582a694b3e775ad4d9f20de80f3c56cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PATCHEjecutarPlatform
-  PatchActivar: {fileID: 136960074}
-  tagActivador: PATCHactv
-  Romperplatform: {fileID: 611961226}
 --- !u!1 &1994907361
 GameObject:
   m_ObjectHideFlags: 0
@@ -13510,11 +13388,6 @@ CanvasRenderer:
 Transform:
   m_CorrespondingSourceObject: {fileID: 5779546442867524048, guid: f15a78358f9cc44439e7c6b6ebca3ada, type: 3}
   m_PrefabInstance: {fileID: 607512771}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &2008964975 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2373498453144049250, guid: f15a78358f9cc44439e7c6b6ebca3ada, type: 3}
-  m_PrefabInstance: {fileID: 1023220814}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &2008964976 stripped
 Transform:
@@ -13669,11 +13542,6 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 5779546442867524048, guid: f15a78358f9cc44439e7c6b6ebca3ada, type: 3}
   m_PrefabInstance: {fileID: 1726388170}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &2034175181 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7596353616722143816, guid: 962fbccc2715b4dd181132a667eda2f0, type: 3}
-  m_PrefabInstance: {fileID: 792988977}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &2034175182 stripped
 Transform:
@@ -13908,9 +13776,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 582a694b3e775ad4d9f20de80f3c56cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PATCHEjecutarPlatform
-  PatchActivar: {fileID: 136960074}
-  tagActivador: PATCHactv
-  Romperplatform: {fileID: 611961226}
 --- !u!1 &2122816157
 GameObject:
   m_ObjectHideFlags: 0
@@ -14049,11 +13914,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2134541860 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2373498453144049250, guid: f15a78358f9cc44439e7c6b6ebca3ada, type: 3}
-  m_PrefabInstance: {fileID: 1204527862}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2134541861 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5779546442867524048, guid: f15a78358f9cc44439e7c6b6ebca3ada, type: 3}
