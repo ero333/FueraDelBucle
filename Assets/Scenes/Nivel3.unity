@@ -1962,6 +1962,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69e3b98965fa1de48a1afda1361dfc53, type: 3}
+--- !u!4 &380674336 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7033928173859646627, guid: 7d49531c7667947058c19e274087f85a, type: 3}
+  m_PrefabInstance: {fileID: 890897884}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &416100314
 GameObject:
   m_ObjectHideFlags: 0
@@ -2415,11 +2420,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1596283758705165240, guid: bbd28996a6d3c47df953b83ad6590c72, type: 3}
   m_PrefabInstance: {fileID: 586706513}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &611740970 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2002146048219507940, guid: fbe9783e2aebd5041901c938a9e825dc, type: 3}
-  m_PrefabInstance: {fileID: 890897884}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &681707904
 GameObject:
   m_ObjectHideFlags: 0
@@ -2605,6 +2605,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MusicaMute
   musicSource: {fileID: 0}
+  otroBoton: {fileID: 0}
+  prenderMusica: 0
 --- !u!114 &682026277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3579,7 +3581,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 760696864}
+  m_Father: {fileID: 380674336}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &751483107
 MonoBehaviour:
@@ -3593,9 +3595,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57c008f954fe54a8bb972de1018a2cb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.2D.Animation.Runtime::UnityEngine.U2D.Animation.SpriteSkin
-  m_RootBone: {fileID: 760696864}
+  m_RootBone: {fileID: 0}
   m_BoneTransforms:
-  - {fileID: 611740970}
+  - {fileID: 0}
   m_Bounds:
     m_Center: {x: 4.66444, y: 4.4750004, z: 0}
     m_Extent: {x: 2.4428904, y: 1.9950004, z: 0}
@@ -3660,11 +3662,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!4 &760696864 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7033928173859646627, guid: fbe9783e2aebd5041901c938a9e825dc, type: 3}
-  m_PrefabInstance: {fileID: 890897884}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &774956844
 GameObject:
   m_ObjectHideFlags: 0
@@ -4735,6 +4732,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1290112510421393491, guid: 7d49531c7667947058c19e274087f85a, type: 3}
+      propertyPath: seguirJugador
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7033928173859646627, guid: 7d49531c7667947058c19e274087f85a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 119.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 7033928173859646627, guid: 7d49531c7667947058c19e274087f85a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.67
+      objectReference: {fileID: 0}
+    - target: {fileID: 7033928173859646627, guid: 7d49531c7667947058c19e274087f85a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7033928173859646627, guid: 7d49531c7667947058c19e274087f85a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8166593740074349760, guid: 7d49531c7667947058c19e274087f85a, type: 3}
+      propertyPath: m_Name
+      value: "SENTINEL-DISE\xD1O-RIG (3)"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8166593740074349760, guid: 7d49531c7667947058c19e274087f85a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 459371332105491147, guid: fbe9783e2aebd5041901c938a9e825dc, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -4782,14 +4807,6 @@ PrefabInstance:
     - target: {fileID: 4233360159609106926, guid: fbe9783e2aebd5041901c938a9e825dc, type: 3}
       propertyPath: m_Layer
       value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4451121604985374203, guid: fbe9783e2aebd5041901c938a9e825dc, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.08431518
-      objectReference: {fileID: 0}
-    - target: {fileID: 4451121604985374203, guid: fbe9783e2aebd5041901c938a9e825dc, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.99643916
       objectReference: {fileID: 0}
     - target: {fileID: 4527992920262690248, guid: fbe9783e2aebd5041901c938a9e825dc, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4891,14 +4908,6 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: 8166593740074349760, guid: fbe9783e2aebd5041901c938a9e825dc, type: 3}
-      propertyPath: m_Name
-      value: "SENTINEL-DISE\xD1O-RIG (3)"
-      objectReference: {fileID: 0}
-    - target: {fileID: 8166593740074349760, guid: fbe9783e2aebd5041901c938a9e825dc, type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 8445735560198414634, guid: fbe9783e2aebd5041901c938a9e825dc, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -4914,11 +4923,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 7033928173859646627, guid: fbe9783e2aebd5041901c938a9e825dc, type: 3}
-      insertIndex: 6
+    - targetCorrespondingSourceObject: {fileID: 7033928173859646627, guid: 7d49531c7667947058c19e274087f85a, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 751483106}
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: fbe9783e2aebd5041901c938a9e825dc, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 7d49531c7667947058c19e274087f85a, type: 3}
 --- !u!1 &917061163
 GameObject:
   m_ObjectHideFlags: 0
@@ -5219,11 +5228,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 954553586}
   m_CullTransparentMesh: 1
---- !u!4 &954763684 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2002146048219507940, guid: fbe9783e2aebd5041901c938a9e825dc, type: 3}
-  m_PrefabInstance: {fileID: 1774520751}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1004758464 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5779546442867524048, guid: 69e3b98965fa1de48a1afda1361dfc53, type: 3}
@@ -5233,11 +5237,6 @@ Transform:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2878058917502599301, guid: dfb8c8748f72de24aabe6c25f2418dc8, type: 3}
   m_PrefabInstance: {fileID: 451439486}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1101358638 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7033928173859646627, guid: fbe9783e2aebd5041901c938a9e825dc, type: 3}
-  m_PrefabInstance: {fileID: 1774520751}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1114382235
 GameObject:
@@ -5582,13 +5581,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4451121604985374203, guid: fbe9783e2aebd5041901c938a9e825dc, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.08431518
+    - target: {fileID: 1290112510421393491, guid: 7d49531c7667947058c19e274087f85a, type: 3}
+      propertyPath: seguirJugador
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4451121604985374203, guid: fbe9783e2aebd5041901c938a9e825dc, type: 3}
+    - target: {fileID: 7033928173859646627, guid: 7d49531c7667947058c19e274087f85a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 69.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7033928173859646627, guid: 7d49531c7667947058c19e274087f85a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 7033928173859646627, guid: 7d49531c7667947058c19e274087f85a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7033928173859646627, guid: 7d49531c7667947058c19e274087f85a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.99643916
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8166593740074349760, guid: 7d49531c7667947058c19e274087f85a, type: 3}
+      propertyPath: m_Name
+      value: "SENTINEL-DISE\xD1O-RIG (1)"
       objectReference: {fileID: 0}
     - target: {fileID: 4527992920262690248, guid: fbe9783e2aebd5041901c938a9e825dc, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5658,15 +5673,11 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.0000005960464
       objectReference: {fileID: 0}
-    - target: {fileID: 8166593740074349760, guid: fbe9783e2aebd5041901c938a9e825dc, type: 3}
-      propertyPath: m_Name
-      value: "SENTINEL-DISE\xD1O-RIG (1)"
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: fbe9783e2aebd5041901c938a9e825dc, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 7d49531c7667947058c19e274087f85a, type: 3}
 --- !u!1001 &1387608379
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6553,6 +6564,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1597878534}
   m_CullTransparentMesh: 1
+--- !u!4 &1699581449 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7033928173859646627, guid: 7d49531c7667947058c19e274087f85a, type: 3}
+  m_PrefabInstance: {fileID: 1774520751}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1733513288
 GameObject:
   m_ObjectHideFlags: 0
@@ -6742,7 +6758,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1101358638}
+  m_Father: {fileID: 1699581449}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1767427684
 MonoBehaviour:
@@ -6756,9 +6772,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57c008f954fe54a8bb972de1018a2cb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.2D.Animation.Runtime::UnityEngine.U2D.Animation.SpriteSkin
-  m_RootBone: {fileID: 1101358638}
+  m_RootBone: {fileID: 0}
   m_BoneTransforms:
-  - {fileID: 954763684}
+  - {fileID: 0}
   m_Bounds:
     m_Center: {x: 4.66444, y: 4.4750004, z: 0}
     m_Extent: {x: 2.4428904, y: 1.9950004, z: 0}
@@ -6893,6 +6909,82 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1290112510421393491, guid: 7d49531c7667947058c19e274087f85a, type: 3}
+      propertyPath: seguirJugador
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1457025691930094649, guid: 7d49531c7667947058c19e274087f85a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.47003508
+      objectReference: {fileID: 0}
+    - target: {fileID: 1457025691930094649, guid: 7d49531c7667947058c19e274087f85a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.8826477
+      objectReference: {fileID: 0}
+    - target: {fileID: 3732525276543427310, guid: 7d49531c7667947058c19e274087f85a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4451121604985374203, guid: 7d49531c7667947058c19e274087f85a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.08431024
+      objectReference: {fileID: 0}
+    - target: {fileID: 4451121604985374203, guid: 7d49531c7667947058c19e274087f85a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.9964396
+      objectReference: {fileID: 0}
+    - target: {fileID: 4527992920262690248, guid: 7d49531c7667947058c19e274087f85a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.93693167
+      objectReference: {fileID: 0}
+    - target: {fileID: 4527992920262690248, guid: 7d49531c7667947058c19e274087f85a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.34951267
+      objectReference: {fileID: 0}
+    - target: {fileID: 4803061822225972017, guid: 7d49531c7667947058c19e274087f85a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157630714676244411, guid: 7d49531c7667947058c19e274087f85a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.71670914
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157630714676244411, guid: 7d49531c7667947058c19e274087f85a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.6973723
+      objectReference: {fileID: 0}
+    - target: {fileID: 7033928173859646627, guid: 7d49531c7667947058c19e274087f85a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 109.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 7033928173859646627, guid: 7d49531c7667947058c19e274087f85a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.77
+      objectReference: {fileID: 0}
+    - target: {fileID: 7033928173859646627, guid: 7d49531c7667947058c19e274087f85a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7033928173859646627, guid: 7d49531c7667947058c19e274087f85a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7391998104742466445, guid: 7d49531c7667947058c19e274087f85a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.0000047683707
+      objectReference: {fileID: 0}
+    - target: {fileID: 7809751836599513767, guid: 7d49531c7667947058c19e274087f85a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.0000011026859
+      objectReference: {fileID: 0}
+    - target: {fileID: 8166593740074349760, guid: 7d49531c7667947058c19e274087f85a, type: 3}
+      propertyPath: m_Name
+      value: "SENTINEL-DISE\xD1O-RIG (2)"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8166593740074349760, guid: 7d49531c7667947058c19e274087f85a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 459371332105491147, guid: fbe9783e2aebd5041901c938a9e825dc, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -6940,14 +7032,6 @@ PrefabInstance:
     - target: {fileID: 4233360159609106926, guid: fbe9783e2aebd5041901c938a9e825dc, type: 3}
       propertyPath: m_Layer
       value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4451121604985374203, guid: fbe9783e2aebd5041901c938a9e825dc, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.08431518
-      objectReference: {fileID: 0}
-    - target: {fileID: 4451121604985374203, guid: fbe9783e2aebd5041901c938a9e825dc, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.99643916
       objectReference: {fileID: 0}
     - target: {fileID: 4527992920262690248, guid: fbe9783e2aebd5041901c938a9e825dc, type: 3}
       propertyPath: m_LocalRotation.w
@@ -7049,14 +7133,6 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: 8166593740074349760, guid: fbe9783e2aebd5041901c938a9e825dc, type: 3}
-      propertyPath: m_Name
-      value: "SENTINEL-DISE\xD1O-RIG (2)"
-      objectReference: {fileID: 0}
-    - target: {fileID: 8166593740074349760, guid: fbe9783e2aebd5041901c938a9e825dc, type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 8445735560198414634, guid: fbe9783e2aebd5041901c938a9e825dc, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -7072,11 +7148,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 7033928173859646627, guid: fbe9783e2aebd5041901c938a9e825dc, type: 3}
-      insertIndex: 6
+    - targetCorrespondingSourceObject: {fileID: 7033928173859646627, guid: 7d49531c7667947058c19e274087f85a, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 1767427683}
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: fbe9783e2aebd5041901c938a9e825dc, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 7d49531c7667947058c19e274087f85a, type: 3}
 --- !u!114 &1848353993 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 848537743171968549, guid: dfb8c8748f72de24aabe6c25f2418dc8, type: 3}
@@ -7646,17 +7722,33 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1290112510421393491, guid: 7d49531c7667947058c19e274087f85a, type: 3}
+      propertyPath: seguirJugador
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7033928173859646627, guid: 7d49531c7667947058c19e274087f85a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 25.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7033928173859646627, guid: 7d49531c7667947058c19e274087f85a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7033928173859646627, guid: 7d49531c7667947058c19e274087f85a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7033928173859646627, guid: 7d49531c7667947058c19e274087f85a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8166593740074349760, guid: 7d49531c7667947058c19e274087f85a, type: 3}
+      propertyPath: m_Name
+      value: "SENTINEL-DISE\xD1O-RIG (4)"
+      objectReference: {fileID: 0}
     - target: {fileID: 1290112510421393491, guid: fbe9783e2aebd5041901c938a9e825dc, type: 3}
       propertyPath: velocidad
       value: 3.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4451121604985374203, guid: fbe9783e2aebd5041901c938a9e825dc, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.08431518
-      objectReference: {fileID: 0}
-    - target: {fileID: 4451121604985374203, guid: fbe9783e2aebd5041901c938a9e825dc, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.99643916
       objectReference: {fileID: 0}
     - target: {fileID: 4527992920262690248, guid: fbe9783e2aebd5041901c938a9e825dc, type: 3}
       propertyPath: m_LocalRotation.w
@@ -7726,15 +7818,11 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.0000005960464
       objectReference: {fileID: 0}
-    - target: {fileID: 8166593740074349760, guid: fbe9783e2aebd5041901c938a9e825dc, type: 3}
-      propertyPath: m_Name
-      value: "SENTINEL-DISE\xD1O-RIG (4)"
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: fbe9783e2aebd5041901c938a9e825dc, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 7d49531c7667947058c19e274087f85a, type: 3}
 --- !u!1001 &2110642196
 PrefabInstance:
   m_ObjectHideFlags: 0
