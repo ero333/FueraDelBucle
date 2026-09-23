@@ -3334,6 +3334,17 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &388956688 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2627796686816019753, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+  m_PrefabInstance: {fileID: 1950489084}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d99d75bf03b1b9b49b1928d018708530, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1001 &400882416
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5460,6 +5471,83 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f15a78358f9cc44439e7c6b6ebca3ada, type: 3}
+--- !u!1001 &682651854
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 922540508792047734, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+      propertyPath: m_Name
+      value: Dialogo Final
+      objectReference: {fileID: 0}
+    - target: {fileID: 2170224607636161062, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 511.42996
+      objectReference: {fileID: 0}
+    - target: {fileID: 2170224607636161062, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 136.40315
+      objectReference: {fileID: 0}
+    - target: {fileID: 2170224607636161062, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2170224607636161062, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2170224607636161062, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2170224607636161062, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2170224607636161062, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2170224607636161062, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2170224607636161062, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2170224607636161062, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2627796686816019753, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+      propertyPath: NombreText
+      value: 
+      objectReference: {fileID: 1144567376}
+    - target: {fileID: 2627796686816019753, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+      propertyPath: RetratoAnim
+      value: 
+      objectReference: {fileID: 1144567375}
+    - target: {fileID: 2627796686816019753, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+      propertyPath: dialogodata
+      value: 
+      objectReference: {fileID: 11400000, guid: b8f0c57ab284cb14494e008916e2a288, type: 2}
+    - target: {fileID: 2627796686816019753, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+      propertyPath: PanelDialogo
+      value: 
+      objectReference: {fileID: 1144567378}
+    - target: {fileID: 2627796686816019753, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+      propertyPath: dialogoTexto
+      value: 
+      objectReference: {fileID: 1144567377}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
 --- !u!4 &710781754 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5779546442867524048, guid: f15a78358f9cc44439e7c6b6ebca3ada, type: 3}
@@ -7016,7 +7104,10 @@ MonoBehaviour:
   cantidadEstrellas: 0
   vidaJugador: {fileID: 913427939}
   tagJugador: Player
-  retrasoAparicion: 1.2
+  dialogoPrincipal: {fileID: 388956688}
+  dialogoAlternativo: {fileID: 388956688}
+  usarCondicionEstrellas: 0
+  estrellasRequeridas: 1
   pausarAlPerder: 1
 --- !u!4 &828089695 stripped
 Transform:
@@ -9963,6 +10054,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f15a78358f9cc44439e7c6b6ebca3ada, type: 3}
+--- !u!114 &1353048465 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2627796686816019753, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+  m_PrefabInstance: {fileID: 682651854}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d99d75bf03b1b9b49b1928d018708530, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1 &1353391068
 GameObject:
   m_ObjectHideFlags: 0
@@ -11818,7 +11920,7 @@ MonoBehaviour:
   textoTiempo: {fileID: 1816850022}
   textoVidas: {fileID: 1257283123}
   vidaJugador: {fileID: 913427939}
-  dialogoFinal: {fileID: 0}
+  dialogoFinal: {fileID: 1353048465}
   tagJugador: Player
   activarPorContacto: 1
   esperarAterrizaje: 1
@@ -13397,6 +13499,83 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 582a694b3e775ad4d9f20de80f3c56cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PATCHEjecutarPlatform
+--- !u!1001 &1950489084
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 922540508792047734, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+      propertyPath: m_Name
+      value: Dialogo Final Malo
+      objectReference: {fileID: 0}
+    - target: {fileID: 2170224607636161062, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 511.42996
+      objectReference: {fileID: 0}
+    - target: {fileID: 2170224607636161062, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 136.40315
+      objectReference: {fileID: 0}
+    - target: {fileID: 2170224607636161062, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2170224607636161062, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2170224607636161062, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2170224607636161062, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2170224607636161062, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2170224607636161062, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2170224607636161062, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2170224607636161062, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2627796686816019753, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+      propertyPath: NombreText
+      value: 
+      objectReference: {fileID: 1144567376}
+    - target: {fileID: 2627796686816019753, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+      propertyPath: RetratoAnim
+      value: 
+      objectReference: {fileID: 1144567375}
+    - target: {fileID: 2627796686816019753, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+      propertyPath: dialogodata
+      value: 
+      objectReference: {fileID: 11400000, guid: ddb2d37ef7f2e5740a0e6f5392480216, type: 2}
+    - target: {fileID: 2627796686816019753, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+      propertyPath: PanelDialogo
+      value: 
+      objectReference: {fileID: 1144567378}
+    - target: {fileID: 2627796686816019753, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+      propertyPath: dialogoTexto
+      value: 
+      objectReference: {fileID: 1144567377}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
 --- !u!1 &1972615679
 GameObject:
   m_ObjectHideFlags: 0
@@ -14328,3 +14507,5 @@ SceneRoots:
   - {fileID: 611961227}
   - {fileID: 1371812588}
   - {fileID: 93465254}
+  - {fileID: 682651854}
+  - {fileID: 1950489084}

@@ -29,18 +29,25 @@ public class PanelDerrota : MonoBehaviour
     [Tooltip("Si se deja vacío, se busca por el tag Player al iniciar.")]
     public string tagJugador = "Player";
 
-    private DialogoLog dialogoLog;
-    private LevelUIManager levelUIManager;
+    [Header("Diálogos del Nivel (Opcionales)")]
+    [Tooltip("Diálogo principal de burla al perder (dejar vacío si el nivel no tiene).")]
+    public DialogoLog dialogoPrincipal;
 
-    [Header("Aparición")]
-    [Tooltip("Segundos de espera tras morir, para que se vea la animación de muerte.")]
-    public float retrasoAparicion = 1.2f;
+    [Tooltip("Diálogo secundario si cumple cierta condición (dejar vacío si no se usa).")]
+    public DialogoLog dialogoAlternativo;
+
+    [Header("Condición para Diálogo Alternativo")]
+    public bool usarCondicionEstrellas = false;
+    public int estrellasRequeridas = 1;
 
     [Header("Gameplay")]
     [Tooltip("Congela el juego mientras el panel está en pantalla.")]
     public bool pausarAlPerder = true;
 
     private bool activado;
+    private bool esperando;
+    private Coroutine rutinaEsperando;
+    private DialogoLog dialogoEnUso;
 
     private void Start()
     {
@@ -61,48 +68,79 @@ public class PanelDerrota : MonoBehaviour
         if (vidaJugador == null)
         {
             GameObject j = GameObject.FindGameObjectWithTag(tagJugador);
-
             if (j != null) vidaJugador = j.GetComponent<VidaJugador>();
         }
-
-        dialogoLog = FindFirstObjectByType<DialogoLog>();
-        levelUIManager = FindFirstObjectByType<LevelUIManager>();
     }
 
-    private void Update()
+    /// <summary>
+    /// Llamado desde VidaJugador cuando finaliza la animación de muerte
+    /// </summary>
+    public void IniciarSecuenciaDerrota()
     {
-        if (activado || vidaJugador == null) return;
+        if (activado || esperando) return;
 
-        if (vidaJugador.cantidadDeVida <= 0)
+        esperando = true;
+        rutinaEsperando = StartCoroutine(EsperarYMostrarDerrota());
+    }
+
+    private IEnumerator EsperarYMostrarDerrota()
+    {
+        // 1. Determina si en este nivel hay un diálogo configurado
+        ElegirDialogo();
+
+        // 2. Si HAY diálogo en el nivel, lo ejecuta y espera a que termine
+        if (dialogoEnUso != null)
         {
-            activado = true;
-            StartCoroutine(MostrarConRetraso());
+            bool dialogoTerminado = false;
+            System.Action alTerminar = () => dialogoTerminado = true;
+
+            dialogoEnUso.AlTerminarDialogo += alTerminar;
+            dialogoEnUso.Interactuar();
+
+            yield return new WaitUntil(() => dialogoTerminado);
+
+            dialogoEnUso.AlTerminarDialogo -= alTerminar;
+        }
+
+        // 3. Si NO hay diálogo (o ya terminó), muestra la UI de derrota
+        esperando = false;
+        MostrarDerrota();
+    }
+
+    private void ElegirDialogo()
+    {
+        if (usarCondicionEstrellas && cantidadEstrellas >= estrellasRequeridas && dialogoAlternativo != null)
+        {
+            dialogoEnUso = dialogoAlternativo;
+        }
+        else
+        {
+            dialogoEnUso = dialogoPrincipal;
         }
     }
 
-    private IEnumerator MostrarConRetraso()
+    public void SaltarDialogoYMostrarDerrota()
     {
-        if (retrasoAparicion > 0f) yield return new WaitForSeconds(retrasoAparicion);
+        if (rutinaEsperando != null)
+        {
+            StopCoroutine(rutinaEsperando);
+            rutinaEsperando = null;
+        }
 
+        if (dialogoEnUso != null)
+        {
+            dialogoEnUso.TerminarDialog();
+        }
+
+        esperando = false;
         MostrarDerrota();
     }
 
     public void MostrarDerrota()
     {
+        if (activado) return;
+
         activado = true;
-
-        // Corta cualquier diálogo en curso (typeo y panel del LOG) apenas
-        // aparece el cartel de game over.
-        if (dialogoLog != null)
-        {
-            dialogoLog.TerminarDialog();
-        }
-
-        // Cierra el cartel de OBJETIVO si estaba abierto, para que se vea la derrota.
-        if (levelUIManager != null)
-        {
-            levelUIManager.CloseObjectivePanel();
-        }
 
         MostrarResultados();
 

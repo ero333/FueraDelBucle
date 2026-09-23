@@ -17,7 +17,7 @@ public class CambioNivel : MonoBehaviour
     public Button botonCambioEscena;
 
     [Header("Aparición del botón")]
-    [Tooltip("Desactivalo si el boton vive dentro del panel de victoria y lo muestra ese script.")]
+    [Tooltip("Desactivalo si el botón vive dentro del panel de victoria/derrota y lo muestra ese script.")]
     public bool mostrarBotonPorContacto = true;
 
     [Tooltip("Espera a que el jugador aterrice antes de mostrar el boton.")]
@@ -109,7 +109,7 @@ public class CambioNivel : MonoBehaviour
                 {
                     if (anim.GetCurrentAnimatorStateInfo(0).IsName(estadoIdle)) break;
 
-                    t += Time.deltaTime;
+                    t += Time.unscaledDeltaTime;
                     yield return null;
                 }
             }
