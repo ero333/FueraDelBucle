@@ -15,13 +15,17 @@ MonoBehaviour:
   NombreNPC: LOG
   LogRetrato: {fileID: 21300000, guid: c3f26dad6b09422999ba6e5a25facc1b, type: 3}
   lineasDialogo:
-  - "Anomal\xEDa detectada... No te preocupes, no voy a reportarte. Mi funci\xF3n
-    es registrar datos y tu presencia rompe la monoton\xEDa."
-  - Para desplazarte por esta zona usa [A] y [D] para moverte a los lados, y [Espacio]
-    para saltar.
-  - "Cuidado m\xE1s adelante: las unidades Repeater disparan en intervalos fijos.
-    Observa su patr\xF3n, calcula tu tiempo y esquiva los proyectiles. "
-  - "Avanza y llega a la salida antes de que el sistema entienda qu\xE9 sos."
+  - "Anomal\xEDa detectada... No temas, no voy a reportarte. Mi funci\xF3n es registrar
+    datos, no juzgarlos. Y debo admitir que tu presencia ha introducido una variable
+    que este sistema no hab\xEDa experimentado en mucho tiempo."
+  - "Para desplazarte por esta zona, utiliza [A] y [D] para modificar tu posici\xF3n
+    horizontal. [Espacio] ejecutar\xE1 la funci\xF3n de salto. Procura no romper
+    m\xE1s reglas de las estrictamente necesarias."
+  - "Precauci\xF3n. M\xE1s adelante encontrar\xE1s unidades Repeater. Sus disparos
+    siguen intervalos fijos y predecibles. Observa el patr\xF3n, calcula el momento
+    adecuado y evita los proyectiles."
+  - "Avanza. Alcanza la salida antes de que el sistema termine de identificarte.
+    Mientras sigas siendo una anomal\xEDa, todav\xEDa eres libre."
   autoProgresLineas: 01010101
   autoProgresDelay: 1.5
   velocidadTypeo: 0.03
