@@ -336,6 +336,7 @@ MonoBehaviour:
   closeButton: {fileID: 325985874}
   levelObjective: "\xA1Llega a la puerta para ganar!"
   pauseGameOnStart: 0
+  oscurecerFondo: 0.6
 --- !u!224 &70052689
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7010,6 +7011,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4596189391156666078, guid: dfb8c8748f72de24aabe6c25f2418dc8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6064073709544336699, guid: dfb8c8748f72de24aabe6c25f2418dc8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6064073709544336699, guid: dfb8c8748f72de24aabe6c25f2418dc8, type: 3}

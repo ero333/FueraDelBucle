@@ -7024,6 +7024,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1214398523}
   m_CullTransparentMesh: 1
+--- !u!1 &1237082983 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7822240827115722296, guid: dfb8c8748f72de24aabe6c25f2418dc8, type: 3}
+  m_PrefabInstance: {fileID: 6600894355346564237}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1237082987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1237082983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d99d75bf03b1b9b49b1928d018708530, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogoLog
+  dialogodata: {fileID: 0}
+  PanelDialogo: {fileID: 0}
+  dialogoTexto: {fileID: 0}
+  NombreText: {fileID: 0}
+  RetratoAnim: {fileID: 0}
+  teclaAvanzar: 13
+  teclaAvanzarAlternativa: 101
+  teclaSaltarTodo: 120
 --- !u!1 &1237670365
 GameObject:
   m_ObjectHideFlags: 0
@@ -7537,6 +7562,7 @@ MonoBehaviour:
   closeButton: {fileID: 890794174}
   levelObjective: "\xA1Llega a la puerta para ganar!"
   pauseGameOnStart: 0
+  oscurecerFondo: 0.6
 --- !u!224 &1364511396
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10723,6 +10749,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1237670366}
     m_Modifications:
     - target: {fileID: 70450260199394382, guid: dfb8c8748f72de24aabe6c25f2418dc8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 70450260199394382, guid: dfb8c8748f72de24aabe6c25f2418dc8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1345717998}
@@ -10860,7 +10890,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2761015655949215741, guid: dfb8c8748f72de24aabe6c25f2418dc8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 670704787}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7822240827115722296, guid: dfb8c8748f72de24aabe6c25f2418dc8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1237082987}
   m_SourcePrefab: {fileID: 100100000, guid: dfb8c8748f72de24aabe6c25f2418dc8, type: 3}
 --- !u!1001 &8155379079313948268
 PrefabInstance:
