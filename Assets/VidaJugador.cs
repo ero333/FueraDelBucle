@@ -48,7 +48,9 @@ public class VidaJugador : MonoBehaviour
 
     public void TomarDaño(int daño)
     {
-        if (muerto || esInvulnerable) return;
+        if (muerto || esInvulnerable || (playerPhysics != null && playerPhysics.EstaEnPhase))
+            return;
+        //if (muerto || esInvulnerable) return;
 
         cantidadDeVida -= daño;
 
