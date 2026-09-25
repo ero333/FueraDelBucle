@@ -3778,7 +3778,10 @@ MonoBehaviour:
   cantidadEstrellas: 0
   vidaJugador: {fileID: 175978342}
   tagJugador: Player
-  retrasoAparicion: 1.2
+  dialogoPrincipal: {fileID: 0}
+  dialogoAlternativo: {fileID: 0}
+  usarCondicionEstrellas: 0
+  estrellasRequeridas: 1
   pausarAlPerder: 1
 --- !u!1 &850988948
 GameObject:
@@ -7082,6 +7085,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6064073709544336699, guid: dfb8c8748f72de24aabe6c25f2418dc8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6064073709544336699, guid: dfb8c8748f72de24aabe6c25f2418dc8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 328567714}
@@ -7189,6 +7196,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MusicaMute
   musicSource: {fileID: 0}
+  otroBoton: {fileID: 0}
+  prenderMusica: 0
 --- !u!114 &2094040919
 MonoBehaviour:
   m_ObjectHideFlags: 0
