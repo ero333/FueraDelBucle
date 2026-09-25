@@ -191,6 +191,13 @@ public class PlayerPhysics : MonoBehaviour
     {
         if (Time.timeScale == 0f) return;
 
+        // Placa de objetivo abierta: sin movimiento hasta que se cierre.
+        if (LevelUIManager.PlacaAbierta)
+        {
+            inputHorizontal = 0f;
+            return;
+        }
+
         estaEnElSuelo = Physics2D.OverlapCircle(PuntoDeteccionSuelo(), radioDeteccion, capaPlataformas);
 
         if (Input.GetKey(KeyCode.S) && estaEnElSuelo && !estaDasheando)
