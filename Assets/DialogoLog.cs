@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -28,6 +29,27 @@ public class DialogoLog : MonoBehaviour
     private bool ocultoPorPausa;
     private bool esperandoParaProcesarInput = false;
 
+    // Cajas de diálogo de la escena. PlayerPhysics pregunta por HayDialogoActivo
+    // para bloquear el movimiento del jugador mientras haya un diálogo en pantalla.
+    private static readonly List<DialogoLog> instancias = new List<DialogoLog>();
+
+    public static bool HayDialogoActivo
+    {
+        get
+        {
+            for (int i = 0; i < instancias.Count; i++)
+            {
+                DialogoLog dialogo = instancias[i];
+
+                if (dialogo != null && dialogo.DialogoActivo
+                    && dialogo.PanelDialogo != null && dialogo.PanelDialogo.activeInHierarchy)
+                    return true;
+            }
+
+            return false;
+        }
+    }
+
     private void Awake()
     {
         // Buscar el PopupController automáticamente si no está asignado
@@ -39,6 +61,9 @@ public class DialogoLog : MonoBehaviour
 
     private void OnEnable()
     {
+        if (!instancias.Contains(this))
+            instancias.Add(this);
+
         if (popupObjetivo != null)
         {
             popupObjetivo.OnPopupClosed += OnObjetivoCerrado;
@@ -47,6 +72,8 @@ public class DialogoLog : MonoBehaviour
 
     private void OnDisable()
     {
+        instancias.Remove(this);
+
         if (popupObjetivo != null)
         {
             popupObjetivo.OnPopupClosed -= OnObjetivoCerrado;
