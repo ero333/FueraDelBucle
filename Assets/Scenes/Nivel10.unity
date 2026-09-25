@@ -6110,6 +6110,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2040338429}
     - target: {fileID: 6384676788775248325, guid: 8c7312d2a1478ff4387333b337c8bcc5, type: 3}
+      propertyPath: caminosOcultos.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6384676788775248325, guid: 8c7312d2a1478ff4387333b337c8bcc5, type: 3}
+      propertyPath: 'caminosOcultos.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2040338429}
+    - target: {fileID: 6271494476255040596, guid: 8c7312d2a1478ff4387333b337c8bcc5, type: 3}
+      propertyPath: caminoOculto
+      value: 
+      objectReference: {fileID: 2040338429}
+    - target: {fileID: 6384676788775248325, guid: 8c7312d2a1478ff4387333b337c8bcc5, type: 3}
       propertyPath: spriteActivado
       value: 
       objectReference: {fileID: 8030451996311251740, guid: 322fb989ecce84442ae6a1155725baa0, type: 3}
@@ -8568,7 +8580,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8053941342616619678, guid: 84d73402f3f3840ad91d4677612144bc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 95100002}
   m_SourcePrefab: {fileID: 100100000, guid: 84d73402f3f3840ad91d4677612144bc, type: 3}
 --- !u!1 &1553610308
 GameObject:
@@ -8761,6 +8776,18 @@ PrefabInstance:
       value: Objeto Interactivo (2)
       objectReference: {fileID: 0}
     - target: {fileID: 6384676788775248325, guid: 8c7312d2a1478ff4387333b337c8bcc5, type: 3}
+      propertyPath: caminoOculto
+      value: 
+      objectReference: {fileID: 2039946157}
+    - target: {fileID: 6384676788775248325, guid: 8c7312d2a1478ff4387333b337c8bcc5, type: 3}
+      propertyPath: caminosOcultos.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6384676788775248325, guid: 8c7312d2a1478ff4387333b337c8bcc5, type: 3}
+      propertyPath: 'caminosOcultos.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2039946157}
+    - target: {fileID: 6271494476255040596, guid: 8c7312d2a1478ff4387333b337c8bcc5, type: 3}
       propertyPath: caminoOculto
       value: 
       objectReference: {fileID: 2039946157}
@@ -10904,6 +10931,22 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f5e611886a0e4e746aa17979cf5b020c, type: 3}
+--- !u!1 &95100003 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8053941342616619678, guid: 84d73402f3f3840ad91d4677612144bc, type: 3}
+  m_PrefabInstance: {fileID: 1526005838}
+  m_PrefabAsset: {fileID: 0}
+--- !u!210 &95100002
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 95100003}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: -1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

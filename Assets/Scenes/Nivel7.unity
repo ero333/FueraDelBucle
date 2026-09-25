@@ -3837,6 +3837,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1660098608}
     - target: {fileID: 6384676788775248325, guid: 8c7312d2a1478ff4387333b337c8bcc5, type: 3}
+      propertyPath: caminosOcultos.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6384676788775248325, guid: 8c7312d2a1478ff4387333b337c8bcc5, type: 3}
+      propertyPath: 'caminosOcultos.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1660098608}
+    - target: {fileID: 6271494476255040596, guid: 8c7312d2a1478ff4387333b337c8bcc5, type: 3}
+      propertyPath: caminoOculto
+      value: 
+      objectReference: {fileID: 1660098608}
+    - target: {fileID: 6384676788775248325, guid: 8c7312d2a1478ff4387333b337c8bcc5, type: 3}
       propertyPath: spriteActivado
       value: 
       objectReference: {fileID: 8030451996311251740, guid: 322fb989ecce84442ae6a1155725baa0, type: 3}
