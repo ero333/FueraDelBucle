@@ -3531,6 +3531,7 @@ MonoBehaviour:
   closeButton: {fileID: 1733513290}
   levelObjective: "\xA1Llega a la puerta para ganar!"
   pauseGameOnStart: 0
+  oscurecerFondo: 0.6
 --- !u!224 &747371480
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4431,7 +4432,10 @@ MonoBehaviour:
   cantidadEstrellas: 0
   vidaJugador: {fileID: 684962430}
   tagJugador: Player
-  retrasoAparicion: 1.2
+  dialogoPrincipal: {fileID: 0}
+  dialogoAlternativo: {fileID: 0}
+  usarCondicionEstrellas: 0
+  estrellasRequeridas: 1
   pausarAlPerder: 1
 --- !u!1001 &847493196
 PrefabInstance:
@@ -6582,6 +6586,7 @@ GameObject:
   - component: {fileID: 1733513292}
   - component: {fileID: 1733513290}
   - component: {fileID: 1733513294}
+  - component: {fileID: 1733513295}
   m_Layer: 5
   m_Name: Boton
   m_TagString: Untagged
@@ -6651,31 +6656,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1733513292}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 747371479}
-        m_TargetAssemblyTypeName: LevelUIManager, Assembly-CSharp
-        m_MethodName: CloseObjectivePanel
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 919160450}
-        m_TargetAssemblyTypeName: DialogoLog, Assembly-CSharp
-        m_MethodName: Interactuar
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1733513292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6727,6 +6708,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BotonVentana
   ventana: {fileID: 0}
+--- !u!114 &1733513295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1733513288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ea692458b22a3b4b81c34c1d5a11396, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PopupController
+  ventanaPopup: {fileID: 800307137}
 --- !u!1 &1767427682
 GameObject:
   m_ObjectHideFlags: 0
