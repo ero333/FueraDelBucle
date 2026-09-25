@@ -7033,6 +7033,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogoLog
   dialogodata: {fileID: 0}
   PanelDialogo: {fileID: 0}
+  popupObjetivo: {fileID: 0}
   dialogoTexto: {fileID: 0}
   NombreText: {fileID: 0}
   RetratoAnim: {fileID: 0}
@@ -10575,6 +10576,10 @@ PrefabInstance:
       propertyPath: dialogoTexto
       value: 
       objectReference: {fileID: 1764350389}
+    - target: {fileID: 2627796686816019753, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+      propertyPath: popupObjetivo
+      value: 
+      objectReference: {fileID: 890794179}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

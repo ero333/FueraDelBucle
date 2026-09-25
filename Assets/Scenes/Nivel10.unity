@@ -2521,6 +2521,7 @@ GameObject:
   - component: {fileID: 311667136}
   - component: {fileID: 311667137}
   - component: {fileID: 311667135}
+  - component: {fileID: 311667140}
   m_Layer: 5
   m_Name: Boton
   m_TagString: Untagged
@@ -2654,6 +2655,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -21.1}
   m_SizeDelta: {x: 179, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &311667140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 311667134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ea692458b22a3b4b81c34c1d5a11396, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PopupController
+  ventanaPopup: {fileID: 310425653}
 --- !u!1 &314055047
 GameObject:
   m_ObjectHideFlags: 0
