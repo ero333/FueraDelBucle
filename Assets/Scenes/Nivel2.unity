@@ -2111,6 +2111,7 @@ GameObject:
   - component: {fileID: 392561690}
   - component: {fileID: 392561692}
   - component: {fileID: 392561691}
+  - component: {fileID: 392561693}
   m_Layer: 5
   m_Name: Contenedor
   m_TagString: Untagged
@@ -2176,6 +2177,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 392561689}
   m_CullTransparentMesh: 1
+--- !u!114 &392561693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 392561689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ea692458b22a3b4b81c34c1d5a11396, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PopupController
+  ventanaPopup: {fileID: 1484578552}
 --- !u!1 &397489926
 GameObject:
   m_ObjectHideFlags: 0
@@ -4500,6 +4514,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5779546442867524048, guid: 69e3b98965fa1de48a1afda1361dfc53, type: 3}
   m_PrefabInstance: {fileID: 1110545080}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1120100529 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3738495174165191804, guid: dfb8c8748f72de24aabe6c25f2418dc8, type: 3}
+  m_PrefabInstance: {fileID: 2061597339}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1120100534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1120100529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ea692458b22a3b4b81c34c1d5a11396, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PopupController
+  ventanaPopup: {fileID: 2061597344}
 --- !u!1 &1168962547
 GameObject:
   m_ObjectHideFlags: 0
@@ -7094,7 +7126,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3738495174165191804, guid: dfb8c8748f72de24aabe6c25f2418dc8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1120100534}
   m_SourcePrefab: {fileID: 100100000, guid: dfb8c8748f72de24aabe6c25f2418dc8, type: 3}
 --- !u!114 &2061597340 stripped
 MonoBehaviour:
