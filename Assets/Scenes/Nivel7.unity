@@ -3837,6 +3837,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1660098608}
     - target: {fileID: 6384676788775248325, guid: 8c7312d2a1478ff4387333b337c8bcc5, type: 3}
+      propertyPath: spriteActivado
+      value: 
+      objectReference: {fileID: 8030451996311251740, guid: 322fb989ecce84442ae6a1155725baa0, type: 3}
+    - target: {fileID: 6384676788775248325, guid: 8c7312d2a1478ff4387333b337c8bcc5, type: 3}
       propertyPath: caminosOcultos.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -3844,14 +3848,6 @@ PrefabInstance:
       propertyPath: 'caminosOcultos.Array.data[0]'
       value: 
       objectReference: {fileID: 1660098608}
-    - target: {fileID: 6271494476255040596, guid: 8c7312d2a1478ff4387333b337c8bcc5, type: 3}
-      propertyPath: caminoOculto
-      value: 
-      objectReference: {fileID: 1660098608}
-    - target: {fileID: 6384676788775248325, guid: 8c7312d2a1478ff4387333b337c8bcc5, type: 3}
-      propertyPath: spriteActivado
-      value: 
-      objectReference: {fileID: 8030451996311251740, guid: 322fb989ecce84442ae6a1155725baa0, type: 3}
     - target: {fileID: 6766277027171057034, guid: 8c7312d2a1478ff4387333b337c8bcc5, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -6617,6 +6613,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 297474455985373684, guid: 524fc72c1c47fc2408c829723567895a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 297474455985373684, guid: 524fc72c1c47fc2408c829723567895a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 297474455985373684, guid: 524fc72c1c47fc2408c829723567895a, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 297474455985373684, guid: 524fc72c1c47fc2408c829723567895a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 12.21
       objectReference: {fileID: 0}
@@ -6673,8 +6681,16 @@ PrefabInstance:
       value: 3.348898
       objectReference: {fileID: 0}
     - target: {fileID: 8802832504970800525, guid: 524fc72c1c47fc2408c829723567895a, type: 3}
+      propertyPath: distancia
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8802832504970800525, guid: 524fc72c1c47fc2408c829723567895a, type: 3}
       propertyPath: velocidad
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8802832504970800525, guid: 524fc72c1c47fc2408c829723567895a, type: 3}
+      propertyPath: seguirJugador
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8802832504970800525, guid: 524fc72c1c47fc2408c829723567895a, type: 3}
       propertyPath: controladorSuelo
@@ -7278,7 +7294,7 @@ Transform:
   m_GameObject: {fileID: 1332836881}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.6, y: 3.19, z: 0}
+  m_LocalPosition: {x: 3.54, y: 2.45, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9555,7 +9571,7 @@ Transform:
   m_GameObject: {fileID: 1945701388}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.6, y: 3.19, z: 0}
+  m_LocalPosition: {x: 3.54, y: 2.45, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9786,6 +9802,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 297474455985373684, guid: 524fc72c1c47fc2408c829723567895a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 297474455985373684, guid: 524fc72c1c47fc2408c829723567895a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 297474455985373684, guid: 524fc72c1c47fc2408c829723567895a, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 297474455985373684, guid: 524fc72c1c47fc2408c829723567895a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 70.68
       objectReference: {fileID: 0}
@@ -9842,8 +9870,16 @@ PrefabInstance:
       value: 3.348898
       objectReference: {fileID: 0}
     - target: {fileID: 8802832504970800525, guid: 524fc72c1c47fc2408c829723567895a, type: 3}
+      propertyPath: distancia
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8802832504970800525, guid: 524fc72c1c47fc2408c829723567895a, type: 3}
       propertyPath: velocidad
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8802832504970800525, guid: 524fc72c1c47fc2408c829723567895a, type: 3}
+      propertyPath: seguirJugador
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8802832504970800525, guid: 524fc72c1c47fc2408c829723567895a, type: 3}
       propertyPath: controladorSuelo
@@ -10378,6 +10414,7 @@ MonoBehaviour:
   closeButton: {fileID: 2092322005}
   levelObjective: "\xA1Llega a la puerta para ganar!"
   pauseGameOnStart: 0
+  oscurecerFondo: 0.6
 --- !u!224 &2110174116
 RectTransform:
   m_ObjectHideFlags: 0
