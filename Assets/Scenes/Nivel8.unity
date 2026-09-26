@@ -3780,9 +3780,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::musicmute
   musicSource: {fileID: 0}
-  buttonImage: {fileID: 758997869}
-  musicOnSprite: {fileID: 470755866585630322, guid: 1873211ea7937f84eaf70108e8e73e22, type: 3}
-  musicOffSprite: {fileID: 6432182236301886643, guid: a408bde86c5653d49bddb53759e4422e, type: 3}
+  buttonImage: {fileID: 0}
+  musicOnSprite: {fileID: 0}
+  musicOffSprite: {fileID: 0}
 --- !u!1001 &790707702
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4971,8 +4971,16 @@ PrefabInstance:
       value: 3.348898
       objectReference: {fileID: 0}
     - target: {fileID: 8802832504970800525, guid: 524fc72c1c47fc2408c829723567895a, type: 3}
+      propertyPath: distancia
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8802832504970800525, guid: 524fc72c1c47fc2408c829723567895a, type: 3}
       propertyPath: velocidad
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8802832504970800525, guid: 524fc72c1c47fc2408c829723567895a, type: 3}
+      propertyPath: seguirJugador
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8802832504970800525, guid: 524fc72c1c47fc2408c829723567895a, type: 3}
       propertyPath: controladorSuelo
@@ -4981,14 +4989,6 @@ PrefabInstance:
     - target: {fileID: 8802832504970800525, guid: 524fc72c1c47fc2408c829723567895a, type: 3}
       propertyPath: velocidadPersecucion
       value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8802832504970800525, guid: 524fc72c1c47fc2408c829723567895a, type: 3}
-      propertyPath: seguirJugador
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8802832504970800525, guid: 524fc72c1c47fc2408c829723567895a, type: 3}
-      propertyPath: distancia
-      value: 0.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5395,8 +5395,16 @@ PrefabInstance:
       value: 3.348898
       objectReference: {fileID: 0}
     - target: {fileID: 8802832504970800525, guid: 524fc72c1c47fc2408c829723567895a, type: 3}
+      propertyPath: distancia
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8802832504970800525, guid: 524fc72c1c47fc2408c829723567895a, type: 3}
       propertyPath: velocidad
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8802832504970800525, guid: 524fc72c1c47fc2408c829723567895a, type: 3}
+      propertyPath: seguirJugador
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8802832504970800525, guid: 524fc72c1c47fc2408c829723567895a, type: 3}
       propertyPath: controladorSuelo
@@ -5405,14 +5413,6 @@ PrefabInstance:
     - target: {fileID: 8802832504970800525, guid: 524fc72c1c47fc2408c829723567895a, type: 3}
       propertyPath: velocidadPersecucion
       value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8802832504970800525, guid: 524fc72c1c47fc2408c829723567895a, type: 3}
-      propertyPath: seguirJugador
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8802832504970800525, guid: 524fc72c1c47fc2408c829723567895a, type: 3}
-      propertyPath: distancia
-      value: 0.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7728,11 +7728,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RepeaterSegundo
   controladorDisparo: {fileID: 6595700}
   distanciaLinea: 12
-  toleranciaVertical: 2.5
   capaJugador:
     serializedVersion: 2
     m_Bits: 0
   jugadorEnRango: 0
+  alturaMaxima: 6.38
+  margenHorizontal: 3.61
+  distanciaBusquedaPlataforma: 19.3
   proyectil: {fileID: 7323252962293113382, guid: 3159d34860195f0498ee5faf79f19dc0, type: 3}
   tiempoEntreDisparos: 1.5
   dispararSiempre: 0
@@ -9776,11 +9778,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RepeaterSegundo
   controladorDisparo: {fileID: 403648724}
   distanciaLinea: 12
-  toleranciaVertical: 2.5
   capaJugador:
     serializedVersion: 2
     m_Bits: 0
   jugadorEnRango: 0
+  alturaMaxima: 10
+  margenHorizontal: 0
+  distanciaBusquedaPlataforma: 10
   proyectil: {fileID: 7323252962293113382, guid: 3159d34860195f0498ee5faf79f19dc0, type: 3}
   tiempoEntreDisparos: 1.5
   dispararSiempre: 0

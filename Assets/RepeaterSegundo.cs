@@ -4,11 +4,18 @@ public class RepeaterSegundo : MonoBehaviour
 {
     [Header("DISPARO")]
     public Transform controladorDisparo;
+    [Tooltip("Alcance horizontal a cada lado del enemigo cuando NO hay plataforma debajo.")]
     public float distanciaLinea = 10f;
-    [Tooltip("Altura máxima a la que detecta al jugador verticalmente (para que no dispare si está muy arriba/abajo).")]
-    public float toleranciaVertical = 2.5f;
     public LayerMask capaJugador;
     public bool jugadorEnRango;
+
+    [Header("Rango 360°")]
+    [Tooltip("Altura máxima, hacia arriba y hacia abajo del cañón, a la que dispara al jugador.")]
+    public float alturaMaxima = 10f;
+    [Tooltip("Metros extra a cada lado de las puntas de la plataforma (0 = justo de punta a punta). Con un valor negativo el rango se achica.")]
+    public float margenHorizontal = 0f;
+    [Tooltip("Hasta dónde busca la plataforma que está debajo del enemigo. Su ancho, de punta a punta, es el rango horizontal.")]
+    public float distanciaBusquedaPlataforma = 10f;
 
     [Header("Configuración de Disparo")]
     public GameObject proyectil;
@@ -29,6 +36,7 @@ public class RepeaterSegundo : MonoBehaviour
 
     private float cronometro;
     private Transform jugador;
+    private Collider2D colliderJugador;
 
     private Vector3 escalaOriginal;
 
@@ -78,24 +86,7 @@ public class RepeaterSegundo : MonoBehaviour
         }
         else if (jugador != null)
         {
-            Vector3 origen = controladorDisparo.position;
-            Vector3 posJugador = jugador.position;
-
-            // Drenaje de distancia en X y en Y
-            float diferenciaX = posJugador.x - origen.x;
-            float diferenciaY = Mathf.Abs(posJugador.y - origen.y);
-
-            // 1. ¿Está en el rango de altura aceptable?
-            bool enAlturaCorrecta = diferenciaY <= toleranciaVertical;
-
-            // 2. ¿El jugador está ENFRENTE de la mirada del enemigo?
-            bool estaEnfrente = mirandoDerecha ? (diferenciaX > 0f) : (diferenciaX < 0f);
-
-            // 3. ¿Está dentro de la distancia máxima de disparo?
-            bool estaEnDistancia = Mathf.Abs(diferenciaX) <= distanciaLinea;
-
-            // Solo entra en rango si cumple las 3 condiciones
-            jugadorEnRango = enAlturaCorrecta && estaEnfrente && estaEnDistancia;
+            jugadorEnRango = JugadorEnRango360();
         }
         else
         {
@@ -137,7 +128,96 @@ public class RepeaterSegundo : MonoBehaviour
         if (objetivo != null)
         {
             jugador = objetivo.transform;
+            colliderJugador = objetivo.GetComponentInChildren<Collider2D>();
         }
+    }
+
+
+    // =====================================================
+    // RANGO 360°
+    // =====================================================
+
+    // Punto al que se apunta: el centro del jugador (no sus pies).
+    private Vector3 PuntoDeApuntado()
+    {
+        return colliderJugador != null ? colliderJugador.bounds.center : jugador.position;
+    }
+
+    // El jugador está en rango si está entre las dos puntas de la plataforma que hay
+    // debajo del enemigo (sin importar si está arriba o abajo) y dentro de la altura máxima.
+    private bool JugadorEnRango360()
+    {
+        Vector3 origen = controladorDisparo.position;
+        Vector3 objetivo = PuntoDeApuntado();
+
+        ObtenerLimitesHorizontales(origen, out float minX, out float maxX);
+
+        bool dentroDelTramo = objetivo.x >= minX && objetivo.x <= maxX;
+        bool dentroDeLaAltura = Mathf.Abs(objetivo.y - origen.y) <= alturaMaxima;
+
+        return dentroDelTramo && dentroDeLaAltura;
+    }
+
+    // Borde izquierdo y derecho de la plataforma de abajo. Si no hay ninguna,
+    // se usa distanciaLinea a cada lado del enemigo.
+    private void ObtenerLimitesHorizontales(Vector3 origen, out float minX, out float maxX)
+    {
+        Collider2D plataforma = BuscarPlataformaDebajo(origen);
+
+        if (plataforma != null)
+        {
+            Bounds limites = plataforma.bounds;
+            minX = limites.min.x;
+            maxX = limites.max.x;
+        }
+        else
+        {
+            minX = origen.x - distanciaLinea;
+            maxX = origen.x + distanciaLinea;
+        }
+
+        minX -= margenHorizontal;
+        maxX += margenHorizontal;
+
+        // Un margen muy negativo no puede dar un rango invertido.
+        if (minX > maxX)
+        {
+            minX = maxX = (minX + maxX) * 0.5f;
+        }
+    }
+
+    // Primer collider "de plataforma" hacia abajo: se ignoran triggers, el propio enemigo,
+    // al jugador y todo lo que tenga un Rigidbody2D dinámico (otros enemigos, objetos sueltos).
+    private Collider2D BuscarPlataformaDebajo(Vector3 origen)
+    {
+        RaycastHit2D[] impactos = Physics2D.RaycastAll(origen, Vector2.down, distanciaBusquedaPlataforma);
+
+        Collider2D masCercano = null;
+        float distanciaMinima = float.MaxValue;
+
+        for (int i = 0; i < impactos.Length; i++)
+        {
+            Collider2D col = impactos[i].collider;
+
+            if (col == null || col.isTrigger)
+                continue;
+
+            if (col.transform.IsChildOf(transform) || col.CompareTag(tagJugador))
+                continue;
+
+            Rigidbody2D rb = col.attachedRigidbody;
+
+            if (rb != null && rb.bodyType == RigidbodyType2D.Dynamic)
+                continue;
+
+            if (impactos[i].distance < distanciaMinima)
+            {
+                distanciaMinima = impactos[i].distance;
+                masCercano = col;
+            }
+        }
+
+        return masCercano;
     }
 
 
@@ -210,19 +290,22 @@ public class RepeaterSegundo : MonoBehaviour
             return;
 
 
-        Quaternion rotacion;
+        // Dirección del disparo: hacia el jugador, en cualquier ángulo. Si dispara "siempre"
+        // (sin depender del jugador) sale en horizontal, hacia donde mira el enemigo.
+        Vector2 direccion = mirandoDerecha ? Vector2.right : Vector2.left;
 
+        if (!dispararSiempre && jugador != null)
+        {
+            Vector2 haciaJugador = PuntoDeApuntado() - controladorDisparo.position;
 
-        if (mirandoDerecha)
-        {
-            // Proyectil avanza hacia su Vector2.right
-            rotacion = Quaternion.Euler(0f, 0f, 0f);
+            if (haciaJugador.sqrMagnitude > 0.0001f)
+                direccion = haciaJugador;
         }
-        else
-        {
-            // Giramos el prefab 180° para que apunte hacia la izquierda
-            rotacion = Quaternion.Euler(0f, 0f, 180f);
-        }
+
+        // El proyectil avanza hacia su Vector2.right: rotándolo al crearlo, vuela recto
+        // en esa dirección (no persigue, la dirección queda fija al disparar).
+        float angulo = Mathf.Atan2(direccion.y, direccion.x) * Mathf.Rad2Deg;
+        Quaternion rotacion = Quaternion.Euler(0f, 0f, angulo);
 
 
         GameObject copia = Instantiate(
@@ -259,13 +342,14 @@ public class RepeaterSegundo : MonoBehaviour
             return;
 
 
-        Vector3 direccion = mirandoDerecha ? Vector3.right : Vector3.left;
+        // Rango 360°: de punta a punta de la plataforma de abajo, y hasta alturaMaxima arriba/abajo.
+        ObtenerLimitesHorizontales(controladorDisparo.position, out float minX, out float maxX);
 
         Gizmos.color = Color.red;
 
-        Gizmos.DrawLine(
-            controladorDisparo.position,
-            controladorDisparo.position + direccion * distanciaLinea
+        Gizmos.DrawWireCube(
+            new Vector3((minX + maxX) * 0.5f, controladorDisparo.position.y, controladorDisparo.position.z),
+            new Vector3(maxX - minX, alturaMaxima * 2f, 0f)
         );
     }
 }
