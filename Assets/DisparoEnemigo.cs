@@ -21,6 +21,8 @@ public class DisparoEnemigo : MonoBehaviour
     private Animator anim;
     private bool estamuerto = false;
 
+    private Rigidbody2D rb;
+    private Collider2D col2D;
     private void Start()
     {
 
@@ -39,6 +41,8 @@ public class DisparoEnemigo : MonoBehaviour
 
     private void Update()
     {
+        if (estamuerto) return;
+
         if (controladorDisparo == null) return;
 
         if (dispararSiempre)
@@ -71,7 +75,7 @@ public class DisparoEnemigo : MonoBehaviour
         }
         else
         {
-            cronometro = 0f; 
+            cronometro = 0f;
         }
     }
 
@@ -94,20 +98,20 @@ public class DisparoEnemigo : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D colision)
     {
-        
+
         if (colision.gameObject.CompareTag("Player"))
         {
-            
+
             ContactPoint2D contacto = colision.GetContact(0);
 
-            
+
             if (contacto.normal.y <= -0.5f)
             {
 
 
                 StartCoroutine(DestruirEnemigo());
 
-                
+
             }
         }
     }
@@ -115,6 +119,9 @@ public class DisparoEnemigo : MonoBehaviour
     IEnumerator DestruirEnemigo()
     {
         estamuerto = true;
+
+        if (col2D != null) col2D.enabled = false;
+        if (rb != null) rb.simulated = false;
 
         anim.SetTrigger("muerteRepeater");
 
