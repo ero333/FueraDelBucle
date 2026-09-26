@@ -252,7 +252,8 @@ public class DialogoLog : MonoBehaviour
 
     void ActualizarVisibilidadPorPausa()
     {
-        bool debeOcultarse = DialogoActivo && (PauseManager.GameIsPaused || PauseManager.CerrandoEscena);
+        bool notaAbierta = LevelUIManager.PlacaAbierta || (popupObjetivo != null && popupObjetivo.EstaVisible());
+        bool debeOcultarse = DialogoActivo && (PauseManager.GameIsPaused || PauseManager.CerrandoEscena || notaAbierta);
         if (debeOcultarse == ocultoPorPausa) return;
         MostrarPanel(!debeOcultarse);
     }
