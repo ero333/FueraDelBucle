@@ -19,7 +19,6 @@ public class DialogoAparicion : MonoBehaviour
     public bool soloUnaVez = true;
 
     private Transform jugador;
-    private PopupController popup;
     private bool yaSeMostro;
     private float tiempoInicio;
 
@@ -57,11 +56,7 @@ public class DialogoAparicion : MonoBehaviour
 
     private bool NotaDeObjetivoAbierta()
     {
-        if (LevelUIManager.PlacaAbierta) return true;
-
-        if (popup == null) popup = FindFirstObjectByType<PopupController>();
-
-        return popup != null && popup.EstaVisible();
+        return LevelUIManager.PlacaAbierta;
     }
 
     private void BuscarJugador()
