@@ -2569,6 +2569,7 @@ GameObject:
   - component: {fileID: 682026278}
   - component: {fileID: 682026277}
   - component: {fileID: 682026276}
+  - component: {fileID: 682026280}
   m_Layer: 5
   m_Name: Mute
   m_TagString: Untagged
@@ -2602,7 +2603,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 682026274}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bdcfc4241d5837f44aa2b9ff80c7b6bd, type: 3}
   m_Name: 
@@ -2654,8 +2655,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 682026276}
-        m_TargetAssemblyTypeName: MusicaMute, Assembly-CSharp
+      - m_Target: {fileID: 682026280}
+        m_TargetAssemblyTypeName: musicmute, Assembly-CSharp
         m_MethodName: ToggleMusic
         m_Mode: 1
         m_Arguments:
@@ -2704,6 +2705,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 682026274}
   m_CullTransparentMesh: 1
+--- !u!114 &682026280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 682026274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0484a426e28e6ac4e9137f9dc00178c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::musicmute
+  musicSource: {fileID: 0}
+  buttonImage: {fileID: 682026278}
+  musicOnSprite: {fileID: 470755866585630322, guid: 1873211ea7937f84eaf70108e8e73e22, type: 3}
+  musicOffSprite: {fileID: 6432182236301886643, guid: a408bde86c5653d49bddb53759e4422e, type: 3}
 --- !u!1001 &684962427
 PrefabInstance:
   m_ObjectHideFlags: 0
