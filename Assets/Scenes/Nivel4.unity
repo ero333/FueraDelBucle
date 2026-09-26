@@ -6374,6 +6374,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PopupController
   ventanaPopup: {fileID: 1652873843}
+  teclaCerrar: 13
 --- !u!4 &943347665 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2994144655100074199, guid: 3638322d25fb3914bb5a32d4796af31b, type: 3}
@@ -9719,6 +9720,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   jugadorEnRango: 0
+  alturaMaxima: 10
+  margenHorizontal: 0
+  distanciaBusquedaPlataforma: 10
   proyectil: {fileID: 7323252962293113382, guid: 3159d34860195f0498ee5faf79f19dc0, type: 3}
   tiempoEntreDisparos: 4
   dispararSiempre: 0
@@ -10077,6 +10081,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   jugadorEnRango: 0
+  alturaMaxima: 10
+  margenHorizontal: 0
+  distanciaBusquedaPlataforma: 10
   proyectil: {fileID: 7323252962293113382, guid: 3159d34860195f0498ee5faf79f19dc0, type: 3}
   tiempoEntreDisparos: 1.5
   dispararSiempre: 0
