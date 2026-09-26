@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PopupController : MonoBehaviour
@@ -9,22 +10,45 @@ public class PopupController : MonoBehaviour
 
     public bool esPopupInicial { get; set; } = true;
 
+    public GameObject Ventana { get { return ventanaPopup; } }
+
+    [Header("Tecla para cerrar la nota")]
+    public KeyCode teclaCerrar = KeyCode.Return;
+
+
     void Start()
     {
-        if (ventanaPopup != null)
+        if (ventanaPopup == null) return;
+
+        if (EsCuadroDeDialogo())
         {
-            ventanaPopup.SetActive(true);
+            Debug.LogWarning("PopupController: la ventana asignada en " + gameObject.name +
+                " es el cuadro de dialogo, no la nota de objetivo. Lo maneja DialogoLog, asi que este controlador se apaga.", this);
+            enabled = false;
+            return;
         }
+
+        ventanaPopup.SetActive(true);
+    }
+
+
+    private bool EsCuadroDeDialogo()
+    {
+        DialogoLog[] dialogos = FindObjectsByType<DialogoLog>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+
+        for (int i = 0; i < dialogos.Length; i++)
+        {
+            if (dialogos[i].PanelDialogo == ventanaPopup) return true;
+        }
+
+        return false;
     }
 
     void Update()
     {
         if (ventanaPopup != null && ventanaPopup.activeSelf)
         {
-            if (Input.GetKeyDown(KeyCode.X) ||
-                Input.GetKeyDown(KeyCode.E) ||
-                Input.GetKeyDown(KeyCode.Return) ||
-                Input.GetKeyDown(KeyCode.KeypadEnter))
+            if (Input.GetKeyDown(teclaCerrar) || Input.GetKeyDown(KeyCode.KeypadEnter))
             {
                 CerrarVentana();
             }

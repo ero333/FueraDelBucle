@@ -27,7 +27,7 @@ public class DialogoLog : MonoBehaviour
     private bool EstaTypeando, DialogoActivo;
     private CanvasGroup grupoPanel;
     private bool ocultoPorPausa;
-    private bool esperandoParaProcesarInput = false;
+    private float tiempoFinCooldown;
 
     // Cajas de diálogo de la escena. PlayerPhysics pregunta por HayDialogoActivo
     // para bloquear el movimiento del jugador mientras haya un diálogo en pantalla.
@@ -53,9 +53,11 @@ public class DialogoLog : MonoBehaviour
     private void Awake()
     {
         // Buscar el PopupController automáticamente si no está asignado
-        if (popupObjetivo == null)
+        if (popupObjetivo == null) return;
+
+        if (popupObjetivo.Ventana == PanelDialogo)
         {
-            popupObjetivo = FindFirstObjectByType<PopupController>();
+            popupObjetivo = null;
         }
     }
 
@@ -97,17 +99,14 @@ public class DialogoLog : MonoBehaviour
         {
             popupObjetivo.esPopupInicial = false;
             // Iniciamos el diálogo pero bloqueamos el Input durante el frame del cierre
-            StartCoroutine(IniciarDialogoConCooldown());
+            IniciarDialogoConCooldown();
         }
     }
 
-    private IEnumerator IniciarDialogoConCooldown()
+    private void IniciarDialogoConCooldown()
     {
-        esperandoParaProcesarInput = true;
+        tiempoFinCooldown = Time.unscaledTime + 0.15f;
         EmpezarDialog();
-        yield return null;
-        yield return new WaitForEndOfFrame();
-        esperandoParaProcesarInput = false;
     }
 
     private void Update()
@@ -115,7 +114,7 @@ public class DialogoLog : MonoBehaviour
         ActualizarVisibilidadPorPausa();
 
         // 1. Ignorar entrada si el juego está pausado, el diálogo está inactivo o en cooldown de cierre
-        if (!DialogoActivo || PauseManager.GameIsPaused || esperandoParaProcesarInput) return;
+        if (!DialogoActivo || PauseManager.GameIsPaused || (Time.unscaledTime < tiempoFinCooldown)) return;
 
         // 2. Bloquear controles si el panel de objetivo sigue visible físicamente
         if (popupObjetivo != null && popupObjetivo.EstaVisible()) return;
@@ -128,9 +127,7 @@ public class DialogoLog : MonoBehaviour
         }
 
         // 4. Avanzar texto o pasar a la siguiente línea con Enter / KeypadEnter / E
-        if (Input.GetKeyDown(teclaAvanzar)
-            || Input.GetKeyDown(KeyCode.KeypadEnter)
-            || Input.GetKeyDown(teclaAvanzarAlternativa))
+        if (Input.GetKeyDown(teclaAvanzar) || Input.GetKeyDown(teclaAvanzarAlternativa))
         {
             Interactuar();
         }
@@ -138,7 +135,7 @@ public class DialogoLog : MonoBehaviour
 
     public void Interactuar()
     {
-        if (PauseManager.GameIsPaused || esperandoParaProcesarInput) return;
+        if (PauseManager.GameIsPaused || (Time.unscaledTime < tiempoFinCooldown)) return;
 
         if (DialogoActivo)
         {
