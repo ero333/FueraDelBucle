@@ -4982,6 +4982,14 @@ PrefabInstance:
       propertyPath: velocidadPersecucion
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 8802832504970800525, guid: 524fc72c1c47fc2408c829723567895a, type: 3}
+      propertyPath: seguirJugador
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8802832504970800525, guid: 524fc72c1c47fc2408c829723567895a, type: 3}
+      propertyPath: distancia
+      value: 0.8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -5397,6 +5405,14 @@ PrefabInstance:
     - target: {fileID: 8802832504970800525, guid: 524fc72c1c47fc2408c829723567895a, type: 3}
       propertyPath: velocidadPersecucion
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8802832504970800525, guid: 524fc72c1c47fc2408c829723567895a, type: 3}
+      propertyPath: seguirJugador
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8802832504970800525, guid: 524fc72c1c47fc2408c829723567895a, type: 3}
+      propertyPath: distancia
+      value: 0.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7833,7 +7849,7 @@ Transform:
   m_GameObject: {fileID: 1505867016}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.6, y: 3.19, z: 0}
+  m_LocalPosition: {x: 3.54, y: 2.45, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9667,7 +9683,7 @@ Transform:
   m_GameObject: {fileID: 1955132853}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.6, y: 3.19, z: 0}
+  m_LocalPosition: {x: 3.54, y: 2.45, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
