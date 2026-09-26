@@ -5,6 +5,8 @@ public class RepeaterSegundo : MonoBehaviour
     [Header("DISPARO")]
     public Transform controladorDisparo;
     public float distanciaLinea = 10f;
+    [Tooltip("Altura máxima a la que detecta al jugador verticalmente (para que no dispare si está muy arriba/abajo).")]
+    public float toleranciaVertical = 2.5f;
     public LayerMask capaJugador;
     public bool jugadorEnRango;
 
@@ -13,7 +15,7 @@ public class RepeaterSegundo : MonoBehaviour
     public float tiempoEntreDisparos = 1.5f;
 
     [Header("Comportamiento")]
-    [Tooltip("Si está activado, dispara siempre sin necesitar raycast.")]
+    [Tooltip("Si está activado, dispara siempre sin depender del jugador.")]
     public bool dispararSiempre = false;
 
     [Header("Giro hacia el jugador")]
@@ -45,6 +47,15 @@ public class RepeaterSegundo : MonoBehaviour
     private void Update()
     {
         // ============================
+        // BUSCAR JUGADOR SI NO EXISTE
+        // ============================
+
+        if (jugador == null)
+        {
+            BuscarJugador();
+        }
+
+        // ============================
         // MIRAR AL JUGADOR
         // ============================
 
@@ -58,35 +69,37 @@ public class RepeaterSegundo : MonoBehaviour
 
 
         // ============================
-        // DETECCIÓN
+        // DETECCIÓN DEL JUGADOR
         // ============================
 
         if (dispararSiempre)
         {
             jugadorEnRango = true;
         }
+        else if (jugador != null)
+        {
+            Vector3 origen = controladorDisparo.position;
+            Vector3 posJugador = jugador.position;
+
+            // Drenaje de distancia en X y en Y
+            float diferenciaX = posJugador.x - origen.x;
+            float diferenciaY = Mathf.Abs(posJugador.y - origen.y);
+
+            // 1. ¿Está en el rango de altura aceptable?
+            bool enAlturaCorrecta = diferenciaY <= toleranciaVertical;
+
+            // 2. ¿El jugador está ENFRENTE de la mirada del enemigo?
+            bool estaEnfrente = mirandoDerecha ? (diferenciaX > 0f) : (diferenciaX < 0f);
+
+            // 3. ¿Está dentro de la distancia máxima de disparo?
+            bool estaEnDistancia = Mathf.Abs(diferenciaX) <= distanciaLinea;
+
+            // Solo entra en rango si cumple las 3 condiciones
+            jugadorEnRango = enAlturaCorrecta && estaEnfrente && estaEnDistancia;
+        }
         else
         {
-            Vector2 direccion = mirandoDerecha
-                ? Vector2.right
-                : Vector2.left;
-
-            bool originalSetting =
-                Physics2D.queriesStartInColliders;
-
-            Physics2D.queriesStartInColliders = false;
-
-            RaycastHit2D hit = Physics2D.Raycast(
-                controladorDisparo.position,
-                direccion,
-                distanciaLinea,
-                capaJugador
-            );
-
-            Physics2D.queriesStartInColliders =
-                originalSetting;
-
-            jugadorEnRango = hit.collider != null;
+            jugadorEnRango = false;
         }
 
 
@@ -107,6 +120,7 @@ public class RepeaterSegundo : MonoBehaviour
         }
         else
         {
+            // Reiniciar el cronómetro si el jugador se escapa/sale del rango
             cronometro = 0f;
         }
     }
@@ -118,8 +132,7 @@ public class RepeaterSegundo : MonoBehaviour
 
     private void BuscarJugador()
     {
-        GameObject objetivo =
-            GameObject.FindGameObjectWithTag(tagJugador);
+        GameObject objetivo = GameObject.FindGameObjectWithTag(tagJugador);
 
         if (objetivo != null)
         {
@@ -135,18 +148,11 @@ public class RepeaterSegundo : MonoBehaviour
     private void MirarAlJugador()
     {
         if (jugador == null)
-        {
-            BuscarJugador();
+            return;
 
-            if (jugador == null)
-                return;
-        }
+        float diferenciaX = jugador.position.x - transform.position.x;
 
-        float diferenciaX =
-            jugador.position.x - transform.position.x;
-
-        jugadorDetectado =
-            Mathf.Abs(diferenciaX) <= distanciaGiro;
+        jugadorDetectado = Mathf.Abs(diferenciaX) <= distanciaGiro;
 
         if (!jugadorDetectado)
             return;
@@ -175,7 +181,6 @@ public class RepeaterSegundo : MonoBehaviour
 
         Vector3 escala = escalaOriginal;
 
-        // IMPORTANTE:
         // En tu rig la orientación original está invertida.
         escala.x = -Mathf.Abs(escalaOriginal.x);
 
@@ -201,8 +206,7 @@ public class RepeaterSegundo : MonoBehaviour
 
     private void Disparar()
     {
-        if (proyectil == null ||
-            controladorDisparo == null)
+        if (proyectil == null || controladorDisparo == null)
             return;
 
 
@@ -211,13 +215,12 @@ public class RepeaterSegundo : MonoBehaviour
 
         if (mirandoDerecha)
         {
-            // Proyectil.cs avanza hacia su Vector2.right
+            // Proyectil avanza hacia su Vector2.right
             rotacion = Quaternion.Euler(0f, 0f, 0f);
         }
         else
         {
-            // Giramos el prefab 180° para que su
-            // Vector2.right apunte hacia la izquierda
+            // Giramos el prefab 180° para que apunte hacia la izquierda
             rotacion = Quaternion.Euler(0f, 0f, 180f);
         }
 
@@ -238,16 +241,16 @@ public class RepeaterSegundo : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        Vector3 puntoOrigen = controladorDisparo != null ? controladorDisparo.position : transform.position;
+
         if (girarHaciaJugador)
         {
             Gizmos.color = Color.yellow;
 
+            // La línea se moverá a donde muevas el controladorDisparo
             Gizmos.DrawLine(
-                transform.position +
-                Vector3.left * distanciaGiro,
-
-                transform.position +
-                Vector3.right * distanciaGiro
+                puntoOrigen + Vector3.left * distanciaGiro,
+                puntoOrigen + Vector3.right * distanciaGiro
             );
         }
 
@@ -256,19 +259,13 @@ public class RepeaterSegundo : MonoBehaviour
             return;
 
 
-        Vector3 direccion =
-            mirandoDerecha
-            ? Vector3.right
-            : Vector3.left;
-
+        Vector3 direccion = mirandoDerecha ? Vector3.right : Vector3.left;
 
         Gizmos.color = Color.red;
 
         Gizmos.DrawLine(
             controladorDisparo.position,
-
-            controladorDisparo.position +
-            direccion * distanciaLinea
+            controladorDisparo.position + direccion * distanciaLinea
         );
     }
 }
