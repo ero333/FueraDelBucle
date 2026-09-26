@@ -283,6 +283,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 3c6f05a3e25c63e45b0d39d54961793b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3851595909491945033}
+    - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 3c6f05a3e25c63e45b0d39d54961793b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1319918933558631915}
   m_SourcePrefab: {fileID: 4843985084834002234, guid: 3c6f05a3e25c63e45b0d39d54961793b, type: 3}
 --- !u!4 &1111578996011108372 stripped
 Transform:
@@ -472,3 +475,31 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1319918933558631915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3719803436027760572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 502005573e7a7b143b75c4e64e7f3f83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RepeaterSegundo
+  controladorDisparo: {fileID: 0}
+  distanciaLinea: 12
+  capaJugador:
+    serializedVersion: 2
+    m_Bits: 0
+  jugadorEnRango: 0
+  alturaMaxima: 6.38
+  margenHorizontal: 3.61
+  distanciaBusquedaPlataforma: 19.3
+  proyectil: {fileID: 7323252962293113382, guid: 3159d34860195f0498ee5faf79f19dc0, type: 3}
+  tiempoEntreDisparos: 0.8
+  dispararSiempre: 0
+  girarHaciaJugador: 1
+  distanciaGiro: 12
+  tagJugador: Player
+  jugadorDetectado: 0
