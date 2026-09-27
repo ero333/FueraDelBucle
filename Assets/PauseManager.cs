@@ -14,14 +14,19 @@ public class PauseManager : MonoBehaviour
     [Header("Nombre exacto de la escena del menú principal")]
     public string nombreEscenaMenu = "MenuPrincipal"; // Cambiá esto por el nombre real de tu escena
 
+    [Header("Teclas para abrir y cerrar la pausa")]
+    public KeyCode teclaPausa = KeyCode.Escape;
+    public KeyCode teclaPausaAlternativa = KeyCode.Tab;
+
     void Awake()
     {
         CerrandoEscena = false;
+        GameIsPaused = false;
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(teclaPausa) || Input.GetKeyDown(teclaPausaAlternativa))
         {
             if (GameIsPaused)
                 Resume();
