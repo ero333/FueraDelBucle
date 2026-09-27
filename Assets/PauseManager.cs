@@ -32,13 +32,25 @@ public class PauseManager : MonoBehaviour
 
     public void Pause()
     {
+        if (GameIsPaused) return;
+        if (LevelUIManager.PlacaAbierta) return;
+
+        if (pauseMenuUI == null)
+        {
+            Debug.LogWarning("PauseManager: falta asignar el menu de pausa en " + gameObject.name, this);
+            return;
+        }
+
         pauseMenuUI.SetActive(true);
+        pauseMenuUI.transform.SetAsLastSibling();
         Time.timeScale = 0f;
         GameIsPaused = true;
     }
 
     public void Resume()
     {
+        if (pauseMenuUI == null) return;
+
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
