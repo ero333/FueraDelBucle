@@ -4542,7 +4542,7 @@ Transform:
   m_GameObject: {fileID: 784553793}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 23.03, y: 3.47, z: 0}
+  m_LocalPosition: {x: 21.24, y: 3.47, z: 0}
   m_LocalScale: {x: 3.2705, y: 2.721056, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4986,7 +4986,7 @@ Transform:
   m_GameObject: {fileID: 806825819}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.34, y: 2.7699997, z: 0}
+  m_LocalPosition: {x: 14.1, y: 3.42, z: 0}
   m_LocalScale: {x: 3.2705, y: 2.721056, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5665,7 +5665,7 @@ Transform:
   m_GameObject: {fileID: 872595269}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.55, y: -2.39, z: 0}
+  m_LocalPosition: {x: 16.55, y: -2.93, z: 0}
   m_LocalScale: {x: 3.2705, y: 2.721056, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8652,7 +8652,7 @@ MonoBehaviour:
   duracionPhase: 2
   capaParedesAtravesables:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   opacidadPhase: 0.5
   colorGlowPhase: {r: 0.65, g: 0.35, b: 1, a: 1}
   velocidadPulsoGlow: 4
@@ -9648,7 +9648,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2546640799794010079, guid: 2175f721655039a4c8d62a1f865c6f5c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.06
+      value: -2.6
       objectReference: {fileID: 0}
     - target: {fileID: 2546640799794010079, guid: 2175f721655039a4c8d62a1f865c6f5c, type: 3}
       propertyPath: m_LocalPosition.z
