@@ -5386,7 +5386,7 @@ MonoBehaviour:
   duracionPhase: 2
   capaParedesAtravesables:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   opacidadPhase: 0.5
   colorGlowPhase: {r: 0.65, g: 0.35, b: 1, a: 1}
   velocidadPulsoGlow: 4
@@ -6208,6 +6208,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PauseManager
   pauseMenuUI: {fileID: 299279678}
   nombreEscenaMenu: MenuPrincipal
+  teclaPausa: 27
+  teclaPausaAlternativa: 9
 --- !u!4 &959878488
 Transform:
   m_ObjectHideFlags: 0
