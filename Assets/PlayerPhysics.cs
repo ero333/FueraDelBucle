@@ -204,7 +204,7 @@ public class PlayerPhysics : MonoBehaviour
 
         estaEnElSuelo = Physics2D.OverlapCircle(PuntoDeteccionSuelo(), radioDeteccion, capaPlataformas);
 
-        if (Input.GetKey(KeyCode.S) && estaEnElSuelo && !estaDasheando)
+        if ((Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) && estaEnElSuelo && !estaDasheando)
         {
             estaAgachado = true;
         }
@@ -235,12 +235,12 @@ public class PlayerPhysics : MonoBehaviour
 
         // Movimiento horizontal
         inputHorizontal = 0f;
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             inputHorizontal = 1f;
             anim.SetBool("mover", true);
         }
-        else if (Input.GetKey(KeyCode.A))
+        else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             inputHorizontal = -1f;
             anim.SetBool("mover", true);
@@ -253,7 +253,7 @@ public class PlayerPhysics : MonoBehaviour
         OrientarSprite();
 
         // Salto
-        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) && estaEnElSuelo && !estaAgachado)
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && estaEnElSuelo && !estaAgachado)
         {
             quiereSaltar = true;
         }
@@ -277,7 +277,7 @@ public class PlayerPhysics : MonoBehaviour
         }
 
         // Dash
-        if (Input.GetKeyDown(KeyCode.LeftShift) && inputHorizontal != 0f && !estaDasheando && tiempoRestanteCooldown <= 0f && !estaAgachado)
+        if ((Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)) && inputHorizontal != 0f && !estaDasheando && tiempoRestanteCooldown <= 0f && !estaAgachado)
         {
             estaDasheando = true;
             tiempoRestanteDash = duracionDash;

@@ -38,6 +38,14 @@ public class NavegacionMenus : MonoBehaviour
         AplicarResaltado();
 
         GameObject actual = eventos.currentSelectedGameObject;
+
+        if (EsUsable(actual) && Input.GetKeyDown(KeyCode.KeypadEnter))
+        {
+            Button boton = actual.GetComponent<Button>();
+            if (boton != null && boton.IsInteractable()) boton.onClick.Invoke();
+            return;
+        }
+
         if (EsUsable(actual)) return;
 
         GameObject primero = BuscarPrimero();

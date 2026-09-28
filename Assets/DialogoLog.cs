@@ -63,6 +63,8 @@ public class DialogoLog : MonoBehaviour
 
     private void OnEnable()
     {
+        ConectarBotonCerrar();
+
         if (!instancias.Contains(this))
             instancias.Add(this);
 
@@ -70,6 +72,41 @@ public class DialogoLog : MonoBehaviour
         {
             popupObjetivo.OnPopupClosed += OnObjetivoCerrado;
         }
+    }
+
+    private void ConectarBotonCerrar()
+    {
+        if (PanelDialogo == null) return;
+
+        Button[] botones = PanelDialogo.GetComponentsInChildren<Button>(true);
+
+        for (int i = 0; i < botones.Length; i++)
+        {
+            if (!EsBotonDeCierre(botones[i])) continue;
+
+            botones[i].onClick.RemoveListener(SkipearDialogoCompleto);
+            botones[i].onClick.AddListener(SkipearDialogoCompleto);
+        }
+    }
+
+    private bool EsBotonDeCierre(Button boton)
+    {
+        if (boton == null) return false;
+
+        Text texto = boton.GetComponentInChildren<Text>(true);
+        if (texto != null && EsUnaEquis(texto.text)) return true;
+
+        TMP_Text textoTMP = boton.GetComponentInChildren<TMP_Text>(true);
+        if (textoTMP != null && EsUnaEquis(textoTMP.text)) return true;
+
+        return false;
+    }
+
+    private bool EsUnaEquis(string texto)
+    {
+        if (string.IsNullOrEmpty(texto)) return false;
+
+        return texto.Trim().ToUpperInvariant() == "X";
     }
 
     private void OnDisable()
