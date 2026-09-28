@@ -2,12 +2,13 @@ using UnityEngine;
 public class PATCHEjecutarPlatform : MonoBehaviour
 
 {
+    
 
     public PATCHPlatformManager RomperPlatform;
 
     public GameObject enemigoAActivar;
-    
 
+   
     private void OnTriggerEnter2D(Collider2D collision)
     {
         
@@ -19,6 +20,13 @@ public class PATCHEjecutarPlatform : MonoBehaviour
             if (enemigoAActivar != null)
             {
                 enemigoAActivar.SetActive(true);
+
+                Animator anim = enemigoAActivar.GetComponent<Animator>();
+                if(anim != null)
+                {
+                    anim.SetTrigger("ataque");
+                }
+
             }
 
             
@@ -35,9 +43,9 @@ public class PATCHEjecutarPlatform : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
+   
 
 
 
- 
 }
 
