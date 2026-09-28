@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -23,6 +24,8 @@ public class NavegacionMenus : MonoBehaviour
 
     private void Update()
     {
+        AsegurarEventSystem();
+
         EventSystem eventos = EventSystem.current;
         if (eventos == null) return;
 
@@ -53,6 +56,16 @@ public class NavegacionMenus : MonoBehaviour
         {
             eventos.SetSelectedGameObject(primero);
         }
+    }
+
+    private void AsegurarEventSystem()
+    {
+        if (EventSystem.current != null) return;
+        if (FindAnyObjectByType<EventSystem>(FindObjectsInactive.Include) != null) return;
+
+        GameObject objeto = new GameObject("EventSystem");
+        objeto.AddComponent<EventSystem>();
+        objeto.AddComponent<InputSystemUIInputModule>();
     }
 
     private void AplicarResaltado()
