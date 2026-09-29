@@ -6598,7 +6598,7 @@ PrefabInstance:
       objectReference: {fileID: 201823363}
     - target: {fileID: 8802832504970800525, guid: 524fc72c1c47fc2408c829723567895a, type: 3}
       propertyPath: velocidadPersecucion
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7291,6 +7291,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1319918933558631915, guid: 2175f721655039a4c8d62a1f865c6f5c, type: 3}
+      propertyPath: alturaMaxima
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1319918933558631915, guid: 2175f721655039a4c8d62a1f865c6f5c, type: 3}
+      propertyPath: distanciaMaxima
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1319918933558631915, guid: 2175f721655039a4c8d62a1f865c6f5c, type: 3}
+      propertyPath: tiempoEntreDisparos
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1319918933558631915, guid: 2175f721655039a4c8d62a1f865c6f5c, type: 3}
+      propertyPath: esperaInicial
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1319918933558631915, guid: 2175f721655039a4c8d62a1f865c6f5c, type: 3}
       propertyPath: controladorDisparo
       value: 
@@ -8338,7 +8354,7 @@ PrefabInstance:
       objectReference: {fileID: 1539032072}
     - target: {fileID: 8802832504970800525, guid: 524fc72c1c47fc2408c829723567895a, type: 3}
       propertyPath: velocidadPersecucion
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8573,7 +8589,7 @@ PrefabInstance:
       objectReference: {fileID: 963853084}
     - target: {fileID: 8802832504970800525, guid: 524fc72c1c47fc2408c829723567895a, type: 3}
       propertyPath: velocidadPersecucion
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10336,6 +10352,22 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1319918933558631915, guid: 2175f721655039a4c8d62a1f865c6f5c, type: 3}
+      propertyPath: alturaMaxima
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1319918933558631915, guid: 2175f721655039a4c8d62a1f865c6f5c, type: 3}
+      propertyPath: distanciaMaxima
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1319918933558631915, guid: 2175f721655039a4c8d62a1f865c6f5c, type: 3}
+      propertyPath: tiempoEntreDisparos
+      value: 1.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1319918933558631915, guid: 2175f721655039a4c8d62a1f865c6f5c, type: 3}
+      propertyPath: esperaInicial
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1319918933558631915, guid: 2175f721655039a4c8d62a1f865c6f5c, type: 3}
       propertyPath: controladorDisparo
       value: 
       objectReference: {fileID: 1668275425}
@@ -11878,6 +11910,22 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1319918933558631915, guid: 2175f721655039a4c8d62a1f865c6f5c, type: 3}
+      propertyPath: alturaMaxima
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1319918933558631915, guid: 2175f721655039a4c8d62a1f865c6f5c, type: 3}
+      propertyPath: distanciaMaxima
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1319918933558631915, guid: 2175f721655039a4c8d62a1f865c6f5c, type: 3}
+      propertyPath: tiempoEntreDisparos
+      value: 2.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1319918933558631915, guid: 2175f721655039a4c8d62a1f865c6f5c, type: 3}
+      propertyPath: esperaInicial
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1319918933558631915, guid: 2175f721655039a4c8d62a1f865c6f5c, type: 3}
       propertyPath: controladorDisparo
       value: 
       objectReference: {fileID: 986717847}
@@ -13176,7 +13224,7 @@ PrefabInstance:
       objectReference: {fileID: 1046229485}
     - target: {fileID: 8802832504970800525, guid: 524fc72c1c47fc2408c829723567895a, type: 3}
       propertyPath: velocidadPersecucion
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

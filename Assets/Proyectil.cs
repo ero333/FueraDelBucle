@@ -7,6 +7,9 @@ public class Proyectil : MonoBehaviour
     public int daño;
     public float tiempoDeVida = 5f;
 
+    [Tooltip("Capas contra las que el disparo se rompe (plataformas, suelo). Vacío = atraviesa todo hasta que se acaba el tiempo de vida.")]
+    public LayerMask capasQueFrenan;
+
      void Start()
     {
         Destroy(gameObject, tiempoDeVida);
@@ -22,6 +25,12 @@ public class Proyectil : MonoBehaviour
         if (other.TryGetComponent(out VidaJugador vidaJugador))
         {
             vidaJugador.TomarDaño(daño);
+            Destroy(gameObject);
+            return;
+        }
+
+        if (((1 << other.gameObject.layer) & capasQueFrenan.value) != 0)
+        {
             Destroy(gameObject);
         }
     }

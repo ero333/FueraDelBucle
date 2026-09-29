@@ -17,9 +17,21 @@ public class RepeaterSegundo : MonoBehaviour
     [Tooltip("Hasta dónde busca la plataforma que está debajo del enemigo. Su ancho, de punta a punta, es el rango horizontal.")]
     public float distanciaBusquedaPlataforma = 10f;
 
+    [Tooltip("Distancia horizontal máxima a la que puede disparar, contada desde el enemigo. En 0 no hay tope y vale todo el ancho de la plataforma.")]
+    public float distanciaMaxima = 0f;
+
     [Header("Configuración de Disparo")]
     public GameObject proyectil;
     public float tiempoEntreDisparos = 1.5f;
+
+    [Tooltip("Segundos hasta el primer disparo cuando el jugador entra al rango. En 0 dispara apenas lo detecta.")]
+    public float esperaInicial = 0f;
+
+    [Tooltip("Capas contra las que se rompe el disparo de este enemigo (plataformas, suelo). Vacío = atraviesa todo.")]
+    public LayerMask capasQueFrenanElDisparo;
+
+    [Tooltip("Segundos que vive el disparo de este enemigo. En 0 se respeta el valor que trae el proyectil.")]
+    public float vidaDelDisparo = 0f;
 
     [Header("Comportamiento")]
     [Tooltip("Si está activado, dispara siempre sin depender del jugador.")]
@@ -45,7 +57,7 @@ public class RepeaterSegundo : MonoBehaviour
 
     private void Start()
     {
-        cronometro = 0f;
+        cronometro = esperaInicial;
 
         escalaOriginal = transform.localScale;
 
@@ -112,7 +124,7 @@ public class RepeaterSegundo : MonoBehaviour
         else
         {
             // Reiniciar el cronómetro si el jugador se escapa/sale del rango
-            cronometro = 0f;
+            cronometro = esperaInicial;
         }
     }
 
@@ -178,6 +190,12 @@ public class RepeaterSegundo : MonoBehaviour
 
         minX -= margenHorizontal;
         maxX += margenHorizontal;
+
+        if (distanciaMaxima > 0f)
+        {
+            minX = Mathf.Max(minX, origen.x - distanciaMaxima);
+            maxX = Mathf.Min(maxX, origen.x + distanciaMaxima);
+        }
 
         // Un margen muy negativo no puede dar un rango invertido.
         if (minX > maxX)
@@ -313,6 +331,16 @@ public class RepeaterSegundo : MonoBehaviour
             controladorDisparo.position,
             rotacion
         );
+
+        Proyectil datos = copia.GetComponent<Proyectil>();
+
+        if (datos != null)
+        {
+            datos.capasQueFrenan = capasQueFrenanElDisparo;
+
+            if (vidaDelDisparo > 0f)
+                datos.tiempoDeVida = vidaDelDisparo;
+        }
 
         copia.SetActive(true);
     }
