@@ -28,9 +28,9 @@ public class PlayerPhysics : MonoBehaviour
 
     [Header("Habilidad Phase (Traspasar Paredes)")]
     [SerializeField] private KeyCode teclaPhase = KeyCode.P;
-    [SerializeField] private float cooldownPhase = 3f;
+    [SerializeField] private float cooldownPhase = 4f;
     [Tooltip("Cuánto puede durar el Phase como máximo. Al agotarse se corta solo y arranca el cooldown.")]
-    [SerializeField] private float duracionPhase = 2f;
+    [SerializeField] private float duracionPhase = 3f;
     [SerializeField] private LayerMask capaParedesAtravesables;
     [SerializeField] private float opacidadPhase = 0.7f; // Transparencia visual durante el Phase
     [Tooltip("Color del leve glow violeta que tiñe el sprite mientras dura el Phase.")]
