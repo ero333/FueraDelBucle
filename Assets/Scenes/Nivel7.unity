@@ -7041,7 +7041,7 @@ MonoBehaviour:
   duracionPhase: 2
   capaParedesAtravesables:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   opacidadPhase: 0.5
   colorGlowPhase: {r: 0.65, g: 0.35, b: 1, a: 1}
   velocidadPulsoGlow: 4
@@ -11127,12 +11127,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 138de56a9b4d586468eff09d11f4281a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlataformasPhase
-  playerPhysics: {fileID: 927634763}
-  plataformasOcultas:
-  - {fileID: 1376000208}
-  - {fileID: 1965661453}
-  - {fileID: 1597526563}
-  - {fileID: 1501778650}
 --- !u!4 &1580848654
 Transform:
   m_ObjectHideFlags: 0
