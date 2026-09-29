@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Rendering.Universal;
 
 public class VidaJugador : MonoBehaviour
 {
@@ -20,6 +21,14 @@ public class VidaJugador : MonoBehaviour
     [Header("Game Over")]
     [Tooltip("Segundos de espera antes de mostrar el panel/diálogo de derrota al quedarse sin vida.")]
     public float retrasoReinicio = 1.5f;
+
+    [Header("Luz de visibilidad al morir")]
+    [Tooltip("Tag de la luz que revela al jugador en la oscuridad (la misma que usa LuXVisibilidad). Si esta escena no tiene esa luz, se ignora.")]
+    public string tagLuzVisibilidad = "IVisibilidadJugador";
+    [Tooltip("Segundos que tarda en apagarse gradualmente esa luz al morir, en vez de cortarse de golpe.")]
+    public float duracionApagadoLuz = 1f;
+
+    private Light2D luzVisibilidad;
 
     private SpriteRenderer[] spriteRenderers;
     private Color[] coloresOriginales;
@@ -43,6 +52,12 @@ public class VidaJugador : MonoBehaviour
         for (int i = 0; i < spriteRenderers.Length; i++)
         {
             coloresOriginales[i] = spriteRenderers[i].color;
+        }
+
+        GameObject objLuz = GameObject.FindGameObjectWithTag(tagLuzVisibilidad);
+        if (objLuz != null)
+        {
+            luzVisibilidad = objLuz.GetComponent<Light2D>();
         }
     }
 
@@ -84,7 +99,34 @@ public class VidaJugador : MonoBehaviour
         if (anim != null)
             anim.SetTrigger("Muerte");
 
+        if (luzVisibilidad != null && luzVisibilidad.enabled)
+            StartCoroutine(ApagarLuzVisibilidadGradualmente());
+
         StartCoroutine(ReiniciarJuego());
+    }
+
+    // Apaga de a poco la luz que revela al jugador en la oscuridad (en vez de
+    // que quede prendida o se corte de golpe cuando cae/muere). No toca su
+    // "enabled": solo baja la intensidad, así no interfiere con LuXVisibilidad.
+    private IEnumerator ApagarLuzVisibilidadGradualmente()
+    {
+        float intensidadInicial = luzVisibilidad.intensity;
+        float t = 0f;
+
+        // Tiempo real: el apagado sigue viéndose aunque el juego se pause
+        // (retrasoReinicio) o Time.timeScale cambie mientras se ejecuta.
+        while (t < duracionApagadoLuz)
+        {
+            t += Time.unscaledDeltaTime;
+
+            if (luzVisibilidad == null) yield break;
+
+            luzVisibilidad.intensity = Mathf.Lerp(intensidadInicial, 0f, t / duracionApagadoLuz);
+
+            yield return null;
+        }
+
+        luzVisibilidad.intensity = 0f;
     }
 
     private IEnumerator ParpadeoImpacto(Color colorFlash)
