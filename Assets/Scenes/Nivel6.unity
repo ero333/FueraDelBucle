@@ -5869,9 +5869,7 @@ MonoBehaviour:
     m_Bits: 0
   jugadorEnRango: 0
   alturaMaxima: 10
-  margenHorizontal: 0
-  distanciaBusquedaPlataforma: 10
-  distanciaMaxima: 0
+  soloAdelante: 1
   proyectil: {fileID: 7323252962293113382, guid: 3159d34860195f0498ee5faf79f19dc0, type: 3}
   tiempoEntreDisparos: 1.5
   esperaInicial: 0
@@ -12682,12 +12680,12 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 930000011}
+  - {fileID: 493490629}
   - {fileID: 1578147287}
   - {fileID: 338385826}
   - {fileID: 3193884}
   - {fileID: 822000011}
-  - {fileID: 930000011}
-  - {fileID: 493490629}
   - {fileID: 1144567374}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
