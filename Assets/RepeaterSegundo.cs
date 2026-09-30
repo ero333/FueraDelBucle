@@ -4,21 +4,17 @@ public class RepeaterSegundo : MonoBehaviour
 {
     [Header("DISPARO")]
     public Transform controladorDisparo;
-    [Tooltip("Alcance horizontal a cada lado del enemigo cuando NO hay plataforma debajo.")]
+    [Tooltip("Hasta dónde llega la línea de disparo, contada desde el cañón.")]
     public float distanciaLinea = 10f;
     public LayerMask capaJugador;
     public bool jugadorEnRango;
 
-    [Header("Rango 360°")]
-    [Tooltip("Altura máxima, hacia arriba y hacia abajo del cañón, a la que dispara al jugador.")]
-    public float alturaMaxima = 10f;
-    [Tooltip("Metros extra a cada lado de las puntas de la plataforma (0 = justo de punta a punta). Con un valor negativo el rango se achica.")]
-    public float margenHorizontal = 0f;
-    [Tooltip("Hasta dónde busca la plataforma que está debajo del enemigo. Su ancho, de punta a punta, es el rango horizontal.")]
-    public float distanciaBusquedaPlataforma = 10f;
+    [Header("Rango de detección")]
+    [Tooltip("Diferencia de altura que perdona. Si el jugador está más arriba o más abajo que esto, no lo ve.")]
+    public float alturaMaxima = 1.5f;
 
-    [Tooltip("Distancia horizontal máxima a la que puede disparar, contada desde el enemigo. En 0 no hay tope y vale todo el ancho de la plataforma.")]
-    public float distanciaMaxima = 0f;
+    [Tooltip("Solo detecta al jugador del lado hacia el que está mirando.")]
+    public bool soloAdelante = true;
 
     [Header("Configuración de Disparo")]
     public GameObject proyectil;
@@ -101,7 +97,7 @@ public class RepeaterSegundo : MonoBehaviour
         }
         else if (jugador != null)
         {
-            jugadorEnRango = JugadorEnRango360();
+            jugadorEnRango = JugadorEnLaLinea();
         }
         else
         {
@@ -149,7 +145,7 @@ public class RepeaterSegundo : MonoBehaviour
 
 
     // =====================================================
-    // RANGO 360°
+    // LINEA DE DISPARO
     // =====================================================
 
     // Punto al que se apunta: el centro del jugador (no sus pies).
@@ -158,87 +154,22 @@ public class RepeaterSegundo : MonoBehaviour
         return colliderJugador != null ? colliderJugador.bounds.center : jugador.position;
     }
 
-    // El jugador está en rango si está entre las dos puntas de la plataforma que hay
-    // debajo del enemigo (sin importar si está arriba o abajo) y dentro de la altura máxima.
-    private bool JugadorEnRango360()
+    // El jugador está en rango cuando pasa por delante del cañón: a la misma altura
+    // (con lo que perdona alturaMaxima) y dentro de distanciaLinea hacia adelante.
+    private bool JugadorEnLaLinea()
     {
         Vector3 origen = controladorDisparo.position;
         Vector3 objetivo = PuntoDeApuntado();
 
-        ObtenerLimitesHorizontales(origen, out float minX, out float maxX);
+        if (Mathf.Abs(objetivo.y - origen.y) > alturaMaxima) return false;
 
-        bool dentroDelTramo = objetivo.x >= minX && objetivo.x <= maxX;
-        bool dentroDeLaAltura = Mathf.Abs(objetivo.y - origen.y) <= alturaMaxima;
+        float diferenciaX = objetivo.x - origen.x;
 
-        return dentroDelTramo && dentroDeLaAltura;
-    }
+        if (Mathf.Abs(diferenciaX) > distanciaLinea) return false;
 
-    // Borde izquierdo y derecho de la plataforma de abajo. Si no hay ninguna,
-    // se usa distanciaLinea a cada lado del enemigo.
-    private void ObtenerLimitesHorizontales(Vector3 origen, out float minX, out float maxX)
-    {
-        Collider2D plataforma = BuscarPlataformaDebajo(origen);
+        if (!soloAdelante) return true;
 
-        if (plataforma != null)
-        {
-            Bounds limites = plataforma.bounds;
-            minX = limites.min.x;
-            maxX = limites.max.x;
-        }
-        else
-        {
-            minX = origen.x - distanciaLinea;
-            maxX = origen.x + distanciaLinea;
-        }
-
-        minX -= margenHorizontal;
-        maxX += margenHorizontal;
-
-        if (distanciaMaxima > 0f)
-        {
-            minX = Mathf.Max(minX, origen.x - distanciaMaxima);
-            maxX = Mathf.Min(maxX, origen.x + distanciaMaxima);
-        }
-
-        // Un margen muy negativo no puede dar un rango invertido.
-        if (minX > maxX)
-        {
-            minX = maxX = (minX + maxX) * 0.5f;
-        }
-    }
-
-    // Primer collider "de plataforma" hacia abajo: se ignoran triggers, el propio enemigo,
-    // al jugador y todo lo que tenga un Rigidbody2D dinámico (otros enemigos, objetos sueltos).
-    private Collider2D BuscarPlataformaDebajo(Vector3 origen)
-    {
-        RaycastHit2D[] impactos = Physics2D.RaycastAll(origen, Vector2.down, distanciaBusquedaPlataforma);
-
-        Collider2D masCercano = null;
-        float distanciaMinima = float.MaxValue;
-
-        for (int i = 0; i < impactos.Length; i++)
-        {
-            Collider2D col = impactos[i].collider;
-
-            if (col == null || col.isTrigger)
-                continue;
-
-            if (col.transform.IsChildOf(transform) || col.CompareTag(tagJugador))
-                continue;
-
-            Rigidbody2D rb = col.attachedRigidbody;
-
-            if (rb != null && rb.bodyType == RigidbodyType2D.Dynamic)
-                continue;
-
-            if (impactos[i].distance < distanciaMinima)
-            {
-                distanciaMinima = impactos[i].distance;
-                masCercano = col;
-            }
-        }
-
-        return masCercano;
+        return mirandoDerecha ? diferenciaX >= 0f : diferenciaX <= 0f;
     }
 
 
@@ -373,14 +304,19 @@ public class RepeaterSegundo : MonoBehaviour
             return;
 
 
-        // Rango 360°: de punta a punta de la plataforma de abajo, y hasta alturaMaxima arriba/abajo.
-        ObtenerLimitesHorizontales(controladorDisparo.position, out float minX, out float maxX);
+        // Franja que ve el cañón: distanciaLinea hacia adelante y alturaMaxima arriba/abajo.
+        Vector3 centro = controladorDisparo.position;
+        float ancho = distanciaLinea * 2f;
+
+        if (soloAdelante)
+        {
+            float lado = Application.isPlaying && !mirandoDerecha ? -1f : 1f;
+            centro += Vector3.right * (distanciaLinea * 0.5f * lado);
+            ancho = distanciaLinea;
+        }
 
         Gizmos.color = Color.red;
 
-        Gizmos.DrawWireCube(
-            new Vector3((minX + maxX) * 0.5f, controladorDisparo.position.y, controladorDisparo.position.z),
-            new Vector3(maxX - minX, alturaMaxima * 2f, 0f)
-        );
+        Gizmos.DrawWireCube(centro, new Vector3(ancho, alturaMaxima * 2f, 0f));
     }
 }

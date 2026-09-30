@@ -488,14 +488,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RepeaterSegundo
   controladorDisparo: {fileID: 0}
-  distanciaLinea: 12
+  distanciaLinea: 9
   capaJugador:
     serializedVersion: 2
     m_Bits: 0
   jugadorEnRango: 0
-  alturaMaxima: 6.38
-  margenHorizontal: 3.61
-  distanciaBusquedaPlataforma: 19.3
+  alturaMaxima: 1.5
+  soloAdelante: 1
   proyectil: {fileID: 7323252962293113382, guid: 3159d34860195f0498ee5faf79f19dc0, type: 3}
   tiempoEntreDisparos: 0.8
   esperaInicial: 0
