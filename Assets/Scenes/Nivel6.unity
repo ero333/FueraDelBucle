@@ -5880,6 +5880,7 @@ MonoBehaviour:
     m_Bits: 0
   vidaDelDisparo: 0
   dispararSiempre: 0
+  apuntarAlJugador: 0
   girarHaciaJugador: 1
   distanciaGiro: 12
   tagJugador: Player
@@ -14679,12 +14680,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3863816214165832332, guid: 237f42c934c41174bbf98f74618653c5, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.9201
+      objectReference: {fileID: 0}
+    - target: {fileID: 3863816214165832332, guid: 237f42c934c41174bbf98f74618653c5, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.9913
+      objectReference: {fileID: 0}
+    - target: {fileID: 3863816214165832332, guid: 237f42c934c41174bbf98f74618653c5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 59.6
+      value: 59.461
       objectReference: {fileID: 0}
     - target: {fileID: 3863816214165832332, guid: 237f42c934c41174bbf98f74618653c5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -14.4
+      value: -14.5219
       objectReference: {fileID: 0}
     - target: {fileID: 3863816214165832332, guid: 237f42c934c41174bbf98f74618653c5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -14717,6 +14726,14 @@ PrefabInstance:
     - target: {fileID: 3863816214165832332, guid: 237f42c934c41174bbf98f74618653c5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4749460826398865778, guid: 237f42c934c41174bbf98f74618653c5, type: 3}
+      propertyPath: m_Size.y
+      value: 4.992881
+      objectReference: {fileID: 0}
+    - target: {fileID: 4749460826398865778, guid: 237f42c934c41174bbf98f74618653c5, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.038559437
       objectReference: {fileID: 0}
     - target: {fileID: 5015697658645076204, guid: 237f42c934c41174bbf98f74618653c5, type: 3}
       propertyPath: m_Name
@@ -14773,7 +14790,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.030847073}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -14783,7 +14800,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 3.48, y: 5.07}
+  m_Size: {x: 3.48, y: 5.0083055}
   m_EdgeRadius: 0
 --- !u!1001 &8395424066039961957
 PrefabInstance:
