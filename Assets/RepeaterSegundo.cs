@@ -37,6 +37,9 @@ public class RepeaterSegundo : MonoBehaviour
     [Tooltip("Si está activado, dispara siempre sin depender del jugador.")]
     public bool dispararSiempre = false;
 
+    [Tooltip("Activado: el disparo sale hacia el jugador en cualquier ángulo. Desactivado: sale en línea recta hacia donde mira el enemigo.")]
+    public bool apuntarAlJugador = false;
+
     [Header("Giro hacia el jugador")]
     public bool girarHaciaJugador = true;
 
@@ -312,7 +315,7 @@ public class RepeaterSegundo : MonoBehaviour
         // (sin depender del jugador) sale en horizontal, hacia donde mira el enemigo.
         Vector2 direccion = mirandoDerecha ? Vector2.right : Vector2.left;
 
-        if (!dispararSiempre && jugador != null)
+        if (apuntarAlJugador && !dispararSiempre && jugador != null)
         {
             Vector2 haciaJugador = PuntoDeApuntado() - controladorDisparo.position;
 
