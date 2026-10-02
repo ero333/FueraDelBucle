@@ -11370,9 +11370,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1580848652}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 138de56a9b4d586468eff09d11f4281a, type: 3}
+  m_Script: {fileID: 11500000, guid: 72d48e871494f5241a3178b99059ed36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlataformasPhase
+  playerPhysics: {fileID: 927634763}
+  plataformasOcultas: []
 --- !u!4 &1580848654
 Transform:
   m_ObjectHideFlags: 0
