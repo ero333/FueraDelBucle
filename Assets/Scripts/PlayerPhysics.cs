@@ -191,14 +191,27 @@ public class PlayerPhysics : MonoBehaviour
     {
         if (Time.timeScale == 0f) return;
 
-        // Placa de objetivo o caja de diálogo abierta: sin movimiento hasta que se cierre.
-        if (LevelUIManager.PlacaAbierta || DialogoLog.HayDialogoActivo)
+        // Placa de objetivo, caja de diálogo abierta o meta alcanzada: sin movimiento hasta que se cierre.
+        if (LevelUIManager.PlacaAbierta || DialogoLog.HayDialogoActivo || PanelVictoria.MetaAlcanzada)
         {
             inputHorizontal = 0f;
 
             // El temporizador del dash corre en Update: si un dash quedara en curso
             // (ej. diálogo final al tocar la meta) seguiría deslizando todo el diálogo.
             estaDasheando = false;
+            quiereSaltar = false;
+
+            // La física sigue (si estaba en el aire cae y aterriza), así que se mantiene el
+            // Animator al día: sin esto quedaba clavado en la animación de salto/caminar
+            // en lugar de pasar a Idle.
+            estaEnElSuelo = Physics2D.OverlapCircle(PuntoDeteccionSuelo(), radioDeteccion, capaPlataformas);
+            estaAgachado = false;
+            AjustarColliderAgachado();
+
+            anim.SetBool("agachado", false);
+            anim.SetBool("mover", false);
+            anim.SetBool("enSuelo", !estaEnElSuelo);
+            anim.SetFloat("velocidadY", estaEnElSuelo ? 0f : rb.linearVelocity.y);
             return;
         }
 
