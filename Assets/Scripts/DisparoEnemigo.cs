@@ -95,25 +95,10 @@ public class DisparoEnemigo : MonoBehaviour
         Gizmos.DrawLine(controladorDisparo.position, controladorDisparo.position + transform.right * distanciaLinea);
     }
 
-
-    private void OnCollisionEnter2D(Collision2D colision)
+    public void Muere()
     {
-
-        if (colision.gameObject.CompareTag("Player"))
-        {
-
-            ContactPoint2D contacto = colision.GetContact(0);
-
-
-            if (contacto.normal.y <= -0.5f)
-            {
-
-
-                StartCoroutine(DestruirEnemigo());
-
-
-            }
-        }
+        if (estamuerto) return;
+        StartCoroutine(DestruirEnemigo());
     }
 
     IEnumerator DestruirEnemigo()
@@ -130,4 +115,24 @@ public class DisparoEnemigo : MonoBehaviour
         Destroy(gameObject);
     }
 
+    //Dejo esta función abajo por las dudas que falle algo de la colisión
+    //private void OnCollisionEnter2D(Collision2D colision)
+    //{
+
+    //    if (colision.gameObject.CompareTag("Player"))
+    //    {
+
+    //        ContactPoint2D contacto = colision.GetContact(0);
+
+
+    //        if (contacto.normal.y <= -0.5f)
+    //        {
+
+
+    //            StartCoroutine(DestruirEnemigo());
+
+
+    //        }
+    //    }
+    //}
 }

@@ -451,6 +451,12 @@ public class PlayerPhysics : MonoBehaviour
         if (collision.CompareTag("CabezaEnemigo") && rb.linearVelocity.y <= 0f)
         {
             Rebotar();
+
+            DisparoEnemigo enemigo = collision.GetComponentInParent<DisparoEnemigo>();
+            if (enemigo != null)
+            {
+                enemigo.Muere(); 
+            }
         }
     }
 
