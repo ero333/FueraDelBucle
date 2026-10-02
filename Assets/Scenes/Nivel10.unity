@@ -2726,6 +2726,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PopupController
   ventanaPopup: {fileID: 310425653}
   teclaCerrar: 13
+  teclaCerrarAlternativa: 101
 --- !u!1 &314055047
 GameObject:
   m_ObjectHideFlags: 0
@@ -5022,7 +5023,7 @@ MonoBehaviour:
   radioDeteccion: 0.2
   capaPlataformas:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 640
   velocidadMovimiento: 5.5
   velocidadAgachado: 2.5
   fuerzaSalto: 8

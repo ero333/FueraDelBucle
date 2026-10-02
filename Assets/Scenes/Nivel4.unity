@@ -199,6 +199,8 @@ MonoBehaviour:
   opacidadImpactoPhase: 0.5
   duraciondeinvulnerabilidad: 1.5
   retrasoReinicio: 0.5
+  tagLuzVisibilidad: IVisibilidadJugador
+  duracionApagadoLuz: 1
 --- !u!114 &41884361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,7 +218,7 @@ MonoBehaviour:
   radioDeteccion: 0.2
   capaPlataformas:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 640
   velocidadMovimiento: 5.5
   velocidadAgachado: 2.5
   fuerzaSalto: 8
@@ -6375,6 +6377,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PopupController
   ventanaPopup: {fileID: 1652873843}
   teclaCerrar: 13
+  teclaCerrarAlternativa: 101
 --- !u!4 &943347665 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2994144655100074199, guid: 3638322d25fb3914bb5a32d4796af31b, type: 3}
@@ -7058,6 +7061,8 @@ MonoBehaviour:
   teclaAvanzar: 101
   teclaAvanzarAlternativa: 101
   teclaSaltarTodo: 120
+  teclaSaltarTodoAlternativa: 27
+  autoProgresar: 0
 --- !u!1 &1237670365
 GameObject:
   m_ObjectHideFlags: 0
@@ -7622,6 +7627,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PauseManager
   pauseMenuUI: {fileID: 1637761800}
   nombreEscenaMenu: MenuPrincipal
+  teclaPausa: 27
+  teclaPausaAlternativa: 9
 --- !u!4 &1372136308
 Transform:
   m_ObjectHideFlags: 0
@@ -9720,12 +9727,19 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   jugadorEnRango: 0
+  tiempoAturdido: 3
+  fuerzaRebote: 10
   alturaMaxima: 10
-  margenHorizontal: 0
-  distanciaBusquedaPlataforma: 10
+  soloAdelante: 1
   proyectil: {fileID: 7323252962293113382, guid: 3159d34860195f0498ee5faf79f19dc0, type: 3}
   tiempoEntreDisparos: 4
+  esperaInicial: 0
+  capasQueFrenanElDisparo:
+    serializedVersion: 2
+    m_Bits: 0
+  vidaDelDisparo: 0
   dispararSiempre: 0
+  apuntarAlJugador: 0
   girarHaciaJugador: 1
   distanciaGiro: 12
   tagJugador: Player
@@ -10081,12 +10095,19 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   jugadorEnRango: 0
+  tiempoAturdido: 3
+  fuerzaRebote: 10
   alturaMaxima: 10
-  margenHorizontal: 0
-  distanciaBusquedaPlataforma: 10
+  soloAdelante: 1
   proyectil: {fileID: 7323252962293113382, guid: 3159d34860195f0498ee5faf79f19dc0, type: 3}
   tiempoEntreDisparos: 1.5
+  esperaInicial: 0
+  capasQueFrenanElDisparo:
+    serializedVersion: 2
+    m_Bits: 0
+  vidaDelDisparo: 0
   dispararSiempre: 0
+  apuntarAlJugador: 0
   girarHaciaJugador: 1
   distanciaGiro: 12
   tagJugador: Player

@@ -1582,6 +1582,8 @@ MonoBehaviour:
   opacidadImpactoPhase: 0.5
   duraciondeinvulnerabilidad: 1.5
   retrasoReinicio: 0.5
+  tagLuzVisibilidad: IVisibilidadJugador
+  duracionApagadoLuz: 1
 --- !u!114 &295255243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1599,7 +1601,7 @@ MonoBehaviour:
   radioDeteccion: 0.2
   capaPlataformas:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 640
   velocidadMovimiento: 5.5
   velocidadAgachado: 2.5
   fuerzaSalto: 8
@@ -3541,6 +3543,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PauseManager
   pauseMenuUI: {fileID: 2140166045}
   nombreEscenaMenu: MenuPrincipal
+  teclaPausa: 27
+  teclaPausaAlternativa: 9
 --- !u!4 &864461156
 Transform:
   m_ObjectHideFlags: 0
@@ -5229,6 +5233,8 @@ MonoBehaviour:
   teclaAvanzar: 101
   teclaAvanzarAlternativa: 101
   teclaSaltarTodo: 120
+  teclaSaltarTodoAlternativa: 27
+  autoProgresar: 0
 --- !u!114 &1906733728 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 848537743171968549, guid: dfb8c8748f72de24aabe6c25f2418dc8, type: 3}

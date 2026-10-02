@@ -5507,6 +5507,8 @@ MonoBehaviour:
   teclaAvanzar: 101
   teclaAvanzarAlternativa: 101
   teclaSaltarTodo: 120
+  teclaSaltarTodoAlternativa: 27
+  autoProgresar: 0
 --- !u!1 &930000010
 GameObject:
   m_ObjectHideFlags: 0
@@ -7017,6 +7019,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PopupController
   ventanaPopup: {fileID: 1061397711}
   teclaCerrar: 13
+  teclaCerrarAlternativa: 101
 --- !u!1001 &1307943314
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7785,7 +7788,7 @@ MonoBehaviour:
   radioDeteccion: 0.2
   capaPlataformas:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 640
   velocidadMovimiento: 5.5
   velocidadAgachado: 2.5
   fuerzaSalto: 8
@@ -9839,10 +9842,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2627796686816019753, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
-      propertyPath: popupObjetivo
-      value: 
-      objectReference: {fileID: 1282222632}
     - target: {fileID: 922540508792047734, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
       propertyPath: m_Name
       value: Dialogo LOG
@@ -9907,6 +9906,10 @@ PrefabInstance:
       propertyPath: dialogoTexto
       value: 
       objectReference: {fileID: 923767117}
+    - target: {fileID: 2627796686816019753, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
+      propertyPath: popupObjetivo
+      value: 
+      objectReference: {fileID: 1282222632}
     - target: {fileID: 4820680255828264236, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
       propertyPath: m_text
       value: LUX

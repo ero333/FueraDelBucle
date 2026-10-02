@@ -1572,6 +1572,8 @@ MonoBehaviour:
   opacidadImpactoPhase: 0.5
   duraciondeinvulnerabilidad: 1.5
   retrasoReinicio: 0.5
+  tagLuzVisibilidad: IVisibilidadJugador
+  duracionApagadoLuz: 1
 --- !u!114 &175978343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1589,7 +1591,7 @@ MonoBehaviour:
   radioDeteccion: 0.2
   capaPlataformas:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 640
   velocidadMovimiento: 5.5
   velocidadAgachado: 2.5
   fuerzaSalto: 8
@@ -2190,6 +2192,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PopupController
   ventanaPopup: {fileID: 1484578552}
+  teclaCerrar: 13
+  teclaCerrarAlternativa: 101
 --- !u!1 &397489926
 GameObject:
   m_ObjectHideFlags: 0
@@ -3949,6 +3953,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   ventanaPopup: {fileID: 1484578552}
+  teclaCerrar: 13
+  teclaCerrarAlternativa: 101
 --- !u!1 &873413443
 GameObject:
   m_ObjectHideFlags: 0
@@ -4437,6 +4443,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PauseManager
   pauseMenuUI: {fileID: 731595520}
   nombreEscenaMenu: MenuPrincipal
+  teclaPausa: 27
+  teclaPausaAlternativa: 9
 --- !u!4 &1098849669
 Transform:
   m_ObjectHideFlags: 0
@@ -4532,6 +4540,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PopupController
   ventanaPopup: {fileID: 2061597344}
+  teclaCerrar: 13
+  teclaCerrarAlternativa: 101
 --- !u!1 &1168962547
 GameObject:
   m_ObjectHideFlags: 0
