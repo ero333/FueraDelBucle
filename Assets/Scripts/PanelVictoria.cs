@@ -135,6 +135,8 @@ public class PanelVictoria : MonoBehaviour
             panelVictoria.SetActive(true);
         }
 
+        NavegacionMenus.SeleccionarDentroDe(panelVictoria);
+
         if (pausarAlGanar)
         {
             Time.timeScale = 0f;

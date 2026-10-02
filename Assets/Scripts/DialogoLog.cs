@@ -20,6 +20,10 @@ public class DialogoLog : MonoBehaviour
     public KeyCode teclaAvanzar = KeyCode.Return;
     public KeyCode teclaAvanzarAlternativa = KeyCode.E;
     public KeyCode teclaSaltarTodo = KeyCode.X;
+    public KeyCode teclaSaltarTodoAlternativa = KeyCode.Escape;
+
+    [Tooltip("Dejalo desmarcado para que el jugador pase cada parlamento a mano.")]
+    public bool autoProgresar = false;
 
     public event Action AlTerminarDialogo;
 
@@ -28,6 +32,7 @@ public class DialogoLog : MonoBehaviour
     private CanvasGroup grupoPanel;
     private bool ocultoPorPausa;
     private float tiempoFinCooldown;
+    private bool notaEstabaAbierta;
 
     // Cajas de diálogo de la escena. PlayerPhysics pregunta por HayDialogoActivo
     // para bloquear el movimiento del jugador mientras haya un diálogo en pantalla.
@@ -82,31 +87,32 @@ public class DialogoLog : MonoBehaviour
 
         for (int i = 0; i < botones.Length; i++)
         {
-            if (!EsBotonDeCierre(botones[i])) continue;
+            string etiqueta = EtiquetaDe(botones[i]);
 
-            botones[i].onClick.RemoveListener(SkipearDialogoCompleto);
-            botones[i].onClick.AddListener(SkipearDialogoCompleto);
+            if (etiqueta == "X")
+            {
+                botones[i].onClick.RemoveListener(SkipearDialogoCompleto);
+                botones[i].onClick.AddListener(SkipearDialogoCompleto);
+            }
+            else if (etiqueta == "E")
+            {
+                botones[i].onClick.RemoveListener(AvanzarDesdeBoton);
+                botones[i].onClick.AddListener(AvanzarDesdeBoton);
+            }
         }
     }
 
-    private bool EsBotonDeCierre(Button boton)
+    private string EtiquetaDe(Button boton)
     {
-        if (boton == null) return false;
+        if (boton == null) return string.Empty;
 
         Text texto = boton.GetComponentInChildren<Text>(true);
-        if (texto != null && EsUnaEquis(texto.text)) return true;
+        if (texto != null && !string.IsNullOrEmpty(texto.text)) return texto.text.Trim().ToUpperInvariant();
 
         TMP_Text textoTMP = boton.GetComponentInChildren<TMP_Text>(true);
-        if (textoTMP != null && EsUnaEquis(textoTMP.text)) return true;
+        if (textoTMP != null && !string.IsNullOrEmpty(textoTMP.text)) return textoTMP.text.Trim().ToUpperInvariant();
 
-        return false;
-    }
-
-    private bool EsUnaEquis(string texto)
-    {
-        if (string.IsNullOrEmpty(texto)) return false;
-
-        return texto.Trim().ToUpperInvariant() == "X";
+        return string.Empty;
     }
 
     private void OnDisable()
@@ -146,8 +152,21 @@ public class DialogoLog : MonoBehaviour
         EmpezarDialog();
     }
 
+    private void VigilarNotaDeObjetivo()
+    {
+        if (popupObjetivo == null) return;
+
+        bool abierta = popupObjetivo.EstaVisible();
+
+        if (notaEstabaAbierta && !abierta) OnObjetivoCerrado();
+
+        notaEstabaAbierta = abierta;
+    }
+
     private void Update()
     {
+        VigilarNotaDeObjetivo();
+
         ActualizarVisibilidadPorPausa();
 
         // 1. Ignorar entrada si el juego está pausado, el diálogo está inactivo o en cooldown de cierre
@@ -157,17 +176,25 @@ public class DialogoLog : MonoBehaviour
         if (popupObjetivo != null && popupObjetivo.EstaVisible()) return;
 
         // 3. Saltear TODO el diálogo inmediatamente con X
-        if (Input.GetKeyDown(teclaSaltarTodo))
+        if (Input.GetKeyDown(teclaSaltarTodo) || Input.GetKeyDown(teclaSaltarTodoAlternativa))
         {
             SkipearDialogoCompleto();
             return;
         }
 
         // 4. Avanzar texto o pasar a la siguiente línea con Enter / KeypadEnter / E
-        if (Input.GetKeyDown(teclaAvanzar) || Input.GetKeyDown(teclaAvanzarAlternativa))
+        if (Input.GetKeyDown(teclaAvanzar) || Input.GetKeyDown(teclaAvanzarAlternativa)
+            || Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
         {
             Interactuar();
         }
+    }
+
+    public void AvanzarDesdeBoton()
+    {
+        if (!DialogoActivo) return;
+
+        Interactuar();
     }
 
     public void Interactuar()
@@ -310,6 +337,8 @@ public class DialogoLog : MonoBehaviour
 
     bool DebeAutoProgresar(int index)
     {
+        if (!autoProgresar) return false;
+
         return dialogodata != null
             && dialogodata.autoProgresLineas != null
             && index < dialogodata.autoProgresLineas.Length
@@ -324,6 +353,8 @@ public class DialogoLog : MonoBehaviour
         DialogoActivo = false;
         if (dialogoTexto != null) dialogoTexto.SetText("");
         PanelDialogo.SetActive(false);
+
+        PauseManager.BloquearConfirmar();
 
         AlTerminarDialogo?.Invoke();
     }

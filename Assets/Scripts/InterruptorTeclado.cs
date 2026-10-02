@@ -11,6 +11,10 @@ public class InterruptorTeclado : MonoBehaviour
     private bool estaActivado = false;
     private bool jugadorCerca = false;
 
+    private static int cercanos;
+
+    public static bool HayInterruptorCerca { get { return cercanos > 0; } }
+
     //Caminos que se desactivan cuando activas el switch
     public GameObject[] caminosDesactivables;
     
@@ -36,6 +40,8 @@ public class InterruptorTeclado : MonoBehaviour
 
     void Update()
     {
+        if (PauseManager.GameIsPaused || LevelUIManager.PlacaAbierta || Time.timeScale == 0f) return;
+
         if (jugadorCerca && Input.GetKeyDown(KeyCode.E))
         {
             estaActivado = !estaActivado;
@@ -71,17 +77,27 @@ public class InterruptorTeclado : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && !jugadorCerca)
         {
             jugadorCerca = true;
+            cercanos++;
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && jugadorCerca)
         {
             jugadorCerca = false;
+            cercanos--;
         }
+    }
+
+    private void OnDisable()
+    {
+        if (!jugadorCerca) return;
+
+        jugadorCerca = false;
+        cercanos--;
     }
 }

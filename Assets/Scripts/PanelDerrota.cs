@@ -149,6 +149,11 @@ public class PanelDerrota : MonoBehaviour
             panelDerrota.SetActive(true);
         }
 
+        if (botonReintentar != null)
+            NavegacionMenus.Seleccionar(botonReintentar);
+        else
+            NavegacionMenus.SeleccionarDentroDe(panelDerrota);
+
         if (pausarAlPerder)
         {
             Time.timeScale = 0f;

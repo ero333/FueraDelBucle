@@ -12,8 +12,11 @@ public class PopupController : MonoBehaviour
 
     public GameObject Ventana { get { return ventanaPopup; } }
 
-    [Header("Tecla para cerrar la nota")]
+    [Header("Teclas para cerrar la nota")]
     public KeyCode teclaCerrar = KeyCode.Return;
+    public KeyCode teclaCerrarAlternativa = KeyCode.E;
+
+    private bool estabaVisible;
 
 
     void Start()
@@ -46,13 +49,22 @@ public class PopupController : MonoBehaviour
 
     void Update()
     {
-        if (ventanaPopup != null && ventanaPopup.activeSelf)
+        bool visible = ventanaPopup != null && ventanaPopup.activeSelf;
+
+        if (visible && (Input.GetKeyDown(teclaCerrar) || Input.GetKeyDown(teclaCerrarAlternativa) || Input.GetKeyDown(KeyCode.KeypadEnter)))
         {
-            if (Input.GetKeyDown(teclaCerrar) || Input.GetKeyDown(KeyCode.KeypadEnter))
-            {
-                CerrarVentana();
-            }
+            CerrarVentana();
+            return;
         }
+
+        if (estabaVisible && !visible)
+        {
+            estabaVisible = false;
+            AvisarCierre();
+            return;
+        }
+
+        estabaVisible = visible;
     }
 
     public void AbrirVentana(bool esInicial = false)
@@ -69,10 +81,19 @@ public class PopupController : MonoBehaviour
         if (ventanaPopup != null && ventanaPopup.activeSelf)
         {
             ventanaPopup.SetActive(false);
-            Debug.Log("Ventana de objetivos cerrada.");
+            estabaVisible = false;
 
-            OnPopupClosed?.Invoke();
+            AvisarCierre();
         }
+    }
+
+    private void AvisarCierre()
+    {
+        Debug.Log("Ventana de objetivos cerrada.");
+
+        PauseManager.BloquearConfirmar();
+
+        OnPopupClosed?.Invoke();
     }
 
     // Método de apoyo para consultar el estado visible de la ventana

@@ -42,7 +42,7 @@ public class NavegacionMenus : MonoBehaviour
 
         GameObject actual = eventos.currentSelectedGameObject;
 
-        if (EsUsable(actual) && Input.GetKeyDown(KeyCode.KeypadEnter))
+        if (EsUsable(actual) && (Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown(KeyCode.E)))
         {
             Button boton = actual.GetComponent<Button>();
             if (boton != null && boton.IsInteractable()) boton.onClick.Invoke();
@@ -50,6 +50,8 @@ public class NavegacionMenus : MonoBehaviour
         }
 
         if (EsUsable(actual)) return;
+
+        if (Time.timeScale == 0f && !SeApretoFlecha()) return;
 
         GameObject primero = BuscarPrimero();
         if (primero != null)
@@ -66,6 +68,14 @@ public class NavegacionMenus : MonoBehaviour
         GameObject objeto = new GameObject("EventSystem");
         objeto.AddComponent<EventSystem>();
         objeto.AddComponent<InputSystemUIInputModule>();
+    }
+
+    private bool SeApretoFlecha()
+    {
+        return Input.GetKeyDown(KeyCode.UpArrow)
+            || Input.GetKeyDown(KeyCode.DownArrow)
+            || Input.GetKeyDown(KeyCode.LeftArrow)
+            || Input.GetKeyDown(KeyCode.RightArrow);
     }
 
     private void AplicarResaltado()
@@ -90,9 +100,9 @@ public class NavegacionMenus : MonoBehaviour
 
     private bool HayMenuAbierto()
     {
-        if (HayDialogoVisible()) return false;
-
         if (Time.timeScale == 0f) return true;
+
+        if (HayDialogoVisible()) return false;
 
         string escena = SceneManager.GetActiveScene().name;
         for (int i = 0; i < escenasDeMenu.Length; i++)
@@ -170,5 +180,28 @@ public class NavegacionMenus : MonoBehaviour
         }
 
         return elegido != null ? elegido.gameObject : null;
+    }
+
+    public static void Seleccionar(Selectable objetivo)
+    {
+        if (objetivo == null || !objetivo.gameObject.activeInHierarchy) return;
+        if (EventSystem.current == null) return;
+
+        EventSystem.current.SetSelectedGameObject(objetivo.gameObject);
+    }
+
+    public static void SeleccionarDentroDe(GameObject panel)
+    {
+        if (panel == null) return;
+
+        Selectable[] opciones = panel.GetComponentsInChildren<Selectable>(false);
+
+        for (int i = 0; i < opciones.Length; i++)
+        {
+            if (opciones[i] == null || !opciones[i].IsInteractable()) continue;
+
+            Seleccionar(opciones[i]);
+            return;
+        }
     }
 }

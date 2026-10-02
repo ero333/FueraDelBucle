@@ -126,6 +126,8 @@ public class CambioNivel : MonoBehaviour
     {
         botonCambioEscena.gameObject.SetActive(true);
 
+        NavegacionMenus.Seleccionar(botonCambioEscena);
+
         if (pausarAlMostrar)
         {
             Time.timeScale = 0f;
