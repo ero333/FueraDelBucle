@@ -36,8 +36,13 @@ public class PanelVictoria : MonoBehaviour
     private bool esperando;
     private Coroutine rutinaEsperando;
 
+    // PlayerPhysics lo lee para bloquear el movimiento del jugador desde que llega a la meta.
+    public static bool MetaAlcanzada { get; private set; }
+
     private void Start()
     {
+        MetaAlcanzada = false;
+
         if (panelVictoria != null)
         {
             panelVictoria.SetActive(false);
@@ -56,6 +61,7 @@ public class PanelVictoria : MonoBehaviour
         }
 
         esperando = true;
+        MetaAlcanzada = true;
         rutinaEsperando = StartCoroutine(EsperarReposoYMostrar(other));
     }
 
@@ -124,6 +130,7 @@ public class PanelVictoria : MonoBehaviour
         if (activado) return;
 
         activado = true;
+        MetaAlcanzada = true;
 
         PlayerPrefs.SetInt(claveNivel, 1);
         PlayerPrefs.Save();
@@ -159,6 +166,8 @@ public class PanelVictoria : MonoBehaviour
 
     private void OnDestroy()
     {
+        MetaAlcanzada = false;
+
         if (pausarAlGanar && activado)
         {
             Time.timeScale = 1f;
