@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using System.Collections;
 public class RepeaterSegundo : MonoBehaviour
 {
     [Header("DISPARO")]
@@ -8,6 +8,16 @@ public class RepeaterSegundo : MonoBehaviour
     public float distanciaLinea = 10f;
     public LayerMask capaJugador;
     public bool jugadorEnRango;
+
+    //aturdido
+    [Header("Aturdimiento al pisar")]
+    [Tooltip("Segundos que el enemigo se queda sin disparar al ser pisado.")]
+    public float tiempoAturdido = 3f;
+
+    [Tooltip("Fuerza con la que rebota el jugador hacia arriba al pisarlo.")]
+    public float fuerzaRebote = 10f;
+    private bool aturdido = false;
+    //aturdido
 
     [Header("Rango de detección")]
     [Tooltip("Diferencia de altura que perdona. Si el jugador está más arriba o más abajo que esto, no lo ve.")]
@@ -65,6 +75,10 @@ public class RepeaterSegundo : MonoBehaviour
 
     private void Update()
     {
+        //aturdido
+        if (aturdido)
+            return;
+        //aturdido
         // ============================
         // BUSCAR JUGADOR SI NO EXISTE
         // ============================
@@ -319,4 +333,42 @@ public class RepeaterSegundo : MonoBehaviour
 
         Gizmos.DrawWireCube(centro, new Vector3(ancho, alturaMaxima * 2f, 0f));
     }
+
+    //Aturdimiento 
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag(tagJugador))
+        {
+            // Verificar si el contacto viene desde arriba del enemigo
+            foreach (ContactPoint2D punto in collision.contacts)
+            {
+                if (punto.normal.y < -0.5f)
+                {
+                    // Hacer rebotar al jugador
+                    Rigidbody2D rbJugador = collision.gameObject.GetComponent<Rigidbody2D>();
+                    if (rbJugador != null)
+                    {
+                        rbJugador.linearVelocity = new Vector2(rbJugador.linearVelocity.x, fuerzaRebote); ;
+                    }
+
+                    // Desactivar el disparo temporalmente
+                    StartCoroutine(AturdirEnemigo());
+                    break;
+                }
+            }
+        }
+    }
+
+    private IEnumerator AturdirEnemigo()
+    {
+        aturdido = true;
+        jugadorEnRango = false;
+
+        yield return new WaitForSeconds(tiempoAturdido);
+
+        aturdido = false;
+        cronometro = esperaInicial;
+    }
+    //aturdimiento
 }
