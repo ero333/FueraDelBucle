@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3652225579960632025}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3935558914299072378}
   - component: {fileID: 2985672651841697057}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: New LimbSolver2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8260547207478062756}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: effector1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,8 +139,20 @@ PrefabInstance:
       value: "REPEATER20-DISE\xD1O-RIG"
       objectReference: {fileID: 0}
     - target: {fileID: -8653719598885068355, guid: 3c6f05a3e25c63e45b0d39d54961793b, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: -8653719598885068355, guid: 3c6f05a3e25c63e45b0d39d54961793b, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8207366736460745764, guid: 3c6f05a3e25c63e45b0d39d54961793b, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: -7935864624301958264, guid: 3c6f05a3e25c63e45b0d39d54961793b, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 3c6f05a3e25c63e45b0d39d54961793b, type: 3}
       propertyPath: m_LocalScale.x
@@ -202,13 +214,29 @@ PrefabInstance:
       propertyPath: m_AutoRebind
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -6061608173859185249, guid: 3c6f05a3e25c63e45b0d39d54961793b, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: -5599870577738882561, guid: 3c6f05a3e25c63e45b0d39d54961793b, type: 3}
       propertyPath: m_AutoRebind
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -4546919045956300991, guid: 3c6f05a3e25c63e45b0d39d54961793b, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: -3492946032246701093, guid: 3c6f05a3e25c63e45b0d39d54961793b, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: -2953913693574872180, guid: 3c6f05a3e25c63e45b0d39d54961793b, type: 3}
       propertyPath: m_AutoRebind
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -1561459703903437062, guid: 3c6f05a3e25c63e45b0d39d54961793b, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: -1083693627282030595, guid: 3c6f05a3e25c63e45b0d39d54961793b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -226,9 +254,33 @@ PrefabInstance:
       propertyPath: m_AutoRebind
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 386791141387813222, guid: 3c6f05a3e25c63e45b0d39d54961793b, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 875222315022109612, guid: 3c6f05a3e25c63e45b0d39d54961793b, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2021552241517799897, guid: 3c6f05a3e25c63e45b0d39d54961793b, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2149886709492245415, guid: 3c6f05a3e25c63e45b0d39d54961793b, type: 3}
       propertyPath: m_AutoRebind
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2328507006820956645, guid: 3c6f05a3e25c63e45b0d39d54961793b, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3514277267147506254, guid: 3c6f05a3e25c63e45b0d39d54961793b, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3837440317302244600, guid: 3c6f05a3e25c63e45b0d39d54961793b, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4257508509235537429, guid: 3c6f05a3e25c63e45b0d39d54961793b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -237,6 +289,14 @@ PrefabInstance:
     - target: {fileID: 4257508509235537429, guid: 3c6f05a3e25c63e45b0d39d54961793b, type: 3}
       propertyPath: m_LocalPosition.y
       value: 7.398034
+      objectReference: {fileID: 0}
+    - target: {fileID: 4505398034150737137, guid: 3c6f05a3e25c63e45b0d39d54961793b, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4891915868413900037, guid: 3c6f05a3e25c63e45b0d39d54961793b, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6271025727559796341, guid: 3c6f05a3e25c63e45b0d39d54961793b, type: 3}
       propertyPath: m_AutoRebind
@@ -249,6 +309,10 @@ PrefabInstance:
     - target: {fileID: 7696096751284472229, guid: 3c6f05a3e25c63e45b0d39d54961793b, type: 3}
       propertyPath: m_AutoRebind
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8195077992272153008, guid: 3c6f05a3e25c63e45b0d39d54961793b, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8285336455802895914, guid: 3c6f05a3e25c63e45b0d39d54961793b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -493,6 +557,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   jugadorEnRango: 0
+  tiempoAturdido: 3
+  fuerzaRebote: 10
   alturaMaxima: 1.5
   soloAdelante: 1
   proyectil: {fileID: 7323252962293113382, guid: 3159d34860195f0498ee5faf79f19dc0, type: 3}
@@ -503,6 +569,7 @@ MonoBehaviour:
     m_Bits: 136
   vidaDelDisparo: 2
   dispararSiempre: 0
+  apuntarAlJugador: 0
   girarHaciaJugador: 1
   distanciaGiro: 12
   tagJugador: Player
