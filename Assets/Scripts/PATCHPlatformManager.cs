@@ -15,9 +15,16 @@ public class PATCHPlatformManager : MonoBehaviour
     public List<PlatformTanda> tandasDePlataformas;
     private int indiceTandaActual = 0;
 
+    private Animator anim;
+
     /// <summary>
     /// Se llama cada vez que el enemigo aparece/se activa.
     /// </summary>
+    /// 
+    private void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
     public void RomperSiguienteTanda()
     {
         {
@@ -25,16 +32,7 @@ public class PATCHPlatformManager : MonoBehaviour
             {
                 PlatformTanda tanda = tandasDePlataformas[indiceTandaActual];
 
-                foreach (GameObject plataforma in tanda.plataformasARomper)
-                {
-                    if (plataforma != null)
-                    {
-                        
-                        Collider2D col2D = plataforma.GetComponent<Collider2D>();
-                        plataforma.SetActive(false);
-
-                    }
-                }
+                StartCoroutine(DestruirPlataforma(tanda));
 
                 indiceTandaActual++; 
             }
@@ -45,5 +43,41 @@ public class PATCHPlatformManager : MonoBehaviour
         }
 
 
+    }
+
+    IEnumerator DestruirPlataforma(PlatformTanda tanda)
+    {
+        foreach (GameObject plataforma in tanda.plataformasARomper)
+        {
+            if (plataforma != null)
+            {
+
+                Collider2D col2D = plataforma.GetComponent<Collider2D>();
+
+                anim = plataforma.GetComponent<Animator>();
+                if(anim != null)
+                {
+                    anim.SetTrigger("INDCDESTR");
+                    anim.SetTrigger("INDCDESTR-S");
+                    anim.SetTrigger("INDCDESTR-L");
+                    yield return new WaitForSeconds(0.3f);
+                    anim.SetTrigger("DESTRUIR");
+                    anim.SetTrigger("DESTRUIR-S");
+                    anim.SetTrigger("DESTRUIR-L");
+                }
+                
+
+            }
+        }
+        
+        yield return new WaitForSeconds(1.5f);
+        foreach (GameObject plataforma in tanda.plataformasARomper)
+        {
+            if(plataforma != null)
+            {
+                plataforma.SetActive(false);
+            }
+        }
+        
     }
 }
