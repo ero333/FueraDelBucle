@@ -14,7 +14,7 @@ public class PopupController : MonoBehaviour
 
     [Header("Teclas para cerrar la nota")]
     public KeyCode teclaCerrar = KeyCode.Return;
-    public KeyCode teclaCerrarAlternativa = KeyCode.E;
+    public KeyCode teclaCerrarAlternativa = KeyCode.X;
 
     private bool estabaVisible;
 
@@ -90,8 +90,6 @@ public class PopupController : MonoBehaviour
     private void AvisarCierre()
     {
         Debug.Log("Ventana de objetivos cerrada.");
-
-        PauseManager.BloquearConfirmar();
 
         OnPopupClosed?.Invoke();
     }
