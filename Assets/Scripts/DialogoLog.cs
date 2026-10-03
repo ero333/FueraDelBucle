@@ -354,8 +354,6 @@ public class DialogoLog : MonoBehaviour
         if (dialogoTexto != null) dialogoTexto.SetText("");
         PanelDialogo.SetActive(false);
 
-        PauseManager.BloquearConfirmar();
-
         AlTerminarDialogo?.Invoke();
     }
 }

@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 #if UNITY_EDITOR
 using UnityEditor;
@@ -9,13 +8,6 @@ public class PauseManager : MonoBehaviour
 {
     public static bool GameIsPaused = false;
     public static bool CerrandoEscena = false;
-
-    private static float tiempoFinBloqueoConfirmar;
-
-    public static void BloquearConfirmar()
-    {
-        tiempoFinBloqueoConfirmar = Time.unscaledTime + 0.25f;
-    }
 
     public GameObject pauseMenuUI;
 
@@ -34,47 +26,14 @@ public class PauseManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(teclaPausa) || Input.GetKeyDown(teclaPausaAlternativa))
-        {
-            if (!GameIsPaused && DialogoLog.HayDialogoActivo) return;
+        if (!Input.GetKeyDown(teclaPausa) && !Input.GetKeyDown(teclaPausaAlternativa)) return;
 
-            Alternar();
-            return;
-        }
+        if (!GameIsPaused && DialogoLog.HayDialogoActivo) return;
 
-        if (!SeConfirmo()) return;
-        if (!PuedeAlternarConConfirmar()) return;
-
-        Alternar();
-    }
-
-    private void Alternar()
-    {
         if (GameIsPaused)
             Resume();
         else
             Pause();
-    }
-
-    private bool SeConfirmo()
-    {
-        return Input.GetKeyDown(KeyCode.Return)
-            || Input.GetKeyDown(KeyCode.KeypadEnter)
-            || Input.GetKeyDown(KeyCode.E);
-    }
-
-    private bool PuedeAlternarConConfirmar()
-    {
-        if (Time.unscaledTime < tiempoFinBloqueoConfirmar) return false;
-
-        if (EventSystem.current != null && EventSystem.current.currentSelectedGameObject != null) return false;
-
-        if (LevelUIManager.PlacaAbierta) return false;
-        if (DialogoLog.HayDialogoActivo) return false;
-
-        if (!GameIsPaused && InterruptorTeclado.HayInterruptorCerca) return false;
-
-        return true;
     }
 
     public void Pause()
