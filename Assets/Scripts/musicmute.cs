@@ -1,51 +1,70 @@
 using UnityEngine;
-using UnityEngine.UI; 
+using UnityEngine.UI;
 
 public class musicmute : MonoBehaviour
 {
-    [SerializeField] private AudioSource musicSource;
-
     [Header("Sprites UI")]
-    [SerializeField] private Image buttonImage; 
-    [SerializeField] private Sprite musicOnSprite;  
-    [SerializeField] private Sprite musicOffSprite; 
-
-    private bool isMuted = false;
+    [SerializeField] private Image buttonImage;
+    [SerializeField] private Sprite musicOnSprite;
+    [SerializeField] private Sprite musicOffSprite;
 
     private void Start()
     {
-        
-        isMuted = false;
+        ActualizarUI();
+    }
 
-        
-        PlayerPrefs.SetInt("MusicMuted", 0);
-        PlayerPrefs.Save();
-
-        UpdateAudioAndUI();
+    private void OnEnable()
+    {
+        ActualizarUI();
     }
 
     public void ToggleMusic()
     {
-        isMuted = !isMuted;
+        bool estaMuteado = !ObtenerEstadoMute();
 
-        
-        PlayerPrefs.SetInt("MusicMuted", isMuted ? 1 : 0);
-        PlayerPrefs.Save();
+       
+        if (MusicManager.Instance != null)
+        {
+            MusicManager.Instance.CambiarMute(estaMuteado);
+        }
+        else
+        {
+            
+            PlayerPrefs.SetInt("MusicMuted", estaMuteado ? 1 : 0);
+            PlayerPrefs.Save();
 
-        UpdateAudioAndUI();
+           
+            MusicaNivel musicaLocal = FindFirstObjectByType<MusicaNivel>();
+            if (musicaLocal != null)
+            {
+                AudioSource source = musicaLocal.GetComponent<AudioSource>();
+                if (source != null)
+                {
+                    source.mute = estaMuteado;
+                }
+            }
+        }
+
+        ActualizarUI();
     }
 
-    private void UpdateAudioAndUI()
+    private void ActualizarUI()
     {
-        if (musicSource != null)
-        {
-            musicSource.mute = isMuted;
-        }
+        bool estaMuteado = ObtenerEstadoMute();
 
         if (buttonImage != null)
         {
-           
-            buttonImage.sprite = isMuted ? musicOffSprite : musicOnSprite;
+            buttonImage.sprite = estaMuteado ? musicOffSprite : musicOnSprite;
         }
+    }
+
+    private bool ObtenerEstadoMute()
+    {
+        if (MusicManager.Instance != null)
+        {
+            return MusicManager.Instance.IsMuted;
+        }
+
+        return PlayerPrefs.GetInt("MusicMuted", 0) == 1;
     }
 }

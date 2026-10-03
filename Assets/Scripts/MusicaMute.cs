@@ -2,30 +2,52 @@ using UnityEngine;
 
 public class MusicaMute : MonoBehaviour
 {
-    [SerializeField] private AudioSource musicSource;
-
     [Header("Botones")]
     [SerializeField] private GameObject otroBoton;
 
     [Header("Estado de este botón")]
     [SerializeField] private bool prenderMusica;
 
-    public void ToggleMusic()
+    private void Start()
     {
-        if (musicSource != null)
-        {
-            // Este botón decide directamente el estado
-            musicSource.mute = !prenderMusica;
+        SincronizarBoton();
+    }
 
-            PlayerPrefs.SetInt("MusicMuted", prenderMusica ? 0 : 1);
-            PlayerPrefs.Save();
+    private void OnEnable()
+    {
+        SincronizarBoton();
+    }
+
+    private void SincronizarBoton()
+    {
+        bool estaMuteado = false;
+
+        if (MusicManager.Instance != null)
+        {
+            estaMuteado = MusicManager.Instance.IsMuted;
+        }
+        else
+        {
+            estaMuteado = PlayerPrefs.GetInt("MusicMuted", 0) == 1;
         }
 
-        // Activa el otro botón
-        if (otroBoton != null)
-            otroBoton.SetActive(true);
+        // Determina si este botón en particular debe estar encendido o apagar
+        bool deboMostrarme = prenderMusica ? estaMuteado : !estaMuteado;
+        gameObject.SetActive(deboMostrarme);
+    }
 
-        // Desactiva este
+    public void ToggleMusic()
+    {
+        if (MusicManager.Instance != null)
+        {
+            MusicManager.Instance.CambiarMute(!prenderMusica);
+        }
+
+        if (otroBoton != null)
+        {
+            otroBoton.SetActive(true);
+        }
+
         gameObject.SetActive(false);
     }
 }
