@@ -559,8 +559,8 @@ MonoBehaviour:
   jugadorEnRango: 0
   tiempoAturdido: 3
   fuerzaRebote: 10
-  alturaMaxima: 1.5
-  soloAdelante: 1
+  alturaMaxima: 5
+  soloAdelante: 0
   proyectil: {fileID: 7323252962293113382, guid: 3159d34860195f0498ee5faf79f19dc0, type: 3}
   tiempoEntreDisparos: 0.8
   esperaInicial: 0
@@ -569,7 +569,7 @@ MonoBehaviour:
     m_Bits: 136
   vidaDelDisparo: 2
   dispararSiempre: 0
-  apuntarAlJugador: 0
+  apuntarAlJugador: 1
   girarHaciaJugador: 1
   distanciaGiro: 12
   tagJugador: Player
