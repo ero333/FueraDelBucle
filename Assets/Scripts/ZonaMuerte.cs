@@ -39,23 +39,54 @@ public class ZonaMuerte : MonoBehaviour
 
         while (tiempoEsperado < esperaMaximaFueraDePantalla)
         {
-            bool visible = false;
-
-            foreach (SpriteRenderer sprite in sprites)
-            {
-                if (sprite != null && sprite.isVisible)
-                {
-                    visible = true;
-                    break;
-                }
-            }
-
-            if (!visible) break;
+            if (!EstaEnPantalla(sprites)) break;
 
             tiempoEsperado += Time.deltaTime;
             yield return null;
         }
 
         vida.Morir();
+    }
+
+    // Mira solo la cámara del juego (Camera.main). SpriteRenderer.isVisible cuenta también
+    // la vista Scene del Editor y cualquier otra cámara, y eso hacía esperar el máximo de segundos.
+    private bool EstaEnPantalla(SpriteRenderer[] sprites)
+    {
+        Camera cam = Camera.main;
+
+        if (cam == null)
+        {
+            foreach (SpriteRenderer sprite in sprites)
+            {
+                if (sprite != null && sprite.isVisible) return true;
+            }
+
+            return false;
+        }
+
+        bool hayLimites = false;
+        Bounds limites = new Bounds();
+
+        foreach (SpriteRenderer sprite in sprites)
+        {
+            if (sprite == null) continue;
+
+            if (!hayLimites)
+            {
+                limites = sprite.bounds;
+                hayLimites = true;
+            }
+            else
+            {
+                limites.Encapsulate(sprite.bounds);
+            }
+        }
+
+        if (!hayLimites) return false;
+
+        Vector3 min = cam.WorldToViewportPoint(limites.min);
+        Vector3 max = cam.WorldToViewportPoint(limites.max);
+
+        return max.x > 0f && min.x < 1f && max.y > 0f && min.y < 1f;
     }
 }
