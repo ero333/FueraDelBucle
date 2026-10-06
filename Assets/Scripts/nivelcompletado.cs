@@ -1,29 +1,43 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NivelSelector : MonoBehaviour
 {
-    public GameObject cuadradoCompletado; // asigna en el inspector
+    public GameObject cuadradoCompletado;
+
+    [Header("Número de este nivel")]
+    public int numeroNivel;
+
+    [Header("Clave nivel completado")]
     public string claveNivel;
 
     void OnEnable()
     {
         ActualizarEstado();
-
-        Debug.Log("Estado de nivel " + claveNivel + ": " + PlayerPrefs.GetInt(claveNivel, 0));
     }
 
     public void ActualizarEstado()
     {
-        // Verifica si el nivel está completado (compara claveNivel exacto)
+        Button boton = GetComponent<Button>();
+        int nivelDesbloqueado = PlayerPrefs.GetInt("NivelDesbloqueado", 1);
+
+        // Habilita el botón si este nivel es menor o igual al nivel máximo alcanzado
+        if (boton != null)
+        {
+            bool estaDesbloqueado = (numeroNivel <= nivelDesbloqueado);
+            boton.interactable = estaDesbloqueado;
+            Debug.Log("Nodo " + gameObject.name + " (Nivel " + numeroNivel + ") -> Desbloqueado: " + estaDesbloqueado + " | Progreso guardado: " + nivelDesbloqueado);
+        }
+
+        // Muestra la casilla de nivel completado
         if (PlayerPrefs.GetInt(claveNivel, 0) == 1)
         {
-            cuadradoCompletado.SetActive(true);
+            if (cuadradoCompletado != null) cuadradoCompletado.SetActive(true);
         }
         else
         {
-            cuadradoCompletado.SetActive(false);
+            if (cuadradoCompletado != null) cuadradoCompletado.SetActive(false);
         }
-
     }
 }
 

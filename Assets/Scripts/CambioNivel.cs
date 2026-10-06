@@ -140,6 +140,20 @@ public class CambioNivel : MonoBehaviour
 
         cambiando = true;
 
+        // =========================================================
+        // AGREGAR ESTO: Guarda el progreso del nivel actual
+        // =========================================================
+        LevelManager manager = FindObjectOfType<LevelManager>();
+        if (manager != null)
+        {
+            manager.CompletarNivel();
+        }
+        else
+        {
+            Debug.LogWarning("No se encontró el objeto LevelManager en la escena.");
+        }
+        // =========================================================
+
         if (botonCambioEscena != null)
         {
             botonCambioEscena.interactable = false;

@@ -310,7 +310,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NivelSelector
   cuadradoCompletado: {fileID: 1106691267}
-  claveNivel: Nivel9
+  numeroNivel: 9
+  claveNivel: Nivel9Completado
 --- !u!1 &170448110
 GameObject:
   m_ObjectHideFlags: 0
@@ -533,7 +534,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NivelSelector
   cuadradoCompletado: {fileID: 705968852}
-  claveNivel: Nivel4
+  numeroNivel: 4
+  claveNivel: Nivel4Completado
 --- !u!1 &330238456
 GameObject:
   m_ObjectHideFlags: 0
@@ -681,7 +683,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NivelSelector
   cuadradoCompletado: {fileID: 170448110}
-  claveNivel: Nivel2
+  numeroNivel: 2
+  claveNivel: Nivel2Completado
 --- !u!1 &345380394
 GameObject:
   m_ObjectHideFlags: 0
@@ -904,7 +907,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NivelSelector
   cuadradoCompletado: {fileID: 774615111}
-  claveNivel: Nivel3
+  numeroNivel: 3
+  claveNivel: Nivel3Completado
 --- !u!1 &440040151
 GameObject:
   m_ObjectHideFlags: 0
@@ -1127,7 +1131,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NivelSelector
   cuadradoCompletado: {fileID: 345380394}
-  claveNivel: Nivel6
+  numeroNivel: 6
+  claveNivel: Nivel6Completado
 --- !u!1 &490197417
 GameObject:
   m_ObjectHideFlags: 0
@@ -1177,7 +1182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -1833,7 +1838,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NivelSelector
   cuadradoCompletado: {fileID: 440040151}
-  claveNivel: Nivel8
+  numeroNivel: 8
+  claveNivel: Nivel8Completado
 --- !u!1 &1087937637
 GameObject:
   m_ObjectHideFlags: 0
@@ -2210,7 +2216,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NivelSelector
   cuadradoCompletado: {fileID: 928803036}
-  claveNivel: Nivel10
+  numeroNivel: 10
+  claveNivel: Nivel10Completado
 --- !u!1 &1311319264
 GameObject:
   m_ObjectHideFlags: 0
@@ -2433,7 +2440,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NivelSelector
   cuadradoCompletado: {fileID: 1087937637}
-  claveNivel: Nivel7
+  numeroNivel: 7
+  claveNivel: Nivel7Completado
 --- !u!1 &1664157863
 GameObject:
   m_ObjectHideFlags: 0
@@ -2656,7 +2664,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NivelSelector
   cuadradoCompletado: {fileID: 1664157863}
-  claveNivel: Nivel5
+  numeroNivel: 5
+  claveNivel: Nivel5Completado
 --- !u!1 &1844102125
 GameObject:
   m_ObjectHideFlags: 0
@@ -2804,7 +2813,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   cuadradoCompletado: {fileID: 1311319264}
-  claveNivel: Nivel1
+  numeroNivel: 1
+  claveNivel: Nivel1Completado
 --- !u!1 &1971747685
 GameObject:
   m_ObjectHideFlags: 0
