@@ -12,4 +12,11 @@ public class SeleccionNiveles : MonoBehaviour
     {
         SceneManager.LoadScene(numeroNivel);
     }
+
+    public void VolverAlUltimoNivel()
+    {
+        // Lee la memoria de Unity y vuelve a la escena guardada
+        string ultimoNivel = PlayerPrefs.GetString("UltimoNivelJugado", "MenuPrincipal");
+        SceneManager.LoadScene(ultimoNivel);
+    }
 }

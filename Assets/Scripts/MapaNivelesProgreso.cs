@@ -19,6 +19,11 @@ public class MapaNivelesProgreso : MonoBehaviour
 
     public int cantidadNiveles = 10;
 
+    // --- NUEVO: Array para asignar los botones directamente en el menú de pausa ---
+    [Header("Nodos opcionales (Útil para Menú de Pausa)")]
+    [Tooltip("Si usas este script en la Pausa, arrastra los botones aquí para que los detecte aunque estén deshabilitados.")]
+    public GameObject[] nodosNivel;
+
     [Header("Nivel completado")]
     [Tooltip("Brillo del botón (1 = normal, 0 = negro).")]
     [Range(0f, 1f)]
@@ -48,16 +53,41 @@ public class MapaNivelesProgreso : MonoBehaviour
 
     private void Start()
     {
+       // for (int i = 1; i <= cantidadNiveles; i++)
+       // {
+           // if (!ProgresoNiveles.EstaCompletado(prefijoEscena + i)) continue;
+
+            //GameObject nodo = GameObject.Find(prefijoNodo + i);
+
+           // if (nodo != null) MarcarComoCompletado(nodo);
+        //}
+
+        ActualizarProgreso();
+    }
+    // --- NUEVO: Método público para procesar los niveles completados ---
+    public void ActualizarProgreso()
+    {
         for (int i = 1; i <= cantidadNiveles; i++)
         {
             if (!ProgresoNiveles.EstaCompletado(prefijoEscena + i)) continue;
 
-            GameObject nodo = GameObject.Find(prefijoNodo + i);
+            GameObject nodo = null;
+
+            // 1. Revisa si asignaste el nodo desde el Inspector (ideal para el menú de pausa)
+            if (nodosNivel != null && nodosNivel.Length >= i)
+            {
+                nodo = nodosNivel[i - 1];
+            }
+
+            // 2. Si el array no se usó, lo busca por nombre en la jerarquía (como en la escena del Mapa)
+            if (nodo == null)
+            {
+                nodo = GameObject.Find(prefijoNodo + i);
+            }
 
             if (nodo != null) MarcarComoCompletado(nodo);
         }
     }
-
     private void MarcarComoCompletado(GameObject nodo)
     {
         Image imagen = nodo.GetComponent<Image>();
@@ -66,6 +96,9 @@ public class MapaNivelesProgreso : MonoBehaviour
         if (imagen == null || rectNodo == null) return;
 
         imagen.color = new Color(brillo, brillo, brillo, imagen.color.a);
+
+        //nuevo
+        if (rectNodo.parent.Find("GlowCompletado") != null) return;
 
         // El glow es un hermano puesto justo antes del botón, así se dibuja
         // detrás de él (un hijo se dibujaría encima).
