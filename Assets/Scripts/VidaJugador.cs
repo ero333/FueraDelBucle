@@ -41,6 +41,16 @@ public class VidaJugador : MonoBehaviour
 
     public bool EstaParpadeando => parpadeoActual != null;
 
+    // Color real (sin flash de daño) del sprite i del rig. PlayerPhysics lo usa al activar
+    // el Phase para no guardar el rojo del impacto como si fuera el color normal.
+    public Color ColorOriginal(int indice, Color porDefecto)
+    {
+        if (coloresOriginales == null || indice < 0 || indice >= coloresOriginales.Length)
+            return porDefecto;
+
+        return coloresOriginales[indice];
+    }
+
     void Start()
     {
         spriteRenderers = GetComponentsInChildren<SpriteRenderer>();

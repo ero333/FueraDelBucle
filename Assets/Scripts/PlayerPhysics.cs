@@ -370,7 +370,15 @@ public class PlayerPhysics : MonoBehaviour
             for (int i = 0; i < spriteRenderers.Length; i++)
             {
                 if (spriteRenderers[i] != null)
-                    coloresOriginalesPhase[i] = spriteRenderers[i].color;
+                {
+                    Color actual = spriteRenderers[i].color;
+
+                    // Si justo hay un flash de daño en curso, el color actual es el rojo del
+                    // impacto: se guarda el original para no quedar "impactado" al salir del Phase.
+                    coloresOriginalesPhase[i] = (vidaJugador != null && vidaJugador.EstaParpadeando)
+                        ? vidaJugador.ColorOriginal(i, actual)
+                        : actual;
+                }
             }
         }
 
