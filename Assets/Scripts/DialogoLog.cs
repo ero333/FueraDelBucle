@@ -33,6 +33,8 @@ public class DialogoLog : MonoBehaviour
     private bool ocultoPorPausa;
     private float tiempoFinCooldown;
     private bool notaEstabaAbierta;
+    private Vector2 posicionRetrato;
+    private bool guardePosicionRetrato;
 
     // Cajas de diálogo de la escena. PlayerPhysics pregunta por HayDialogoActivo
     // para bloquear el movimiento del jugador mientras haya un diálogo en pantalla.
@@ -235,7 +237,8 @@ public class DialogoLog : MonoBehaviour
         dialogoIndex = 0;
 
         if (NombreText != null) NombreText.SetText(dialogodata.NombreNPC);
-        if (RetratoAnim != null) RetratoAnim.sprite = dialogodata.LogRetrato;
+
+        ActualizarRetrato();
 
         PanelDialogo.SetActive(true);
 
@@ -263,8 +266,57 @@ public class DialogoLog : MonoBehaviour
         }
     }
 
+    private void ActualizarRetrato()
+    {
+        if (RetratoAnim == null || dialogodata == null) return;
+
+        Sprite elegido = dialogodata.LogRetrato;
+
+        if (dialogodata.retratosPorLinea != null
+            && dialogoIndex < dialogodata.retratosPorLinea.Length
+            && dialogodata.retratosPorLinea[dialogoIndex] != null)
+        {
+            elegido = dialogodata.retratosPorLinea[dialogoIndex];
+        }
+
+        RetratoAnim.sprite = elegido;
+
+        float escala = 1f;
+
+        if (dialogodata.escalaRetratoPorLinea != null
+            && dialogoIndex < dialogodata.escalaRetratoPorLinea.Length
+            && dialogodata.escalaRetratoPorLinea[dialogoIndex] > 0f)
+        {
+            escala = dialogodata.escalaRetratoPorLinea[dialogoIndex];
+        }
+
+        RectTransform rectRetrato = RetratoAnim.rectTransform;
+
+        if (!guardePosicionRetrato)
+        {
+            posicionRetrato = rectRetrato.anchoredPosition;
+            guardePosicionRetrato = true;
+        }
+
+        rectRetrato.localScale = Vector3.one * escala;
+
+        float crecimiento = (escala - 1f) * rectRetrato.rect.height * 0.5f;
+
+        float corrimiento = 0f;
+
+        if (dialogodata.desplazamientoRetratoPorLinea != null
+            && dialogoIndex < dialogodata.desplazamientoRetratoPorLinea.Length)
+        {
+            corrimiento = dialogodata.desplazamientoRetratoPorLinea[dialogoIndex];
+        }
+
+        rectRetrato.anchoredPosition = posicionRetrato + new Vector2(corrimiento, crecimiento);
+    }
+
     IEnumerator LineadeType()
     {
+        ActualizarRetrato();
+
         EstaTypeando = true;
         dialogoTexto.SetText("");
 
