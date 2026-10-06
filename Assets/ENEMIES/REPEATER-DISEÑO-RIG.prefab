@@ -566,13 +566,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DisparoEnemigo
   controladorDisparo: {fileID: 3442127772077155342}
-  distanciaLinea: 10
+  distanciaLinea: 7
   capaJugador:
     serializedVersion: 2
     m_Bits: 64
   jugadorEnRango: 0
   proyectil: {fileID: 7323252962293113382, guid: 3159d34860195f0498ee5faf79f19dc0, type: 3}
-  tiempoEntreDisparos: 1.5
+  tiempoEntreDisparos: 4
   dispararSiempre: 0
 --- !u!50 &2298286914204850038
 Rigidbody2D:
