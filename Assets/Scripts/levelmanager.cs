@@ -11,6 +11,14 @@ public class LevelManager : MonoBehaviour
         string clave = "Nivel" + numeroNivel + "Completado";
         PlayerPrefs.SetInt(clave, 1);
 
+        //para desbloquear el siguiente nivel
+
+        int nivelDesbloqueado = PlayerPrefs.GetInt("NivelDesbloqueado", 1);
+
+        if (numeroNivel >= nivelDesbloqueado)
+        {
+            PlayerPrefs.SetInt("NivelDesbloqueado", numeroNivel + 1);
+        }
         PlayerPrefs.Save();
 
         Debug.Log("Nivel " + numeroNivel + " marcado como completado.");
