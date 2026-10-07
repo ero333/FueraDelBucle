@@ -21,7 +21,7 @@ public class NivelSelector : MonoBehaviour
         Button boton = GetComponent<Button>();
         int nivelDesbloqueado = PlayerPrefs.GetInt("NivelDesbloqueado", 1);
 
-        // Habilita el botón si este nivel es menor o igual al nivel máximo alcanzado
+        
         if (boton != null)
         {
             bool estaDesbloqueado = (numeroNivel <= nivelDesbloqueado);
@@ -29,7 +29,7 @@ public class NivelSelector : MonoBehaviour
             Debug.Log("Nodo " + gameObject.name + " (Nivel " + numeroNivel + ") -> Desbloqueado: " + estaDesbloqueado + " | Progreso guardado: " + nivelDesbloqueado);
         }
 
-        // Muestra la casilla de nivel completado
+        
         if (PlayerPrefs.GetInt(claveNivel, 0) == 1)
         {
             if (cuadradoCompletado != null) cuadradoCompletado.SetActive(true);

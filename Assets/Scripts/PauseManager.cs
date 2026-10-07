@@ -121,6 +121,13 @@ public class PauseManager : MonoBehaviour
         CerrandoEscena = true;
         Time.timeScale = 1f;
         GameIsPaused = false;
+
+        if (nombreEscena == "MapaNiveles")
+        {
+            PlayerPrefs.SetInt("MapaDesdeMenu", 0);
+            PlayerPrefs.Save();
+        }
+
         SceneManager.LoadScene(nombreEscena);
     }
 }

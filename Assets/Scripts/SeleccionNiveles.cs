@@ -13,10 +13,19 @@ public class SeleccionNiveles : MonoBehaviour
         SceneManager.LoadScene(numeroNivel);
     }
 
-    public void VolverAlUltimoNivel()
+    // Volver desde el mapa
+    public void VolverDesdeMapa()
     {
-        // Lee la memoria de Unity y vuelve a la escena guardada
-        string ultimoNivel = PlayerPrefs.GetString("UltimoNivelJugado", "MenuPrincipal");
-        SceneManager.LoadScene(ultimoNivel);
+        bool desdeMenu = PlayerPrefs.GetInt("MapaDesdeMenu", 1) == 1;
+
+        if (desdeMenu)
+        {
+            SceneManager.LoadScene("MenuPrincipal");
+        }
+        else
+        {
+            string ultimoNivel = PlayerPrefs.GetString("UltimoNivelJugado", "Nivel1");
+            SceneManager.LoadScene(ultimoNivel);
+        }
     }
 }
