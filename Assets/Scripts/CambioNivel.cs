@@ -143,7 +143,7 @@ public class CambioNivel : MonoBehaviour
         // =========================================================
         // AGREGAR ESTO: Guarda el progreso del nivel actual
         // =========================================================
-        LevelManager manager = FindObjectOfType<LevelManager>();
+        LevelManager manager = FindAnyObjectByType<LevelManager>();
         if (manager != null)
         {
             manager.CompletarNivel();
