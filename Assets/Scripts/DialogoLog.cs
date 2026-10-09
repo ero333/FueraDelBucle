@@ -33,8 +33,11 @@ public class DialogoLog : MonoBehaviour
     private bool ocultoPorPausa;
     private float tiempoFinCooldown;
     private bool notaEstabaAbierta;
-    private Vector2 posicionRetrato;
-    private bool guardePosicionRetrato;
+    // Todas las cajas de la escena comparten el mismo retrato, asi que la posicion de
+    // descanso se guarda una sola vez: si cada una se guardara la suya, la segunda en
+    // hablar tomaria como origen el corrimiento que dejo la primera.
+    private static RectTransform rectRetratoGuardado;
+    private static Vector2 posicionRetrato;
 
     // Cajas de diálogo de la escena. PlayerPhysics pregunta por HayDialogoActivo
     // para bloquear el movimiento del jugador mientras haya un diálogo en pantalla.
@@ -292,10 +295,10 @@ public class DialogoLog : MonoBehaviour
 
         RectTransform rectRetrato = RetratoAnim.rectTransform;
 
-        if (!guardePosicionRetrato)
+        if (rectRetratoGuardado != rectRetrato)
         {
+            rectRetratoGuardado = rectRetrato;
             posicionRetrato = rectRetrato.anchoredPosition;
-            guardePosicionRetrato = true;
         }
 
         rectRetrato.localScale = Vector3.one * escala;
