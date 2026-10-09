@@ -147,6 +147,9 @@ public class PanelDerrota : MonoBehaviour
         if (panelDerrota != null)
         {
             panelDerrota.SetActive(true);
+
+            // La caja de dialogo esta despues en la jerarquia y le tapaba los botones.
+            panelDerrota.transform.SetAsLastSibling();
         }
 
         if (botonReintentar != null)

@@ -140,6 +140,9 @@ public class PanelVictoria : MonoBehaviour
         if (panelVictoria != null)
         {
             panelVictoria.SetActive(true);
+
+            // La caja de dialogo esta despues en la jerarquia y le tapaba los botones.
+            panelVictoria.transform.SetAsLastSibling();
         }
 
         NavegacionMenus.SeleccionarDentroDe(panelVictoria);
