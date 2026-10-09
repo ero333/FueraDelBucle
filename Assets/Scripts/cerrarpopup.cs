@@ -15,6 +15,7 @@ public class PopupController : MonoBehaviour
     [Header("Teclas para cerrar la nota")]
     public KeyCode teclaCerrar = KeyCode.Return;
     public KeyCode teclaCerrarAlternativa = KeyCode.X;
+    public KeyCode teclaCerrarAlternativa2 = KeyCode.E;
 
     private bool estabaVisible;
 
@@ -51,7 +52,7 @@ public class PopupController : MonoBehaviour
     {
         bool visible = ventanaPopup != null && ventanaPopup.activeSelf;
 
-        if (visible && (Input.GetKeyDown(teclaCerrar) || Input.GetKeyDown(teclaCerrarAlternativa) || Input.GetKeyDown(KeyCode.KeypadEnter)))
+        if (visible && (Input.GetKeyDown(teclaCerrar) || Input.GetKeyDown(teclaCerrarAlternativa) || Input.GetKeyDown(teclaCerrarAlternativa2) || Input.GetKeyDown(KeyCode.KeypadEnter)))
         {
             CerrarVentana();
             return;
