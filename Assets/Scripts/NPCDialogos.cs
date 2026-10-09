@@ -6,6 +6,12 @@ public class NPCDialogos : ScriptableObject
     public string NombreNPC;
     public Sprite LogRetrato;
 
+    [Tooltip("Tamano del retrato de este personaje. Sirve para que todos se vean igual de grandes aunque sus dibujos vengan encuadrados distinto. En 0 queda el normal.")]
+    public float escalaRetrato = 1f;
+
+    [Tooltip("Corrimiento del retrato de este personaje. En Y, negativo lo baja hasta apoyarlo sobre la linea de la barra.")]
+    public Vector2 ajusteRetrato;
+
     [Tooltip("Retrato distinto para alguna linea puntual. Lo que quede vacio usa el retrato de arriba.")]
     public Sprite[] retratosPorLinea;
 

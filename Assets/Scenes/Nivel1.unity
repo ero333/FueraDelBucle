@@ -233,18 +233,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
-    - target: {fileID: 1748295520237544280, guid: dfb8c8748f72de24aabe6c25f2418dc8, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 229.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2358783219053520830, guid: dfb8c8748f72de24aabe6c25f2418dc8, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 273.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 2358783219053520830, guid: dfb8c8748f72de24aabe6c25f2418dc8, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -37.04
-      objectReference: {fileID: 0}
     - target: {fileID: 2878058917502599301, guid: dfb8c8748f72de24aabe6c25f2418dc8, type: 3}
       propertyPath: m_Name
       value: BarraDialogo
@@ -257,38 +245,6 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 1709785787510983580, guid: 5dbcc6c4cc82bac43866fd7ae14cda2b, type: 3}
-    - target: {fileID: 4596189391156666078, guid: dfb8c8748f72de24aabe6c25f2418dc8, type: 3}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4596189391156666078, guid: dfb8c8748f72de24aabe6c25f2418dc8, type: 3}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4596189391156666078, guid: dfb8c8748f72de24aabe6c25f2418dc8, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4596189391156666078, guid: dfb8c8748f72de24aabe6c25f2418dc8, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4596189391156666078, guid: dfb8c8748f72de24aabe6c25f2418dc8, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4596189391156666078, guid: dfb8c8748f72de24aabe6c25f2418dc8, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4596189391156666078, guid: dfb8c8748f72de24aabe6c25f2418dc8, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 600
-      objectReference: {fileID: 0}
-    - target: {fileID: 4596189391156666078, guid: dfb8c8748f72de24aabe6c25f2418dc8, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 150
-      objectReference: {fileID: 0}
     - target: {fileID: 4596189391156666078, guid: dfb8c8748f72de24aabe6c25f2418dc8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -318,14 +274,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4596189391156666078, guid: dfb8c8748f72de24aabe6c25f2418dc8, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -31.069458
-      objectReference: {fileID: 0}
-    - target: {fileID: 4596189391156666078, guid: dfb8c8748f72de24aabe6c25f2418dc8, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 98.397224
-      objectReference: {fileID: 0}
-    - target: {fileID: 4596189391156666078, guid: dfb8c8748f72de24aabe6c25f2418dc8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
@@ -336,10 +284,6 @@ PrefabInstance:
     - target: {fileID: 4596189391156666078, guid: dfb8c8748f72de24aabe6c25f2418dc8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4738566828817934569, guid: dfb8c8748f72de24aabe6c25f2418dc8, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 180.44
       objectReference: {fileID: 0}
     - target: {fileID: 6064073709544336699, guid: dfb8c8748f72de24aabe6c25f2418dc8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -5197,7 +5141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1438406419
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5230,8 +5174,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81acf80473103d54da4e58c14d36961c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  helpPanel: {fileID: 1833825292}
-  teclaAyuda: 104
 --- !u!1 &1453999283
 GameObject:
   m_ObjectHideFlags: 0

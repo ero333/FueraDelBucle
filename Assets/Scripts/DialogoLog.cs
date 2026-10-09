@@ -281,7 +281,7 @@ public class DialogoLog : MonoBehaviour
 
         RetratoAnim.sprite = elegido;
 
-        float escala = 1f;
+        float escala = dialogodata.escalaRetrato > 0f ? dialogodata.escalaRetrato : 1f;
 
         if (dialogodata.escalaRetratoPorLinea != null
             && dialogoIndex < dialogodata.escalaRetratoPorLinea.Length
@@ -302,15 +302,15 @@ public class DialogoLog : MonoBehaviour
 
         float crecimiento = (escala - 1f) * rectRetrato.rect.height * 0.5f;
 
-        float corrimiento = 0f;
+        Vector2 ajuste = dialogodata.ajusteRetrato;
 
         if (dialogodata.desplazamientoRetratoPorLinea != null
             && dialogoIndex < dialogodata.desplazamientoRetratoPorLinea.Length)
         {
-            corrimiento = dialogodata.desplazamientoRetratoPorLinea[dialogoIndex];
+            ajuste.x = dialogodata.desplazamientoRetratoPorLinea[dialogoIndex];
         }
 
-        rectRetrato.anchoredPosition = posicionRetrato + new Vector2(corrimiento, crecimiento);
+        rectRetrato.anchoredPosition = posicionRetrato + ajuste + new Vector2(0f, crecimiento);
     }
 
     IEnumerator LineadeType()
