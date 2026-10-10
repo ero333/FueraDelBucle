@@ -35,6 +35,7 @@ public class PanelVictoria : MonoBehaviour
     private bool activado;
     private bool esperando;
     private Coroutine rutinaEsperando;
+    private float tiempoEnLaPuerta;
 
     // PlayerPhysics lo lee para bloquear el movimiento del jugador desde que llega a la meta.
     public static bool MetaAlcanzada { get; private set; }
@@ -54,35 +55,52 @@ public class PanelVictoria : MonoBehaviour
         if (activado || esperando || !activarPorContacto) return;
         if (!other.CompareTag(tagJugador)) return;
 
-        if (esperarAterrizaje)
+        if (!EstaApoyado(other))
         {
-            Rigidbody2D rb = other.attachedRigidbody;
-            if (rb != null && Mathf.Abs(rb.linearVelocity.y) > velocidadVerticalMaxima) return;
+            tiempoEnLaPuerta = 0f;
+            return;
         }
+
+        tiempoEnLaPuerta += Time.deltaTime;
+
+        if (!EstaEnReposo(other) && tiempoEnLaPuerta < esperaMaximaIdle) return;
 
         esperando = true;
         MetaAlcanzada = true;
-        rutinaEsperando = StartCoroutine(EsperarReposoYMostrar(other));
+        rutinaEsperando = StartCoroutine(EsperarReposoYMostrar());
     }
 
-    private IEnumerator EsperarReposoYMostrar(Collider2D other)
+    private void OnTriggerExit2D(Collider2D other)
     {
-        if (esperarIdle)
-        {
-            Animator anim = other.GetComponentInChildren<Animator>();
-            if (anim != null)
-            {
-                float t = 0f;
-                // Usamos Realtime para que no se congele si hay pausas
-                while (t < esperaMaximaIdle)
-                {
-                    if (anim.GetCurrentAnimatorStateInfo(0).IsName(estadoIdle)) break;
-                    t += Time.unscaledDeltaTime;
-                    yield return null;
-                }
-            }
-        }
+        if (other.CompareTag(tagJugador)) tiempoEnLaPuerta = 0f;
+    }
 
+    private bool EstaApoyado(Collider2D other)
+    {
+        if (!esperarAterrizaje) return true;
+
+        // La velocidad vertical tambien pasa por cero en el pico del salto, asi que
+        // cuando el jugador tiene PlayerPhysics se le pregunta si toca el piso de verdad.
+        PlayerPhysics fisica = other.GetComponentInParent<PlayerPhysics>();
+
+        if (fisica != null) return fisica.EstaEnElSuelo;
+
+        Rigidbody2D rb = other.attachedRigidbody;
+
+        return rb == null || Mathf.Abs(rb.linearVelocity.y) <= velocidadVerticalMaxima;
+    }
+
+    private bool EstaEnReposo(Collider2D other)
+    {
+        if (!esperarIdle) return true;
+
+        Animator anim = other.GetComponentInChildren<Animator>();
+
+        return anim == null || anim.GetCurrentAnimatorStateInfo(0).IsName(estadoIdle);
+    }
+
+    private IEnumerator EsperarReposoYMostrar()
+    {
         if (dialogoFinal != null)
         {
             bool dialogoTerminado = false;
