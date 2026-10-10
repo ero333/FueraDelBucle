@@ -9666,6 +9666,7 @@ MonoBehaviour:
   nombreEscenaMenu: MenuPrincipal
   teclaPausa: 27
   teclaPausaAlternativa: 9
+  cartelObjetivoUI: {fileID: 189253741}
 --- !u!4 &1464149311
 Transform:
   m_ObjectHideFlags: 0
@@ -9674,12 +9675,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1464149309}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 363.28983, y: 198.75415, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -39.86139, y: -28.000845, z: 0}
+  m_LocalScale: {x: 0.991326, y: 0.991326, z: 0.991326}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1727030670}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1471949974 stripped
 Transform:
@@ -10573,6 +10574,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 115404498}
+  - {fileID: 1464149311}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -12938,7 +12940,6 @@ SceneRoots:
   - {fileID: 1769548797}
   - {fileID: 189253742}
   - {fileID: 1727030670}
-  - {fileID: 1464149311}
   - {fileID: 70052689}
   - {fileID: 1791559776}
   - {fileID: 133670522}

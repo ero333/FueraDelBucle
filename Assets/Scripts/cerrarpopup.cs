@@ -18,9 +18,10 @@ public class PopupController : MonoBehaviour
     public KeyCode teclaCerrarAlternativa2 = KeyCode.E;
     public KeyCode teclaCerrarAlternativa3 = KeyCode.Escape;
 
+    // --- NUEVO: Propiedad estática para saber si el cartel está o estuvo abierto este frame 
+    public static bool CartelAbierto { get; private set; }
 
     private bool estabaVisible;
-
 
     void Start()
     {
@@ -37,7 +38,6 @@ public class PopupController : MonoBehaviour
         ventanaPopup.SetActive(true);
     }
 
-
     private bool EsCuadroDeDialogo()
     {
         DialogoLog[] dialogos = FindObjectsByType<DialogoLog>(FindObjectsInactive.Include, FindObjectsSortMode.None);
@@ -53,6 +53,8 @@ public class PopupController : MonoBehaviour
     void Update()
     {
         bool visible = ventanaPopup != null && ventanaPopup.activeSelf;
+
+        CartelAbierto = visible;
 
         if (visible && (Input.GetKeyDown(teclaCerrar) || Input.GetKeyDown(teclaCerrarAlternativa) || Input.GetKeyDown(teclaCerrarAlternativa2) || Input.GetKeyDown(teclaCerrarAlternativa3) || Input.GetKeyDown(KeyCode.KeypadEnter)))
         {
@@ -76,6 +78,7 @@ public class PopupController : MonoBehaviour
         if (ventanaPopup != null)
         {
             ventanaPopup.SetActive(true);
+            CartelAbierto = true;
         }
     }
 
@@ -97,7 +100,6 @@ public class PopupController : MonoBehaviour
         OnPopupClosed?.Invoke();
     }
 
-    // Método de apoyo para consultar el estado visible de la ventana
     public bool EstaVisible()
     {
         return ventanaPopup != null && ventanaPopup.activeSelf;
