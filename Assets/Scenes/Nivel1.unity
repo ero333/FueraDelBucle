@@ -1571,7 +1571,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
 --- !u!114 &192308729 stripped
 MonoBehaviour:
@@ -2675,8 +2675,6 @@ RectTransform:
   - {fileID: 1198746872}
   - {fileID: 822000011}
   - {fileID: 149087367}
-  - {fileID: 620524201}
-  - {fileID: 1438406419}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2975,7 +2973,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &620524201
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2989,7 +2987,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2093946256}
-  m_Father: {fileID: 588318747}
+  m_Father: {fileID: 2140166048}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3183,7 +3181,7 @@ SpriteRenderer:
   m_Size: {x: 15.99, y: 3.34}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
 --- !u!1001 &658321077
 PrefabInstance:
@@ -5331,7 +5329,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1438406419
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5346,7 +5344,7 @@ RectTransform:
   m_Children:
   - {fileID: 2026022775}
   - {fileID: 1833825293}
-  m_Father: {fileID: 588318747}
+  m_Father: {fileID: 2140166048}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5365,6 +5363,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a74b8a0161b17e747afabbcade78e412, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  helpPanel: {fileID: 1833825292}
+  teclaAyuda: 104
 --- !u!1 &1453999283
 GameObject:
   m_ObjectHideFlags: 0
@@ -6291,7 +6291,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1806392758
 GameObject:
@@ -6442,7 +6442,7 @@ GameObject:
   - component: {fileID: 1833825295}
   - component: {fileID: 1833825294}
   m_Layer: 5
-  m_Name: Image
+  m_Name: helpmenu ui
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6675,7 +6675,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1961351606
 GameObject:
@@ -7225,8 +7225,8 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 9
-    m_FontStyle: 0
+    m_FontSize: 20
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 40
@@ -7236,7 +7236,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: AYUDA (H)
+  m_Text: '?'
 --- !u!222 &2093946258
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7397,6 +7397,8 @@ RectTransform:
   - {fileID: 617632521}
   - {fileID: 1492655017}
   - {fileID: 175833325}
+  - {fileID: 620524201}
+  - {fileID: 1438406419}
   m_Father: {fileID: 1677667370}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
