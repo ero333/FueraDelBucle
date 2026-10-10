@@ -3,7 +3,7 @@ using UnityEngine;
 public class InterruptorTeclado : MonoBehaviour
 {
     public GameObject[] caminosOcultos;
-    
+
     public Sprite spriteActivado;
 
     private Sprite spriteDesactivado;
@@ -11,10 +11,8 @@ public class InterruptorTeclado : MonoBehaviour
     private bool estaActivado = false;
     private bool jugadorCerca = false;
 
-    //Caminos que se desactivan cuando activas el switch
+    // Caminos que se desactivan cuando activas el switch
     public GameObject[] caminosDesactivables;
-    
-    
 
     void Start()
     {
@@ -23,6 +21,12 @@ public class InterruptorTeclado : MonoBehaviour
         if (spriteRenderer != null)
         {
             spriteDesactivado = spriteRenderer.sprite;
+
+            // Arranca desactivado pero mostrando el sprite activado
+            if (spriteActivado != null)
+            {
+                spriteRenderer.sprite = spriteActivado;
+            }
         }
 
         foreach (GameObject camino in caminosOcultos)
@@ -57,16 +61,16 @@ public class InterruptorTeclado : MonoBehaviour
 
             if (spriteRenderer != null)
             {
-                if (estaActivado && spriteActivado != null)
-                {
-                    spriteRenderer.sprite = spriteActivado;
-                }
-                else if (!estaActivado && spriteDesactivado != null)
+                // Función activada = sprite original
+                if (estaActivado && spriteDesactivado != null)
                 {
                     spriteRenderer.sprite = spriteDesactivado;
                 }
-
-                
+                // Función desactivada = sprite activado
+                else if (!estaActivado && spriteActivado != null)
+                {
+                    spriteRenderer.sprite = spriteActivado;
+                }
             }
         }
     }
