@@ -336,24 +336,33 @@ public class RepeaterSegundo : MonoBehaviour
 
     //Aturdimiento 
 
+    
+    private Coroutine corrutinaAturdimiento;
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag(tagJugador))
         {
-            // Verificar si el contacto viene desde arriba del enemigo
+            
             foreach (ContactPoint2D punto in collision.contacts)
             {
                 if (punto.normal.y < -0.5f)
                 {
-                    // Hacer rebotar al jugador
+                    
                     Rigidbody2D rbJugador = collision.gameObject.GetComponent<Rigidbody2D>();
                     if (rbJugador != null)
                     {
-                        rbJugador.linearVelocity = new Vector2(rbJugador.linearVelocity.x, fuerzaRebote); ;
+                        rbJugador.linearVelocity = new Vector2(rbJugador.linearVelocity.x, fuerzaRebote);
                     }
 
-                    // Desactivar el disparo temporalmente
-                    StartCoroutine(AturdirEnemigo());
+                    
+                    if (corrutinaAturdimiento != null)
+                    {
+                        StopCoroutine(corrutinaAturdimiento);
+                    }
+
+                    
+                    corrutinaAturdimiento = StartCoroutine(AturdirEnemigo());
                     break;
                 }
             }
@@ -369,6 +378,6 @@ public class RepeaterSegundo : MonoBehaviour
 
         aturdido = false;
         cronometro = esperaInicial;
+        corrutinaAturdimiento = null; 
     }
-    //aturdimiento
 }
