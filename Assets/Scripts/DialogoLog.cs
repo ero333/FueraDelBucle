@@ -25,6 +25,9 @@ public class DialogoLog : MonoBehaviour
     [Tooltip("Dejalo desmarcado para que el jugador pase cada parlamento a mano.")]
     public bool autoProgresar = false;
 
+    [Tooltip("Congela el nivel mientras el dialogo esta en pantalla y lo suelta al cerrarlo.")]
+    public bool pausarElJuego = true;
+
     public event Action AlTerminarDialogo;
 
     private int dialogoIndex;
@@ -33,6 +36,7 @@ public class DialogoLog : MonoBehaviour
     private bool ocultoPorPausa;
     private float tiempoFinCooldown;
     private bool notaEstabaAbierta;
+    private bool congeleElNivel;
     // Todas las cajas de la escena comparten el mismo retrato, asi que la posicion de
     // descanso se guarda una sola vez: si cada una se guardara la suya, la segunda en
     // hablar tomaria como origen el corrimiento que dejo la primera.
@@ -122,6 +126,8 @@ public class DialogoLog : MonoBehaviour
 
     private void OnDisable()
     {
+        SoltarNivel();
+
         instancias.Remove(this);
 
         if (popupObjetivo != null)
@@ -245,7 +251,28 @@ public class DialogoLog : MonoBehaviour
 
         PanelDialogo.SetActive(true);
 
+        CongelarNivel();
+
         StartCoroutine(LineadeType());
+    }
+
+    private void CongelarNivel()
+    {
+        if (!pausarElJuego || congeleElNivel) return;
+
+        congeleElNivel = true;
+        Time.timeScale = 0f;
+    }
+
+    private void SoltarNivel()
+    {
+        if (!congeleElNivel) return;
+
+        congeleElNivel = false;
+
+        if (PauseManager.GameIsPaused || LevelUIManager.PlacaAbierta) return;
+
+        Time.timeScale = 1f;
     }
 
     public void SkipearDialogoCompleto()
@@ -408,6 +435,8 @@ public class DialogoLog : MonoBehaviour
         DialogoActivo = false;
         if (dialogoTexto != null) dialogoTexto.SetText("");
         PanelDialogo.SetActive(false);
+
+        SoltarNivel();
 
         AlTerminarDialogo?.Invoke();
     }

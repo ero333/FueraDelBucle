@@ -13,8 +13,8 @@ public class DialogoAparicion : MonoBehaviour
     [Tooltip("Distancia a la que el jugador tiene que acercarse al personaje.")]
     public float distancia = 12f;
 
-    [Tooltip("Segundos de espera antes de poder dispararse, para que el personaje termine de aparecer.")]
-    public float esperaInicial = 1f;
+    [Tooltip("Segundos de espera antes de poder dispararse. En 0 salta apenas se cierra la nota de objetivo. Subilo solo si el personaje necesita terminar de aparecer.")]
+    public float esperaInicial = 0f;
 
     public bool soloUnaVez = true;
 
