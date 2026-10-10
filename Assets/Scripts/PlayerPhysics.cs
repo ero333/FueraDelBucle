@@ -3,6 +3,11 @@ using UnityEngine.SceneManagement;
 
 public class PlayerPhysics : MonoBehaviour
 {
+    // ==========================================
+    // CHEAT GOD MODE
+    // ==========================================
+    public static bool godModeActivo = false;
+
     [Header("Configuración de Caída")]
     [SerializeField] private float multiplicadorCaida = 2.5f;
 
@@ -32,21 +37,19 @@ public class PlayerPhysics : MonoBehaviour
     [Tooltip("Cuánto puede durar el Phase como máximo. Al agotarse se corta solo y arranca el cooldown.")]
     [SerializeField] private float duracionPhase = 3f;
     [SerializeField] private LayerMask capaParedesAtravesables;
-    [SerializeField] private float opacidadPhase = 0.7f; // Transparencia visual durante el Phase
+    [SerializeField] private float opacidadPhase = 0.7f;
     [Tooltip("Color del leve glow violeta que tiñe el sprite mientras dura el Phase.")]
     [SerializeField] private Color colorGlowPhase = new Color(0.65f, 0.35f, 1f);
     [Tooltip("Qué tan rápido pulsa el brillo del glow.")]
     [SerializeField] private float velocidadPulsoGlow = 4f;
     [Tooltip("Qué tan fuerte es la variación de brillo del pulso (0 = sin pulso).")]
     [SerializeField] private float intensidadPulsoGlow = 0.25f;
-    [Tooltip("Número de nivel a partir del cual se puede usar Phase (según el nombre de escena \"NivelX\"). Escenas que no siguen ese formato (ej. SampleScene) la tienen habilitada.")]
+    [Tooltip("Número de nivel a partir del cual se puede usar Phase...")]
     [SerializeField] private int nivelMinimoParaPhase = 6;
 
     [Header("Sprite")]
-    [Tooltip("Marcá esto si el personaje mira hacia la derecha con escala X positiva. Desmarcá si mira a la izquierda.")]
+    [Tooltip("Marcá esto si el personaje mira hacia la derecha...")]
     [SerializeField] private bool spriteMiraDerecha = true;
-    [Tooltip("Objeto que se gira al cambiar de direccion. Si lo dejás vacío se usa este mismo GameObject " +
-             "(la raíz del rig). Se invierte su escala en X: espeja todo el rig sin cambiar su tamaño.")]
     [SerializeField] private Transform visualAGirar;
 
     private Rigidbody2D rb;
@@ -77,7 +80,6 @@ public class PlayerPhysics : MonoBehaviour
     private Vector2 tamanoOriginalCollider;
     private Vector2 offsetOriginalCollider;
 
-    // ---- Propiedades públicas para la UI ----
     public float ProgresoCooldownDash
     {
         get
@@ -106,13 +108,11 @@ public class PlayerPhysics : MonoBehaviour
     }
 
     public bool EstaEnPhase => estaEnPhase;
-
     public float TiempoRestanteCooldown => tiempoRestanteCooldown;
     public bool PuedeDashear => tiempoRestanteCooldown <= 0f;
     public bool PuedeHacerPhase => tiempoRestanteCooldownPhase <= 0f && !estaEnPhase && phaseDisponibleEnEsteNivel;
     public bool EstaEnElSuelo => estaEnElSuelo;
     public float MultiplicadorCaida => multiplicadorCaida;
-
 
     [Header("Fuerza de Rebote sobre el enemigo")]
     public float Rebote = 0f;
@@ -149,7 +149,6 @@ public class PlayerPhysics : MonoBehaviour
     private void OrientarSprite()
     {
         if (inputHorizontal == 0f) return;
-
         bool mirandoDerecha = inputHorizontal > 0f;
         float signo = (mirandoDerecha == spriteMiraDerecha) ? 1f : -1f;
 
@@ -168,9 +167,6 @@ public class PlayerPhysics : MonoBehaviour
         return new Vector2(transform.position.x, y);
     }
 
-    // Las escenas de nivel se llaman "NivelX" (Nivel1, Nivel2, ...). Si el
-    // número es menor a nivelMinimoParaPhase, Phase queda bloqueado. Cualquier
-    // escena que no siga ese formato (ej. SampleScene) lo deja disponible.
     private bool CalcularSiPhaseEstaDisponible()
     {
         string nombreEscena = SceneManager.GetActiveScene().name;
@@ -184,7 +180,6 @@ public class PlayerPhysics : MonoBehaviour
                 return numeroNivel >= nivelMinimoParaPhase;
             }
         }
-
         return true;
     }
 
@@ -192,23 +187,24 @@ public class PlayerPhysics : MonoBehaviour
     {
         if (Time.timeScale == 0f) return;
 
-        // Placa de objetivo, caja de diálogo abierta o meta alcanzada: sin movimiento hasta que se cierre.
+        // ==========================================
+        // CHEAT GOD MODE (K)
+        // ==========================================
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            godModeActivo = !godModeActivo;
+            Debug.Log("God Mode: " + (godModeActivo ? "ACTIVADO" : "DESACTIVADO"));
+        }
+        // ==========================================
+
         if (LevelUIManager.PlacaAbierta || DialogoLog.HayDialogoActivo || PanelVictoria.MetaAlcanzada)
         {
             inputHorizontal = 0f;
-
-            // El temporizador del dash corre en Update: si un dash quedara en curso
-            // (ej. diálogo final al tocar la meta) seguiría deslizando todo el diálogo.
             estaDasheando = false;
             quiereSaltar = false;
-
-            // La física sigue (si estaba en el aire cae y aterriza), así que se mantiene el
-            // Animator al día: sin esto quedaba clavado en la animación de salto/caminar
-            // en lugar de pasar a Idle.
             estaEnElSuelo = Physics2D.OverlapCircle(PuntoDeteccionSuelo(), radioDeteccion, capaPlataformas);
             estaAgachado = false;
             AjustarColliderAgachado();
-
             anim.SetBool("agachado", false);
             anim.SetBool("mover", false);
             anim.SetBool("enSuelo", !estaEnElSuelo);
@@ -233,7 +229,6 @@ public class PlayerPhysics : MonoBehaviour
         anim.SetBool("enSuelo", !estaEnElSuelo);
         anim.SetFloat("velocidadY", estaEnElSuelo ? 0f : rb.linearVelocity.y);
 
-        // Gravedad según la fase del salto
         if (rb.linearVelocity.y > 0.01f && !estaEnElSuelo)
         {
             rb.gravityScale = multiplicadorSubida;
@@ -247,7 +242,6 @@ public class PlayerPhysics : MonoBehaviour
             rb.gravityScale = 1f;
         }
 
-        // Movimiento horizontal
         inputHorizontal = 0f;
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
@@ -266,13 +260,11 @@ public class PlayerPhysics : MonoBehaviour
 
         OrientarSprite();
 
-        // Salto
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && estaEnElSuelo && !estaAgachado)
         {
             quiereSaltar = true;
         }
 
-        // Cooldown Dash
         if (tiempoRestanteCooldown > 0f)
         {
             tiempoRestanteCooldown -= Time.deltaTime;
@@ -281,7 +273,6 @@ public class PlayerPhysics : MonoBehaviour
         if (estaDasheando)
         {
             tiempoRestanteDash -= Time.deltaTime;
-
             if (tiempoRestanteDash <= 0f)
             {
                 estaDasheando = false;
@@ -290,7 +281,6 @@ public class PlayerPhysics : MonoBehaviour
             }
         }
 
-        // Dash
         if ((Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)) && inputHorizontal != 0f && !estaDasheando && tiempoRestanteCooldown <= 0f && !estaAgachado)
         {
             estaDasheando = true;
@@ -300,33 +290,25 @@ public class PlayerPhysics : MonoBehaviour
             anim.Play("DASH", 0, 0f);
         }
 
-        // Cooldown del Phase
         if (tiempoRestanteCooldownPhase > 0f)
         {
             tiempoRestanteCooldownPhase -= Time.deltaTime;
         }
 
-        // Activar: hay que APRETAR la tecla (no alcanza con mantenerla), y solo si no hay cooldown
-        if (Input.GetKeyDown(teclaPhase) && !estaEnPhase
-            && tiempoRestanteCooldownPhase <= 0f && phaseDisponibleEnEsteNivel)
+        if (Input.GetKeyDown(teclaPhase) && !estaEnPhase && tiempoRestanteCooldownPhase <= 0f && phaseDisponibleEnEsteNivel)
         {
             ActivarPhase();
         }
 
-        // Terminar: al soltar la tecla O cuando se agota la duración
         if (estaEnPhase)
         {
             tiempoRestantePhase -= Time.deltaTime;
-
             if (tiempoRestantePhase <= 0f)
             {
                 DesactivarPhase();
             }
         }
 
-        // Pulso leve del glow violeta mientras dura el Phase. Si VidaJugador
-        // está mostrando el flash de daño en este momento, no lo pisamos: se
-        // deja ver el rojo semi-transparente y el glow retoma al terminar.
         bool hayFlashDeDaño = vidaJugador != null && vidaJugador.EstaParpadeando;
         if (estaEnPhase && !hayFlashDeDaño)
         {
@@ -359,12 +341,8 @@ public class PlayerPhysics : MonoBehaviour
     {
         estaEnPhase = true;
         tiempoRestantePhase = duracionPhase;
-
-        // Desactiva colisiones con la capa asignada
         IgnorarColisionesParedes(true);
 
-        // Guarda el color actual de CADA sprite del rig (cabeza, torso, etc.)
-        // para poder restaurarlos tal cual al salir del Phase.
         if (spriteRenderers != null && spriteRenderers.Length > 0)
         {
             coloresOriginalesPhase = new Color[spriteRenderers.Length];
@@ -373,33 +351,21 @@ public class PlayerPhysics : MonoBehaviour
                 if (spriteRenderers[i] != null)
                 {
                     Color actual = spriteRenderers[i].color;
-
-                    // Si justo hay un flash de daño en curso, el color actual es el rojo del
-                    // impacto: se guarda el original para no quedar "impactado" al salir del Phase.
                     coloresOriginalesPhase[i] = (vidaJugador != null && vidaJugador.EstaParpadeando)
                         ? vidaJugador.ColorOriginal(i, actual)
                         : actual;
                 }
             }
         }
-
-        // Feedback visual: semi-transparente + glow violeta (el pulso se
-        // actualiza cuadro a cuadro en Update mientras estaEnPhase).
         AplicarColorPhase(1f);
     }
 
     private void DesactivarPhase()
     {
         estaEnPhase = false;
-
-        // El cooldown arranca acá, sea cual sea el motivo del corte
-        // (soltar la tecla o agotarse la duración).
         tiempoRestanteCooldownPhase = cooldownPhase;
-
-        // Restablece colisiones
         IgnorarColisionesParedes(false);
 
-        // Restaura el color y la opacidad que tenía cada sprite antes del Phase.
         if (spriteRenderers != null && coloresOriginalesPhase != null)
         {
             for (int i = 0; i < spriteRenderers.Length && i < coloresOriginalesPhase.Length; i++)
@@ -410,26 +376,20 @@ public class PlayerPhysics : MonoBehaviour
         }
     }
 
-    // Aplica el color de glow (con el multiplicador de brillo del pulso) a
-    // TODOS los SpriteRenderer del rig, no solo a uno.
     private void AplicarColorPhase(float multiplicadorBrillo)
     {
         if (spriteRenderers == null) return;
-
         Color colorConGlow = colorGlowPhase * multiplicadorBrillo;
         colorConGlow.a = opacidadPhase;
-
         foreach (SpriteRenderer sr in spriteRenderers)
         {
-            if (sr != null)
-                sr.color = colorConGlow;
+            if (sr != null) sr.color = colorConGlow;
         }
     }
 
     private void IgnorarColisionesParedes(bool ignorar)
     {
         int playerLayer = gameObject.layer;
-
         for (int i = 0; i < 32; i++)
         {
             if ((capaParedesAtravesables.value & (1 << i)) != 0)
@@ -442,7 +402,6 @@ public class PlayerPhysics : MonoBehaviour
     private void AjustarColliderAgachado()
     {
         if (boxCollider == null) return;
-
         if (estaAgachado)
         {
             boxCollider.size = new Vector2(tamanoOriginalCollider.x, tamanoOriginalCollider.y * 0.5f);
@@ -460,11 +419,10 @@ public class PlayerPhysics : MonoBehaviour
         if (collision.CompareTag("CabezaEnemigo") && rb.linearVelocity.y <= 0f)
         {
             Rebotar();
-
             DisparoEnemigo enemigo = collision.GetComponentInParent<DisparoEnemigo>();
             if (enemigo != null)
             {
-                enemigo.Muere(); 
+                enemigo.Muere();
             }
         }
     }

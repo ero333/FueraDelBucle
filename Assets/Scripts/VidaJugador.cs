@@ -73,9 +73,13 @@ public class VidaJugador : MonoBehaviour
 
     public void TomarDaño(int daño)
     {
+        // =========================================================
+        // CHEAT GOD MODE: Si está activo, salimos antes de restar vida
+        // =========================================================
+        if (PlayerPhysics.godModeActivo) return;
+
         if (muerto || esInvulnerable || (playerPhysics != null && playerPhysics.EstaEnPhase))
             return;
-        //if (muerto || esInvulnerable) return;
 
         cantidadDeVida -= daño;
 

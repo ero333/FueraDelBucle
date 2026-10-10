@@ -14,9 +14,22 @@ public class NivelSelector : MonoBehaviour
     [Header("Clave nivel completado")]
     public string claveNivel;
 
+    // Usamos static para que el cheat aplique a todos los botones a la vez
+    private static bool cheatDesbloqueoActivo = false;
+
     void OnEnable()
     {
         ActualizarEstado();
+    }
+
+    void Update()
+    {
+        // Al presionar L, activamos el cheat y actualizamos el estado
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            cheatDesbloqueoActivo = true;
+            ActualizarEstado();
+        }
     }
 
     public void ActualizarEstado()
@@ -26,19 +39,17 @@ public class NivelSelector : MonoBehaviour
 
         if (boton != null)
         {
-            bool estaDesbloqueado = (numeroNivel <= nivelDesbloqueado);
+            // El nivel está desbloqueado si su número es menor/igual al guardado, O si el cheat está activo
+            bool estaDesbloqueado = (numeroNivel <= nivelDesbloqueado) || cheatDesbloqueoActivo;
             boton.interactable = estaDesbloqueado;
 
-            // Mostrar u ocultar sprite de bloqueado
             if (spriteBloqueado != null)
             {
                 spriteBloqueado.SetActive(!estaDesbloqueado);
             }
-
-            Debug.Log("Nodo " + gameObject.name + " (Nivel " + numeroNivel + ") -> Desbloqueado: " + estaDesbloqueado + " | Progreso guardado: " + nivelDesbloqueado);
         }
 
-        if (PlayerPrefs.GetInt(claveNivel, 0) == 1)
+        if (PlayerPrefs.GetInt(claveNivel, 0) == 1 || cheatDesbloqueoActivo)
         {
             if (cuadradoCompletado != null) cuadradoCompletado.SetActive(true);
         }
