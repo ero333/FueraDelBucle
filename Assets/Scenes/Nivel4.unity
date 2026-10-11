@@ -3950,7 +3950,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -81, y: 174.7}
+  m_AnchoredPosition: {x: -81, y: 147.7}
   m_SizeDelta: {x: 63.2357, y: 416.67}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &477170858
@@ -6673,7 +6673,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -161, y: 181.5}
+  m_AnchoredPosition: {x: -161, y: 153.7}
   m_SizeDelta: {x: 89.5, y: 31.43}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &849496874
@@ -7858,7 +7858,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -304, y: 182.4}
+  m_AnchoredPosition: {x: -304, y: 153.3}
   m_SizeDelta: {x: 138.9041, y: 45.4209}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1205584637
@@ -8025,6 +8025,7 @@ MonoBehaviour:
   teclaSaltarTodo: 120
   teclaSaltarTodoAlternativa: 27
   autoProgresar: 0
+  pausarElJuego: 1
 --- !u!1 &1237670365
 GameObject:
   m_ObjectHideFlags: 0
@@ -8561,6 +8562,7 @@ MonoBehaviour:
   nombreEscenaMenu: MenuPrincipal
   teclaPausa: 27
   teclaPausaAlternativa: 9
+  cartelObjetivoUI: {fileID: 0}
 --- !u!4 &1372136308
 Transform:
   m_ObjectHideFlags: 0
@@ -11020,7 +11022,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -308.89993, y: 120.9}
+  m_AnchoredPosition: {x: -308.89993, y: 99}
   m_SizeDelta: {x: 89.5, y: 31.43}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1951928922
@@ -11693,6 +11695,29 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1001 &7200000001
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2135808714}
+    m_Modifications: []
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c3f90a7d26b84e1c9d5f2a08b7e41365, type: 3}
+--- !u!224 &7200000002 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7100000002, guid: c3f90a7d26b84e1c9d5f2a08b7e41365, type: 3}
+  m_PrefabInstance: {fileID: 7200000001}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7200000003 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7100000001, guid: c3f90a7d26b84e1c9d5f2a08b7e41365, type: 3}
+  m_PrefabInstance: {fileID: 7200000001}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1337324967856573728
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12084,29 +12109,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f5e611886a0e4e746aa17979cf5b020c, type: 3}
---- !u!1001 &7200000001
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 2135808714}
-    m_Modifications: []
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c3f90a7d26b84e1c9d5f2a08b7e41365, type: 3}
---- !u!1 &7200000003 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7100000001, guid: c3f90a7d26b84e1c9d5f2a08b7e41365, type: 3}
-  m_PrefabInstance: {fileID: 7200000001}
-  m_PrefabAsset: {fileID: 0}
---- !u!224 &7200000002 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 7100000002, guid: c3f90a7d26b84e1c9d5f2a08b7e41365, type: 3}
-  m_PrefabInstance: {fileID: 7200000001}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

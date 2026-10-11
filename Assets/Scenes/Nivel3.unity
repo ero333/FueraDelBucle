@@ -316,7 +316,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -161, y: 181.5}
+  m_AnchoredPosition: {x: -161, y: 153.7}
   m_SizeDelta: {x: 89.5, y: 31.43}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &18346571
@@ -6622,7 +6622,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -304, y: 182.4}
+  m_AnchoredPosition: {x: -304, y: 153.3}
   m_SizeDelta: {x: 138.9041, y: 45.4209}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1310140311
@@ -7473,6 +7473,7 @@ MonoBehaviour:
   nombreEscenaMenu: MenuPrincipal
   teclaPausa: 27
   teclaPausaAlternativa: 9
+  cartelObjetivoUI: {fileID: 0}
 --- !u!4 &1452393073
 Transform:
   m_ObjectHideFlags: 0
@@ -7585,7 +7586,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -81, y: 174.7}
+  m_AnchoredPosition: {x: -81, y: 147.7}
   m_SizeDelta: {x: 63.2357, y: 416.67}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1474201711
@@ -9274,7 +9275,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -308.89993, y: 120.9}
+  m_AnchoredPosition: {x: -308.89993, y: 99}
   m_SizeDelta: {x: 89.5, y: 31.43}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1809060070
@@ -10197,14 +10198,14 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3f90a7d26b84e1c9d5f2a08b7e41365, type: 3}
---- !u!1 &7200000003 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7100000001, guid: c3f90a7d26b84e1c9d5f2a08b7e41365, type: 3}
-  m_PrefabInstance: {fileID: 7200000001}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &7200000002 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7100000002, guid: c3f90a7d26b84e1c9d5f2a08b7e41365, type: 3}
+  m_PrefabInstance: {fileID: 7200000001}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7200000003 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7100000001, guid: c3f90a7d26b84e1c9d5f2a08b7e41365, type: 3}
   m_PrefabInstance: {fileID: 7200000001}
   m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
