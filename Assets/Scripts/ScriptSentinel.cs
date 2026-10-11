@@ -123,9 +123,25 @@ public class ScriptSentinel : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        VerificarYMatarJugador(collision.gameObject);
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        // Se ejecuta en cada cuadro de física que el jugador siga superpuesto/en contacto
+        VerificarYMatarJugador(collision.gameObject);
+    }
+
+    private void VerificarYMatarJugador(GameObject objeto)
+    {
+        if (objeto.CompareTag("Player"))
         {
-            VidaJugador vida = collision.gameObject.GetComponent<VidaJugador>();
+            PlayerPhysics playerPhysics = objeto.GetComponent<PlayerPhysics>();
+
+            // Si el jugador está activo en Phase, ignoramos el daño
+            if (playerPhysics != null && playerPhysics.EstaEnPhase) return;
+
+            VidaJugador vida = objeto.GetComponent<VidaJugador>();
 
             if (vida != null)
             {
