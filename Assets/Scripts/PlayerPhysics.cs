@@ -189,9 +189,31 @@ public class PlayerPhysics : MonoBehaviour
         return true;
     }
 
+    // Diálogo o placa de objetivo abiertos con el tiempo del juego detenido (Time.timeScale = 0): el jugador sigue sin
+    // moverse, pero se lo deja en Idle y se avanza el Animator a mano con el tiempo real. Sin esto no se actualizaba
+    // nada y quedaba congelado en la última pose (por ejemplo cayendo o saltando).
+    private void AnimarEnIdleConNivelPausado()
+    {
+        anim.SetBool("agachado", false);
+        anim.SetBool("mover", false);
+        anim.SetBool("enSuelo", false); // en el Animator "enSuelo" quiere decir "está en el aire"
+        anim.SetFloat("velocidadY", 0f);
+
+        anim.Update(Time.unscaledDeltaTime);
+    }
+
     void Update()
     {
-        if (Time.timeScale == 0f) return;
+        if (Time.timeScale == 0f)
+        {
+            // El menú de pausa lo deja todo quieto como siempre; un diálogo o la placa de objetivo no.
+            if (!PauseManager.GameIsPaused && (DialogoLog.HayDialogoActivo || LevelUIManager.PlacaAbierta))
+            {
+                AnimarEnIdleConNivelPausado();
+            }
+
+            return;
+        }
 
         // Placa de objetivo, caja de diálogo abierta o meta alcanzada: sin movimiento hasta que se cierre.
         if (Input.GetKeyDown(KeyCode.K))
@@ -199,7 +221,8 @@ public class PlayerPhysics : MonoBehaviour
             godModeActivo = !godModeActivo;
             Debug.Log("God Mode: " + (godModeActivo ? "ACTIVADO" : "DESACTIVADO"));
         }
-        if (LevelUIManager.PlacaAbierta || DialogoLog.HayDialogoActivo || PanelVictoria.MetaAlcanzada)
+        // También queda quieto (en Idle) mientras dura el paneo de presentación de la cámara y el marco con video que le sigue.
+        if (LevelUIManager.PlacaAbierta || DialogoLog.HayDialogoActivo || PanelVictoria.MetaAlcanzada || CamaraSeguir.PaneoActivo || MarcoDesplegable.Activo)
         {
             inputHorizontal = 0f;
 
