@@ -72,13 +72,7 @@ public class PanelVictoria : MonoBehaviour
         esperando = true;
         MetaAlcanzada = true;
 
-        // =========================================================
-        // AQUÍ SE EJECUTA EL SONIDO EN CUANTO TOCA LA PUERTA Y ATERRIZA
-        // =========================================================
-        if (sonidoVictoria != null)
-        {
-            AudioSource.PlayClipAtPoint(sonidoVictoria, Camera.main != null ? Camera.main.transform.position : transform.position);
-        }
+       
 
         rutinaEsperando = StartCoroutine(EsperarReposoYMostrar());
     }
@@ -162,6 +156,14 @@ public class PanelVictoria : MonoBehaviour
 
         activado = true;
         MetaAlcanzada = true;
+
+        // =========================================================
+        // AQUÍ SE EJECUTA EL SONIDO EN CUANTO TOCA LA PUERTA Y ATERRIZA
+        // =========================================================
+        if (sonidoVictoria != null)
+        {
+            AudioSource.PlayClipAtPoint(sonidoVictoria, Camera.main != null ? Camera.main.transform.position : transform.position);
+        }
 
         PlayerPrefs.SetInt(claveNivel, 1);
         PlayerPrefs.Save();
