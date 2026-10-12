@@ -7,6 +7,10 @@ public class PanelVictoria : MonoBehaviour
     [Header("Configuración de Progreso")]
     public string claveNivel = "Nivel1";
 
+    [Header("Audio")]
+    [Tooltip("Arrastra aquí el clip de audio que sonará al tocar la puerta.")]
+    public AudioClip sonidoVictoria;
+
     [Header("Panel")]
     public GameObject panelVictoria;
 
@@ -67,6 +71,15 @@ public class PanelVictoria : MonoBehaviour
 
         esperando = true;
         MetaAlcanzada = true;
+
+        // =========================================================
+        // AQUÍ SE EJECUTA EL SONIDO EN CUANTO TOCA LA PUERTA Y ATERRIZA
+        // =========================================================
+        if (sonidoVictoria != null)
+        {
+            AudioSource.PlayClipAtPoint(sonidoVictoria, Camera.main != null ? Camera.main.transform.position : transform.position);
+        }
+
         rutinaEsperando = StartCoroutine(EsperarReposoYMostrar());
     }
 
