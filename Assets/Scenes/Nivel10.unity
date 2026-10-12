@@ -5725,6 +5725,62 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5779546442867524048, guid: f15a78358f9cc44439e7c6b6ebca3ada, type: 3}
   m_PrefabInstance: {fileID: 1247581518}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &635161481
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 635161483}
+  - component: {fileID: 635161482}
+  m_Layer: 0
+  m_Name: DialogoLogSistema
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &635161482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 635161481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d99d75bf03b1b9b49b1928d018708530, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogoLog
+  dialogodata: {fileID: 11400000, guid: 154d9c1a33ba6a54c97b8241b2bc45dc, type: 2}
+  PanelDialogo: {fileID: 1472709318}
+  popupObjetivo: {fileID: 0}
+  dialogoTexto: {fileID: 1472709317}
+  NombreText: {fileID: 1472709316}
+  RetratoAnim: {fileID: 0}
+  teclaAvanzar: 13
+  teclaAvanzarAlternativa: 101
+  teclaSaltarTodo: 120
+  teclaSaltarTodoAlternativa: 27
+  autoProgresar: 0
+  pausarElJuego: 1
+--- !u!4 &635161483
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 635161481}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 40.2991, y: 2.36376, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &636802413
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24865,3 +24921,4 @@ SceneRoots:
   - {fileID: 538512246}
   - {fileID: 1674143016}
   - {fileID: 1576778}
+  - {fileID: 635161483}
