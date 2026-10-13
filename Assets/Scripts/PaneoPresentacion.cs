@@ -35,15 +35,24 @@ public class PaneoPresentacion : MonoBehaviour
     public bool mostrarMarco = true;
     [Tooltip("Imagen del marco. Si se deja vacía se usa 'MarcoRepeater' (carpeta Resources/Presentacion).")]
     public Sprite imagenMarco;
-    [Tooltip("Datos del video del marco (ruta dentro de Resources, sin extensión).")]
-    public string datosVideoMarco = "Presentacion/Repeater1_video";
+    [Tooltip("Datos del video del marco (ruta dentro de Resources, sin extensión). Vacío = automático: el marco y el video del Repeater 2.0 si el foco es un Repeater 2.0, y los del Repeater 1.0 en cualquier otro caso.")]
+    public string rutaVideoMarco = "";
     [Tooltip("Dónde queda el centro del marco: 0 = izquierda / abajo, 1 = derecha / arriba (0,5 y 0,5 = justo en el medio).")]
     public Vector2 centroMarco = new Vector2(0.5f, 0.5f);
     [Tooltip("Alto del marco como fracción del alto de la pantalla.")]
     [Range(0.1f, 1f)]
     public float altoDelMarco = 0.54f;
 
-    private const string ImagenMarcoPorDefecto = "Presentacion/MarcoRepeater";
+    [Header("Niveles a oscuras")]
+    [Tooltip("En los niveles con oscuridad (LuXVisibilidad) el foco se ve con su color normal mientras la cámara lo mira, con un fade, y vuelve a oscurecerse cuando la cámara regresa al jugador. En niveles sin oscuridad no hace nada.")]
+    public bool iluminarFoco = true;
+    [Tooltip("Cuánto dura el fade (segundos).")]
+    public float duracionFade = 0.8f;
+
+    private const string ImagenMarcoRepeater1 = "Presentacion/MarcoRepeater";
+    private const string DatosVideoRepeater1 = "Presentacion/Repeater1_video";
+    private const string ImagenMarcoRepeater2 = "Presentacion/MarcoRepeater2";
+    private const string DatosVideoRepeater2 = "Presentacion/Repeater2_video";
 
     private bool yaMostrado;
     private MarcoDesplegable marcoDesplegable;
@@ -110,7 +119,18 @@ public class PaneoPresentacion : MonoBehaviour
             alTerminar = marcoDesplegable.Mostrar;
         }
 
-        camara.Paneo(objetivoPaneo, duracionIda, segundosEnFoco, duracionVuelta, alTerminar);
+        // En niveles a oscuras, el foco se ve de verdad mientras lo mira la cámara (fade al llegar, fade al irse).
+        System.Action alLlegarAlFoco = null;
+        System.Action alIniciarVuelta = null;
+
+        if (iluminarFoco)
+        {
+            IluminarEnOscuridad iluminar = IluminarEnOscuridad.Obtener(objetivoPaneo.gameObject);
+            alLlegarAlFoco = () => iluminar.Aparecer(duracionFade);
+            alIniciarVuelta = () => iluminar.Ocultar(duracionFade);
+        }
+
+        camara.Paneo(objetivoPaneo, duracionIda, segundosEnFoco, duracionVuelta, alTerminar, alLlegarAlFoco, alIniciarVuelta);
     }
 
     // Crea el marco (por código, aparte de esta plataforma) y carga sus imágenes.
@@ -119,7 +139,16 @@ public class PaneoPresentacion : MonoBehaviour
     {
         if (marcoDesplegable != null) return;
 
-        Sprite imagen = imagenMarco != null ? imagenMarco : Resources.Load<Sprite>(ImagenMarcoPorDefecto);
+        // Si el foco es un Repeater 2.0 se usan su marco y su video; si no, los del Repeater 1.0.
+        bool esRepeater2 = EsRepeaterSegundo();
+
+        Sprite imagen = imagenMarco != null
+            ? imagenMarco
+            : Resources.Load<Sprite>(esRepeater2 ? ImagenMarcoRepeater2 : ImagenMarcoRepeater1);
+
+        string rutaDatos = !string.IsNullOrEmpty(rutaVideoMarco)
+            ? rutaVideoMarco
+            : (esRepeater2 ? DatosVideoRepeater2 : DatosVideoRepeater1);
 
         GameObject objeto = new GameObject("MarcoPresentacion");
         MarcoDesplegable nuevo = objeto.AddComponent<MarcoDesplegable>();
@@ -128,13 +157,23 @@ public class PaneoPresentacion : MonoBehaviour
         nuevo.posicion = centroMarco;
         nuevo.alto = altoDelMarco;
 
-        if (!nuevo.Cargar(datosVideoMarco))
+        if (!nuevo.Cargar(rutaDatos))
         {
             Destroy(objeto);
             return;
         }
 
         marcoDesplegable = nuevo;
+    }
+
+    private bool EsRepeaterSegundo()
+    {
+        Transform objetivoPaneo = foco != null ? foco : BuscarRepeaterCercano();
+
+        if (objetivoPaneo == null) return false;
+
+        return objetivoPaneo.GetComponentInChildren<RepeaterSegundo>(true) != null
+            || objetivoPaneo.GetComponentInParent<RepeaterSegundo>() != null;
     }
 
     // El Repeater (normal o 2.0) más cercano que esté a la derecha de este objeto.

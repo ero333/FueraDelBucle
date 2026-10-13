@@ -3644,7 +3644,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2482955114235496747, guid: a9e19cc5c9575b7439095ef6c7d6e4f1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.55
+      value: 12.41
       objectReference: {fileID: 0}
     - target: {fileID: 2482955114235496747, guid: a9e19cc5c9575b7439095ef6c7d6e4f1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6656,6 +6656,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5779546442867524048, guid: 69e3b98965fa1de48a1afda1361dfc53, type: 3}
   m_PrefabInstance: {fileID: 278273938}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1044951465 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2373498453144049250, guid: 69e3b98965fa1de48a1afda1361dfc53, type: 3}
+  m_PrefabInstance: {fileID: 2062727449}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1044951469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1044951465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79e9927f65ca48af80a9279e221e3c9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PaneoPresentacion
+  foco: {fileID: 1120898750}
+  camara: {fileID: 0}
+  duracionIda: 1.8
+  segundosEnFoco: 2
+  duracionVuelta: 1.8
+  tagJugador: Player
+  soloUnaVez: 1
+  mostrarMarco: 1
+  imagenMarco: {fileID: 0}
+  datosVideoMarco: Presentacion/Repeater1_video
+  centroMarco: {x: 0.5, y: 0.5}
+  altoDelMarco: 0.54
+  iluminarFoco: 1
+  duracionFade: 0.8
 --- !u!1 &1087157735
 GameObject:
   m_ObjectHideFlags: 0
@@ -7551,6 +7582,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
+--- !u!4 &1120898750 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 720869771920484026, guid: e1c4b8b0ac9bc6142b9cb67da9a8785a, type: 3}
+  m_PrefabInstance: {fileID: 33634706}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1121531372 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5779546442867524048, guid: 69e3b98965fa1de48a1afda1361dfc53, type: 3}
@@ -11375,11 +11411,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5779546442867524048, guid: 69e3b98965fa1de48a1afda1361dfc53, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -23.66
+      value: -24.8
       objectReference: {fileID: 0}
     - target: {fileID: 5779546442867524048, guid: 69e3b98965fa1de48a1afda1361dfc53, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.19
+      value: -1.39
       objectReference: {fileID: 0}
     - target: {fileID: 5779546442867524048, guid: 69e3b98965fa1de48a1afda1361dfc53, type: 3}
       propertyPath: m_LocalPosition.z
@@ -11840,15 +11876,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5779546442867524048, guid: 69e3b98965fa1de48a1afda1361dfc53, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2.387465
+      value: 3.4966812
       objectReference: {fileID: 0}
     - target: {fileID: 5779546442867524048, guid: 69e3b98965fa1de48a1afda1361dfc53, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -21.92
+      value: -21.5474
       objectReference: {fileID: 0}
     - target: {fileID: 5779546442867524048, guid: 69e3b98965fa1de48a1afda1361dfc53, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.73
+      value: -3.18
       objectReference: {fileID: 0}
     - target: {fileID: 5779546442867524048, guid: 69e3b98965fa1de48a1afda1361dfc53, type: 3}
       propertyPath: m_LocalPosition.z
@@ -12097,7 +12133,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2373498453144049250, guid: 69e3b98965fa1de48a1afda1361dfc53, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1044951469}
   m_SourcePrefab: {fileID: 100100000, guid: 69e3b98965fa1de48a1afda1361dfc53, type: 3}
 --- !u!1 &2086450224
 GameObject:

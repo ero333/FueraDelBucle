@@ -70,14 +70,17 @@ public class CamaraSeguir : MonoBehaviour
     // sigue al objetivo y PaneoActivo es verdadero. No pausa el juego.
     // 'alTerminar' (opcional) se llama justo cuando la cámara termina de volver al objetivo, todavía dentro del
     // paneo: lo que arranque ahí empalma sin que el jugador se pueda mover entre una cosa y la otra.
-    public void Paneo(Transform foco, float duracionIda, float segundosEnFoco, float duracionVuelta, System.Action alTerminar = null)
+    // 'alLlegarAlFoco' se llama al llegar al foco y 'alIniciarVuelta' cuando empieza a volver al objetivo.
+    public void Paneo(Transform foco, float duracionIda, float segundosEnFoco, float duracionVuelta, System.Action alTerminar = null,
+        System.Action alLlegarAlFoco = null, System.Action alIniciarVuelta = null)
     {
         if (PaneoActivo || foco == null) return;
 
-        StartCoroutine(RutinaPaneo(foco, duracionIda, segundosEnFoco, duracionVuelta, alTerminar));
+        StartCoroutine(RutinaPaneo(foco, duracionIda, segundosEnFoco, duracionVuelta, alTerminar, alLlegarAlFoco, alIniciarVuelta));
     }
 
-    private IEnumerator RutinaPaneo(Transform foco, float duracionIda, float segundosEnFoco, float duracionVuelta, System.Action alTerminar)
+    private IEnumerator RutinaPaneo(Transform foco, float duracionIda, float segundosEnFoco, float duracionVuelta, System.Action alTerminar,
+        System.Action alLlegarAlFoco, System.Action alIniciarVuelta)
     {
         PaneoActivo = true;
 
@@ -103,9 +106,13 @@ public class CamaraSeguir : MonoBehaviour
 
             transform.position = PosicionMirando(posicionFoco);
 
+            if (alLlegarAlFoco != null) alLlegarAlFoco();
+
             // Se queda mirando el foco.
             for (float t = 0f; t < segundosEnFoco; t += Time.deltaTime)
                 yield return null;
+
+            if (alIniciarVuelta != null) alIniciarVuelta();
 
             // Vuelta al objetivo (si ya no hay objetivo, vuelve a donde estaba).
             Vector3 desde = transform.position;
