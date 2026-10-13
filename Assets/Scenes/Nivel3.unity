@@ -2290,6 +2290,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   claveNivel: Nivel3
   sonidoVictoria: {fileID: 8300000, guid: 4e282b2c23aa9ed4a8d9ace43e69ea06, type: 3}
+  volumenVictoria: 0.6
+  inicioClip: 0.2
+  duracionMaxima: 2.5
+  desvanecido: 0.4
+  respetarMute: 1
   panelVictoria: {fileID: 54096421}
   textoTiempo: {fileID: 272780798}
   textoVidas: {fileID: 1172429201}
@@ -2943,6 +2948,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 543066561}
   m_CullTransparentMesh: 1
+--- !u!1 &584675187 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2373498453144049250, guid: 69e3b98965fa1de48a1afda1361dfc53, type: 3}
+  m_PrefabInstance: {fileID: 1387608379}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &586706513
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4265,7 +4275,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &687269696
 Transform:
   m_ObjectHideFlags: 0
@@ -7073,7 +7083,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5779546442867524048, guid: 69e3b98965fa1de48a1afda1361dfc53, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.63
+      value: -2.9
       objectReference: {fileID: 0}
     - target: {fileID: 5779546442867524048, guid: 69e3b98965fa1de48a1afda1361dfc53, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7114,13 +7124,42 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2373498453144049250, guid: 69e3b98965fa1de48a1afda1361dfc53, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1387608381}
   m_SourcePrefab: {fileID: 100100000, guid: 69e3b98965fa1de48a1afda1361dfc53, type: 3}
 --- !u!4 &1387608380 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5779546442867524048, guid: 69e3b98965fa1de48a1afda1361dfc53, type: 3}
   m_PrefabInstance: {fileID: 1387608379}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1387608381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 584675187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79e9927f65ca48af80a9279e221e3c9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PaneoPresentacion
+  foco: {fileID: 1811179557}
+  camara: {fileID: 51238801}
+  duracionIda: 1.8
+  segundosEnFoco: 2
+  duracionVuelta: 1.8
+  tagJugador: Player
+  soloUnaVez: 1
+  mostrarMarco: 1
+  imagenMarco: {fileID: -8770042641110000685, guid: 2a13647e5598eea40aa680e004490d45, type: 3}
+  rutaVideoMarco: Presentacion/Sentinel_video
+  centroMarco: {x: 0.5, y: 0.5}
+  altoDelMarco: 0.54
+  iluminarFoco: 1
+  duracionFade: 0.8
 --- !u!1001 &1406508831
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9473,6 +9512,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1809060068}
   m_CullTransparentMesh: 1
+--- !u!4 &1811179557 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7033928173859646627, guid: 7d49531c7667947058c19e274087f85a, type: 3}
+  m_PrefabInstance: {fileID: 2099977690}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1848353993 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 848537743171968549, guid: dfb8c8748f72de24aabe6c25f2418dc8, type: 3}
