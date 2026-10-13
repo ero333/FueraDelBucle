@@ -11,6 +11,22 @@ public class PanelVictoria : MonoBehaviour
     [Tooltip("Arrastra aquí el clip de audio que sonará al tocar la puerta.")]
     public AudioClip sonidoVictoria;
 
+    [Range(0f, 1f)]
+    [Tooltip("El clip está normalizado a 0 dB: en 1 tapa la música.")]
+    public float volumenVictoria = 0.6f;
+
+    [Tooltip("Silencio que el clip trae al principio y que se saltea para que suene junto con el cartel.")]
+    public float inicioClip = 0.2f;
+
+    [Tooltip("Cuánto suena como máximo, contando desde inicioClip.")]
+    public float duracionMaxima = 2.5f;
+
+    [Tooltip("Segundos de desvanecido final para que no corte de golpe.")]
+    public float desvanecido = 0.4f;
+
+    [Tooltip("Si el jugador apagó el sonido con el botón del altavoz, la victoria tampoco suena.")]
+    public bool respetarMute = true;
+
     [Header("Panel")]
     public GameObject panelVictoria;
 
@@ -162,7 +178,7 @@ public class PanelVictoria : MonoBehaviour
         // =========================================================
         if (sonidoVictoria != null)
         {
-            AudioSource.PlayClipAtPoint(sonidoVictoria, Camera.main != null ? Camera.main.transform.position : transform.position);
+            StartCoroutine(ReproducirSonidoVictoria());
         }
 
         PlayerPrefs.SetInt(claveNivel, 1);
@@ -184,6 +200,38 @@ public class PanelVictoria : MonoBehaviour
         {
             Time.timeScale = 0f;
         }
+    }
+
+    private IEnumerator ReproducirSonidoVictoria()
+    {
+        if (respetarMute && PlayerPrefs.GetInt("MusicMuted", 0) == 1) yield break;
+
+        float arranque = Mathf.Clamp(inicioClip, 0f, Mathf.Max(0f, sonidoVictoria.length - 0.05f));
+        float desvanece = Mathf.Max(0.01f, desvanecido);
+        float total = Mathf.Min(duracionMaxima, sonidoVictoria.length - arranque);
+
+        GameObject objeto = new GameObject("SFX Victoria");
+        AudioSource fuente = objeto.AddComponent<AudioSource>();
+
+        fuente.clip = sonidoVictoria;
+        fuente.volume = volumenVictoria;
+        fuente.spatialBlend = 0f;
+        fuente.playOnAwake = false;
+        fuente.time = arranque;
+        fuente.Play();
+
+        yield return new WaitForSecondsRealtime(Mathf.Max(0f, total - desvanece));
+
+        float transcurrido = 0f;
+
+        while (transcurrido < desvanece && fuente != null)
+        {
+            transcurrido += Time.unscaledDeltaTime;
+            fuente.volume = Mathf.Lerp(volumenVictoria, 0f, transcurrido / desvanece);
+            yield return null;
+        }
+
+        if (objeto != null) Destroy(objeto);
     }
 
     private void MostrarResultados()
