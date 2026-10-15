@@ -4,15 +4,14 @@ using UnityEngine.SceneManagement;
 public class MenuPrincipal : MonoBehaviour
 {
     [Header("Escenas")]
-    [SerializeField] private string escenaJuego = "MapaNiveles";
+    [SerializeField] private string escenaIntro = "Intro";
 
-    // BOTÓN JUGAR / LEVELS
+    // BOTÓN JUGAR
     public void Jugar()
     {
         PlayerPrefs.SetInt("MapaDesdeMenu", 1);
         PlayerPrefs.Save();
 
-        SceneManager.LoadScene(escenaJuego);
+        SceneManager.LoadScene(escenaIntro);
     }
-
 }
