@@ -126,6 +126,8 @@ public class PlayerPhysics : MonoBehaviour
         vidaJugador = GetComponent<VidaJugador>();
         phaseDisponibleEnEsteNivel = CalcularSiPhaseEstaDisponible();
 
+        LimpiarPhaseDeEscenaAnterior();
+
         colisionadorJugador = GetComponent<Collider2D>();
         if (colisionadorJugador != null)
         {
@@ -145,6 +147,24 @@ public class PlayerPhysics : MonoBehaviour
 
         transformAGirar = (visualAGirar != null) ? visualAGirar : transform;
         escalaAGirarInicial = transformAGirar.localScale;
+    }
+
+    private void OnEnable()
+    {
+        if (estaEnPhase)
+        {
+            IgnorarColisionesParedes(true);
+        }
+    }
+
+    private void OnDisable()
+    {
+        IgnorarColisionesParedes(false);
+    }
+
+    private void LimpiarPhaseDeEscenaAnterior()
+    {
+        IgnorarColisionesParedes(false);
     }
 
     private void OrientarSprite()
