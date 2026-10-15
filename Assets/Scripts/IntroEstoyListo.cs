@@ -24,6 +24,7 @@ public class IntroEstoyListo : MonoBehaviour
         botonEstoyListo.onClick.AddListener(SaltarIntro);
 
         StartCoroutine(MostrarBoton());
+        StartCoroutine(TerminaEscena());
     }
 
     IEnumerator MostrarBoton()
@@ -50,5 +51,12 @@ public class IntroEstoyListo : MonoBehaviour
 
         introTerminada = true;
         SceneManager.LoadScene(nombreNivel1);
+    }
+
+    public IEnumerator TerminaEscena()
+    {
+        yield return new WaitForSeconds (18f);
+        SceneManager.LoadScene(nombreNivel1);
+
     }
 }
