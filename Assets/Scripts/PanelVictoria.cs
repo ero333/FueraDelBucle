@@ -38,7 +38,10 @@ public class PanelVictoria : MonoBehaviour
     [Header("Diálogo final")]
     public DialogoLog dialogoFinal;
 
-    [Header("Animación Final del Personaje")]
+    [Header("Animación Final del Personaje (Solo Nivel 10)")]
+    [Tooltip("Marca esta casilla SOLO en el Nivel 10 para que haga la animación de disolución antes de mostrar la victoria.")]
+    public bool animarAnimacionEnEsteNivel = false;
+
     [Tooltip("Arrastra el Transform del centro de la puerta o portal.")]
     public Transform centroPortal;
 
@@ -138,12 +141,15 @@ public class PanelVictoria : MonoBehaviour
             dialogoFinal.AlTerminarDialogo -= alTerminar;
         }
 
-        // 2. Ejecutamos la animación de disolución y movimiento al portal
-        yield return StartCoroutine(AnimarDesaparicionJugador(jugadorObj));
+        // 2. SOLO SI ESTÁ ACTIVADA LA CASILLA (Nivel 10), hace la animación
+        if (animarAnimacionEnEsteNivel)
+        {
+            yield return StartCoroutine(AnimarDesaparicionJugador(jugadorObj));
+        }
 
         esperando = false;
 
-        // 3. Recién ahora mostramos el panel de victoria
+        // 3. Mostramos la victoria
         MostrarVictoria();
     }
 
@@ -151,7 +157,7 @@ public class PanelVictoria : MonoBehaviour
     {
         if (jugador == null) yield break;
 
-        // Desactivar controles del jugador para que no interfiera
+        // Desactivar controles del jugador
         var controller = jugador.GetComponent<CharacterController>();
         if (controller != null) controller.enabled = false;
 
