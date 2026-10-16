@@ -38,6 +38,16 @@ public class PanelVictoria : MonoBehaviour
     [Header("Diálogo final")]
     public DialogoLog dialogoFinal;
 
+    [Header("Animación Final del Personaje (Solo Nivel 10)")]
+    [Tooltip("Marca esta casilla SOLO en el Nivel 10 para que haga la animación de disolución antes de mostrar la victoria.")]
+    public bool animarAnimacionEnEsteNivel = false;
+
+    [Tooltip("Arrastra el Transform del centro de la puerta o portal.")]
+    public Transform centroPortal;
+
+    [Tooltip("Duración en segundos de la disolución/movimiento hacia la puerta.")]
+    public float duracionAnimacionFinal = 1.8f;
+
     [Header("Activación")]
     public string tagJugador = "Player";
     public bool activarPorContacto = true;
@@ -88,9 +98,7 @@ public class PanelVictoria : MonoBehaviour
         esperando = true;
         MetaAlcanzada = true;
 
-       
-
-        rutinaEsperando = StartCoroutine(EsperarReposoYMostrar());
+        rutinaEsperando = StartCoroutine(EsperarReposoYMostrar(other.gameObject));
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -102,14 +110,10 @@ public class PanelVictoria : MonoBehaviour
     {
         if (!esperarAterrizaje) return true;
 
-        // La velocidad vertical tambien pasa por cero en el pico del salto, asi que
-        // cuando el jugador tiene PlayerPhysics se le pregunta si toca el piso de verdad.
         PlayerPhysics fisica = other.GetComponentInParent<PlayerPhysics>();
-
         if (fisica != null) return fisica.EstaEnElSuelo;
 
         Rigidbody2D rb = other.attachedRigidbody;
-
         return rb == null || Mathf.Abs(rb.linearVelocity.y) <= velocidadVerticalMaxima;
     }
 
@@ -118,19 +122,18 @@ public class PanelVictoria : MonoBehaviour
         if (!esperarIdle) return true;
 
         Animator anim = other.GetComponentInChildren<Animator>();
-
         return anim == null || anim.GetCurrentAnimatorStateInfo(0).IsName(estadoIdle);
     }
 
-    private IEnumerator EsperarReposoYMostrar()
+    private IEnumerator EsperarReposoYMostrar(GameObject jugadorObj)
     {
+        // 1. Si hay diálogo, esperamos a que el jugador lo termine
         if (dialogoFinal != null)
         {
             bool dialogoTerminado = false;
             System.Action alTerminar = () => dialogoTerminado = true;
 
             dialogoFinal.AlTerminarDialogo += alTerminar;
-
             dialogoFinal.Interactuar();
 
             yield return new WaitUntil(() => dialogoTerminado);
@@ -138,8 +141,60 @@ public class PanelVictoria : MonoBehaviour
             dialogoFinal.AlTerminarDialogo -= alTerminar;
         }
 
+        // 2. SOLO SI ESTÁ ACTIVADA LA CASILLA (Nivel 10), hace la animación
+        if (animarAnimacionEnEsteNivel)
+        {
+            yield return StartCoroutine(AnimarDesaparicionJugador(jugadorObj));
+        }
+
         esperando = false;
+
+        // 3. Mostramos la victoria
         MostrarVictoria();
+    }
+
+    private IEnumerator AnimarDesaparicionJugador(GameObject jugador)
+    {
+        if (jugador == null) yield break;
+
+        // Desactivar controles del jugador
+        var controller = jugador.GetComponent<CharacterController>();
+        if (controller != null) controller.enabled = false;
+
+        var rb2d = jugador.GetComponent<Rigidbody2D>();
+        if (rb2d != null) rb2d.simulated = false;
+
+        Renderer rend = jugador.GetComponentInChildren<Renderer>();
+        Material mat = rend != null ? rend.material : null;
+
+        Vector3 posInicial = jugador.transform.position;
+        Vector3 escalaInicial = jugador.transform.localScale;
+        Vector3 posDestino = centroPortal != null ? centroPortal.position : posInicial;
+
+        float t = 0f;
+
+        while (t < duracionAnimacionFinal)
+        {
+            t += Time.deltaTime;
+            float progreso = Mathf.Clamp01(t / duracionAnimacionFinal);
+
+            // Mover al centro de la puerta
+            jugador.transform.position = Vector3.Lerp(posInicial, posDestino, progreso);
+
+            // Reducir escala (encoger)
+            jugador.transform.localScale = Vector3.Lerp(escalaInicial, Vector3.zero, progreso);
+
+            // Disolver Shader
+            if (mat != null)
+            {
+                mat.SetFloat("_DissolveAmount", progreso);
+            }
+
+            yield return null;
+        }
+
+        // Ocultar al jugador al finalizar la animación
+        jugador.SetActive(false);
     }
 
     /// <summary>
@@ -147,22 +202,18 @@ public class PanelVictoria : MonoBehaviour
     /// </summary>
     public void SaltarDialogoYMostrarVictoria()
     {
-        // 1. Detiene la corrutina en ejecución si existía
         if (rutinaEsperando != null)
         {
             StopCoroutine(rutinaEsperando);
             rutinaEsperando = null;
         }
 
-        // 2. Apaga el diálogo si está activo
         if (dialogoFinal != null)
         {
             dialogoFinal.TerminarDialog();
         }
 
         esperando = false;
-
-        // 3. Muestra la pantalla de victoria al instante
         MostrarVictoria();
     }
 
@@ -173,9 +224,6 @@ public class PanelVictoria : MonoBehaviour
         activado = true;
         MetaAlcanzada = true;
 
-        // =========================================================
-        // AQUÍ SE EJECUTA EL SONIDO EN CUANTO TOCA LA PUERTA Y ATERRIZA
-        // =========================================================
         if (sonidoVictoria != null)
         {
             StartCoroutine(ReproducirSonidoVictoria());
@@ -189,8 +237,6 @@ public class PanelVictoria : MonoBehaviour
         if (panelVictoria != null)
         {
             panelVictoria.SetActive(true);
-
-            // La caja de dialogo esta despues en la jerarquia y le tapaba los botones.
             panelVictoria.transform.SetAsLastSibling();
         }
 
