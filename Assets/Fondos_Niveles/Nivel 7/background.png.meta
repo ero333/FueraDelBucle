@@ -1,16 +1,10 @@
 fileFormatVersion: 2
-guid: a191447acc702c74fab9b76880bc2fd6
+guid: ac39063f52a0d914b83832d0137de666
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -247058054503370390
-    second: foreground_0
-  - first:
-      213: -8560154073889714485
-    second: foreground_1
-  - first:
-      213: 7369810071322001645
-    second: foreground_2
+      213: -7443756053782179069
+    second: background_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -43,16 +37,16 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
-    wrapU: 1
-    wrapV: 1
-    wrapW: 1
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -81,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -132,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: foreground_0
+      name: background_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 1177
-        width: 900
-        height: 452
+        y: 0
+        width: 7306
+        height: 1338
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -147,52 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a617d662206429cf0800000000000000
-      internalID: -247058054503370390
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: foreground_1
-      rect:
-        serializedVersion: 2
-        x: 5060
-        y: 1329
-        width: 805
-        height: 300
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: bcec0333939343980800000000000000
-      internalID: -8560154073889714485
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: foreground_2
-      rect:
-        serializedVersion: 2
-        x: 6876
-        y: 1105
-        width: 454
-        height: 524
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: de08e338633d64660800000000000000
-      internalID: 7369810071322001645
+      spriteID: 30356abce4772b890800000000000000
+      internalID: -7443756053782179069
       vertices: []
       indices: 
       edges: []
@@ -201,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -211,9 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      foreground_0: -247058054503370390
-      foreground_1: -8560154073889714485
-      foreground_2: 7369810071322001645
+      background_0: -7443756053782179069
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
