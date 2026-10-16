@@ -64,7 +64,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -135,11 +135,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 843
-        width: 723
-        height: 497
+        y: 220
+        width: 7330
+        height: 1120
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -153,28 +153,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "Ilustracio\u0301n_sin_ti\u0301tulo-6_1"
-      rect:
-        serializedVersion: 2
-        x: 1628
-        y: 0
-        width: 1844
-        height: 1340
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: db845e4a71dfc00e0800000000000000
-      internalID: -2302187031500601155
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: "Ilustracio\u0301n_sin_ti\u0301tulo-6_2"
       rect:
         serializedVersion: 2
@@ -183,7 +161,7 @@ TextureImporter:
         width: 2418
         height: 385
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -197,81 +175,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "Ilustracio\u0301n_sin_ti\u0301tulo-6_3"
-      rect:
-        serializedVersion: 2
-        x: 4053
-        y: 0
-        width: 1387
-        height: 1340
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 53ae6a975b3cfc550800000000000000
-      internalID: 6183375997600459317
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: "Ilustracio\u0301n_sin_ti\u0301tulo-6_4"
-      rect:
-        serializedVersion: 2
-        x: 6487
-        y: 337
-        width: 843
-        height: 1003
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 38029b0dae1e0a8e0800000000000000
-      internalID: -1684097861996175229
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: "Ilustracio\u0301n_sin_ti\u0301tulo-6_5"
+      name: "Ilustracio\u0301n_sin_ti\u0301tulo-6_6"
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1461
-        height: 165
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5dacdfffb5b63f150800000000000000
-      internalID: 5905181579293870805
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: "Ilustracio\u0301n_sin_ti\u0301tulo-6_6"
-      rect:
-        serializedVersion: 2
-        x: 5327
-        y: 0
-        width: 1516
+        width: 5559
         height: 230
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -305,6 +217,7 @@ TextureImporter:
       "Ilustracio\u0301n_sin_ti\u0301tulo-6_4": -1684097861996175229
       "Ilustracio\u0301n_sin_ti\u0301tulo-6_5": 5905181579293870805
       "Ilustracio\u0301n_sin_ti\u0301tulo-6_6": 6636805618113515114
+      "Ilustracio\u0301n_sin_ti\u0301tulo-6_7": -1447899493
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
