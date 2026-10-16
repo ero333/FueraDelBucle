@@ -18,7 +18,7 @@ public class parallaxController : MonoBehaviour
     public float referenceX = 0f;
 
     // Cuánto a la derecha de la cámara se coloca el centro del fondo
-    public float offsetX = 34f;
+    public float offsetX = 0f;
 
     float startZ;
 
