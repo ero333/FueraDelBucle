@@ -123,6 +123,8 @@ public class MarcoDesplegable : MonoBehaviour
 
     // Carga los datos y los cuadros del video (ver Resources/Presentacion) y arma el marco, todavía oculto.
     // Necesita que 'marco' ya esté asignado. Devuelve falso si falta algo: en ese caso no se muestra nada y el juego sigue normal.
+
+
     public bool Cargar(string rutaDatosVideo)
     {
         if (listo)
@@ -195,6 +197,13 @@ public class MarcoDesplegable : MonoBehaviour
     {
         if (!corriendo)
             return;
+
+        // Permite cerrar inmediatamente el marco si el jugador presiona X o E
+        if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.E))
+        {
+            OcultarYa();
+            return;
+        }
 
         tiempo += Time.deltaTime;
 
