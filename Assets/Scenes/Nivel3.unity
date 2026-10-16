@@ -1822,7 +1822,7 @@ Transform:
   m_GameObject: {fileID: 127610852}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.2, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3.19, y: 3.19, z: 3.19}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -2300,6 +2300,9 @@ MonoBehaviour:
   textoVidas: {fileID: 1172429201}
   vidaJugador: {fileID: 684962430}
   dialogoFinal: {fileID: 0}
+  animarAnimacionEnEsteNivel: 0
+  centroPortal: {fileID: 0}
+  duracionAnimacionFinal: 1.8
   tagJugador: Player
   activarPorContacto: 1
   esperarAterrizaje: 1
@@ -4245,8 +4248,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 421477119
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
@@ -4312,6 +4315,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::parallaxController
   parallaxSpeed: 0.01
+  referenceX: 0
+  offsetX: 0
 --- !u!1 &747371478
 GameObject:
   m_ObjectHideFlags: 0
