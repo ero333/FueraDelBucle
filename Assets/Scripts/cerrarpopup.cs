@@ -22,6 +22,17 @@ public class PopupController : MonoBehaviour
     public static bool CartelAbierto { get; private set; }
 
     private bool estabaVisible;
+    // --- AGREGADO: Resetear el estado al inicializar el script ---
+    private void Awake()
+    {
+        CartelAbierto = false;
+    }
+
+    // --- AGREGADO: Resetear el estado si el objeto se destruye al cambiar de escena ---
+    private void OnDestroy()
+    {
+        CartelAbierto = false;
+    }
 
     void Start()
     {

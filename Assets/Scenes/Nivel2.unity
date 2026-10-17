@@ -1499,7 +1499,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1098849668}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PauseManager, Assembly-CSharp
         m_MethodName: Pause
         m_Mode: 1
@@ -4141,11 +4141,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   claveNivel: Nivel2
   sonidoVictoria: {fileID: 8300000, guid: 4e282b2c23aa9ed4a8d9ace43e69ea06, type: 3}
+  volumenVictoria: 0.6
+  inicioClip: 0.2
+  duracionMaxima: 2.5
+  desvanecido: 0.4
+  respetarMute: 1
   panelVictoria: {fileID: 811000020}
   textoTiempo: {fileID: 811000032}
   textoVidas: {fileID: 811000012}
   vidaJugador: {fileID: 175978342}
   dialogoFinal: {fileID: 1594540588}
+  animarAnimacionEnEsteNivel: 0
+  centroPortal: {fileID: 0}
+  duracionAnimacionFinal: 1.8
   tagJugador: Player
   activarPorContacto: 1
   esperarAterrizaje: 1
@@ -5533,6 +5541,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   parallaxSpeed: 0.01
+  referenceX: 0
+  offsetX: 0
 --- !u!1 &978532315
 GameObject:
   m_ObjectHideFlags: 0
