@@ -13,7 +13,7 @@ public class RepeaterSegundo : MonoBehaviour
     [Header("Aturdimiento al pisar")]
     [Tooltip("Segundos que el enemigo se queda sin disparar al ser pisado.")]
     public float tiempoAturdido = 3f;
-
+    public Animator animator;
     [Tooltip("Fuerza con la que rebota el jugador hacia arriba al pisarlo.")]
     public float fuerzaRebote = 10f;
     private bool aturdido = false;
@@ -369,15 +369,28 @@ public class RepeaterSegundo : MonoBehaviour
         }
     }
 
+
     private IEnumerator AturdirEnemigo()
     {
         aturdido = true;
         jugadorEnRango = false;
 
+        if (animator != null)
+        {
+            animator.SetBool("aturdido", true);
+        }
+
         yield return new WaitForSeconds(tiempoAturdido);
 
         aturdido = false;
+
+        if (animator != null)
+        {
+            animator.SetBool("aturdido", false);
+        }
+
         cronometro = esperaInicial;
-        corrutinaAturdimiento = null; 
+        corrutinaAturdimiento = null;
     }
+
 }

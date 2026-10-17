@@ -13940,6 +13940,9 @@ MonoBehaviour:
   textoVidas: {fileID: 1257283123}
   vidaJugador: {fileID: 913427939}
   dialogoFinal: {fileID: 1353048465}
+  animarAnimacionEnEsteNivel: 0
+  centroPortal: {fileID: 0}
+  duracionAnimacionFinal: 1.8
   tagJugador: Player
   activarPorContacto: 1
   esperarAterrizaje: 1
@@ -17543,11 +17546,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: "REPEATER20-DISE\xD1O-RIG"
       objectReference: {fileID: 0}
+    - target: {fileID: 4479360162183971691, guid: e1c4b8b0ac9bc6142b9cb67da9a8785a, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 663078818415642871}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1c4b8b0ac9bc6142b9cb67da9a8785a, type: 3}
+--- !u!95 &663078818415642871 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4535506725532598649, guid: e1c4b8b0ac9bc6142b9cb67da9a8785a, type: 3}
+  m_PrefabInstance: {fileID: 663078818415642870}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4591082857204753308
 PrefabInstance:
   m_ObjectHideFlags: 0
