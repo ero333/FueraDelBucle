@@ -11,16 +11,20 @@ public class PauseManager : MonoBehaviour
 
     public GameObject pauseMenuUI;
 
-    [Header("Nombre exacto de la escena del menú principal")]
+    [Header("Nombre exacto de las escenas de navegación")]
     public string nombreEscenaMenu = "MenuPrincipal";
 
     [Header("Teclas para abrir y cerrar la pausa")]
     public KeyCode teclaPausa = KeyCode.Escape;
     public KeyCode teclaPausaAlternativa = KeyCode.Tab;
 
-    [Header("Cartel de Objetivo")]
+    [Header("Cartel de Objetivo (Opcional)")]
     [Tooltip("Arrastrá aquí el GameObject del cartel de objetivos si lo usas en este nivel")]
     public GameObject cartelObjetivoUI;
+
+    
+    private bool cartelEstabaActivo;
+    private bool dialogoEstabaActivo;
 
     void Awake()
     {
@@ -31,7 +35,7 @@ public class PauseManager : MonoBehaviour
     {
         string escenaActual = SceneManager.GetActiveScene().name;
 
-        if (escenaActual != "MapaNiveles")
+        if (escenaActual != "MapaNiveles" && escenaActual != "Creditos")
         {
             PlayerPrefs.SetString("UltimoNivelJugado", escenaActual);
         }
@@ -39,20 +43,54 @@ public class PauseManager : MonoBehaviour
 
     void Update()
     {
+       
+        bool dialogoActivoAhora = DialogoLog.HayDialogoActivo;
+        bool cartelActivoAhora = EsCartelVisible();
+
+        bool seAcabaDeCerrarAlgo = (dialogoEstabaActivo && !dialogoActivoAhora) || (cartelEstabaActivo && !cartelActivoAhora);
+
+        
+        dialogoEstabaActivo = dialogoActivoAhora;
+        cartelEstabaActivo = cartelActivoAhora;
+
+     
         if (!Input.GetKeyDown(teclaPausa) && !Input.GetKeyDown(teclaPausaAlternativa)) return;
 
-    
+       
         if (GameIsPaused)
         {
             Resume();
             return;
         }
 
-       
-        if (cartelObjetivoUI != null && cartelObjetivoUI.activeInHierarchy) return;
+        
+        if (cartelActivoAhora || dialogoActivoAhora || seAcabaDeCerrarAlgo)
+        {
+            return;
+        }
 
-    
+       
         Pause();
+    }
+
+   
+    private bool EsCartelVisible()
+    {
+        if (cartelObjetivoUI != null && cartelObjetivoUI.activeInHierarchy)
+        {
+            return true;
+        }
+
+        PopupController[] popups = FindObjectsByType<PopupController>(FindObjectsSortMode.None);
+        for (int i = 0; i < popups.Length; i++)
+        {
+            if (popups[i] != null && popups[i].enabled && popups[i].EstaVisible())
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public void Pause()
@@ -85,6 +123,8 @@ public class PauseManager : MonoBehaviour
         CerrandoEscena = false;
         GameIsPaused = false;
         Time.timeScale = 1f;
+        cartelEstabaActivo = false;
+        dialogoEstabaActivo = false;
     }
 
     public void ExitGame()
