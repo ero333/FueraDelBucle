@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcebe531d811c6a48a2ffeba6770ed6b, type: 3}
+  m_Name: LogFINAL
+  m_EditorClassIdentifier: Assembly-CSharp::NPCDialogos
+  NombreNPC: LOG
+  LogRetrato: {fileID: 21300000, guid: c3f26dad6b09422999ba6e5a25facc1b, type: 3}
+  escalaRetrato: 1
+  ajusteRetrato: {x: 0, y: 0}
+  retratosPorLinea:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 21300000, guid: 476500c0e424e114b9bf1b86ed5d2ff8, type: 3}
+  - {fileID: 21300000, guid: 476500c0e424e114b9bf1b86ed5d2ff8, type: 3}
+  escalaRetratoPorLinea:
+  - 1
+  - 1
+  - 1.28
+  - 1.28
+  desplazamientoRetratoPorLinea:
+  - 0
+  - 0
+  - 14.07
+  - 14.07
+  lineasDialogo:
+  - "\xA1Bien hecho, Glitch! Lo lograste. Superaste cada obst\xE1culo y grieta del
+    sistema...El momento tan esperado ha llegado. \xA1Liberanos a todos! Apreta el
+    bot\xF3n."
+  autoProgresLineas: 01000000
+  autoProgresDelay: 1.5
+  velocidadTypeo: 0.03
+  sonidoVoz: {fileID: 0}
+  pitchVoz: 1
