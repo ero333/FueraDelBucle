@@ -2985,7 +2985,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '?'
+  m_Text: 
 --- !u!222 &217320865
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6625,7 +6625,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 7312885049163744821, guid: 6343aeec01f373b7e7285b1bfdf5caea, type: 3}
+  m_Sprite: {fileID: -8982765255279600503, guid: d234f1e0a6bdd1c4b8bfc03040dbb7e0, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -12418,6 +12418,7 @@ MonoBehaviour:
     m_Bits: 0
   jugadorEnRango: 0
   tiempoAturdido: 3
+  animator: {fileID: 0}
   fuerzaRebote: 10
   alturaMaxima: 10
   soloAdelante: 1
