@@ -171,6 +171,8 @@ public class VidaJugador : MonoBehaviour
     private const float ToleranciaApoyo = 0.08f;
     // Alto de la caja fina con la que se detecta el suelo (pies) y el techo (cabeza).
     private const float AltoCajaContacto = 0.05f;
+    // Cuánto puede sobresalir un piso por encima de los pies (o un techo por debajo de la cabeza) y seguir contando.
+    private const float MargenSuperficie = 0.15f;
 
     private readonly RaycastHit2D[] impactosContacto = new RaycastHit2D[8];
 
@@ -201,6 +203,14 @@ public class VidaJugador : MonoBehaviour
             RaycastHit2D impacto = impactosContacto[i];
 
             if (impacto.collider == null || impacto.collider == propio || impacto.collider.transform.IsChildOf(transform))
+                continue;
+
+            // Un piso tiene su borde de arriba a la altura de los pies (y un techo su borde de abajo a la altura de la
+            // cabeza). Si no, es una pared que el personaje todavía está atravesando (por ejemplo al terminar el Phase):
+            // no cuenta, así sigue cayendo en vez de quedar flotando.
+            Bounds otro = impacto.collider.bounds;
+
+            if (haciaAbajo ? otro.max.y > limites.min.y + MargenSuperficie : otro.min.y < limites.max.y - MargenSuperficie)
                 continue;
 
             // La superficie tiene que mirar hacia el personaje: un piso hacia arriba, un techo hacia abajo.
