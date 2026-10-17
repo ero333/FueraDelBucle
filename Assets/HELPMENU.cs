@@ -8,6 +8,9 @@ public class HELPMENU : MonoBehaviour
     [Header("Tecla de Acceso Rápido")]
     public KeyCode teclaAyuda = KeyCode.H;
 
+    private float escalaPrevia = 1f;
+    private bool escalaGuardada;
+
     void Awake()
     {
         
@@ -15,6 +18,16 @@ public class HELPMENU : MonoBehaviour
         {
             helpPanel.SetActive(false);
         }
+    }
+
+    void OnEnable()
+    {
+        if (helpPanel != null)
+        {
+            helpPanel.SetActive(false);
+        }
+
+        escalaGuardada = false;
     }
 
     void Update()
@@ -36,11 +49,21 @@ public class HELPMENU : MonoBehaviour
         if (estaAbriendo)
         {
             helpPanel.transform.SetAsLastSibling(); 
-            Time.timeScale = 0f;                  
+            escalaPrevia = Time.timeScale;
+            escalaGuardada = true;
+            Time.timeScale = 0f;
         }
         else
         {
-            Time.timeScale = 1f;                 
+            RestaurarEscala();
         }
+    }
+
+    private void RestaurarEscala()
+    {
+        if (!escalaGuardada) return;
+
+        Time.timeScale = escalaPrevia;
+        escalaGuardada = false;
     }
 }
