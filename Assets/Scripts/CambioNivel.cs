@@ -87,6 +87,7 @@ public class CambioNivel : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
+        if (!mostrarBotonPorContacto) return;
         if (cambiando || pausarAlMostrar) return;
 
         if (other.CompareTag(tagJugador) && botonCambioEscena != null)
