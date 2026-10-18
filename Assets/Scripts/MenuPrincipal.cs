@@ -5,6 +5,7 @@ public class MenuPrincipal : MonoBehaviour
 {
     [Header("Escenas")]
     [SerializeField] private string escenaIntro = "Intro";
+    [SerializeField] private string escenaMapa = "MapaNiveles";
 
     // BOTÓN JUGAR
     public void Jugar()
@@ -13,5 +14,14 @@ public class MenuPrincipal : MonoBehaviour
         PlayerPrefs.Save();
 
         SceneManager.LoadScene(escenaIntro);
+    }
+
+    // BOTON LEVELS: va directo al mapa de niveles, sin la animacion de intro
+    public void Niveles()
+    {
+        PlayerPrefs.SetInt("MapaDesdeMenu", 1);
+        PlayerPrefs.Save();
+
+        SceneManager.LoadScene(escenaMapa);
     }
 }
