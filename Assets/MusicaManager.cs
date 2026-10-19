@@ -28,6 +28,25 @@ public class MusicManager : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        Volumen.Cambio += AplicarVolumen;
+        AplicarVolumen();
+    }
+
+    private void OnDisable()
+    {
+        Volumen.Cambio -= AplicarVolumen;
+    }
+
+    private void AplicarVolumen()
+    {
+        if (musicSource != null)
+        {
+            musicSource.volume = Volumen.Musica;
+        }
+    }
+
     public void CambiarMute(bool mutear)
     {
         if (musicSource != null)

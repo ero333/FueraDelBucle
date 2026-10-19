@@ -45,7 +45,7 @@ public class ActionAudioPlayer : MonoBehaviour
     {
         if (sonidoSalto != null && audioSource != null)
         {
-            audioSource.PlayOneShot(sonidoSalto, volumenSalto);
+            audioSource.PlayOneShot(sonidoSalto, Volumen.DeEfecto(volumenSalto));
         }
     }
 }

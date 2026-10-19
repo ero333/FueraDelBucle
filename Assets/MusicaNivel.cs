@@ -39,6 +39,7 @@ public class MusicaNivel : MonoBehaviour
                
                 bool estaMuteado = PlayerPrefs.GetInt("MusicMuted", 0) == 1;
                 localSource.mute = estaMuteado;
+                localSource.volume = Volumen.Musica;
 
                 localSource.Play();
             }

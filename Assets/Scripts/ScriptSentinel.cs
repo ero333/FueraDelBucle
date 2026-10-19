@@ -112,6 +112,7 @@ public class ScriptSentinel : MonoBehaviour
 
         if (caminando && !audioSource.isPlaying)
         {
+            audioSource.volume = Volumen.DeEfecto(volumenCaminata);
             audioSource.Play();
         }
         else if (!caminando && audioSource.isPlaying)

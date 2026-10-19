@@ -250,7 +250,7 @@ public class PanelVictoria : MonoBehaviour
 
     private IEnumerator ReproducirSonidoVictoria()
     {
-        if (respetarMute && PlayerPrefs.GetInt("MusicMuted", 0) == 1) yield break;
+        if (respetarMute && Volumen.Efectos <= 0f) yield break;
 
         float arranque = Mathf.Clamp(inicioClip, 0f, Mathf.Max(0f, sonidoVictoria.length - 0.05f));
         float desvanece = Mathf.Max(0.01f, desvanecido);
@@ -260,7 +260,7 @@ public class PanelVictoria : MonoBehaviour
         AudioSource fuente = objeto.AddComponent<AudioSource>();
 
         fuente.clip = sonidoVictoria;
-        fuente.volume = volumenVictoria;
+        fuente.volume = Volumen.DeEfecto(volumenVictoria);
         fuente.spatialBlend = 0f;
         fuente.playOnAwake = false;
         fuente.time = arranque;
