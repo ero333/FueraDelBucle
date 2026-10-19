@@ -26,6 +26,7 @@ public class PlayerPhysics : MonoBehaviour
     [SerializeField] private float duracionDash = 0.2f;
     [SerializeField] private float cooldownDash = 1f;
     [SerializeField] private float velocidadCaidaDespuesDash = 2f;
+    [SerializeField] private AudioClip sonidoDash;
 
     [Header("Habilidad Phase (Traspasar Paredes)")]
     [SerializeField] private KeyCode teclaPhase = KeyCode.P;
@@ -347,6 +348,11 @@ public class PlayerPhysics : MonoBehaviour
             tiempoRestanteCooldown = cooldownDash;
             direccionDash = inputHorizontal;
             anim.Play("DASH", 0, 0f);
+            //sonidoDash
+            if (sonidoDash != null)
+            {
+                AudioSource.PlayClipAtPoint(sonidoDash, transform.position);
+            }
         }
 
         // Cooldown del Phase

@@ -1993,6 +1993,8 @@ MonoBehaviour:
   opacidadImpactoPhase: 0.5
   duraciondeinvulnerabilidad: 1.5
   retrasoReinicio: 0.5
+  sonidoMuerte: {fileID: 0}
+  volumenMuerte: 1
   tagLuzVisibilidad: IVisibilidadJugador
   duracionApagadoLuz: 1
 --- !u!114 &295255243
@@ -2021,6 +2023,7 @@ MonoBehaviour:
   duracionDash: 0.2
   cooldownDash: 1.3
   velocidadCaidaDespuesDash: 2.5
+  sonidoDash: {fileID: 8300000, guid: dcc15432387295d4f82d10712bb809cf, type: 3}
   teclaPhase: 112
   cooldownPhase: 3
   duracionPhase: 2
@@ -2069,9 +2072,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a99878eb62af8924f9e19663b290070c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  sonidoSalto: {fileID: 8300000, guid: c77deeb4ebe7d94439b1bdae63a7dde1, type: 3}
-  volumenSalto: 1
-  playerPhysics: {fileID: 0}
 --- !u!82 &295255250
 AudioSource:
   m_ObjectHideFlags: 0
