@@ -6239,6 +6239,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8616757475720519627, guid: 6fced0bc383c63343936eb68ebe0b99f, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 10385419449833123, guid: 6fced0bc383c63343936eb68ebe0b99f, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -6988,6 +6992,8 @@ MonoBehaviour:
   opacidadImpactoPhase: 0.5
   duraciondeinvulnerabilidad: 1.5
   retrasoReinicio: 0.5
+  sonidoMuerte: {fileID: 8300000, guid: 019454ded3361b04ab1e3e51c7c72b94, type: 3}
+  volumenMuerte: 1
   tagLuzVisibilidad: IVisibilidadJugador
   duracionApagadoLuz: 1
 --- !u!114 &927634763

@@ -22,6 +22,11 @@ public class VidaJugador : MonoBehaviour
     [Tooltip("Segundos de espera antes de mostrar el panel/diálogo de derrota al quedarse sin vida.")]
     public float retrasoReinicio = 1.5f;
 
+    [Header("Sonido")]
+    public AudioClip sonidoMuerte;
+    [Range(0f, 1f)] public float volumenMuerte = 1f;
+    private AudioSource audioSource;
+
     [Header("Luz de visibilidad al morir")]
     [Tooltip("Tag de la luz que revela al jugador en la oscuridad (la misma que usa LuXVisibilidad). Si esta escena no tiene esa luz, se ignora.")]
     public string tagLuzVisibilidad = "IVisibilidadJugador";
@@ -56,6 +61,7 @@ public class VidaJugador : MonoBehaviour
         spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
         anim = GetComponent<Animator>();
         playerPhysics = GetComponent<PlayerPhysics>();
+        audioSource = GetComponent<AudioSource>();
 
         coloresOriginales = new Color[spriteRenderers.Length];
 
@@ -106,6 +112,14 @@ public class VidaJugador : MonoBehaviour
 
         cantidadDeVida = 0;
         muerto = true;
+
+        if (sonidoMuerte != null)
+        {
+            if (audioSource != null)
+                audioSource.PlayOneShot(sonidoMuerte, volumenMuerte);
+            else
+                AudioSource.PlayClipAtPoint(sonidoMuerte, transform.position, volumenMuerte);
+        }
 
         if (anim != null)
             anim.SetTrigger("Muerte");
