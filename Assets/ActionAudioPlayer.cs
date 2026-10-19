@@ -3,49 +3,96 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class ActionAudioPlayer : MonoBehaviour
 {
-    [Header("Configuración de Sonido")]
+    [Header("Configuración de Sonido - Salto")]
     [SerializeField] private AudioClip sonidoSalto;
     [SerializeField][Range(0f, 1f)] private float volumenSalto = 1f;
 
-    [Header("Referencias Opcionales")]
+    [Header("Configuración de Sonido - Phase (Bucle)")]
+    [SerializeField] private AudioClip sonidoPhase;
+    [SerializeField][Range(0f, 1f)] private float volumenPhase = 1f;
+
+    [Header("Referencias")]
     [SerializeField] private PlayerPhysics playerPhysics;
 
     private AudioSource audioSource;
+    private AudioSource audioSourcePhase; // Un canal dedicado para que el bucle no interfiera con otros sonidos
+    private bool estaEnPhaseAnterior;
 
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+
+        // Creamos un segundo AudioSource exclusivo para el sonido en bucle del Phase
+        audioSourcePhase = gameObject.AddComponent<AudioSource>();
+        audioSourcePhase.loop = true;
+        audioSourcePhase.playOnAwake = false;
+
         if (playerPhysics == null)
         {
             playerPhysics = GetComponent<PlayerPhysics>();
+        }
+
+        if (playerPhysics != null)
+        {
+            estaEnPhaseAnterior = playerPhysics.EstaEnPhase;
         }
     }
 
     void Update()
     {
-        bool intentoSaltar = Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow);
+        if (playerPhysics == null) return;
 
-        if (intentoSaltar)
+        // Detección de salto
+        bool intentoSaltar = Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow);
+        if (intentoSaltar && playerPhysics.EstaEnElSuelo)
         {
-            if (playerPhysics != null)
-            {
-                if (playerPhysics.EstaEnElSuelo)
-                {
-                    ReproducirSalto();
-                }
-            }
-            else
-            {
-                ReproducirSalto();
-            }
+            ReproducirSalto();
         }
+
+        // Detección de estado del Phase
+        bool estaEnPhaseActual = playerPhysics.EstaEnPhase;
+
+        // Si acaba de activarse el Phase, empieza a sonar en bucle
+        if (!estaEnPhaseAnterior && estaEnPhaseActual)
+        {
+            IniciarSonidoPhase();
+        }
+        // Si acaba de desactivarse el Phase, se corta el sonido
+        else if (estaEnPhaseAnterior && !estaEnPhaseActual)
+        {
+            DetenerSonidoPhase();
+        }
+
+        estaEnPhaseAnterior = estaEnPhaseActual;
     }
 
     public void ReproducirSalto()
     {
         if (sonidoSalto != null && audioSource != null)
         {
-            audioSource.PlayOneShot(sonidoSalto, Volumen.DeEfecto(volumenSalto));
+            audioSource.PlayOneShot(sonidoSalto, volumenSalto);
+        }
+    }
+
+    private void IniciarSonidoPhase()
+    {
+        if (sonidoPhase != null && audioSourcePhase != null)
+        {
+            audioSourcePhase.clip = sonidoPhase;
+            audioSourcePhase.volume = volumenPhase;
+            audioSourcePhase.Play();
+        }
+    }
+
+    private void DetenerSonidoPhase()
+    {
+        if (audioSourcePhase != null && audioSourcePhase.isPlaying)
+        {
+            audioSourcePhase.Stop();
         }
     }
 }
