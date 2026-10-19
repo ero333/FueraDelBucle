@@ -440,4 +440,9 @@ public class DialogoLog : MonoBehaviour
 
         AlTerminarDialogo?.Invoke();
     }
+
+    internal void IniciarDialogo()
+    {
+        throw new NotImplementedException();
+    }
 }
