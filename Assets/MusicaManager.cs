@@ -4,7 +4,7 @@ public class MusicManager : MonoBehaviour
 {
     public static MusicManager Instance;
     [SerializeField] private AudioSource musicSource;
-    public bool IsMuted => musicSource != null && musicSource.mute;
+    public bool IsMuted => Volumen.Silenciado;
 
     private void Awake()
     {
@@ -21,10 +21,9 @@ public class MusicManager : MonoBehaviour
         }
 
         // Carga el estado que se guardo
-        bool muteado = PlayerPrefs.GetInt("MusicMuted", 0) == 1;
         if (musicSource != null)
         {
-            musicSource.mute = muteado;
+            musicSource.mute = Volumen.Silenciado;
         }
     }
 
@@ -43,17 +42,13 @@ public class MusicManager : MonoBehaviour
     {
         if (musicSource != null)
         {
+            musicSource.mute = Volumen.Silenciado;
             musicSource.volume = Volumen.Musica;
         }
     }
 
     public void CambiarMute(bool mutear)
     {
-        if (musicSource != null)
-        {
-            musicSource.mute = mutear;
-        }
-        PlayerPrefs.SetInt("MusicMuted", mutear ? 1 : 0);
-        PlayerPrefs.Save();
+        Volumen.PonerSilencio(mutear);
     }
 }

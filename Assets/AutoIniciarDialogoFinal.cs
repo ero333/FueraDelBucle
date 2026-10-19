@@ -39,7 +39,7 @@ public class AutoIniciarDialogoFinal : MonoBehaviour
         // 1. Audio
         if (audioSource != null && sonidoInicioFinal != null)
         {
-            audioSource.PlayOneShot(sonidoInicioFinal);
+            audioSource.PlayOneShot(sonidoInicioFinal, Volumen.DeEfecto(1f));
         }
 
         // 2. Flash de Pantalla

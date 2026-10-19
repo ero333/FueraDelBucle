@@ -351,7 +351,7 @@ public class PlayerPhysics : MonoBehaviour
             //sonidoDash
             if (sonidoDash != null)
             {
-                AudioSource.PlayClipAtPoint(sonidoDash, transform.position);
+                Volumen.SonarEfecto(sonidoDash, 1f);
             }
         }
 

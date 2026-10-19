@@ -99,7 +99,7 @@ public class ScriptSentinel : MonoBehaviour
         audioSource.clip = sonidoCaminata;
         audioSource.loop = true;
         audioSource.playOnAwake = false;
-        audioSource.volume = volumenCaminata;
+        audioSource.volume = Volumen.DeEfecto(volumenCaminata);
         audioSource.spatialBlend = mezclaEspacial;
         audioSource.rolloffMode = AudioRolloffMode.Linear;
         audioSource.minDistance = 1f;
@@ -121,10 +121,23 @@ public class ScriptSentinel : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        Volumen.Cambio += AplicarVolumen;
+    }
+
     private void OnDisable()
     {
+        Volumen.Cambio -= AplicarVolumen;
+
         if (audioSource != null)
             audioSource.Stop();
+    }
+
+    private void AplicarVolumen()
+    {
+        if (audioSource != null)
+            audioSource.volume = Volumen.DeEfecto(volumenCaminata);
     }
 
     private void BuscarJugador()

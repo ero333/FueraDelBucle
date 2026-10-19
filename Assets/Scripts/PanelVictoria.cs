@@ -273,7 +273,7 @@ public class PanelVictoria : MonoBehaviour
         while (transcurrido < desvanece && fuente != null)
         {
             transcurrido += Time.unscaledDeltaTime;
-            fuente.volume = Mathf.Lerp(volumenVictoria, 0f, transcurrido / desvanece);
+            fuente.volume = Mathf.Lerp(Volumen.DeEfecto(volumenVictoria), 0f, transcurrido / desvanece);
             yield return null;
         }
 

@@ -118,7 +118,7 @@ public class VidaJugador : MonoBehaviour
             if (audioSource != null)
                 audioSource.PlayOneShot(sonidoMuerte, Volumen.DeEfecto(volumenMuerte));
             else
-                AudioSource.PlayClipAtPoint(sonidoMuerte, transform.position, Volumen.DeEfecto(volumenMuerte));
+                Volumen.SonarEfecto(sonidoMuerte, volumenMuerte);
         }
 
         if (anim != null)

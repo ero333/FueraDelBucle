@@ -5549,7 +5549,7 @@ MonoBehaviour:
   opacidadImpactoPhase: 0.5
   duraciondeinvulnerabilidad: 1.5
   retrasoReinicio: 0.5
-  sonidoMuerte: {fileID: 0}
+  sonidoMuerte: {fileID: 8300000, guid: 019454ded3361b04ab1e3e51c7c72b94, type: 3}
   volumenMuerte: 1
   tagLuzVisibilidad: IVisibilidadJugador
   duracionApagadoLuz: 1
@@ -14063,7 +14063,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   claveNivel: Nivel9
   sonidoVictoria: {fileID: 8300000, guid: 4e282b2c23aa9ed4a8d9ace43e69ea06, type: 3}
-  volumenVictoria: 0.6
+  volumenVictoria: 1
   inicioClip: 0.2
   duracionMaxima: 2.5
   desvanecido: 0.4

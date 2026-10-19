@@ -16,12 +16,12 @@ public class ControlOpciones : MonoBehaviour
     {
         if (sliderMusica != null)
         {
-            sliderMusica.SetValueWithoutNotify(Volumen.Musica);
+            sliderMusica.SetValueWithoutNotify(Volumen.MusicaGuardada);
         }
 
         if (sliderEfectos != null)
         {
-            sliderEfectos.SetValueWithoutNotify(Volumen.Efectos);
+            sliderEfectos.SetValueWithoutNotify(Volumen.EfectosGuardados);
         }
 
         MostrarPorcentajes();
@@ -31,9 +31,9 @@ public class ControlOpciones : MonoBehaviour
     {
         Volumen.PonerMusica(valor);
 
-        if (valor > 0f && MusicManager.Instance != null && MusicManager.Instance.IsMuted)
+        if (valor > 0f)
         {
-            MusicManager.Instance.CambiarMute(false);
+            Volumen.PonerSilencio(false);
         }
 
         MostrarPorcentajes();
@@ -42,6 +42,12 @@ public class ControlOpciones : MonoBehaviour
     public void CambiarEfectos(float valor)
     {
         Volumen.PonerEfectos(valor);
+
+        if (valor > 0f)
+        {
+            Volumen.PonerSilencio(false);
+        }
+
         MostrarPorcentajes();
     }
 
@@ -49,12 +55,12 @@ public class ControlOpciones : MonoBehaviour
     {
         if (textoMusica != null)
         {
-            textoMusica.text = Mathf.RoundToInt(Volumen.Musica * 100f) + "%";
+            textoMusica.text = Mathf.RoundToInt(Volumen.MusicaGuardada * 100f) + "%";
         }
 
         if (textoEfectos != null)
         {
-            textoEfectos.text = Mathf.RoundToInt(Volumen.Efectos * 100f) + "%";
+            textoEfectos.text = Mathf.RoundToInt(Volumen.EfectosGuardados * 100f) + "%";
         }
     }
 }

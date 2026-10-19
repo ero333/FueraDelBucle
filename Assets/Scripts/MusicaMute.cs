@@ -15,33 +15,33 @@ public class MusicaMute : MonoBehaviour
 
     private void OnEnable()
     {
+        Volumen.Cambio += SincronizarBoton;
         SincronizarBoton();
+    }
+
+    private void OnDisable()
+    {
+        Volumen.Cambio -= SincronizarBoton;
     }
 
     private void SincronizarBoton()
     {
-        bool estaMuteado = false;
-
-        if (MusicManager.Instance != null)
-        {
-            estaMuteado = MusicManager.Instance.IsMuted;
-        }
-        else
-        {
-            estaMuteado = PlayerPrefs.GetInt("MusicMuted", 0) == 1;
-        }
+        bool estaMuteado = Volumen.Silenciado;
 
         // Determina si este botón en particular debe estar encendido o apagar
         bool deboMostrarme = prenderMusica ? estaMuteado : !estaMuteado;
+
+        if (!deboMostrarme && otroBoton != null && !otroBoton.activeSelf)
+        {
+            otroBoton.SetActive(true);
+        }
+
         gameObject.SetActive(deboMostrarme);
     }
 
     public void ToggleMusic()
     {
-        if (MusicManager.Instance != null)
-        {
-            MusicManager.Instance.CambiarMute(!prenderMusica);
-        }
+        Volumen.PonerSilencio(!prenderMusica);
 
         if (otroBoton != null)
         {

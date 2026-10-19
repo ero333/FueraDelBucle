@@ -111,9 +111,7 @@ public class DisparoEnemigo : MonoBehaviour
 
         if (muerte != null)
         {
-            AudioSource.PlayClipAtPoint(muerte, transform.position);
-            AudioSource.PlayClipAtPoint(muerte, transform.position);
-            AudioSource.PlayClipAtPoint(muerte, transform.position);
+            Volumen.SonarEfecto(muerte, 1f);
         }
 
         if (col2D != null) col2D.enabled = false;

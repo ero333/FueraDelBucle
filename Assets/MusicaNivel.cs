@@ -4,6 +4,27 @@ public class MusicaNivel : MonoBehaviour
 {
     [SerializeField] private AudioClip cancionDelNivel;
 
+    private void OnEnable()
+    {
+        Volumen.Cambio += AplicarVolumen;
+    }
+
+    private void OnDisable()
+    {
+        Volumen.Cambio -= AplicarVolumen;
+    }
+
+    private void AplicarVolumen()
+    {
+        AudioSource fuente = GetComponent<AudioSource>();
+
+        if (fuente != null)
+        {
+            fuente.mute = Volumen.Silenciado;
+            fuente.volume = Volumen.Musica;
+        }
+    }
+
     private void Start()
     {
         AudioSource localSource = GetComponent<AudioSource>();
@@ -37,8 +58,7 @@ public class MusicaNivel : MonoBehaviour
                 localSource.loop = true;
 
                
-                bool estaMuteado = PlayerPrefs.GetInt("MusicMuted", 0) == 1;
-                localSource.mute = estaMuteado;
+                localSource.mute = Volumen.Silenciado;
                 localSource.volume = Volumen.Musica;
 
                 localSource.Play();
