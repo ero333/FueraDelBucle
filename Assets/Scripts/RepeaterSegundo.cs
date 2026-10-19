@@ -50,7 +50,8 @@ public class RepeaterSegundo : MonoBehaviour
     public bool girarHaciaJugador = true;
 
     public float distanciaGiro = 12f;
-
+    
+   
     public string tagJugador = "Player";
 
     public bool jugadorDetectado;

@@ -16,6 +16,10 @@ public class DisparoEnemigo : MonoBehaviour
     [Tooltip("Si está activado, dispara desde el arranque en bucle sin necesitar detectar al jugador con el raycast.")]
     public bool dispararSiempre = false;
 
+    [Header("Audio")]
+    public AudioSource audioSource;
+    public AudioClip muerte;
+
     private float cronometro;
 
     private Animator anim;
@@ -104,6 +108,13 @@ public class DisparoEnemigo : MonoBehaviour
     IEnumerator DestruirEnemigo()
     {
         estamuerto = true;
+
+        if (muerte != null)
+        {
+            AudioSource.PlayClipAtPoint(muerte, transform.position);
+            AudioSource.PlayClipAtPoint(muerte, transform.position);
+            AudioSource.PlayClipAtPoint(muerte, transform.position);
+        }
 
         if (col2D != null) col2D.enabled = false;
         if (rb != null) rb.simulated = false;
