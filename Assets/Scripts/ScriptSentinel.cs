@@ -18,7 +18,15 @@ public class ScriptSentinel : MonoBehaviour
     [SerializeField] private string tagJugador = "Player";
     public bool jugadorDetectado;
 
+    [Header("Sonido")]
+    [SerializeField] private AudioClip sonidoCaminata;
+    [SerializeField, Range(0f, 1f)] private float volumenCaminata = 1f;
+    [Tooltip("0 = se escucha parejo en todo el nivel, 1 = se escucha más fuerte cuanto más cerca está de la cámara.")]
+    [SerializeField, Range(0f, 1f)] private float mezclaEspacial = 1f;
+    [SerializeField] private float distanciaMaximaSonido = 15f;
+
     private Rigidbody2D rb;
+    private AudioSource audioSource;
     private Transform jugador;
     private bool moviendoDerecha = true;
     private float tiempoGiro = 0.2f;
@@ -28,6 +36,7 @@ public class ScriptSentinel : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        ConfigurarAudio();
         BuscarJugador();
         AplicarOrientacion();
     }
@@ -51,6 +60,7 @@ public class ScriptSentinel : MonoBehaviour
 
         float dir = moviendoDerecha ? 1f : -1f;
         float rapidez = jugadorDetectado ? velocidadPersecucion : velocidad;
+        bool caminando = false;
 
         // Raycast
         RaycastHit2D informacionSuelo = Physics2D.Raycast(controladorSuelo.position, Vector2.down, distancia);
@@ -59,6 +69,7 @@ public class ScriptSentinel : MonoBehaviour
         if (haySuelo)
         {
             rb.linearVelocity = new Vector2(dir * Mathf.Abs(rapidez), rb.linearVelocity.y);
+            caminando = Mathf.Abs(rapidez) > 0.01f;
         }
         else if (jugadorDetectado)
         {
@@ -74,6 +85,45 @@ public class ScriptSentinel : MonoBehaviour
                 Girar();
             }
         }
+
+        ActualizarSonidoCaminata(caminando);
+    }
+
+    private void ConfigurarAudio()
+    {
+        audioSource = GetComponent<AudioSource>();
+
+        if (audioSource == null)
+            audioSource = gameObject.AddComponent<AudioSource>();
+
+        audioSource.clip = sonidoCaminata;
+        audioSource.loop = true;
+        audioSource.playOnAwake = false;
+        audioSource.volume = volumenCaminata;
+        audioSource.spatialBlend = mezclaEspacial;
+        audioSource.rolloffMode = AudioRolloffMode.Linear;
+        audioSource.minDistance = 1f;
+        audioSource.maxDistance = distanciaMaximaSonido;
+    }
+
+    private void ActualizarSonidoCaminata(bool caminando)
+    {
+        if (audioSource == null || sonidoCaminata == null) return;
+
+        if (caminando && !audioSource.isPlaying)
+        {
+            audioSource.Play();
+        }
+        else if (!caminando && audioSource.isPlaying)
+        {
+            audioSource.Stop();
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (audioSource != null)
+            audioSource.Stop();
     }
 
     private void BuscarJugador()
