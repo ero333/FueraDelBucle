@@ -1,11 +1,14 @@
 using UnityEngine;
+using System.Collections;
 
 public class Einteractivo : MonoBehaviour
 {
     public GameObject objectToToggle;
 
-    private void Awake()
+    private IEnumerator Start()
     {
+        yield return null;
+
         if (objectToToggle != null)
         {
             objectToToggle.SetActive(false);
