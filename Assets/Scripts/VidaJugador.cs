@@ -194,7 +194,12 @@ public class VidaJugador : MonoBehaviour
     {
         ContactFilter2D filtro = new ContactFilter2D();
         filtro.useTriggers = false;
-        filtro.SetLayerMask(Physics2D.GetLayerCollisionMask(gameObject.layer));
+
+        // Solo las plataformas cuentan como piso o techo (las mismas que usa el jugador para saber si está en el suelo):
+        // un enemigo, aunque sea sólido, no es un piso donde quedarse flotando.
+        bool hayCapaPlataformas = playerPhysics != null && playerPhysics.CapaPlataformas.value != 0;
+
+        filtro.SetLayerMask(hayCapaPlataformas ? playerPhysics.CapaPlataformas : Physics2D.GetLayerCollisionMask(gameObject.layer));
         return filtro;
     }
 
