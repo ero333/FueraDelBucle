@@ -1041,6 +1041,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SonidoBotones
   sonidoClic: {fileID: 8300000, guid: d00e6e29e88d4e9478bf2f88014a3414, type: 3}
+  sonidoGlitch: {fileID: 8300000, guid: 77a84ff9440f9d240abbef27b153270e, type: 3}
+  volumenGlitch: 0.109
 --- !u!82 &924286528
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1549,6 +1551,7 @@ GameObject:
   - component: {fileID: 1499603937}
   - component: {fileID: 1499603939}
   - component: {fileID: 1499603938}
+  - component: {fileID: 1499603940}
   m_Layer: 0
   m_Name: LOGO-GLITCH_0
   m_TagString: Untagged
@@ -1652,6 +1655,18 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &1499603940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1499603936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9bb068b5ff07df41ab6d0db7fc284b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GlitchAudioEvent
 --- !u!1 &1646704416
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -7,7 +8,14 @@ public class SonidoBotones : MonoBehaviour
 {
     public static SonidoBotones Instancia { get; private set; }
 
+    [Header("Sonido de botones")]
     public AudioClip sonidoClic;
+
+    [Header("Sonido del glitch")]
+    public AudioClip sonidoGlitch;
+    [Range(0f, 1f)]
+    public float volumenGlitch = 0.5f;
+
     private AudioSource audioSource;
 
     void Awake()
@@ -20,8 +28,7 @@ public class SonidoBotones : MonoBehaviour
 
         Instancia = this;
 
-        // Esto evita que el Manager de sonido se destruya al cargar otra escena
-        DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(gameObject);
 
         audioSource = GetComponent<AudioSource>();
         audioSource.playOnAwake = false;
@@ -51,7 +58,10 @@ public class SonidoBotones : MonoBehaviour
 
     private void EngancharBotones()
     {
-        Button[] botones = FindObjectsByType<Button>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+        Button[] botones = FindObjectsByType<Button>(
+            FindObjectsInactive.Include,
+            FindObjectsSortMode.None
+        );
 
         foreach (Button boton in botones)
         {
@@ -64,7 +74,22 @@ public class SonidoBotones : MonoBehaviour
     {
         if (sonidoClic != null)
         {
-            audioSource.PlayOneShot(sonidoClic, Volumen.DeEfecto(1f));
+            audioSource.PlayOneShot(
+                sonidoClic,
+                Volumen.DeEfecto(1f)
+            );
+        }
+    }
+
+    // Llamar cuando comienza el efecto visual glitch
+    public void ReproducirGlitch()
+    {
+        if (sonidoGlitch != null)
+        {
+            audioSource.PlayOneShot(
+                sonidoGlitch,
+                Volumen.DeEfecto(volumenGlitch)
+            );
         }
     }
 }
