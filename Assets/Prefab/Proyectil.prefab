@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 6129215137178865638}
   - component: {fileID: 6129215137178865639}
   - component: {fileID: 1917716733805927760}
+  - component: {fileID: 7323252962293113001}
   m_Layer: 8
   m_Name: Proyectil
   m_TagString: Untagged
@@ -273,7 +274,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 38decd9374d16604a86b0fa6dfa23bb5, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.6
   m_Pitch: 1
   Loop: 0
@@ -358,3 +359,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7323252962293113001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7323252962293113382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cde4866dd9bc9285a1b5e01be136dad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SonidoProyectil
+  volumenDisparo: 0.6
+  margenPantalla: 0.08
