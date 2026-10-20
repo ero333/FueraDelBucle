@@ -2039,7 +2039,7 @@ MonoBehaviour:
   duracionDash: 0.2
   cooldownDash: 1.3
   velocidadCaidaDespuesDash: 2.5
-  sonidoDash: {fileID: 8300000, guid: dcc15432387295d4f82d10712bb809cf, type: 3}
+  sonidoDash: {fileID: 8300000, guid: 02414fe327934464aae36fbf6bedf075, type: 3}
   teclaPhase: 112
   cooldownPhase: 3
   duracionPhase: 2
@@ -2088,6 +2088,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a99878eb62af8924f9e19663b290070c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  sonidoSalto: {fileID: 0}
+  volumenSalto: 1
+  sonidoPhase: {fileID: 0}
+  volumenPhase: 1
+  playerPhysics: {fileID: 0}
 --- !u!82 &295255250
 AudioSource:
   m_ObjectHideFlags: 0
