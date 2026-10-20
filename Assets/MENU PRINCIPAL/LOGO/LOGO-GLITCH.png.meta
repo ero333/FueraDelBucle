@@ -186,12 +186,12 @@ TextureImporter:
       name: LOGO-GLITCH_0
       rect:
         serializedVersion: 2
-        x: 88
-        y: 299
-        width: 133
-        height: 142
+        x: 0
+        y: 0
+        width: 960
+        height: 600
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -208,12 +208,12 @@ TextureImporter:
       name: LOGO-GLITCH_1
       rect:
         serializedVersion: 2
-        x: 204
-        y: 335
-        width: 104
-        height: 119
+        x: 960
+        y: 0
+        width: 960
+        height: 600
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -230,12 +230,12 @@ TextureImporter:
       name: LOGO-GLITCH_2
       rect:
         serializedVersion: 2
-        x: 302
-        y: 354
-        width: 86
-        height: 107
+        x: 1920
+        y: 0
+        width: 960
+        height: 600
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -248,385 +248,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: LOGO-GLITCH_3
-      rect:
-        serializedVersion: 2
-        x: 388
-        y: 360
-        width: 85
-        height: 103
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 061b8578864485280800000000000000
-      internalID: -9054411835090357920
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: LOGO-GLITCH_4
-      rect:
-        serializedVersion: 2
-        x: 479
-        y: 362
-        width: 77
-        height: 100
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0a0007b643d87dc40800000000000000
-      internalID: 5537049523155632288
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: LOGO-GLITCH_5
-      rect:
-        serializedVersion: 2
-        x: 588
-        y: 353
-        width: 95
-        height: 104
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: fdde455373ae5aee0800000000000000
-      internalID: -1250335798686585377
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: LOGO-GLITCH_6
-      rect:
-        serializedVersion: 2
-        x: 670
-        y: 335
-        width: 95
-        height: 118
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b99153d4d4fb73420800000000000000
-      internalID: 2609764847813204379
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: LOGO-GLITCH_7
-      rect:
-        serializedVersion: 2
-        x: 738
-        y: 310
-        width: 118
-        height: 131
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ac841b0a3b57fac30800000000000000
-      internalID: 4372843177555609802
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: LOGO-GLITCH_8
-      rect:
-        serializedVersion: 2
-        x: 910
-        y: 112
-        width: 977
-        height: 381
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4323d6fe6cd4deed0800000000000000
-      internalID: -2383163110993350092
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: LOGO-GLITCH_9
-      rect:
-        serializedVersion: 2
-        x: 960
-        y: 359
-        width: 9
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 031fecde186738cc0800000000000000
-      internalID: -3709991367610535632
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: LOGO-GLITCH_10
-      rect:
-        serializedVersion: 2
-        x: 1849
-        y: 327
-        width: 33
-        height: 37
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b065f8c5e89882dc0800000000000000
-      internalID: -3663527052334639605
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: LOGO-GLITCH_11
-      rect:
-        serializedVersion: 2
-        x: 1926
-        y: 104
-        width: 954
-        height: 389
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c2a0f38ca97947650800000000000000
-      internalID: 6229770875600570924
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: LOGO-GLITCH_12
-      rect:
-        serializedVersion: 2
-        x: 132
-        y: 124
-        width: 152
-        height: 210
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f94c7fdb95aa4fd00800000000000000
-      internalID: 1005615919226406047
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: LOGO-GLITCH_13
-      rect:
-        serializedVersion: 2
-        x: 254
-        y: 126
-        width: 145
-        height: 222
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d7494872b4079e5e0800000000000000
-      internalID: -1879847901362613123
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: LOGO-GLITCH_14
-      rect:
-        serializedVersion: 2
-        x: 399
-        y: 128
-        width: 166
-        height: 223
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 61771cb8b57b8daa0800000000000000
-      internalID: -6135952888477681898
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: LOGO-GLITCH_15
-      rect:
-        serializedVersion: 2
-        x: 561
-        y: 126
-        width: 143
-        height: 223
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 718de7efa6b337660800000000000000
-      internalID: 7382309544912672791
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: LOGO-GLITCH_16
-      rect:
-        serializedVersion: 2
-        x: 674
-        y: 122
-        width: 145
-        height: 212
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d7dd1477e938372f0800000000000000
-      internalID: -976291977580388995
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: LOGO-GLITCH_17
-      rect:
-        serializedVersion: 2
-        x: 1856
-        y: 316
-        width: 11
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2f8c63c7da121efc0800000000000000
-      internalID: -3467453209101547278
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: LOGO-GLITCH_18
-      rect:
-        serializedVersion: 2
-        x: 1847
-        y: 274
-        width: 13
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5b23167b0438ba270800000000000000
-      internalID: 8262842255319052981
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: LOGO-GLITCH_19
-      rect:
-        serializedVersion: 2
-        x: 918
-        y: 91
-        width: 50
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 340ebb61c726cf020800000000000000
-      internalID: 2376882988441657411
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 91030313f35f2824a81c2f436e2ac87d
     internalID: 0
     vertices: []
     indices: 
@@ -634,28 +260,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":3.0,"y":1.0},"gridSpriteSize":{"x":960.0,"y":600.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       LOGO-GLITCH_0: -1880629151230947582
       LOGO-GLITCH_1: 6765229184096612679
-      LOGO-GLITCH_10: -3663527052334639605
-      LOGO-GLITCH_11: 6229770875600570924
-      LOGO-GLITCH_12: 1005615919226406047
-      LOGO-GLITCH_13: -1879847901362613123
-      LOGO-GLITCH_14: -6135952888477681898
-      LOGO-GLITCH_15: 7382309544912672791
-      LOGO-GLITCH_16: -976291977580388995
-      LOGO-GLITCH_17: -3467453209101547278
-      LOGO-GLITCH_18: 8262842255319052981
-      LOGO-GLITCH_19: 2376882988441657411
       LOGO-GLITCH_2: 3912002981686981964
-      LOGO-GLITCH_3: -9054411835090357920
-      LOGO-GLITCH_4: 5537049523155632288
-      LOGO-GLITCH_5: -1250335798686585377
-      LOGO-GLITCH_6: 2609764847813204379
-      LOGO-GLITCH_7: 4372843177555609802
-      LOGO-GLITCH_8: -2383163110993350092
-      LOGO-GLITCH_9: -3709991367610535632
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
