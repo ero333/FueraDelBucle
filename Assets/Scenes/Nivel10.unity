@@ -13629,11 +13629,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2929532959937094645, guid: 6fced0bc383c63343936eb68ebe0b99f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 218.1
+      value: -8
       objectReference: {fileID: 0}
     - target: {fileID: 2929532959937094645, guid: 6fced0bc383c63343936eb68ebe0b99f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 17.03
+      value: -3.353
       objectReference: {fileID: 0}
     - target: {fileID: 2929532959937094645, guid: 6fced0bc383c63343936eb68ebe0b99f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -19143,6 +19143,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e60784d84b6c00e4f8a7efefc607051d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PATCHPlatformManager
+  sonidoRotura: {fileID: 8300000, guid: 31a39a656eb97b7a841612738232735f, type: 3}
+  sonidoAviso: {fileID: 8300000, guid: 30a6ae5ca36cf8f02c49a0ebb80cffcb, type: 3}
   tandasDePlataformas:
   - nombreTanda: 1 inicio
     plataformasARomper:

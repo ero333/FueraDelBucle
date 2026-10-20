@@ -566,6 +566,9 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 7626a1353eb2a5b44be0a2ac0ffba33c, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 8053941342616619001}
+    - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 7626a1353eb2a5b44be0a2ac0ffba33c, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 7674022083682590869}
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 7626a1353eb2a5b44be0a2ac0ffba33c, type: 3}
       insertIndex: -1
@@ -712,3 +715,16 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -7552582706839291426, guid: 7626a1353eb2a5b44be0a2ac0ffba33c, type: 3}
   m_PrefabInstance: {fileID: 7503726114504813347}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8053941342616619001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8053941342616619678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5aec66114dbce87ba3efe4ed046a1227, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SonidoLux
+  sonidoApagado: {fileID: 8300000, guid: 2eee4ad8a00392c15c42395417b921cb, type: 3}

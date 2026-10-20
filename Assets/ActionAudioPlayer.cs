@@ -74,7 +74,7 @@ public class ActionAudioPlayer : MonoBehaviour
     {
         if (sonidoSalto != null && audioSource != null)
         {
-            audioSource.PlayOneShot(sonidoSalto, volumenSalto);
+            audioSource.PlayOneShot(sonidoSalto, Volumen.DeEfecto(volumenSalto));
         }
     }
 
@@ -83,7 +83,7 @@ public class ActionAudioPlayer : MonoBehaviour
         if (sonidoPhase != null && audioSourcePhase != null)
         {
             audioSourcePhase.clip = sonidoPhase;
-            audioSourcePhase.volume = volumenPhase;
+            audioSourcePhase.volume = Volumen.DeEfecto(volumenPhase);
             audioSourcePhase.Play();
         }
     }
@@ -93,6 +93,25 @@ public class ActionAudioPlayer : MonoBehaviour
         if (audioSourcePhase != null && audioSourcePhase.isPlaying)
         {
             audioSourcePhase.Stop();
+        }
+    }
+
+    private void OnEnable()
+    {
+        Volumen.Cambio += AplicarVolumen;
+    }
+
+    private void OnDisable()
+    {
+        Volumen.Cambio -= AplicarVolumen;
+    }
+
+    // El Phase suena en bucle, así que tiene que seguir el control de volumen mientras está sonando.
+    private void AplicarVolumen()
+    {
+        if (audioSourcePhase != null)
+        {
+            audioSourcePhase.volume = Volumen.DeEfecto(volumenPhase);
         }
     }
 }

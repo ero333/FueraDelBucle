@@ -15,6 +15,10 @@ public class PATCHPlatformManager : MonoBehaviour
     public List<PlatformTanda> tandasDePlataformas;
     private int indiceTandaActual = 0;
 
+    [Header("Audio")]
+    public AudioClip sonidoAviso;
+    public AudioClip sonidoRotura;
+
     private Animator anim;
 
     // En qué parte de la animación de rotura la plataforma ya se ve hecha escombros (0 = al empezar, 1 = al terminar).
@@ -97,6 +101,20 @@ public class PATCHPlatformManager : MonoBehaviour
 
     IEnumerator DestruirPlataforma(PlatformTanda tanda)
     {
+        // Las plataformas de la tanda se rompen una atrás de otra, así que varias roturas suenan
+        // superpuestas. Repartir el volumen entre ellas hace que una tanda de tres no se escuche
+        // más fuerte que una de una sola.
+        int cuantas = 0;
+
+        foreach (GameObject plataforma in tanda.plataformasARomper)
+        {
+            if (plataforma != null) cuantas++;
+        }
+
+        float volumenRotura = cuantas > 1 ? 1f / Mathf.Sqrt(cuantas) : 1f;
+
+        Volumen.SonarEfecto(sonidoAviso, 1f);
+
         foreach (GameObject plataforma in tanda.plataformasARomper)
         {
             if (plataforma != null)
@@ -119,6 +137,8 @@ public class PATCHPlatformManager : MonoBehaviour
                     anim.SetTrigger("DESTRUIR");
                     anim.SetTrigger("DESTRUIR-S");
                     anim.SetTrigger("DESTRUIR-L");
+
+                    Volumen.SonarEfecto(sonidoRotura, volumenRotura);
 
                     StartCoroutine(DesactivarColliderAlHacerseEscombros(col2D, spritePlataforma, spriteOriginal, animadorPlataforma));
                 }

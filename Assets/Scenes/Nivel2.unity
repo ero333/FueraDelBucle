@@ -2392,23 +2392,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2929532959937094645, guid: 6fced0bc383c63343936eb68ebe0b99f, type: 3}
   m_PrefabInstance: {fileID: 1648835152}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &175978353
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 175978341}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a99878eb62af8924f9e19663b290070c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ActionAudioPlayer
-  sonidoSalto: {fileID: 0}
-  volumenSalto: 1
-  sonidoPhase: {fileID: 0}
-  volumenPhase: 1
-  playerPhysics: {fileID: 0}
 --- !u!82 &175978354
 AudioSource:
   m_ObjectHideFlags: 0
@@ -9441,9 +9424,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4066701399928486806, guid: 6fced0bc383c63343936eb68ebe0b99f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 175978354}
-    - targetCorrespondingSourceObject: {fileID: 4066701399928486806, guid: 6fced0bc383c63343936eb68ebe0b99f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 175978353}
   m_SourcePrefab: {fileID: 100100000, guid: 6fced0bc383c63343936eb68ebe0b99f, type: 3}
 --- !u!1 &1706663148
 GameObject:

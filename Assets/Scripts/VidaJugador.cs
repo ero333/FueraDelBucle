@@ -106,12 +106,23 @@ public class VidaJugador : MonoBehaviour
         invulnerabilidadActual = StartCoroutine(Invulnerabilidad());
     }
 
+    // Para que el resto de la escena sepa que el jugador murió, por ejemplo los enemigos que
+    // tienen un sonido en bucle y tienen que callarse.
+    public static event System.Action JugadorMurio;
+
     public void Morir()
     {
         if (muerto) return;
 
         cantidadDeVida = 0;
         muerto = true;
+
+        System.Action aviso = JugadorMurio;
+
+        if (aviso != null)
+        {
+            aviso();
+        }
 
         if (sonidoMuerte != null)
         {

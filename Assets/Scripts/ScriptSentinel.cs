@@ -23,12 +23,18 @@ public class ScriptSentinel : MonoBehaviour
     [SerializeField, Range(0f, 1f)] private float volumenCaminata = 1f;
     [Tooltip("0 = se escucha parejo en todo el nivel, 1 = se escucha más fuerte cuanto más cerca está de la cámara.")]
     [SerializeField, Range(0f, 1f)] private float mezclaEspacial = 1f;
-    [SerializeField] private float distanciaMaximaSonido = 15f;
+    [Tooltip("Hasta acá se escucha a volumen pleno. Como la cámara está a 10 de distancia en Z, por debajo de 10 no tiene efecto.")]
+    [SerializeField] private float distanciaMinimaSonido = 11f;
+    [SerializeField] private float distanciaMaximaSonido = 16f;
+    [Tooltip("Cuánto margen fuera de la pantalla se sigue escuchando. 0 = justo hasta el borde.")]
+    [SerializeField, Range(0f, 0.5f)] private float margenPantalla = 0.08f;
 
     private Rigidbody2D rb;
     private AudioSource audioSource;
     private Transform jugador;
+    private Camera camara;
     private bool moviendoDerecha = true;
+    private bool jugadorMuerto;
     private float tiempoGiro = 0.2f;
     private float ultimoGiro;
     private const float zonaMuerta = 0.3f;
@@ -86,7 +92,7 @@ public class ScriptSentinel : MonoBehaviour
             }
         }
 
-        ActualizarSonidoCaminata(caminando);
+        ActualizarSonidoCaminata(caminando && EnPantalla());
     }
 
     private void ConfigurarAudio()
@@ -102,13 +108,34 @@ public class ScriptSentinel : MonoBehaviour
         audioSource.volume = Volumen.DeEfecto(volumenCaminata);
         audioSource.spatialBlend = mezclaEspacial;
         audioSource.rolloffMode = AudioRolloffMode.Linear;
-        audioSource.minDistance = 1f;
-        audioSource.maxDistance = distanciaMaximaSonido;
+        audioSource.minDistance = distanciaMinimaSonido;
+        audioSource.maxDistance = Mathf.Max(distanciaMaximaSonido, distanciaMinimaSonido + 0.1f);
+    }
+
+    // El sonido es una esfera alrededor del oído, pero la pantalla es un rectángulo: sin esto se
+    // escuchan sentinels que están arriba, abajo o apenas fuera de cuadro, donde no se ven.
+    private bool EnPantalla()
+    {
+        if (camara == null) camara = Camera.main;
+        if (camara == null) return true;
+
+        Vector3 v = camara.WorldToViewportPoint(transform.position);
+
+        if (v.z < 0f) return false;
+
+        return v.x > -margenPantalla && v.x < 1f + margenPantalla
+            && v.y > -margenPantalla && v.y < 1f + margenPantalla;
     }
 
     private void ActualizarSonidoCaminata(bool caminando)
     {
         if (audioSource == null || sonidoCaminata == null) return;
+
+        if (jugadorMuerto)
+        {
+            if (audioSource.isPlaying) audioSource.Stop();
+            return;
+        }
 
         if (caminando && !audioSource.isPlaying)
         {
@@ -124,11 +151,22 @@ public class ScriptSentinel : MonoBehaviour
     private void OnEnable()
     {
         Volumen.Cambio += AplicarVolumen;
+        VidaJugador.JugadorMurio += CallarPorMuerte;
     }
 
     private void OnDisable()
     {
         Volumen.Cambio -= AplicarVolumen;
+        VidaJugador.JugadorMurio -= CallarPorMuerte;
+
+        if (audioSource != null)
+            audioSource.Stop();
+    }
+
+    // Si el jugador murió el sentinel se calla y no vuelve a sonar hasta que recarga la escena.
+    private void CallarPorMuerte()
+    {
+        jugadorMuerto = true;
 
         if (audioSource != null)
             audioSource.Stop();
