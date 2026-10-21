@@ -20,7 +20,12 @@ public class DisparoEnemigo : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip muerte;
 
-    private float cronometro;
+    // Segundos que dura el destello de la luz roja al disparar.
+    private const float DuracionDestello = 0.15f;
+
+    private float carga;
+    private float tiempoDeDestello;
+    private LuzRoja luzAviso;
 
     private Animator anim;
     private bool estamuerto = false;
@@ -31,7 +36,8 @@ public class DisparoEnemigo : MonoBehaviour
     {
 
         anim = GetComponent<Animator>();
-        cronometro = 0f;
+        luzAviso = GetComponentInChildren<LuzRoja>(true);
+        carga = tiempoEntreDisparos; // listo para disparar apenas vea al jugador
 
         // Congela la rotación física: sin esto, un empujón del jugador le mete
         // torque y lo hace girar sin control como un trompo (y la caída se ve
@@ -67,20 +73,31 @@ public class DisparoEnemigo : MonoBehaviour
             jugadorEnRango = hit.collider != null;
         }
 
-        if (jugadorEnRango)
-        {
-            cronometro -= Time.deltaTime;
+        // La carga (segundos desde el último disparo) sigue subiendo aunque el jugador salga de la línea, más rápido:
+        // así no salen dos balas muy seguidas, pero tampoco hay que esperar el intervalo entero al volver a entrar.
+        carga = Mathf.Min(tiempoEntreDisparos, carga + Time.deltaTime * (jugadorEnRango ? 1f : 4f));
 
-            if (cronometro <= 0f)
-            {
-                Disparar();
-                cronometro = tiempoEntreDisparos;
-            }
-        }
-        else
+        // Apenas detecta al jugador (y el enfriamiento terminó) dispara directo; después empieza el enfriamiento.
+        if (jugadorEnRango && carga >= tiempoEntreDisparos)
         {
-            cronometro = 0f;
+            Disparar();
+            carga = 0f;
+            tiempoDeDestello = DuracionDestello;
         }
+
+        // La luz roja hace un destello corto al disparar.
+        if (tiempoDeDestello > 0f)
+            tiempoDeDestello -= Time.deltaTime;
+
+        PrenderAviso(tiempoDeDestello > 0f);
+    }
+
+    private void PrenderAviso(bool encendida)
+    {
+        if (luzAviso == null || luzAviso.luzRoja == null) return;
+
+        if (luzAviso.luzRoja.activeSelf != encendida)
+            luzAviso.luzRoja.SetActive(encendida);
     }
 
     private void Disparar()
@@ -108,6 +125,7 @@ public class DisparoEnemigo : MonoBehaviour
     IEnumerator DestruirEnemigo()
     {
         estamuerto = true;
+        PrenderAviso(false);
 
         if (muerte != null)
         {

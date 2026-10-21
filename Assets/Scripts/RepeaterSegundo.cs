@@ -57,6 +57,7 @@ public class RepeaterSegundo : MonoBehaviour
     public bool jugadorDetectado;
 
     private float cronometro;
+    private bool estabaEnRango;
     private Transform jugador;
     private Collider2D colliderJugador;
 
@@ -126,6 +127,10 @@ public class RepeaterSegundo : MonoBehaviour
 
         if (jugadorEnRango)
         {
+            // Al entrar al rango espera al menos 'esperaInicial', pero sin saltearse lo que faltaba del intervalo entre disparos.
+            if (!estabaEnRango)
+                cronometro = Mathf.Max(cronometro, esperaInicial);
+
             cronometro -= Time.deltaTime;
 
             if (cronometro <= 0f)
@@ -137,9 +142,12 @@ public class RepeaterSegundo : MonoBehaviour
         }
         else
         {
-            // Reiniciar el cronómetro si el jugador se escapa/sale del rango
-            cronometro = esperaInicial;
+            // El enfriamiento sigue corriendo aunque el jugador salga del rango: si vuelve a entrar enseguida
+            // no dispara de nuevo al instante (antes salían dos balas muy seguidas).
+            cronometro = Mathf.Max(0f, cronometro - Time.deltaTime);
         }
+
+        estabaEnRango = jugadorEnRango;
     }
 
 

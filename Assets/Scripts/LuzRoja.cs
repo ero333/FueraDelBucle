@@ -10,6 +10,10 @@ public class LuzRoja : MonoBehaviour
     private void Start()
     {
         luzRoja.SetActive(false);
+
+        // En un Repeater con DisparoEnemigo la luz no titila sola: la prende el propio disparo para anunciarse.
+        if (GetComponentInParent<DisparoEnemigo>() != null) return;
+
         StartCoroutine(Titilar());
     }
 
