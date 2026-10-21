@@ -45,6 +45,9 @@ public class MusicaNivel : MonoBehaviour
                 if (globalSource.clip != cancionDelNivel)
                 {
                     globalSource.clip = cancionDelNivel;
+                    globalSource.loop = true;
+                    globalSource.mute = Volumen.Silenciado;
+                    globalSource.volume = Volumen.Musica;
                     globalSource.Play();
                 }
             }
