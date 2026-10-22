@@ -55,7 +55,7 @@ public class IntroEstoyListo : MonoBehaviour
 
     public IEnumerator TerminaEscena()
     {
-        yield return new WaitForSeconds (18f);
+        yield return new WaitForSeconds (41f);
         SceneManager.LoadScene(nombreNivel1);
 
     }
