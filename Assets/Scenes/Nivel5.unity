@@ -2007,6 +2007,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 125678779}
   m_CullTransparentMesh: 1
+--- !u!114 &131525364 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1229408356382586618, guid: b3f154e42fd794c73a69e10238fa6ae1, type: 3}
+  m_PrefabInstance: {fileID: 1568240443}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1 &133670519
 GameObject:
   m_ObjectHideFlags: 0
@@ -4285,6 +4296,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5779546442867524048, guid: 69e3b98965fa1de48a1afda1361dfc53, type: 3}
   m_PrefabInstance: {fileID: 1934450863}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &484529621 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5837237246567802045, guid: b3f154e42fd794c73a69e10238fa6ae1, type: 3}
+  m_PrefabInstance: {fileID: 1568240443}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1001 &490155040
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4483,6 +4505,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &504948734 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2647286433190236384, guid: b3f154e42fd794c73a69e10238fa6ae1, type: 3}
+  m_PrefabInstance: {fileID: 1568240443}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!4 &511176618 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5779546442867524048, guid: 69e3b98965fa1de48a1afda1361dfc53, type: 3}
@@ -4667,11 +4700,11 @@ PrefabInstance:
     - target: {fileID: 2627796686816019753, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
       propertyPath: NombreText
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 504948734}
     - target: {fileID: 2627796686816019753, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
       propertyPath: RetratoAnim
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 131525364}
     - target: {fileID: 2627796686816019753, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
       propertyPath: dialogodata
       value: 
@@ -4679,11 +4712,11 @@ PrefabInstance:
     - target: {fileID: 2627796686816019753, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
       propertyPath: PanelDialogo
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1629444940}
     - target: {fileID: 2627796686816019753, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
       propertyPath: dialogoTexto
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 484529621}
     - target: {fileID: 4820680255828264236, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
       propertyPath: m_text
       value: LUX
@@ -10000,6 +10033,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7142102722347496040, guid: b3f154e42fd794c73a69e10238fa6ae1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7992974824056088133, guid: b3f154e42fd794c73a69e10238fa6ae1, type: 3}
       propertyPath: jugador
       value: 
@@ -10167,6 +10204,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69e3b98965fa1de48a1afda1361dfc53, type: 3}
+--- !u!1 &1629444940 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4411781199017617498, guid: b3f154e42fd794c73a69e10238fa6ae1, type: 3}
+  m_PrefabInstance: {fileID: 1568240443}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1632361153
 GameObject:
   m_ObjectHideFlags: 0

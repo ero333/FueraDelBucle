@@ -1902,11 +1902,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5481254117640650753, guid: 6fced0bc383c63343936eb68ebe0b99f, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9991449
+      value: 0.99914485
       objectReference: {fileID: 0}
     - target: {fileID: 5481254117640650753, guid: 6fced0bc383c63343936eb68ebe0b99f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.04134732
+      value: 0.041347813
       objectReference: {fileID: 0}
     - target: {fileID: 5545509351192803457, guid: 6fced0bc383c63343936eb68ebe0b99f, type: 3}
       propertyPath: m_Layer
@@ -2086,11 +2086,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9056337968594913314, guid: 6fced0bc383c63343936eb68ebe0b99f, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9989166
+      value: 0.9989167
       objectReference: {fileID: 0}
     - target: {fileID: 9056337968594913314, guid: 6fced0bc383c63343936eb68ebe0b99f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.04653644
+      value: 0.046535946
       objectReference: {fileID: 0}
     - target: {fileID: 9063863737649999936, guid: 6fced0bc383c63343936eb68ebe0b99f, type: 3}
       propertyPath: m_Layer
@@ -3939,6 +3939,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7115049030049555540, guid: fc3b5de7c8a3248cc8d941948862a86c, type: 3}
   m_PrefabInstance: {fileID: 403629092}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &434529539 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2647286433190236384, guid: b3f154e42fd794c73a69e10238fa6ae1, type: 3}
+  m_PrefabInstance: {fileID: 943635319}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1001 &442902423
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6079,6 +6090,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 809470783}
   m_CullTransparentMesh: 1
+--- !u!114 &814095555 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5837237246567802045, guid: b3f154e42fd794c73a69e10238fa6ae1, type: 3}
+  m_PrefabInstance: {fileID: 943635319}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &817388528
 GameObject:
   m_ObjectHideFlags: 0
@@ -6723,6 +6745,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6234155199404181991, guid: b3f154e42fd794c73a69e10238fa6ae1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7142102722347496040, guid: b3f154e42fd794c73a69e10238fa6ae1, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7992974824056088133, guid: b3f154e42fd794c73a69e10238fa6ae1, type: 3}
@@ -8567,6 +8593,17 @@ MonoBehaviour:
   parallaxSpeed: 0.01
   referenceX: 0
   offsetX: 0
+--- !u!114 &1317664086 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1229408356382586618, guid: b3f154e42fd794c73a69e10238fa6ae1, type: 3}
+  m_PrefabInstance: {fileID: 943635319}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1 &1320291906
 GameObject:
   m_ObjectHideFlags: 0
@@ -12604,6 +12641,11 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &2027773504 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4411781199017617498, guid: b3f154e42fd794c73a69e10238fa6ae1, type: 3}
+  m_PrefabInstance: {fileID: 943635319}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2039747328
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13115,19 +13157,19 @@ PrefabInstance:
     - target: {fileID: 2627796686816019753, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
       propertyPath: NombreText
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 434529539}
     - target: {fileID: 2627796686816019753, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
       propertyPath: RetratoAnim
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1317664086}
     - target: {fileID: 2627796686816019753, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
       propertyPath: PanelDialogo
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2027773504}
     - target: {fileID: 2627796686816019753, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
       propertyPath: dialogoTexto
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 814095555}
     - target: {fileID: 2627796686816019753, guid: 4d6140eb25ef5fc4a91f3400dea1c97e, type: 3}
       propertyPath: popupObjetivo
       value: 
