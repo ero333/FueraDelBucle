@@ -30,62 +30,91 @@ public class Calificacion : MonoBehaviour
     private int arte;
     private int jugabilidad;
 
+    private bool yaEnviada;
+    private int historiaEnviada;
+    private int arteEnviada;
+    private int jugabilidadEnviada;
+
     void OnEnable()
     {
         historia = PlayerPrefs.GetInt(ClaveHistoria, 0);
         arte = PlayerPrefs.GetInt(ClaveArte, 0);
         jugabilidad = PlayerPrefs.GetInt(ClaveJugabilidad, 0);
+        yaEnviada = PlayerPrefs.GetInt(ClaveEnviada, 0) == 1;
 
-        if (botonEnviar != null)
-        {
-            botonEnviar.SetActive(true);
-        }
-
-        if (textoGracias != null)
-        {
-            textoGracias.SetActive(false);
-        }
+        historiaEnviada = historia;
+        arteEnviada = arte;
+        jugabilidadEnviada = jugabilidad;
 
         Pintar();
+        ActualizarBoton();
     }
 
     public void PonerHistoria(int puntaje)
     {
-        historia = Mathf.Clamp(puntaje, 0, 5);
+        historia = Alternar(historia, puntaje);
         Pintar();
+        ActualizarBoton();
     }
 
     public void PonerArte(int puntaje)
     {
-        arte = Mathf.Clamp(puntaje, 0, 5);
+        arte = Alternar(arte, puntaje);
         Pintar();
+        ActualizarBoton();
     }
 
     public void PonerJugabilidad(int puntaje)
     {
-        jugabilidad = Mathf.Clamp(puntaje, 0, 5);
+        jugabilidad = Alternar(jugabilidad, puntaje);
         Pintar();
+        ActualizarBoton();
+    }
+
+    public void BorrarHistoria()
+    {
+        historia = 0;
+        Pintar();
+        ActualizarBoton();
+    }
+
+    public void BorrarArte()
+    {
+        arte = 0;
+        Pintar();
+        ActualizarBoton();
+    }
+
+    public void BorrarJugabilidad()
+    {
+        jugabilidad = 0;
+        Pintar();
+        ActualizarBoton();
+    }
+
+    public void BorrarTodo()
+    {
+        historia = 0;
+        arte = 0;
+        jugabilidad = 0;
+        Pintar();
+        ActualizarBoton();
     }
 
     public void Enviar()
     {
-        if (historia == 0 && arte == 0 && jugabilidad == 0) return;
-
         PlayerPrefs.SetInt(ClaveHistoria, historia);
         PlayerPrefs.SetInt(ClaveArte, arte);
         PlayerPrefs.SetInt(ClaveJugabilidad, jugabilidad);
         PlayerPrefs.SetInt(ClaveEnviada, 1);
         PlayerPrefs.Save();
 
-        if (botonEnviar != null)
-        {
-            botonEnviar.SetActive(false);
-        }
+        yaEnviada = true;
+        historiaEnviada = historia;
+        arteEnviada = arte;
+        jugabilidadEnviada = jugabilidad;
 
-        if (textoGracias != null)
-        {
-            textoGracias.SetActive(true);
-        }
+        ActualizarBoton();
     }
 
     public void Cerrar()
@@ -98,6 +127,34 @@ public class Calificacion : MonoBehaviour
 
         Time.timeScale = 1f;
         SceneManager.LoadScene(escenaAlCerrar);
+    }
+
+    private int Alternar(int actual, int puntaje)
+    {
+        int nuevo = Mathf.Clamp(puntaje, 0, 5);
+        return (nuevo == actual) ? 0 : nuevo;
+    }
+
+    private bool HayCambio()
+    {
+        return historia != historiaEnviada
+            || arte != arteEnviada
+            || jugabilidad != jugabilidadEnviada;
+    }
+
+    private void ActualizarBoton()
+    {
+        bool mostrarEnviar = !yaEnviada || HayCambio();
+
+        if (botonEnviar != null)
+        {
+            botonEnviar.SetActive(mostrarEnviar);
+        }
+
+        if (textoGracias != null)
+        {
+            textoGracias.SetActive(yaEnviada && !mostrarEnviar);
+        }
     }
 
     private void Pintar()
