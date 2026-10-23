@@ -123,8 +123,6 @@ public class MarcoDesplegable : MonoBehaviour
 
     // Carga los datos y los cuadros del video (ver Resources/Presentacion) y arma el marco, todavía oculto.
     // Necesita que 'marco' ya esté asignado. Devuelve falso si falta algo: en ese caso no se muestra nada y el juego sigue normal.
-
-
     public bool Cargar(string rutaDatosVideo)
     {
         if (listo)
@@ -198,11 +196,25 @@ public class MarcoDesplegable : MonoBehaviour
         if (!corriendo)
             return;
 
-        // Permite cerrar inmediatamente el marco si el jugador presiona X o E
-        if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.E))
+        // Margen de 0.15s para evitar que la tecla 'E' que abre el diálogo cierre el video en el mismo frame.
+        if (tiempo > 0.15f)
         {
-            OcultarYa();
-            return;
+            bool presionoTecla = Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.X);
+
+            // Verificación compatible con el nuevo Input System si está activo en el proyecto
+#if ENABLE_INPUT_SYSTEM
+            if (!presionoTecla && UnityEngine.InputSystem.Keyboard.current != null)
+            {
+                presionoTecla = UnityEngine.InputSystem.Keyboard.current.eKey.wasPressedThisFrame ||
+                                UnityEngine.InputSystem.Keyboard.current.xKey.wasPressedThisFrame;
+            }
+#endif
+
+            if (presionoTecla)
+            {
+                OcultarYa();
+                return;
+            }
         }
 
         tiempo += Time.deltaTime;
