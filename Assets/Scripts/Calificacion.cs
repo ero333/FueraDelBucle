@@ -26,6 +26,30 @@ public class Calificacion : MonoBehaviour
     [Tooltip("Vacio: la ventana se oculta. Con el nombre de una escena: la carga.")]
     public string escenaAlCerrar = "";
 
+    [Tooltip("Si venis de una de estas escenas, Volver usa escenaAlCerrar en lugar de volver a donde estabas.")]
+    public string[] escenasSinVuelta = { "Final", "AnimFinal" };
+
+    private static string escenaActual = "";
+    private static string escenaAnterior = "";
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+    private static void SeguirLasEscenas()
+    {
+        escenaActual = SceneManager.GetActiveScene().name;
+        escenaAnterior = "";
+
+        SceneManager.sceneLoaded -= AnotarEscena;
+        SceneManager.sceneLoaded += AnotarEscena;
+    }
+
+    private static void AnotarEscena(Scene escena, LoadSceneMode modo)
+    {
+        if (modo != LoadSceneMode.Single) return;
+
+        escenaAnterior = escenaActual;
+        escenaActual = escena.name;
+    }
+
     private int historia;
     private int arte;
     private int jugabilidad;
@@ -119,14 +143,32 @@ public class Calificacion : MonoBehaviour
 
     public void Cerrar()
     {
-        if (string.IsNullOrEmpty(escenaAlCerrar))
+        string destino = ElegirDestino();
+
+        if (string.IsNullOrEmpty(destino))
         {
             gameObject.SetActive(false);
             return;
         }
 
         Time.timeScale = 1f;
-        SceneManager.LoadScene(escenaAlCerrar);
+        SceneManager.LoadScene(destino);
+    }
+
+    private string ElegirDestino()
+    {
+        if (string.IsNullOrEmpty(escenaAlCerrar)) return "";
+        if (string.IsNullOrEmpty(escenaAnterior)) return escenaAlCerrar;
+
+        if (escenasSinVuelta != null)
+        {
+            for (int i = 0; i < escenasSinVuelta.Length; i++)
+            {
+                if (escenaAnterior == escenasSinVuelta[i]) return escenaAlCerrar;
+            }
+        }
+
+        return escenaAnterior;
     }
 
     private int Alternar(int actual, int puntaje)
