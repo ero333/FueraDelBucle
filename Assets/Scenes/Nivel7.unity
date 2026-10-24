@@ -2680,7 +2680,7 @@ MonoBehaviour:
   textoVidas: {fileID: 1654689701}
   vidaJugador: {fileID: 927634762}
   dialogoFinal: {fileID: 0}
-  animarAnimacionEnEsteNivel: 0
+  animarAnimacionEnEsteNivel: 1
   centroPortal: {fileID: 0}
   duracionAnimacionFinal: 1.8
   tagJugador: Player
@@ -10187,6 +10187,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   helpPanel: {fileID: 7200000003}
   teclaAyuda: 104
+  cerrarAlTocarAfuera: 1
 --- !u!1001 &1564319986
 PrefabInstance:
   m_ObjectHideFlags: 0
