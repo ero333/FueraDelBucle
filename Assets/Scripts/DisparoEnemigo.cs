@@ -143,23 +143,23 @@ public class DisparoEnemigo : MonoBehaviour
     }
 
     //Dejo esta función abajo por las dudas que falle algo de la colisión
-    //private void OnCollisionEnter2D(Collision2D colision)
-    //{
+    private void OnCollisionEnter2D(Collision2D colision)
+    {
 
-    //    if (colision.gameObject.CompareTag("Player"))
-    //    {
+        if (colision.gameObject.CompareTag("Player"))
+        {
 
-    //        ContactPoint2D contacto = colision.GetContact(0);
-
-
-    //        if (contacto.normal.y <= -0.5f)
-    //        {
+            ContactPoint2D contacto = colision.GetContact(0);
 
 
-    //            StartCoroutine(DestruirEnemigo());
+            if (colision.transform.position.y > transform.position.y + 0.5f)
+            {
 
 
-    //        }
-    //    }
-    //}
+                StartCoroutine(DestruirEnemigo());
+
+
+            }
+        }
+    }
 }
