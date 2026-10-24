@@ -342,7 +342,8 @@ public class PlayerPhysics : MonoBehaviour
         }
 
         // Dash
-        if ((Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)) && inputHorizontal != 0f && !estaDasheando && tiempoRestanteCooldown <= 0f && !estaAgachado)
+        if ((Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift) || Input.GetKeyDown(KeyCode.Tab))
+    && inputHorizontal != 0f && !estaDasheando && tiempoRestanteCooldown <= 0f && !estaAgachado)
         {
             estaDasheando = true;
             tiempoRestanteDash = duracionDash;
