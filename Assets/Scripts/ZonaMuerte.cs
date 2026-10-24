@@ -18,6 +18,7 @@ public class ZonaMuerte : MonoBehaviour
         if (vida == null)
         {
             // Respaldo por si el jugador no tiene VidaJugador.
+            Time.timeScale = 1f;
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             return;
         }

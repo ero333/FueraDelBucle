@@ -13,6 +13,7 @@ public class MenuPrincipal : MonoBehaviour
         PlayerPrefs.SetInt("MapaDesdeMenu", 1);
         PlayerPrefs.Save();
 
+        Time.timeScale = 1f;
         SceneManager.LoadScene(escenaIntro);
     }
 
@@ -22,6 +23,7 @@ public class MenuPrincipal : MonoBehaviour
         PlayerPrefs.SetInt("MapaDesdeMenu", 1);
         PlayerPrefs.Save();
 
+        Time.timeScale = 1f;
         SceneManager.LoadScene(escenaMapa);
     }
 }

@@ -5,11 +5,13 @@ public class SeleccionNiveles : MonoBehaviour
 {
     public void CambiarNivel(string nombreNivel)
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(nombreNivel);
     }
 
     public void CambiarNivel(int numeroNivel)
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(numeroNivel);
     }
 
@@ -20,11 +22,13 @@ public class SeleccionNiveles : MonoBehaviour
 
         if (desdeMenu)
         {
+            Time.timeScale = 1f;
             SceneManager.LoadScene("MenuPrincipal");
         }
         else
         {
             string ultimoNivel = PlayerPrefs.GetString("UltimoNivelJugado", "Nivel1");
+            Time.timeScale = 1f;
             SceneManager.LoadScene(ultimoNivel);
         }
     }

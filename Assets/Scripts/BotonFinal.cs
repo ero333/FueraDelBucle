@@ -32,6 +32,7 @@ public class BotonFinal : MonoBehaviour
     {
         if (!string.IsNullOrEmpty(nombreEscenaSiguiente))
         {
+            Time.timeScale = 1f;
             SceneManager.LoadScene(nombreEscenaSiguiente);
         }
         else

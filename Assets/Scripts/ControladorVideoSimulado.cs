@@ -19,6 +19,7 @@ public class ControladorVideoSimulado : MonoBehaviour
     IEnumerator EsperarYCambiar()
     {
         yield return new WaitForSeconds(tiempoDeEspera);
+        Time.timeScale = 1f;
         SceneManager.LoadScene(escenaSiguiente);
     }
 }

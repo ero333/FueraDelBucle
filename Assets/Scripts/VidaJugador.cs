@@ -375,6 +375,7 @@ public class VidaJugador : MonoBehaviour
         {
             // Respaldo por si una escena no tiene PanelDerrota
             Scene escenaActual = SceneManager.GetActiveScene();
+            Time.timeScale = 1f;
             SceneManager.LoadScene(escenaActual.buildIndex);
         }
     }

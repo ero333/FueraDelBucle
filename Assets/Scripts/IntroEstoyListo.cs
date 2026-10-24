@@ -50,12 +50,14 @@ public class IntroEstoyListo : MonoBehaviour
         if (introTerminada) return;
 
         introTerminada = true;
+        Time.timeScale = 1f;
         SceneManager.LoadScene(nombreNivel1);
     }
 
     public IEnumerator TerminaEscena()
     {
         yield return new WaitForSeconds (41f);
+        Time.timeScale = 1f;
         SceneManager.LoadScene(nombreNivel1);
 
     }

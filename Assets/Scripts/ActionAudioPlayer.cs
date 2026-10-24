@@ -42,9 +42,27 @@ public class ActionAudioPlayer : MonoBehaviour
         }
     }
 
+    private bool JuegoDetenido()
+    {
+        return Time.timeScale == 0f
+            || PauseManager.GameIsPaused
+            || DialogoLog.HayDialogoActivo
+            || LevelUIManager.PlacaAbierta
+            || PanelVictoria.MetaAlcanzada
+            || CamaraSeguir.PaneoActivo
+            || MarcoDesplegable.Activo;
+    }
+
     void Update()
     {
         if (playerPhysics == null) return;
+
+        if (JuegoDetenido())
+        {
+            DetenerSonidoPhase();
+            estaEnPhaseAnterior = false;
+            return;
+        }
 
         // Detección de salto
         bool intentoSaltar = Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow);

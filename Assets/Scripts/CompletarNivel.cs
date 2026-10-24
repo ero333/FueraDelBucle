@@ -31,6 +31,7 @@ public class CompletarNivel : MonoBehaviour
         // 2. Opcional: Cargar de vuelta la escena del mapa de niveles
         if (!string.IsNullOrEmpty(nombreEscenaMenu))
         {
+            Time.timeScale = 1f;
             SceneManager.LoadScene(nombreEscenaMenu);
         }
     }
