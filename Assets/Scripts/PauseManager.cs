@@ -43,7 +43,12 @@ public class PauseManager : MonoBehaviour
 
     void Update()
     {
-       
+        HELPMENU ayuda = FindFirstObjectByType<HELPMENU>();
+        if (ayuda != null && ayuda.helpPanel != null && ayuda.helpPanel.activeSelf)
+        {
+            return; // No lee la tecla ESC para que se no salga del menu de pausa
+        }
+
         bool dialogoActivoAhora = DialogoLog.HayDialogoActivo;
         bool cartelActivoAhora = EsCartelVisible();
 

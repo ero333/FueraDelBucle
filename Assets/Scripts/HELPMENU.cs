@@ -10,6 +10,10 @@ public class HELPMENU : MonoBehaviour
     [Header("Tecla de Acceso Rápido")]
     public KeyCode teclaAyuda = KeyCode.H;
 
+    //Se puede cerrar tambien con ESC
+    [Header("Tecla para Cerrar")]
+    public KeyCode teclaCerrar = KeyCode.Escape;
+
     [Header("Cerrar al tocar otro boton")]
     [Tooltip("Si esta prendido, tocar cualquier cosa fuera del panel lo cierra.")]
     public bool cerrarAlTocarAfuera = true;
@@ -41,10 +45,22 @@ public class HELPMENU : MonoBehaviour
 
     void Update()
     {
-
-        if (Input.GetKeyDown(teclaAyuda))
+        if (helpPanel == null || !helpPanel.activeSelf)
         {
-            ToggleHelpMenu();
+            if (Input.GetKeyDown(teclaAyuda))
+            {
+                ToggleHelpMenu();
+            }
+            return; 
+        }
+
+        
+        if (Time.frameCount == frameDeApertura) return;
+
+        // Se puede cerrar volviendo a presionar H o presionando ESC
+        if (Input.GetKeyDown(teclaAyuda) || Input.GetKeyDown(teclaCerrar))
+        {
+            CerrarHelpMenu();
         }
     }
 
