@@ -38,8 +38,8 @@ public class PanelVictoria : MonoBehaviour
     [Header("Diálogo final")]
     public DialogoLog dialogoFinal;
 
-    [Header("Animación Final del Personaje (Solo Nivel 10)")]
-    [Tooltip("Marca esta casilla SOLO en el Nivel 10 para que haga la animación de disolución antes de mostrar la victoria.")]
+    [Header("Animación Final del Personaje")]
+    [Tooltip("Marca esta casilla para que haga la animación de disolución antes de mostrar la victoria.")]
     public bool animarAnimacionEnEsteNivel = false;
 
     [Tooltip("Arrastra el Transform del centro de la puerta o portal.")]

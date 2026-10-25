@@ -514,14 +514,19 @@ public class PlayerPhysics : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log("Toqué: " + collision.name);
+
         if (collision.CompareTag("CabezaEnemigo") && rb.linearVelocity.y <= 0f)
         {
+            Debug.Log("Detecté cabeza enemigo");
+
             Rebotar();
 
             DisparoEnemigo enemigo = collision.GetComponentInParent<DisparoEnemigo>();
+
             if (enemigo != null)
             {
-                enemigo.Muere(); 
+                enemigo.Muere();
             }
         }
     }
