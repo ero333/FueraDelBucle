@@ -898,7 +898,13 @@ PlayerSettings:
   XboxOneOverrideIdentityName: 
   XboxOneOverrideIdentityPublisher: 
   vrEditorSettings: {}
-  cloudServicesEnabled: {}
+  cloudServicesEnabled:
+    Build: 0
+    Game Performance: 0
+    Legacy Analytics: 0
+    Purchasing: 0
+    UDP: 0
+    Unity Ads: 0
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 
@@ -920,10 +926,10 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: 56d2c52b-088f-4c55-bc24-5d048963beb4
+  cloudProjectId: 19a67da9-54d0-4d2a-8074-be3fa785b08b
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: Fuera Del Bucle
+  projectName: 2026 - TADD4 - Fuera del bucle
   organizationId: unity_5de6ef73a1261c0b221b
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
