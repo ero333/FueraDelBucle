@@ -3163,6 +3163,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   helpPanel: {fileID: 7200000003}
   teclaAyuda: 104
+  teclaCerrar: 27
+  cerrarAlTocarAfuera: 1
 --- !u!1001 &280226948
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20545,7 +20547,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5779546442867524048, guid: f15a78358f9cc44439e7c6b6ebca3ada, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.0464
+      value: 3.07
       objectReference: {fileID: 0}
     - target: {fileID: 5779546442867524048, guid: f15a78358f9cc44439e7c6b6ebca3ada, type: 3}
       propertyPath: m_LocalPosition.y
