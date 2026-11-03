@@ -1,7 +1,9 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Rendering.Universal;
+using Unity.Services.Analytics;
 
 public class VidaJugador : MonoBehaviour
 {
@@ -28,9 +30,7 @@ public class VidaJugador : MonoBehaviour
     private AudioSource audioSource;
 
     [Header("Luz de visibilidad al morir")]
-    [Tooltip("Tag de la luz que revela al jugador en la oscuridad (la misma que usa LuXVisibilidad). Si esta escena no tiene esa luz, se ignora.")]
     public string tagLuzVisibilidad = "IVisibilidadJugador";
-    [Tooltip("Segundos que tarda en apagarse gradualmente esa luz al morir, en vez de cortarse de golpe.")]
     public float duracionApagadoLuz = 1f;
 
     private Light2D luzVisibilidad;
@@ -46,8 +46,6 @@ public class VidaJugador : MonoBehaviour
 
     public bool EstaParpadeando => parpadeoActual != null;
 
-    // Color real (sin flash de daño) del sprite i del rig. PlayerPhysics lo usa al activar
-    // el Phase para no guardar el rojo del impacto como si fuera el color normal.
     public Color ColorOriginal(int indice, Color porDefecto)
     {
         if (coloresOriginales == null || indice < 0 || indice >= coloresOriginales.Length)
@@ -82,7 +80,6 @@ public class VidaJugador : MonoBehaviour
         if (PlayerPhysics.godModeActivo) return;
         if (muerto || esInvulnerable || (playerPhysics != null && playerPhysics.EstaEnPhase))
             return;
-        //if (muerto || esInvulnerable) return;
 
         cantidadDeVida -= daño;
 
@@ -106,11 +103,9 @@ public class VidaJugador : MonoBehaviour
         invulnerabilidadActual = StartCoroutine(Invulnerabilidad());
     }
 
-    // Para que el resto de la escena sepa que el jugador murió, por ejemplo los enemigos que
-    // tienen un sonido en bucle y tienen que callarse.
     public static event System.Action JugadorMurio;
 
-    public void Morir()
+ public void Morir()
     {
         if (muerto) return;
 
@@ -118,11 +113,25 @@ public class VidaJugador : MonoBehaviour
         muerto = true;
 
         System.Action aviso = JugadorMurio;
-
         if (aviso != null)
         {
             aviso();
         }
+
+        CustomEvent gameOverEvent = new CustomEvent("GameOver")
+        {
+            { "Level", 1 },
+            { "MusicActive", true },
+            { "SoundActive", true },
+            { "TimeElapsed", 120.5f },
+            { "PhaseAvoidances", 0 },
+            { "PushCount", 0 },
+            { "KillCount", 0 },
+            { "KillerEntity", "Pinchos" }
+        };
+
+        AnalyticsService.Instance.RecordEvent(gameOverEvent);
+        AnalyticsService.Instance.Flush();
 
         if (sonidoMuerte != null)
         {
@@ -140,17 +149,11 @@ public class VidaJugador : MonoBehaviour
 
         StartCoroutine(ReiniciarJuego());
     }
-
-    // Apaga de a poco la luz que revela al jugador en la oscuridad (en vez de
-    // que quede prendida o se corte de golpe cuando cae/muere). No toca su
-    // "enabled": solo baja la intensidad, así no interfiere con LuXVisibilidad.
     private IEnumerator ApagarLuzVisibilidadGradualmente()
     {
         float intensidadInicial = luzVisibilidad.intensity;
         float t = 0f;
 
-        // Tiempo real: el apagado sigue viéndose aunque el juego se pause
-        // (retrasoReinicio) o Time.timeScale cambie mientras se ejecuta.
         while (t < duracionApagadoLuz)
         {
             t += Time.unscaledDeltaTime;
@@ -190,15 +193,9 @@ public class VidaJugador : MonoBehaviour
         invulnerabilidadActual = null;
     }
 
-    // ---- Muerte en el aire: el personaje termina de caer ----
-
-    // Distancia máxima al suelo para considerar que el personaje está apoyado.
     private const float ToleranciaApoyo = 0.08f;
-    // Alto de la caja fina con la que se detecta el suelo (pies) y el techo (cabeza).
     private const float AltoCajaContacto = 0.05f;
-    // Cuánto puede sobresalir un piso por encima de los pies (o un techo por debajo de la cabeza) y seguir contando.
     private const float MargenSuperficie = 0.15f;
-
     private readonly RaycastHit2D[] impactosContacto = new RaycastHit2D[8];
 
     private ContactFilter2D FiltroSuperficies()
@@ -206,17 +203,11 @@ public class VidaJugador : MonoBehaviour
         ContactFilter2D filtro = new ContactFilter2D();
         filtro.useTriggers = false;
 
-        // Solo las plataformas cuentan como piso o techo (las mismas que usa el jugador para saber si está en el suelo):
-        // un enemigo, aunque sea sólido, no es un piso donde quedarse flotando.
         bool hayCapaPlataformas = playerPhysics != null && playerPhysics.CapaPlataformas.value != 0;
-
         filtro.SetLayerMask(hayCapaPlataformas ? playerPhysics.CapaPlataformas : Physics2D.GetLayerCollisionMask(gameObject.layer));
         return filtro;
     }
 
-    // Distancia hasta la superficie sólida más cercana (suelo hacia abajo, techo hacia arriba),
-    // o -1 si no hay ninguna dentro de 'distancia'. Usa una caja fina pegada a los pies o a la cabeza,
-    // un poco más angosta que el personaje para no rozar las paredes.
     private float DistanciaASuperficie(Bounds limites, bool haciaAbajo, float distancia, Collider2D propio)
     {
         Vector2 tamano = new Vector2(limites.size.x * 0.9f, AltoCajaContacto);
@@ -235,17 +226,11 @@ public class VidaJugador : MonoBehaviour
             if (impacto.collider == null || impacto.collider == propio || impacto.collider.transform.IsChildOf(transform))
                 continue;
 
-            // Un piso tiene su borde de arriba a la altura de los pies (y un techo su borde de abajo a la altura de la
-            // cabeza). Si no, es una pared que el personaje todavía está atravesando (por ejemplo al terminar el Phase):
-            // no cuenta, así sigue cayendo en vez de quedar flotando.
             Bounds otro = impacto.collider.bounds;
 
             if (haciaAbajo ? otro.max.y > limites.min.y + MargenSuperficie : otro.min.y < limites.max.y - MargenSuperficie)
                 continue;
 
-            // La superficie tiene que mirar hacia el personaje: un piso hacia arriba, un techo hacia abajo.
-            // Si ya lo está tocando o se superpone un poco (distancia 0, como cuando está apoyado) la
-            // normal no es confiable y se acepta igual.
             bool yaTocando = impacto.distance <= 0.001f;
 
             if (!yaTocando && (haciaAbajo ? impacto.normal.y < 0.3f : impacto.normal.y > -0.3f))
@@ -263,9 +248,6 @@ public class VidaJugador : MonoBehaviour
         return velocidadY <= 0.1f && DistanciaASuperficie(limites, true, ToleranciaApoyo, propio) >= 0f;
     }
 
-    // Sigue la caída con la misma gravedad que tiene el personaje (la de subida mientras sube y la de
-    // caída después) hasta apoyarse en el suelo, o hasta que se acabe 'tiempoMaximo' (por ejemplo si
-    // no hay suelo debajo). Cae derecho: sin avance horizontal.
     private IEnumerator TerminarDeCaer(Bounds limites, float velocidadY, float gravedadSubida, float gravedadCaida, Collider2D propio, float tiempoMaximo)
     {
         float inicio = Time.realtimeSinceStartup;
@@ -274,7 +256,6 @@ public class VidaJugador : MonoBehaviour
         {
             float dt = Time.deltaTime;
 
-            // Con el juego en pausa (Time.timeScale = 0) se queda quieto.
             if (dt > 0f)
             {
                 velocidadY += Physics2D.gravity.y * (velocidadY > 0f ? gravedadSubida : gravedadCaida) * dt;
@@ -286,7 +267,6 @@ public class VidaJugador : MonoBehaviour
 
                     if (suelo >= 0f)
                     {
-                        // Aterrizó: queda apoyado en el suelo.
                         transform.position += Vector3.down * suelo;
                         yield break;
                     }
@@ -297,7 +277,6 @@ public class VidaJugador : MonoBehaviour
 
                     if (techo >= 0f)
                     {
-                        // Pegó contra un techo: deja de subir y empieza a caer.
                         desplazamiento = techo;
                         velocidadY = 0f;
                     }
@@ -324,8 +303,6 @@ public class VidaJugador : MonoBehaviour
         var rb = GetComponent<Rigidbody2D>();
         var col = GetComponent<Collider2D>();
 
-        // Cómo venía el personaje al morir (se guarda antes de congelarlo): si muere en el aire,
-        // termina de caer antes de quedarse quieto.
         float velocidadY = rb != null ? rb.linearVelocity.y : 0f;
         float gravedadSubida = rb != null ? rb.gravityScale : 1f;
         Bounds limites = col != null ? col.bounds : new Bounds();
@@ -339,7 +316,6 @@ public class VidaJugador : MonoBehaviour
         if (col != null)
             col.enabled = false;
 
-        // Desactiva los demás scripts de control para congelar las acciones del personaje
         foreach (var script in GetComponents<MonoBehaviour>())
         {
             if (script != this)
@@ -349,8 +325,6 @@ public class VidaJugador : MonoBehaviour
         float espera = Mathf.Max(retrasoReinicio, 1.5f);
         float inicio = Time.realtimeSinceStartup;
 
-        // Muerte en el aire: termina de caer mientras corre la animación de muerte. Sigue sin collider
-        // (como antes), así que mientras cae no activa nada del nivel.
         if (col != null && !ApoyadoEnElSuelo(limites, velocidadY, col))
         {
             float gravedadCaida = playerPhysics != null ? playerPhysics.MultiplicadorCaida : gravedadSubida;
@@ -358,14 +332,11 @@ public class VidaJugador : MonoBehaviour
             yield return StartCoroutine(TerminarDeCaer(limites, velocidadY, gravedadSubida, gravedadCaida, col, espera));
         }
 
-        // Espera en tiempo real para que se ejecute la animación de muerte
-        // (el tiempo de la caída cuenta dentro de la espera: el panel aparece igual que antes).
         float restante = espera - (Time.realtimeSinceStartup - inicio);
 
         if (restante > 0f)
             yield return new WaitForSecondsRealtime(restante);
 
-        // Le pasa el control al PanelDerrota de la escena
         PanelDerrota panel = FindFirstObjectByType<PanelDerrota>();
         if (panel != null)
         {
@@ -373,7 +344,6 @@ public class VidaJugador : MonoBehaviour
         }
         else
         {
-            // Respaldo por si una escena no tiene PanelDerrota
             Scene escenaActual = SceneManager.GetActiveScene();
             Time.timeScale = 1f;
             SceneManager.LoadScene(escenaActual.buildIndex);
