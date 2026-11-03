@@ -138,7 +138,21 @@ public class Calificacion : MonoBehaviour
         arteEnviada = arte;
         jugabilidadEnviada = jugabilidad;
 
+        RegistrarEventoRate();
         ActualizarBoton();
+    }
+
+    // Evento "Rate" de la hoja de diseno de eventos: se llama una vez, al apretar el boton de enviar la calificacion.
+    // Por ahora es solo un log para comprobar que se ejecuta en el momento correcto, una vez por llamado y fuera de Update.
+    // Todavia no se manda nada a Unity Analytics: mas adelante aca va el RecordEvent con lore, art y fun.
+    // Equivalencias con la hoja: lore = historia, art = arte, fun = jugabilidad (la hoja los define de 1 a 5; 0 = sin calificar).
+    // Decision del equipo: se registra siempre que se aprieta enviar, aunque haya categorias en 0 (el aviso del log es solo informativo).
+    private void RegistrarEventoRate()
+    {
+        bool completa = historia > 0 && arte > 0 && jugabilidad > 0;
+
+        Debug.Log("[Analytics] Rate | lore=" + historia + " art=" + arte + " fun=" + jugabilidad
+            + (completa ? "" : " (hay categorias sin calificar)"));
     }
 
     public void Cerrar()
