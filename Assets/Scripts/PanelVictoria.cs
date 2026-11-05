@@ -224,6 +224,7 @@ public class PanelVictoria : MonoBehaviour
         activado = true;
         MetaAlcanzada = true;
 
+<<<<<<< HEAD
         Debug.Log("Evento LevelComplete");
         /*
 LevelCompleteEvent levelComplete = new LevelCompleteEvent
@@ -240,6 +241,12 @@ LevelCompleteEvent levelComplete = new LevelCompleteEvent
 
 AnalyticsService.Instance.RecordEvent(levelComplete);
 */
+=======
+        // Evento "LevelComplete" de la hoja de diseno: se manda al ganar el nivel.
+        // Va aca y no en el trigger de la puerta porque este metodo corta con "activado"
+        // y se ejecuta una sola vez por partida.
+        Eventos.LogLevelComplete(Eventos.NivelActual());
+>>>>>>> e6e7478f43e88859c1b06023c58e7262347a54e9
 
         if (sonidoVictoria != null)
         {

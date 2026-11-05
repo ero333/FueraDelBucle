@@ -29,6 +29,7 @@ public class DisparoEnemigo : MonoBehaviour
 
     private Animator anim;
     private bool estamuerto = false;
+    private bool cayoAlVacio = false;
 
     private Rigidbody2D rb;
     private Collider2D col2D;
@@ -38,6 +39,10 @@ public class DisparoEnemigo : MonoBehaviour
         anim = GetComponent<Animator>();
         luzAviso = GetComponentInChildren<LuzRoja>(true);
         carga = tiempoEntreDisparos; // listo para disparar apenas vea al jugador
+
+        // Se anota para el parametro "pushRpt" de la hoja de eventos, que es el porcentaje
+        // de los Repeater 1.0 del nivel que terminaron en el vacio.
+        Eventos.ContarRepeater();
 
         // Congela la rotación física: sin esto, un empujón del jugador le mete
         // torque y lo hace girar sin control como un trompo (y la caída se ve
@@ -120,6 +125,16 @@ public class DisparoEnemigo : MonoBehaviour
     {
         if (estamuerto) return;
         StartCoroutine(DestruirEnemigo());
+    }
+
+    // La llama ZonaMuerte cuando este Repeater entra al vacio, empujado por el jugador.
+    // No lo mata ni lo destruye: solo lo cuenta una vez para el parametro "pushRpt".
+    public void CayoAlVacio()
+    {
+        if (cayoAlVacio || estamuerto) return;
+
+        cayoAlVacio = true;
+        Eventos.ContarRepeaterEmpujado();
     }
 
     IEnumerator DestruirEnemigo()

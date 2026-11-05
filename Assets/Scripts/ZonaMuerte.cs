@@ -11,7 +11,13 @@ public class ZonaMuerte : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (procesandoMuerte || !collision.CompareTag("Player")) return;
+        if (!collision.CompareTag("Player"))
+        {
+            ContarRepeaterCaido(collision);
+            return;
+        }
+
+        if (procesandoMuerte) return;
 
         VidaJugador vida = collision.GetComponentInParent<VidaJugador>();
 
@@ -25,6 +31,18 @@ public class ZonaMuerte : MonoBehaviour
 
         procesandoMuerte = true;
         StartCoroutine(EsperarFueraDePantallaYMorir(vida, collision));
+    }
+
+    // Antes de esto el vacio solo miraba al jugador: un Repeater empujado se caia y
+    // nadie se enteraba. Ahora se lo cuenta para el parametro "pushRpt" de la hoja de
+    // eventos. No cambia nada de lo que se ve: el Repeater sigue su caida igual.
+    private void ContarRepeaterCaido(Collider2D collision)
+    {
+        DisparoEnemigo repeater = collision.GetComponentInParent<DisparoEnemigo>();
+
+        if (repeater == null) return;
+
+        repeater.CayoAlVacio();
     }
 
     // No mata al toque: espera a que ningún sprite del jugador se esté
