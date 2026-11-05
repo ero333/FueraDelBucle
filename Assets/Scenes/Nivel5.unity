@@ -3431,7 +3431,7 @@ MonoBehaviour:
   vidaJugador: {fileID: 892600881}
   dialogoFinal: {fileID: 583009322}
   animarAnimacionEnEsteNivel: 1
-  centroPortal: {fileID: 0}
+  centroPortal: {fileID: 299847832}
   duracionAnimacionFinal: 1.8
   tagJugador: Player
   activarPorContacto: 1
@@ -15398,6 +15398,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   helpPanel: {fileID: 7200000003}
   teclaAyuda: 104
+  teclaCerrar: 27
   cerrarAlTocarAfuera: 1
 --- !u!4 &2099167416 stripped
 Transform:
