@@ -224,6 +224,23 @@ public class PanelVictoria : MonoBehaviour
         activado = true;
         MetaAlcanzada = true;
 
+        Debug.Log("Evento LevelComplete");
+        /*
+LevelCompleteEvent levelComplete = new LevelCompleteEvent
+{
+    level = SessionData.level,
+    time = SessionData.time,
+    phaseAvoid = SessionData.phaseAvoid,
+    dash = SessionData.dash,
+    pushRpt = SessionData.pushRpt,
+    killRpt = SessionData.killRpt,
+    music = SessionData.music,
+    sound = SessionData.sound
+};
+
+AnalyticsService.Instance.RecordEvent(levelComplete);
+*/
+
         if (sonidoVictoria != null)
         {
             StartCoroutine(ReproducirSonidoVictoria());
