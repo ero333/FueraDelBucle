@@ -16,23 +16,13 @@ public class Eventos : MonoBehaviour
 
     public void EventoLevel_Start(int numeroNivelActual)
     {
-        CustomEvent nombre/* de la variable(ejemplo level_start) */= new CustomEvent("noombre del evento de Unity")
+        CustomEvent nombre = new CustomEvent("noombre del evento de Unity")
         {
-            { "nombre del parametro",numeroNivelActual }//agregar numero o el parametro que corresponda
+            { "nombre del parametro",numeroNivelActual }
         }
         ;
-
-        //AnalyticsService.Instance.RecordEvent(nombre);
-       
-        //print(nombre del evento parametro = "" + nomeroNivelActual);
-
     }
-    //Enviar el evento a cada codigo que corresponda
 
-    // Parametro "level" de la hoja de diseno de eventos: INT, dominio { 1, 2, ... , 10 }.
-    // Va en los tres eventos de nivel: LevelStart, LevelComplete y GameOver.
-    // Sale del nombre de la escena ("Nivel7" da 7). En una escena que no es un nivel
-    // (menu, creditos, calificar) devuelve 0 y no se registra nada.
     public const int SinNivel = 0;
 
     public static int NivelActual()
@@ -54,25 +44,26 @@ public class Eventos : MonoBehaviour
         return numero;
     }
 
-    // Parametro "music" de la hoja de diseno: BOOL, dominio { true, false }.
-    // True si la musica se estaba escuchando cuando se disparo el evento.
-    // Volumen.Musica ya devuelve 0 cuando el boton de musica esta en mute, asi que
-    // con mirar ese valor se cubren los dos casos: el mute general y el volumen en cero.
     public static bool MusicaSonando()
     {
         return Volumen.Musica > 0f;
     }
 
-    // La hoja escribe los bool en minuscula; el ToString() de C# los escribe con mayuscula.
     private static string Booleano(bool valor)
     {
         return valor ? "true" : "false";
     }
 
-    // Parametro "pushRpt" de la hoja de diseno: porcentaje de los Repeater 1.0 del nivel
-    // que el jugador tiro al vacio empujandolos. Va en LevelComplete y en GameOver.
-    // Cada Repeater 1.0 se anota al arrancar el nivel y se marca si termina cayendo
-    // en la ZonaMuerte. Los contadores se reinician al cargar cada escena.
+    public static int TiempoDelNivel()
+    {
+        return Mathf.RoundToInt(Time.timeSinceLevelLoad);
+    }
+
+    public static int ColumnaDeMuerte(float x)
+    {
+        return Mathf.Clamp(Mathf.RoundToInt(x / 30f), 0, 30);
+    }
+
     private static int repeatersDelNivel;
     private static int repeatersEmpujados;
 
@@ -81,8 +72,6 @@ public class Eventos : MonoBehaviour
         repeatersDelNivel++;
     }
 
-    // Este log no es un evento: es para poder ver el empujon en el momento en que pasa,
-    // en vez de esperar al final del nivel para saber si se conto bien.
     public static void ContarRepeaterEmpujado()
     {
         repeatersEmpujados++;
@@ -104,9 +93,26 @@ public class Eventos : MonoBehaviour
         repeatersEmpujados = 0;
     }
 
-    // Por ahora los tres son solo logs, para comprobar que se disparan en el momento correcto
-    // y una sola vez por nivel. Todavia no se manda nada a Unity Analytics: mas adelante aca va
-    // el RecordEvent con estos parametros y los que agreguen las demas tareas del #645.
+    // Cuando se pase del log al envio real, la idea que dejo Dylan en el #987 es una
+    // clase por evento con un campo por parametro. Las funciones de arriba son las que
+    // van a llenar esos campos:
+    //
+    //   LevelCompleteEvent levelComplete = new LevelCompleteEvent
+    //   {
+    //       level = NivelActual(),
+    //       time = TiempoDelNivel(),
+    //       phaseAvoid = PhaseAvoid(),
+    //       dash = DashesDelNivel(),
+    //       pushRpt = PorcentajeEmpujados(),
+    //       killRpt = PorcentajePisados(),
+    //       music = MusicaSonando(),
+    //       sound = EfectosSonando()
+    //   };
+    //
+    //   AnalyticsService.Instance.RecordEvent(levelComplete);
+    //
+    // Antes hay que dar de alta el evento y sus parametros en el dashboard de Unity,
+    // que es el primer punto de la historia #645.
     public static void LogLevelStart(int level)
     {
         if (level == SinNivel) return;
@@ -121,27 +127,28 @@ public class Eventos : MonoBehaviour
 
         Debug.Log("[Analytics] LevelComplete | level=" + level
             + " | music=" + Booleano(MusicaSonando())
+            + " | time=" + TiempoDelNivel()
             + " | pushRpt=" + PorcentajeEmpujados());
     }
 
-    public static void LogGameOver(int level)
+    public static void LogGameOver(int level, float xJugador)
     {
         if (level == SinNivel) return;
 
         Debug.Log("[Analytics] GameOver | level=" + level
             + " | music=" + Booleano(MusicaSonando())
+            + " | time=" + TiempoDelNivel()
+            + " | cordX=" + ColumnaDeMuerte(xJugador)
             + " | pushRpt=" + PorcentajeEmpujados());
     }
 
-    // LevelStart se dispara solo al cargar cada escena de nivel, asi no hace falta agregar
-    // un objeto a las diez escenas. La llamada suelta de abajo cubre el caso de arrancar ya
-    // dentro de un nivel, que es lo que pasa al darle Play en el editor.
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
     private static void SeguirLasEscenas()
     {
         SceneManager.sceneLoaded -= AlCargarEscena;
         SceneManager.sceneLoaded += AlCargarEscena;
 
+        ReiniciarContadores();
         LogLevelStart(NivelActual());
     }
 
@@ -149,8 +156,6 @@ public class Eventos : MonoBehaviour
     {
         if (modo != LoadSceneMode.Single) return;
 
-        // sceneLoaded corre despues de los Awake de la escena nueva y antes de los Start,
-        // asi que los contadores quedan en cero justo antes de que los Repeater se anoten.
         ReiniciarContadores();
 
         LogLevelStart(NivelDeEscena(escena.name));

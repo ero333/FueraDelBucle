@@ -120,7 +120,7 @@ public class VidaJugador : MonoBehaviour
         // Evento "GameOver" de la hoja de diseno: se manda al morir.
         // Va aca porque es el unico punto por el que pasan todas las muertes
         // (enemigos, proyectiles y el vacio) y corta con "muerto", asi suena una sola vez.
-        Eventos.LogGameOver(Eventos.NivelActual());
+        Eventos.LogGameOver(Eventos.NivelActual(), transform.position.x);
 
         System.Action aviso = JugadorMurio;
 
