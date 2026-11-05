@@ -26,7 +26,10 @@ public class Proyectil : MonoBehaviour
         {
             // En modo Phase el proyectil atraviesa al jugador: no hace daño ni se destruye.
             if (other.TryGetComponent(out PlayerPhysics fisicaJugador) && fisicaJugador.EstaEnPhase)
+            {
+                Eventos.ContarPhaseEvito();
                 return;
+            }
 
             vidaJugador.TomarDaño(daño);
             Destroy(gameObject);

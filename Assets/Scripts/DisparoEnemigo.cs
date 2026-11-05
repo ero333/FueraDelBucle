@@ -124,6 +124,7 @@ public class DisparoEnemigo : MonoBehaviour
     public void Muere()
     {
         if (estamuerto) return;
+        Eventos.ContarRepeaterPisado();
         StartCoroutine(DestruirEnemigo());
     }
 

@@ -81,7 +81,10 @@ public class VidaJugador : MonoBehaviour
     {
         if (PlayerPhysics.godModeActivo) return;
         if (muerto || esInvulnerable || (playerPhysics != null && playerPhysics.EstaEnPhase))
+        {
+            if (!muerto && !esInvulnerable) Eventos.ContarPhaseEvito();
             return;
+        }
         //if (muerto || esInvulnerable) return;
 
         cantidadDeVida -= daño;

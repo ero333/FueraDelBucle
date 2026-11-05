@@ -66,6 +66,9 @@ public class Eventos : MonoBehaviour
 
     private static int repeatersDelNivel;
     private static int repeatersEmpujados;
+    private static int repeatersPisados;
+    private static int dashesDelNivel;
+    private static int evitadosConPhase;
 
     public static void ContarRepeater()
     {
@@ -87,10 +90,51 @@ public class Eventos : MonoBehaviour
         return Mathf.RoundToInt(100f * repeatersEmpujados / repeatersDelNivel);
     }
 
+    public static void ContarRepeaterPisado()
+    {
+        repeatersPisados++;
+
+        Debug.Log("[Analytics] (aviso) Repeater pisado | " + repeatersPisados
+            + " de " + repeatersDelNivel + " | killRpt=" + PorcentajePisados());
+    }
+
+    public static void ContarDash()
+    {
+        dashesDelNivel++;
+    }
+
+    public static void ContarPhaseEvito()
+    {
+        evitadosConPhase++;
+
+        Debug.Log("[Analytics] (aviso) Phase evito dano | phaseAvoid=" + evitadosConPhase);
+    }
+
+    public static int PorcentajePisados()
+    {
+        if (repeatersDelNivel <= 0) return 0;
+
+        return Mathf.RoundToInt(100f * repeatersPisados / repeatersDelNivel);
+    }
+
+    public static int DashesDelNivel()
+    {
+        return dashesDelNivel;
+    }
+
+    public static int PhaseAvoid()
+    {
+        return evitadosConPhase;
+    }
+
     private static void ReiniciarContadores()
     {
         repeatersDelNivel = 0;
         repeatersEmpujados = 0;
+        repeatersPisados = 0;
+        dashesDelNivel = 0;
+        evitadosConPhase = 0;
+
     }
 
     // Cuando se pase del log al envio real, la idea que dejo Dylan en el #987 es una
@@ -126,9 +170,12 @@ public class Eventos : MonoBehaviour
         if (level == SinNivel) return;
 
         Debug.Log("[Analytics] LevelComplete | level=" + level
-            + " | music=" + Booleano(MusicaSonando())
-            + " | time=" + TiempoDelNivel()
-            + " | pushRpt=" + PorcentajeEmpujados());
+             + " | music=" + Booleano(MusicaSonando())
+             + " | time=" + TiempoDelNivel()
+             + " | phaseAvoid=" + PhaseAvoid()
+             + " | dash=" + DashesDelNivel()
+             + " | pushRpt=" + PorcentajeEmpujados()
+             + " | killRpt=" + PorcentajePisados());
     }
 
     public static void LogGameOver(int level, float xJugador)
@@ -136,10 +183,12 @@ public class Eventos : MonoBehaviour
         if (level == SinNivel) return;
 
         Debug.Log("[Analytics] GameOver | level=" + level
-            + " | music=" + Booleano(MusicaSonando())
-            + " | time=" + TiempoDelNivel()
-            + " | cordX=" + ColumnaDeMuerte(xJugador)
-            + " | pushRpt=" + PorcentajeEmpujados());
+             + " | music=" + Booleano(MusicaSonando())
+             + " | time=" + TiempoDelNivel()
+             + " | phaseAvoid=" + PhaseAvoid()
+             + " | cordX=" + ColumnaDeMuerte(xJugador)
+             + " | pushRpt=" + PorcentajeEmpujados()
+             + " | killRpt=" + PorcentajePisados());
     }
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]

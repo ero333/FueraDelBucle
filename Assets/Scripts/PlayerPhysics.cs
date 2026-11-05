@@ -346,6 +346,7 @@ public class PlayerPhysics : MonoBehaviour
     && inputHorizontal != 0f && !estaDasheando && tiempoRestanteCooldown <= 0f && !estaAgachado)
         {
             estaDasheando = true;
+            Eventos.ContarDash();
             tiempoRestanteDash = duracionDash;
             tiempoRestanteCooldown = cooldownDash;
             direccionDash = inputHorizontal;

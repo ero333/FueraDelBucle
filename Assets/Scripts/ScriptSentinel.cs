@@ -241,7 +241,11 @@ public class ScriptSentinel : MonoBehaviour
             PlayerPhysics playerPhysics = objeto.GetComponent<PlayerPhysics>();
 
             // Si el jugador está activo en Phase, ignoramos el daño
-            if (playerPhysics != null && playerPhysics.EstaEnPhase) return;
+            if (playerPhysics != null && playerPhysics.EstaEnPhase)
+            {
+                Eventos.ContarPhaseEvito();
+                return;
+            }
 
             VidaJugador vida = objeto.GetComponent<VidaJugador>();
 
