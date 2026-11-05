@@ -6,6 +6,7 @@ public class Proyectil : MonoBehaviour
     public float velocidad;
     public int daño;
     public float tiempoDeVida = 5f;
+    public string origenMuerte = "Repeater";
 
     [Tooltip("Capas contra las que el disparo se rompe (plataformas, suelo). Vacío = atraviesa todo hasta que se acaba el tiempo de vida.")]
     public LayerMask capasQueFrenan;
@@ -31,7 +32,7 @@ public class Proyectil : MonoBehaviour
                 return;
             }
 
-            vidaJugador.TomarDaño(daño);
+            vidaJugador.TomarDaño(daño, origenMuerte);
             Destroy(gameObject);
             return;
         }

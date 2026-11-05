@@ -1,7 +1,8 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 
 public class VidaJugador : MonoBehaviour
 {
@@ -77,7 +78,7 @@ public class VidaJugador : MonoBehaviour
         }
     }
 
-    public void TomarDaño(int daño)
+    public void TomarDaño(int daño, string atacante)
     {
         if (PlayerPhysics.godModeActivo) return;
         if (muerto || esInvulnerable || (playerPhysics != null && playerPhysics.EstaEnPhase))
@@ -91,7 +92,7 @@ public class VidaJugador : MonoBehaviour
 
         if (cantidadDeVida <= 0)
         {
-            Morir();
+            Morir(atacante);
             return;
         }
 
@@ -113,7 +114,7 @@ public class VidaJugador : MonoBehaviour
     // tienen un sonido en bucle y tienen que callarse.
     public static event System.Action JugadorMurio;
 
-    public void Morir()
+    public void Morir(string quienMeMato)
     {
         if (muerto) return;
 
@@ -126,7 +127,13 @@ public class VidaJugador : MonoBehaviour
         Eventos.LogGameOver(Eventos.NivelActual(), transform.position.x);
 
         System.Action aviso = JugadorMurio;
-
+        Dictionary<string, object> parametrosAnalytics = new Dictionary<string, object>
+        {
+            {"killer", quienMeMato },
+            {"level", Eventos.NivelActual() },
+        };
+        //AnalyticsService.Instance.RecordEvent(GameOver);
+        Debug.Log($"Jugador eliminado por: {quienMeMato}");
         if (aviso != null)
         {
             aviso();

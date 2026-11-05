@@ -39,6 +39,8 @@ public class ScriptSentinel : MonoBehaviour
     private float ultimoGiro;
     private const float zonaMuerta = 0.3f;
 
+    public string origenMuerte = "Sentinel";
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -251,7 +253,7 @@ public class ScriptSentinel : MonoBehaviour
 
             if (vida != null)
             {
-                vida.TomarDaño(vida.cantidadDeVida);
+                vida.TomarDaño(vida.cantidadDeVida, origenMuerte);
             }
         }
     }

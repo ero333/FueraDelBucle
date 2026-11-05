@@ -8,6 +8,7 @@ public class ZonaMuerte : MonoBehaviour
     public float esperaMaximaFueraDePantalla = 3f;
 
     private bool procesandoMuerte;
+    public string origenMuerte = "Vacio";
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -64,7 +65,7 @@ public class ZonaMuerte : MonoBehaviour
             yield return null;
         }
 
-        vida.Morir();
+        vida.Morir(origenMuerte);
     }
 
     // Mira solo la cámara del juego (Camera.main). SpriteRenderer.isVisible cuenta también
