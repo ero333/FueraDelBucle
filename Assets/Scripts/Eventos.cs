@@ -137,6 +137,18 @@ public class Eventos : MonoBehaviour
     private static int dashesDelNivel;
     private static int evitadosConPhase;
 
+    private static string ultimoKiller = "enemigo";
+    public static string killerEnemigo()
+    {
+        return ultimoKiller;
+    }
+
+    public static void SetKiller(string killer)
+    {
+        ultimoKiller = killer;
+    }
+
+
     public static void ContarRepeater()
     {
         repeatersDelNivel++;
@@ -282,13 +294,16 @@ public class Eventos : MonoBehaviour
     }
 
     // Original, sin cambios (solo log). Las llamadas existentes siguen funcionando.
-    public static void LogGameOver(int level, float xJugador)
+    public static void LogGameOver(int level, float xJugador, string killer = "enemigo")
     {
         if (level == SinNivel) return;
+
+        SetKiller(killer);
 
         Debug.Log("[Analytics] GameOver | level=" + level
              + " | music=" + Booleano(MusicaSonando())
              + " | time=" + TiempoDelNivel()
+             + " | killer=" + ultimoKiller
              + " | phaseAvoid=" + PhaseAvoid()
              + " | cordX=" + ColumnaDeMuerte(xJugador)
              + " | pushRpt=" + PorcentajeEmpujados()
