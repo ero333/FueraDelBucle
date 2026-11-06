@@ -10,23 +10,27 @@ public class IniciarAnalytics : MonoBehaviour
     {
         try
         {
-            // 1. Inicializa el SDK de Unity Services (se vincula automáticamente a tu Project ID)
+            // 1. Inicializa el SDK de Unity Services
             await UnityServices.InitializeAsync();
 
-            // 2. Establece el consentimiento
+            // 2. Establece el consentimiento (Analytics y Anuncios)
             EstablecerConsentimiento(true);
 
-            // 3. Establece el consentimiento para iniciar la recolección de métricas
-            EndUserConsent.SetConsentState(new ConsentState
-            {
-                AnalyticsIntent = ConsentStatus.Granted
-            });
+            // 3. INICIA LA RECOLECCIÓN (Obligatorio para enviarle datos a Unity)
+            AnalyticsService.Instance.StartDataCollection();
 
-            Debug.Log("Analytics inicializado correctamente.");
+            Debug.Log("[Analytics] Inicializado y recolectando datos correctamente.");
+
+            // 4. (Opcional) Registrar el primer nivel de forma segura
+            int nivelActual = Eventos.NivelActual();
+            if (nivelActual != Eventos.SinNivel)
+            {
+                Eventos.LogLevelStart(nivelActual);
+            }
         }
         catch (Exception e)
         {
-            Debug.LogError($"Error al inicializar Unity Analytics: {e.Message}");
+            Debug.LogError($"[Analytics] Error al inicializar: {e.Message}");
         }
     }
 

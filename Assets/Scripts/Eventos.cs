@@ -1,5 +1,6 @@
 using System;
 using Unity.Services.Analytics;
+using Unity.Services.Core;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using AnalyticsEvent = Unity.Services.Analytics.Event;
@@ -13,17 +14,15 @@ public class Eventos : MonoBehaviour
         if (Singleton == null)
         {
             Singleton = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
         }
     }
 
-    public void EventoLevel_Start(int numeroNivelActual)
-    {
-        CustomEvent evento = new CustomEvent("nombre_del_evento")
-        {
-            { "nombre_del_parametro", numeroNivelActual }
-        };
-        AnalyticsService.Instance.RecordEvent(evento);
-    }
+    #region Clases de Eventos Personalizados
 
     public class LevelStartEvent : AnalyticsEvent
     {
@@ -64,6 +63,10 @@ public class Eventos : MonoBehaviour
         public bool sound { set { SetParameter("sound", value); } }
     }
 
+    #endregion
+
+    #region Constantes
+
     public const string KillerVacio = "vacio";
     public const string KillerPatch = "patch";
     public const string KillerRepeater1 = "rpt1";
@@ -72,6 +75,22 @@ public class Eventos : MonoBehaviour
     public const string KillerSentinel2 = "sen2";
 
     public const int SinNivel = 0;
+
+    #endregion
+
+    #region Variables y Contadores Estáticos
+
+    private static int repeatersDelNivel;
+    private static int repeatersEmpujados;
+    private static int repeatersPisados;
+    private static int dashesDelNivel;
+    private static int evitadosConPhase;
+
+    private static string ultimoKiller = "enemigo";
+
+    #endregion
+
+    #region Métodos de Utilidad
 
     public static int NivelActual()
     {
@@ -84,9 +103,7 @@ public class Eventos : MonoBehaviour
 
         if (string.IsNullOrEmpty(nombreEscena) || !nombreEscena.StartsWith(prefijo)) return SinNivel;
 
-        int numero;
-
-        if (!int.TryParse(nombreEscena.Substring(prefijo.Length), out numero)) return SinNivel;
+        if (!int.TryParse(nombreEscena.Substring(prefijo.Length), out int numero)) return SinNivel;
         if (numero < 1 || numero > 10) return SinNivel;
 
         return numero;
@@ -122,80 +139,51 @@ public class Eventos : MonoBehaviour
         return Mathf.Clamp(Mathf.RoundToInt(y / 10f), 0, 10);
     }
 
-    private static int repeatersDelNivel;
-    private static int repeatersEmpujados;
-    private static int repeatersPisados;
-    private static int dashesDelNivel;
-    private static int evitadosConPhase;
+    #endregion
 
-    private static string ultimoKiller = "enemigo";
+    #region Control de Métricas / Métodos Públicos
 
-    public static string killerEnemigo()
-    {
-        return ultimoKiller;
-    }
+    public static string killerEnemigo() => ultimoKiller;
 
-    public static void SetKiller(string killer)
-    {
-        ultimoKiller = killer;
-    }
+    public static void SetKiller(string killer) => ultimoKiller = killer;
 
-    public static void ContarRepeater()
-    {
-        repeatersDelNivel++;
-    }
+    public static void ContarRepeater() => repeatersDelNivel++;
 
     public static void ContarRepeaterEmpujado()
     {
         repeatersEmpujados++;
-
-        Debug.Log("[Analytics] (aviso) Repeater al vacio | " + repeatersEmpujados
-            + " de " + repeatersDelNivel + " | pushRpt=" + PorcentajeEmpujados());
+        Debug.Log($"[Analytics] (aviso) Repeater al vacio | {repeatersEmpujados} de {repeatersDelNivel} | pushRpt={PorcentajeEmpujados()}");
     }
 
     public static int PorcentajeEmpujados()
     {
         if (repeatersDelNivel <= 0) return 0;
-
         return Mathf.RoundToInt(100f * repeatersEmpujados / repeatersDelNivel);
     }
 
     public static void ContarRepeaterPisado()
     {
         repeatersPisados++;
-
-        Debug.Log("[Analytics] (aviso) Repeater pisado | " + repeatersPisados
-            + " de " + repeatersDelNivel + " | killRpt=" + PorcentajePisados());
-    }
-
-    public static void ContarDash()
-    {
-        dashesDelNivel++;
-    }
-
-    public static void ContarPhaseEvito()
-    {
-        evitadosConPhase++;
-
-        Debug.Log("[Analytics] (aviso) Phase evito dano | phaseAvoid=" + evitadosConPhase);
+        Debug.Log($"[Analytics] (aviso) Repeater pisado | {repeatersPisados} de {repeatersDelNivel} | killRpt={PorcentajePisados()}");
     }
 
     public static int PorcentajePisados()
     {
         if (repeatersDelNivel <= 0) return 0;
-
         return Mathf.RoundToInt(100f * repeatersPisados / repeatersDelNivel);
     }
 
-    public static int DashesDelNivel()
+    public static void ContarDash() => dashesDelNivel++;
+
+    public static void ContarPhaseEvito()
     {
-        return dashesDelNivel;
+        evitadosConPhase++;
+        Debug.Log($"[Analytics] (aviso) Phase evito dano | phaseAvoid={evitadosConPhase}");
     }
 
-    public static int PhaseAvoid()
-    {
-        return evitadosConPhase;
-    }
+    public static int DashesDelNivel() => dashesDelNivel;
+
+    public static int PhaseAvoid() => evitadosConPhase;
 
     private static void ReiniciarContadores()
     {
@@ -206,15 +194,26 @@ public class Eventos : MonoBehaviour
         evitadosConPhase = 0;
     }
 
+    #endregion
+
+    #region Envío Seguro de Eventos
+
     private static void Enviar(AnalyticsEvent evento)
     {
+        // Validación de seguridad para evitar que falle en computadoras donde UnityServices aún está cargando
+        if (UnityServices.State != ServicesInitializationState.Initialized)
+        {
+            Debug.LogWarning("[Analytics] Evento omitido: Unity Services aún no se ha inicializado.");
+            return;
+        }
+
         try
         {
             AnalyticsService.Instance.RecordEvent(evento);
         }
         catch (Exception e)
         {
-            Debug.LogWarning("[Analytics] No se pudo enviar el evento: " + e.Message);
+            Debug.LogWarning($"[Analytics] No se pudo enviar el evento: {e.Message}");
         }
     }
 
@@ -229,9 +228,7 @@ public class Eventos : MonoBehaviour
             sound = EfectosSonando()
         };
 
-        Debug.Log("[Analytics] LevelStart | level=" + level
-        + " | music=" + Booleano(MusicaSonando())
-        + " | sound=" + Booleano(EfectosSonando()));
+        Debug.Log($"[Analytics] LevelStart | level={level} | music={Booleano(MusicaSonando())} | sound={Booleano(EfectosSonando())}");
 
         Enviar(levelStart);
     }
@@ -252,14 +249,7 @@ public class Eventos : MonoBehaviour
             sound = EfectosSonando()
         };
 
-        Debug.Log("[Analytics] LevelComplete | level=" + level
-        + " | music=" + Booleano(MusicaSonando())
-        + " | sound=" + Booleano(EfectosSonando())
-        + " | time=" + TiempoDelNivel()
-        + " | phaseAvoid=" + PhaseAvoid()
-        + " | dash=" + DashesDelNivel()
-        + " | pushRpt=" + PorcentajeEmpujados()
-        + " | killRpt=" + PorcentajePisados());
+        Debug.Log($"[Analytics] LevelComplete | level={level} | music={Booleano(MusicaSonando())} | sound={Booleano(EfectosSonando())} | time={TiempoDelNivel()} | phaseAvoid={PhaseAvoid()} | dash={DashesDelNivel()} | pushRpt={PorcentajeEmpujados()} | killRpt={PorcentajePisados()}");
 
         Enviar(levelComplete);
     }
@@ -270,14 +260,7 @@ public class Eventos : MonoBehaviour
 
         SetKiller(killer);
 
-        Debug.Log("[Analytics] GameOver | level=" + level
-             + " | music=" + Booleano(MusicaSonando())
-             + " | time=" + TiempoDelNivel()
-             + " | killer=" + ultimoKiller
-             + " | phaseAvoid=" + PhaseAvoid()
-             + " | cordX=" + ColumnaDeMuerte(xJugador)
-             + " | pushRpt=" + PorcentajeEmpujados()
-             + " | killRpt=" + PorcentajePisados());
+        Debug.Log($"[Analytics] GameOver | level={level} | music={Booleano(MusicaSonando())} | time={TiempoDelNivel()} | killer={ultimoKiller} | phaseAvoid={PhaseAvoid()} | cordX={ColumnaDeMuerte(xJugador)} | pushRpt={PorcentajeEmpujados()} | killRpt={PorcentajePisados()}");
     }
 
     public static void LogGameOver(int level, float xJugador, float yJugador, string killer)
@@ -298,28 +281,23 @@ public class Eventos : MonoBehaviour
             sound = EfectosSonando()
         };
 
-        Debug.Log("[Analytics] GameOver | level=" + level
-             + " | music=" + Booleano(MusicaSonando())
-             + " | sound=" + Booleano(EfectosSonando())
-             + " | time=" + TiempoDelNivel()
-             + " | phaseAvoid=" + PhaseAvoid()
-             + " | cordX=" + ColumnaDeMuerte(xJugador)
-             + " | cordY=" + FilaDeMuerte(yJugador)
-             + " | killer=" + killer
-             + " | pushRpt=" + PorcentajeEmpujados()
-             + " | killRpt=" + PorcentajePisados());
+        Debug.Log($"[Analytics] GameOver | level={level} | music={Booleano(MusicaSonando())} | sound={Booleano(EfectosSonando())} | time={TiempoDelNivel()} | phaseAvoid={PhaseAvoid()} | cordX={ColumnaDeMuerte(xJugador)} | cordY={FilaDeMuerte(yJugador)} | killer={killer} | pushRpt={PorcentajeEmpujados()} | killRpt={PorcentajePisados()}");
 
         Enviar(gameOver);
     }
 
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
-    private static void SeguirLasEscenas()
+    #endregion
+
+    #region Suscripción a Escenas
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += AlCargarEscena;
+    }
+
+    private void OnDisable()
     {
         SceneManager.sceneLoaded -= AlCargarEscena;
-        SceneManager.sceneLoaded += AlCargarEscena;
-
-        ReiniciarContadores();
-        LogLevelStart(NivelActual());
     }
 
     private static void AlCargarEscena(Scene escena, LoadSceneMode modo)
@@ -327,7 +305,8 @@ public class Eventos : MonoBehaviour
         if (modo != LoadSceneMode.Single) return;
 
         ReiniciarContadores();
-
         LogLevelStart(NivelDeEscena(escena.name));
     }
+
+    #endregion
 }
