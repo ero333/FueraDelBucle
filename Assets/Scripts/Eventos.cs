@@ -263,35 +263,37 @@ public class Eventos : MonoBehaviour
         Enviar(levelStart);
 
         Debug.Log("[Analytics] LevelStart | level=" + level
-            + " | music=" + Booleano(MusicaSonando()));
+            + " | music=" + Booleano(MusicaSonando())
+            + " | sound=" + Booleano(EfectosSonando()));
     }
 
-    public static void LogLevelComplete(int level)
+   public static void LogLevelComplete(int level)
+{
+    if (level == SinNivel) return;
+
+    // NUEVO (#979)
+    LevelCompleteEvent levelComplete = new LevelCompleteEvent
     {
-        if (level == SinNivel) return;
+        level = level,
+        time = TiempoDelNivel(),
+        phaseAvoid = PhaseAvoid(),
+        dash = DashesDelNivel(),
+        pushRpt = PorcentajeEmpujados(),
+        killRpt = PorcentajePisados(),
+        music = MusicaSonando(),
+        sound = EfectosSonando()
+    };
+    Enviar(levelComplete);
 
-        // NUEVO (#979)
-        LevelCompleteEvent levelComplete = new LevelCompleteEvent
-        {
-            level = level,
-            time = TiempoDelNivel(),
-            phaseAvoid = PhaseAvoid(),
-            dash = DashesDelNivel(),
-            pushRpt = PorcentajeEmpujados(),
-            killRpt = PorcentajePisados(),
-            music = MusicaSonando(),
-            sound = EfectosSonando()
-        };
-        Enviar(levelComplete);
-
-        Debug.Log("[Analytics] LevelComplete | level=" + level
-             + " | music=" + Booleano(MusicaSonando())
-             + " | time=" + TiempoDelNivel()
-             + " | phaseAvoid=" + PhaseAvoid()
-             + " | dash=" + DashesDelNivel()
-             + " | pushRpt=" + PorcentajeEmpujados()
-             + " | killRpt=" + PorcentajePisados());
-    }
+    Debug.Log("[Analytics] LevelComplete | level=" + level
+         + " | music=" + Booleano(MusicaSonando())
+         + " | sound=" + Booleano(EfectosSonando())
+         + " | time=" + TiempoDelNivel()
+         + " | phaseAvoid=" + PhaseAvoid()
+         + " | dash=" + DashesDelNivel()
+         + " | pushRpt=" + PorcentajeEmpujados()
+         + " | killRpt=" + PorcentajePisados());
+}
 
     // Original, sin cambios (solo log). Las llamadas existentes siguen funcionando.
     public static void LogGameOver(int level, float xJugador, string killer = "enemigo")
@@ -333,6 +335,7 @@ public class Eventos : MonoBehaviour
 
         Debug.Log("[Analytics] GameOver | level=" + level
              + " | music=" + Booleano(MusicaSonando())
+             + " | sound=" + Booleano(EfectosSonando())
              + " | time=" + TiempoDelNivel()
              + " | phaseAvoid=" + PhaseAvoid()
              + " | cordX=" + ColumnaDeMuerte(xJugador)
