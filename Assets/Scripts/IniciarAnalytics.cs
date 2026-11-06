@@ -1,3 +1,4 @@
+using System;
 using Unity.Services.Analytics;
 using Unity.Services.Core;
 using UnityEngine;
@@ -5,28 +6,38 @@ using UnityEngine.UnityConsent;
 
 public class IniciarAnalytics : MonoBehaviour
 {
-  
-   
-        async void Start()
+    async void Start()
     {
-        await UnityServices.InitializeAsync();
+        try
+        {
+            // 1. Inicializa el SDK de Unity Services (se vincula automáticamente a tu Project ID)
+            await UnityServices.InitializeAsync();
+
+            // 2. Establece el consentimiento
+            EstablecerConsentimiento(true);
+
+            // 3. Establece el consentimiento para iniciar la recolección de métricas
+            EndUserConsent.SetConsentState(new ConsentState
+            {
+                AnalyticsIntent = ConsentStatus.Granted
+            });
+
+            Debug.Log("Analytics inicializado correctamente.");
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Error al inicializar Unity Analytics: {e.Message}");
+        }
     }
 
-    public void ejemplo2()
+    public void EstablecerConsentimiento(bool tieneConsentimiento)
     {
-        bool consentimiento = true;
         ConsentState estadoConsentimiento = new ConsentState
         {
-            //  En el caso de que queramos utilizar los analytics para la recolección de datos, le decimos a la variable
-            //AnalyticsIntent = ConsentStatus.Granted. // Osea, aca le decimos que el usuario dio su consentimiento
-            //  Caso de que queramos decirle que no damos consentimiento, usamos  AnalyticsIntent = ConsentStatus.Denied
-            AnalyticsIntent = consentimiento ? ConsentStatus.Granted : ConsentStatus.Denied, // (aviso por las dudas, cuando usamos ‘?’ es como un if/else)
+            AnalyticsIntent = tieneConsentimiento ? ConsentStatus.Granted : ConsentStatus.Denied,
             AdsIntent = ConsentStatus.Denied
-            // Este caso de aca a lo último es para dar consentimiento o no para el uso de anuncios. En este caso le decimos que no
         };
 
-        // Y despues usamos la siguiente funcion para avisar a los servicios de Unity que el usuario dio su consentimiento.
         EndUserConsent.SetConsentState(estadoConsentimiento);
-
     }
 }
