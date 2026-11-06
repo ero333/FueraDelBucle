@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using AnalyticsEvent = Unity.Services.Analytics.Event;
 
-
 public class Eventos : MonoBehaviour
 {
     public static Eventos Singleton;
+
     private void Awake()
     {
         if (Singleton == null)
@@ -18,18 +18,16 @@ public class Eventos : MonoBehaviour
 
     public void EventoLevel_Start(int numeroNivelActual)
     {
-        CustomEvent nombre = new CustomEvent("noombre del evento de Unity")
+        CustomEvent evento = new CustomEvent("nombre_del_evento")
         {
-            { "nombre del parametro",numeroNivelActual }
-        }
-        ;
+            { "nombre_del_parametro", numeroNivelActual }
+        };
+        AnalyticsService.Instance.RecordEvent(evento);
     }
 
     public class LevelStartEvent : AnalyticsEvent
     {
-        public LevelStartEvent() : base("LevelStart")
-        {
-        }
+        public LevelStartEvent() : base("LevelStart") { }
 
         public int level { set { SetParameter("level", value); } }
         public bool music { set { SetParameter("music", value); } }
@@ -38,9 +36,7 @@ public class Eventos : MonoBehaviour
 
     public class LevelCompleteEvent : AnalyticsEvent
     {
-        public LevelCompleteEvent() : base("LevelComplete")
-        {
-        }
+        public LevelCompleteEvent() : base("LevelComplete") { }
 
         public int level { set { SetParameter("level", value); } }
         public int time { set { SetParameter("time", value); } }
@@ -54,9 +50,7 @@ public class Eventos : MonoBehaviour
 
     public class GameOverEvent : AnalyticsEvent
     {
-        public GameOverEvent() : base("GameOver")
-        {
-        }
+        public GameOverEvent() : base("GameOver") { }
 
         public int level { set { SetParameter("level", value); } }
         public int time { set { SetParameter("time", value); } }
@@ -69,7 +63,6 @@ public class Eventos : MonoBehaviour
         public bool music { set { SetParameter("music", value); } }
         public bool sound { set { SetParameter("sound", value); } }
     }
-
 
     public const string KillerVacio = "vacio";
     public const string KillerPatch = "patch";
@@ -104,7 +97,6 @@ public class Eventos : MonoBehaviour
         return Volumen.Musica > 0f;
     }
 
-    // NUEVO. OJO: asumo que Volumen tiene "Efectos" (float) igual que Musica.
     public static bool EfectosSonando()
     {
         return Volumen.Efectos > 0f;
@@ -125,7 +117,6 @@ public class Eventos : MonoBehaviour
         return Mathf.Clamp(Mathf.RoundToInt(x / 30f), 0, 30);
     }
 
-    // NUEVO
     public static int FilaDeMuerte(float y)
     {
         return Mathf.Clamp(Mathf.RoundToInt(y / 10f), 0, 10);
@@ -138,6 +129,7 @@ public class Eventos : MonoBehaviour
     private static int evitadosConPhase;
 
     private static string ultimoKiller = "enemigo";
+
     public static string killerEnemigo()
     {
         return ultimoKiller;
@@ -147,7 +139,6 @@ public class Eventos : MonoBehaviour
     {
         ultimoKiller = killer;
     }
-
 
     public static void ContarRepeater()
     {
@@ -213,10 +204,8 @@ public class Eventos : MonoBehaviour
         repeatersPisados = 0;
         dashesDelNivel = 0;
         evitadosConPhase = 0;
-
     }
 
-    // NUEVO: envio real. Si Analytics no esta inicializado no rompe el juego.
     private static void Enviar(AnalyticsEvent evento)
     {
         try
@@ -229,73 +218,52 @@ public class Eventos : MonoBehaviour
         }
     }
 
-    // Cuando se pase del log al envio real, la idea que dejo Dylan en el #987 es una
-    // clase por evento con un campo por parametro. Las funciones de arriba son las que
-    // van a llenar esos campos:
-    //
-    //   LevelCompleteEvent levelComplete = new LevelCompleteEvent
-    //   {
-    //       level = NivelActual(),
-    //       time = TiempoDelNivel(),
-    //       phaseAvoid = PhaseAvoid(),
-    //       dash = DashesDelNivel(),
-    //       pushRpt = PorcentajeEmpujados(),
-    //       killRpt = PorcentajePisados(),
-    //       music = MusicaSonando(),
-    //       sound = EfectosSonando()
-    //   };
-    //
-    //   AnalyticsService.Instance.RecordEvent(levelComplete);
-    //
-    // Antes hay que dar de alta el evento y sus parametros en el dashboard de Unity,
-    // que es el primer punto de la historia #645.
     public static void LogLevelStart(int level)
     {
         if (level == SinNivel) return;
 
-        // NUEVO (#982)
         LevelStartEvent levelStart = new LevelStartEvent
         {
             level = level,
             music = MusicaSonando(),
             sound = EfectosSonando()
         };
-        Enviar(levelStart);
 
         Debug.Log("[Analytics] LevelStart | level=" + level
-            + " | music=" + Booleano(MusicaSonando())
-            + " | sound=" + Booleano(EfectosSonando()));
+        + " | music=" + Booleano(MusicaSonando())
+        + " | sound=" + Booleano(EfectosSonando()));
+
+        Enviar(levelStart);
     }
 
-   public static void LogLevelComplete(int level)
-{
-    if (level == SinNivel) return;
-
-    // NUEVO (#979)
-    LevelCompleteEvent levelComplete = new LevelCompleteEvent
+    public static void LogLevelComplete(int level)
     {
-        level = level,
-        time = TiempoDelNivel(),
-        phaseAvoid = PhaseAvoid(),
-        dash = DashesDelNivel(),
-        pushRpt = PorcentajeEmpujados(),
-        killRpt = PorcentajePisados(),
-        music = MusicaSonando(),
-        sound = EfectosSonando()
-    };
-    Enviar(levelComplete);
+        if (level == SinNivel) return;
 
-    Debug.Log("[Analytics] LevelComplete | level=" + level
-         + " | music=" + Booleano(MusicaSonando())
-         + " | sound=" + Booleano(EfectosSonando())
-         + " | time=" + TiempoDelNivel()
-         + " | phaseAvoid=" + PhaseAvoid()
-         + " | dash=" + DashesDelNivel()
-         + " | pushRpt=" + PorcentajeEmpujados()
-         + " | killRpt=" + PorcentajePisados());
-}
+        LevelCompleteEvent levelComplete = new LevelCompleteEvent
+        {
+            level = level,
+            time = TiempoDelNivel(),
+            phaseAvoid = PhaseAvoid(),
+            dash = DashesDelNivel(),
+            pushRpt = PorcentajeEmpujados(),
+            killRpt = PorcentajePisados(),
+            music = MusicaSonando(),
+            sound = EfectosSonando()
+        };
 
-    // Original, sin cambios (solo log). Las llamadas existentes siguen funcionando.
+        Debug.Log("[Analytics] LevelComplete | level=" + level
+        + " | music=" + Booleano(MusicaSonando())
+        + " | sound=" + Booleano(EfectosSonando())
+        + " | time=" + TiempoDelNivel()
+        + " | phaseAvoid=" + PhaseAvoid()
+        + " | dash=" + DashesDelNivel()
+        + " | pushRpt=" + PorcentajeEmpujados()
+        + " | killRpt=" + PorcentajePisados());
+
+        Enviar(levelComplete);
+    }
+
     public static void LogGameOver(int level, float xJugador, string killer = "enemigo")
     {
         if (level == SinNivel) return;
@@ -312,8 +280,6 @@ public class Eventos : MonoBehaviour
              + " | killRpt=" + PorcentajePisados());
     }
 
-    // NUEVO (#978): version completa que envia el evento con todos sus parametros.
-    // killer: usar las constantes Killer* (vacio, patch, rpt1, rpt2, sen1, sen2).
     public static void LogGameOver(int level, float xJugador, float yJugador, string killer)
     {
         if (level == SinNivel) return;
@@ -331,7 +297,6 @@ public class Eventos : MonoBehaviour
             music = MusicaSonando(),
             sound = EfectosSonando()
         };
-        Enviar(gameOver);
 
         Debug.Log("[Analytics] GameOver | level=" + level
              + " | music=" + Booleano(MusicaSonando())
@@ -343,6 +308,8 @@ public class Eventos : MonoBehaviour
              + " | killer=" + killer
              + " | pushRpt=" + PorcentajeEmpujados()
              + " | killRpt=" + PorcentajePisados());
+
+        Enviar(gameOver);
     }
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
