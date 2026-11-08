@@ -27,6 +27,15 @@ public class IntroEstoyListo : MonoBehaviour
         StartCoroutine(TerminaEscena());
     }
 
+    void Update() //Saltear la Intro con la E
+    {
+        
+        if (!introTerminada && Input.GetKeyDown(KeyCode.E))
+        {
+            SaltarIntro();
+        }
+    }
+
     IEnumerator MostrarBoton()
     {
         yield return new WaitForSeconds(tiempoParaMostrar);
