@@ -4621,6 +4621,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   esperaMaximaFueraDePantalla: 3
+  origenMuerte: Vacio
 --- !u!61 &500247940
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12308,11 +12309,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: f36957c0a4b71e34e93ece8ea318174f, type: 2}
     - target: {fileID: 2214099451317806444, guid: 6fced0bc383c63343936eb68ebe0b99f, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.81784356
+      value: 0.81784344
       objectReference: {fileID: 0}
     - target: {fileID: 2214099451317806444, guid: 6fced0bc383c63343936eb68ebe0b99f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.57544065
+      value: 0.5754408
       objectReference: {fileID: 0}
     - target: {fileID: 2340850377814559966, guid: 6fced0bc383c63343936eb68ebe0b99f, type: 3}
       propertyPath: m_Layer
@@ -12748,7 +12749,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7293578256530202017, guid: 6fced0bc383c63343936eb68ebe0b99f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.021639552
+      value: -0.021639999
       objectReference: {fileID: 0}
     - target: {fileID: 7364537355107191107, guid: 6fced0bc383c63343936eb68ebe0b99f, type: 3}
       propertyPath: m_Layer
@@ -12800,11 +12801,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7968086317294257347, guid: 6fced0bc383c63343936eb68ebe0b99f, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9997481
+      value: 0.99974805
       objectReference: {fileID: 0}
     - target: {fileID: 7968086317294257347, guid: 6fced0bc383c63343936eb68ebe0b99f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.022446573
+      value: 0.022446362
       objectReference: {fileID: 0}
     - target: {fileID: 7970921665762352033, guid: 6fced0bc383c63343936eb68ebe0b99f, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -12816,7 +12817,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8108978345355454593, guid: 6fced0bc383c63343936eb68ebe0b99f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000010863115
+      value: -0.00001041633
       objectReference: {fileID: 0}
     - target: {fileID: 8229158823957954096, guid: 6fced0bc383c63343936eb68ebe0b99f, type: 3}
       propertyPath: m_Layer
@@ -16609,7 +16610,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04c4a0172f9cf4748b7100da49fd1d94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CambioNivel
-  nombreEscenaSiguiente: AnimFinal
+  nombreEscenaSiguiente: Final
   tagJugador: Player
   botonCambioEscena: {fileID: 905390727}
   mostrarBotonPorContacto: 0
