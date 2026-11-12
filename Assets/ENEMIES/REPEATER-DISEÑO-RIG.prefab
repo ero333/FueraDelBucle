@@ -184,8 +184,8 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -1.5131624, y: 7.656473}
-  - {x: 1.4156967, y: 7.656473}
+  - {x: -0.69586354, y: 7.5469365}
+  - {x: 0.8006192, y: 7.546937}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -574,6 +574,8 @@ MonoBehaviour:
   proyectil: {fileID: 7323252962293113382, guid: 3159d34860195f0498ee5faf79f19dc0, type: 3}
   tiempoEntreDisparos: 4
   dispararSiempre: 0
+  audioSource: {fileID: 0}
+  muerte: {fileID: 0}
 --- !u!50 &2298286914204850038
 Rigidbody2D:
   serializedVersion: 5
