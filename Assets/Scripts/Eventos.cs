@@ -64,8 +64,8 @@ public class Eventos : MonoBehaviour
         public int time { set { SetParameter("time", value); } }
         public int phaseAvoid { set { SetParameter("phaseAvoid", value); } }
         public int dash { set { SetParameter("dash", value); } }
-        public int pushRpt { set { SetParameter("pushRpt", value); } }
-        public int killRpt { set { SetParameter("killRpt", value); } }
+        public float pushRpt { set { SetParameter("pushRpt", value); } }
+        public float killRpt { set { SetParameter("killRpt", value); } }
         public bool music { set { SetParameter("music", value); } }
         public bool sound { set { SetParameter("sound", value); } }
     }
@@ -80,8 +80,8 @@ public class Eventos : MonoBehaviour
         public int cordX { set { SetParameter("cordX", value); } }
         public int cordY { set { SetParameter("cordY", value); } }
         public string killer { set { SetParameter("killer", value); } }
-        public int pushRpt { set { SetParameter("pushRpt", value); } }
-        public int killRpt { set { SetParameter("killRpt", value); } }
+        public float pushRpt { set { SetParameter("pushRpt", value); } }
+        public float killRpt { set { SetParameter("killRpt", value); } }
         public bool music { set { SetParameter("music", value); } }
         public bool sound { set { SetParameter("sound", value); } }
     }
