@@ -5,7 +5,7 @@ public class BotonSiguienteNivel : MonoBehaviour
 {
     [Header("Nombre de la Escena Destino")]
     [Tooltip("Escribe aquí el nombre exacto de la escena a la que debe ir el botón.")]
-    public string nombreEscenaSiguiente = "Final";
+    public string nombreEscenaSiguiente = "AnimFinal";
 
     /// <summary>
     /// Asigna esta función pública al evento OnClick() del botón en el Inspector.
