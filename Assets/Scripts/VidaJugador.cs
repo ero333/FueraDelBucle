@@ -86,7 +86,6 @@ public class VidaJugador : MonoBehaviour
             if (!muerto && !esInvulnerable) Eventos.ContarPhaseEvito();
             return;
         }
-        //if (muerto || esInvulnerable) return;
 
         cantidadDeVida -= daño;
 
@@ -121,14 +120,12 @@ public class VidaJugador : MonoBehaviour
         cantidadDeVida = 0;
         muerto = true;
 
-        // Evento "GameOver" de la hoja de diseno: se manda al morir.
-        // Va aca porque es el unico punto por el que pasan todas las muertes
-        // (enemigos, proyectiles y el vacio) y corta con "muerto", asi suena una sola vez.
-        Eventos.LogGameOver(Eventos.NivelActual(), transform.position.x, quienMeMato);
+        // Evento "GameOver" de la hoja de diseno: se manda al morir con coordenadas X e Y.
+        Eventos.LogGameOver(Eventos.NivelActual(), transform.position.x, transform.position.y, quienMeMato);
         Debug.Log($"Jugador eliminado por: {quienMeMato}");
 
         System.Action aviso = JugadorMurio;
-        
+
         if (aviso != null)
         {
             aviso();
