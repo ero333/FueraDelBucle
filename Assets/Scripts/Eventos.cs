@@ -187,10 +187,11 @@ public class Eventos : MonoBehaviour
         Debug.Log($"[Analytics] (aviso) Repeater al vacio | {repeatersEmpujados} de {repeatersDelNivel} | pushRpt={PorcentajeEmpujados()}");
     }
 
-    public static int PorcentajeEmpujados()
+    public static float PorcentajeEmpujados()
     {
-        if (repeatersDelNivel <= 0) return 0;
-        return Mathf.RoundToInt(100f * repeatersEmpujados / repeatersDelNivel);
+        if (repeatersDelNivel <= 0) return 0f;
+
+        return Mathf.Clamp01((float)repeatersEmpujados / repeatersDelNivel);
     }
 
     public static void ContarRepeaterPisado()
@@ -199,10 +200,11 @@ public class Eventos : MonoBehaviour
         Debug.Log($"[Analytics] (aviso) Repeater pisado | {repeatersPisados} de {repeatersDelNivel} | killRpt={PorcentajePisados()}");
     }
 
-    public static int PorcentajePisados()
+    public static float PorcentajePisados()
     {
-        if (repeatersDelNivel <= 0) return 0;
-        return Mathf.RoundToInt(100f * repeatersPisados / repeatersDelNivel);
+        if (repeatersDelNivel <= 0) return 0f;
+
+        return Mathf.Clamp01((float)repeatersPisados / repeatersDelNivel);
     }
 
     public static void ContarDash() => dashesDelNivel++;
@@ -253,6 +255,8 @@ public class Eventos : MonoBehaviour
     public static void LogLevelStart(int level)
     {
         if (level == SinNivel) return;
+
+        ReiniciarContadores();
 
         LevelStartEvent levelStart = new LevelStartEvent
         {
@@ -356,9 +360,7 @@ public class Eventos : MonoBehaviour
     {
         if (modo != LoadSceneMode.Single) return;
 
-        ReiniciarContadores();
         LogLevelStart(NivelDeEscena(escena.name));
     }
-
     #endregion
 }
