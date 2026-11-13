@@ -86,6 +86,15 @@ public class Eventos : MonoBehaviour
         public bool sound { set { SetParameter("sound", value); } }
     }
 
+    public class RateEvent : AnalyticsEvent
+    {
+        public RateEvent() : base("Rate") { }
+
+        public int lore { set { SetParameter("lore", value); } }
+        public int art { set { SetParameter("art", value); } }
+        public int fun { set { SetParameter("fun", value); } }
+    }
+
     #endregion
 
     #region Constantes
@@ -308,6 +317,25 @@ public class Eventos : MonoBehaviour
         Debug.Log($"[Analytics] GameOver | level={level} | music={Booleano(MusicaSonando())} | sound={Booleano(EfectosSonando())} | time={TiempoDelNivel()} | phaseAvoid={PhaseAvoid()} | cordX={ColumnaDeMuerte(xJugador)} | cordY={FilaDeMuerte(yJugador)} | killer={killer} | pushRpt={PorcentajeEmpujados()} | killRpt={PorcentajePisados()}");
 
         Enviar(gameOver);
+    }
+
+    // Evento "Rate" de la hoja de diseño: se llama al apretar el botón de enviar de la ventana de calificar.
+    // lore = historia, art = arte, fun = jugabilidad (la hoja los define de 1 a 5; 0 = sin calificar).
+    // Se registra siempre que se aprieta enviar, aunque haya categorías en 0 (decisión del equipo).
+    public static void LogRate(int lore, int art, int fun)
+    {
+        RateEvent rate = new RateEvent
+        {
+            lore = lore,
+            art = art,
+            fun = fun
+        };
+
+        bool completa = lore > 0 && art > 0 && fun > 0;
+
+        Debug.Log($"[Analytics] Rate | lore={lore} | art={art} | fun={fun}" + (completa ? "" : " (hay categorias sin calificar)"));
+
+        Enviar(rate);
     }
 
     #endregion
