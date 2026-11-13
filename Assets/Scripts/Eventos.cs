@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Unity.Services.Analytics;
 using Unity.Services.Core;
 using UnityEngine;
@@ -8,6 +9,10 @@ using AnalyticsEvent = Unity.Services.Analytics.Event;
 public class Eventos : MonoBehaviour
 {
     public static Eventos Singleton;
+
+    // Cola para guardar eventos que ocurran mientras IniciarAnalytics termina de conectar
+    private static readonly Queue<AnalyticsEvent> colaEventos = new Queue<AnalyticsEvent>();
+    private static bool recoleccionIniciada = false;
 
     private void Awake()
     {
@@ -19,6 +24,24 @@ public class Eventos : MonoBehaviour
         else
         {
             Destroy(gameObject);
+        }
+    }
+
+    // Llama a este método desde IniciarAnalytics.cs cuando termine de inicializar y otorgar consentimiento
+    public static void NotificarServiciosListos()
+    {
+        recoleccionIniciada = true;
+
+        while (colaEventos.Count > 0)
+        {
+            try
+            {
+                AnalyticsService.Instance.RecordEvent(colaEventos.Dequeue());
+            }
+            catch (Exception e)
+            {
+                Debug.LogWarning($"[Analytics] No se pudo enviar un evento encolado: {e.Message}");
+            }
         }
     }
 
@@ -200,10 +223,11 @@ public class Eventos : MonoBehaviour
 
     private static void Enviar(AnalyticsEvent evento)
     {
-        // Validación de seguridad para evitar que falle en computadoras donde UnityServices aún está cargando
-        if (UnityServices.State != ServicesInitializationState.Initialized)
+        // Si IniciarAnalytics aún no ha terminado, encolamos el evento
+        if (UnityServices.State != ServicesInitializationState.Initialized || !recoleccionIniciada)
         {
-            Debug.LogWarning("[Analytics] Evento omitido: Unity Services aún no se ha inicializado.");
+            colaEventos.Enqueue(evento);
+            Debug.Log("[Analytics] Evento encolado mientras Unity Services termina de inicializar.");
             return;
         }
 

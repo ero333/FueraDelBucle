@@ -11,22 +11,18 @@ public class IniciarAnalytics : MonoBehaviour
         try
         {
             // 1. Inicializa el SDK de Unity Services
-            await UnityServices.InitializeAsync();
+            if (UnityServices.State == ServicesInitializationState.Uninitialized)
+            {
+                await UnityServices.InitializeAsync();
+            }
 
-            // 2. Establece el consentimiento (Analytics y Anuncios)
+            // 2. Establece el consentimiento (esto inicia la recolección automáticamente)
             EstablecerConsentimiento(true);
 
-            // 3. INICIA LA RECOLECCIÓN (Obligatorio para enviarle datos a Unity)
-            AnalyticsService.Instance.StartDataCollection();
+            Debug.Log("[Analytics] Inicializado y consentimiento otorgado correctamente.");
 
-            Debug.Log("[Analytics] Inicializado y recolectando datos correctamente.");
-
-            // 4. (Opcional) Registrar el primer nivel de forma segura
-            int nivelActual = Eventos.NivelActual();
-            if (nivelActual != Eventos.SinNivel)
-            {
-                Eventos.LogLevelStart(nivelActual);
-            }
+            // 3. Libera la cola de eventos que se dispararon al cargar la escena (incluyendo el primer LevelStart)
+            Eventos.NotificarServiciosListos();
         }
         catch (Exception e)
         {
