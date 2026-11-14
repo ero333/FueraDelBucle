@@ -158,23 +158,27 @@ public class DisparoEnemigo : MonoBehaviour
         Destroy(gameObject);
     }
 
-    //Dejo esta función abajo por las dudas que falle algo de la colisión
+    // Respaldo de la pisada. El detector de la cabeza es una linea fina y mas angosta que el cuerpo: si el jugador cae
+    // sobre un costado del cuerpo no lo toca, y antes el Repeater moria sin que el jugador rebotara (o ni moria).
+    // Ahora, si el jugador cae sobre cualquier parte de arriba del cuerpo (contacto por arriba, como en RepeaterSegundo),
+    // cuenta igual que la pisada de la cabeza: el Repeater muere y el jugador rebota.
     private void OnCollisionEnter2D(Collision2D colision)
     {
+        if (estamuerto || !colision.gameObject.CompareTag("Player")) return;
 
-        if (colision.gameObject.CompareTag("Player"))
+        foreach (ContactPoint2D punto in colision.contacts)
         {
-
-            ContactPoint2D contacto = colision.GetContact(0);
-
-
-            if (colision.transform.position.y > transform.position.y + 0.5f)
+            if (punto.normal.y < -0.5f)
             {
+                PlayerPhysics jugador = colision.gameObject.GetComponent<PlayerPhysics>();
 
+                if (jugador != null)
+                {
+                    jugador.Rebotar();
+                }
 
-                StartCoroutine(DestruirEnemigo());
-
-
+                Muere();
+                break;
             }
         }
     }

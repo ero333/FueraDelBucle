@@ -231,7 +231,15 @@ public class VidaJugador : MonoBehaviour
         Vector2 centro = new Vector2(limites.center.x, y);
         Vector2 direccion = haciaAbajo ? Vector2.down : Vector2.up;
 
+        // Todo lo de abajo cuenta con que una superficie que ya se toca o se superpone un poco se informa con distancia 0
+        // (el valor por defecto de Physics2D.queriesStartInColliders). ScriptSentinel lo deja en false para todo el juego y
+        // con false esa superficie se ignora y el personaje la atraviesa. Se fuerza el valor por defecto solo en este cast.
+        bool consultaOriginal = Physics2D.queriesStartInColliders;
+        Physics2D.queriesStartInColliders = true;
+
         int cantidad = Physics2D.BoxCast(centro, tamano, 0f, direccion, FiltroSuperficies(), impactosContacto, distancia);
+
+        Physics2D.queriesStartInColliders = consultaOriginal;
 
         float masCercana = -1f;
 
@@ -294,6 +302,7 @@ public class VidaJugador : MonoBehaviour
                     if (suelo >= 0f)
                     {
                         // Aterrizó: queda apoyado en el suelo.
+                        Debug.Log("[MUERTE-DIAG] aterrizo | y=" + transform.position.y.ToString("F2") + " distanciaAlPiso=" + suelo.ToString("F3"));
                         transform.position += Vector3.down * suelo;
                         yield break;
                     }
@@ -316,6 +325,38 @@ public class VidaJugador : MonoBehaviour
 
             yield return null;
         }
+
+        Debug.Log("[MUERTE-DIAG] se acabo el tiempo de caida sin apoyarse | y=" + transform.position.y.ToString("F2"));
+    }
+
+    // TEMPORAL (diagnostico): estado al morir y plataformas que hay debajo del personaje. Se borra cuando se encuentre la causa.
+    private void DiagMuerte(Rigidbody2D rb, Collider2D col, Bounds limites, float velocidadY)
+    {
+        System.Text.StringBuilder texto = new System.Text.StringBuilder();
+
+        texto.AppendLine("[MUERTE-DIAG] escena=" + SceneManager.GetActiveScene().name + " vy=" + velocidadY.ToString("F2")
+            + " posTransform=" + transform.position + " pies(y)=" + limites.min.y.ToString("F2") + " x=" + limites.min.x.ToString("F2") + ".." + limites.max.x.ToString("F2")
+            + " | consultaEnColliders=" + Physics2D.queriesStartInColliders + " timeScale=" + Time.timeScale + " fixedDt=" + Time.fixedDeltaTime
+            + " interpolacion=" + (rb != null ? rb.interpolation.ToString() : "-") + " gravedad=" + (rb != null ? rb.gravityScale.ToString("F2") : "-"));
+
+        int mascara = playerPhysics != null ? playerPhysics.CapaPlataformas.value : 0;
+        Collider2D[] debajo = Physics2D.OverlapBoxAll(new Vector2(limites.center.x, limites.min.y - 1.5f), new Vector2(limites.size.x * 2f, 3f), 0f);
+
+        for (int i = 0; i < debajo.Length && i < 8; i++)
+        {
+            Collider2D c = debajo[i];
+
+            if (c == col || c.transform.IsChildOf(transform)) continue;
+
+            Bounds b = c.bounds;
+            bool cuentaComoPiso = (mascara & (1 << c.gameObject.layer)) != 0;
+
+            texto.AppendLine("   debajo: " + c.name + " capa=" + LayerMask.LayerToName(c.gameObject.layer) + " cuentaComoPiso=" + cuentaComoPiso
+                + " trigger=" + c.isTrigger + " x=" + b.min.x.ToString("F2") + ".." + b.max.x.ToString("F2") + " arriba(y)=" + b.max.y.ToString("F2")
+                + " (pies - arriba = " + (limites.min.y - b.max.y).ToString("F2") + ")");
+        }
+
+        Debug.Log(texto.ToString());
     }
 
     private IEnumerator ReiniciarJuego()
@@ -337,10 +378,16 @@ public class VidaJugador : MonoBehaviour
         float gravedadSubida = rb != null ? rb.gravityScale : 1f;
         Bounds limites = col != null ? col.bounds : new Bounds();
 
+        DiagMuerte(rb, col, limites, velocidadY);
+
         if (rb != null)
         {
             rb.linearVelocity = Vector2.zero;
             rb.bodyType = RigidbodyType2D.Kinematic;
+
+            // La caida de abajo mueve el transform a mano. Con la interpolacion del jugador activa, Unity seguiria
+            // dibujandolo desde la posicion de la fisica y pisaria ese movimiento: la caida se veria mal.
+            rb.interpolation = RigidbodyInterpolation2D.None;
         }
 
         if (col != null)

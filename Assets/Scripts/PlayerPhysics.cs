@@ -123,6 +123,11 @@ public class PlayerPhysics : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        // La fisica corre a 50 Hz y la pantalla se dibuja a otro ritmo. Sin interpolacion el personaje avanza a saltitos
+        // y la camara que lo sigue lo corrige de golpe: se ve como una vibracion al caminar o saltar.
+        rb.interpolation = RigidbodyInterpolation2D.Interpolate;
+
         anim = GetComponent<Animator>();
         spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
         vidaJugador = GetComponent<VidaJugador>();
@@ -532,7 +537,8 @@ public class PlayerPhysics : MonoBehaviour
         }
     }
 
-    private void Rebotar()
+    // Publico para que el Repeater lo llame cuando el jugador cae sobre su cuerpo (ver DisparoEnemigo.OnCollisionEnter2D).
+    public void Rebotar()
     {
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, Rebote);
     }
