@@ -238,6 +238,9 @@ public class DialogoLog : MonoBehaviour
 
     public void EmpezarDialog()
     {
+        // LOG DE DIAGNÓSTICO: borrar cuando se encuentre el bug
+        Debug.Log("EmpezarDialog llamado en: " + gameObject.name + "\n" + System.Environment.StackTrace, this);
+
         if (dialogodata == null) return;
 
         StopAllCoroutines(); // Cancela cualquier corrutina de tipeo o timer residual
