@@ -15,6 +15,13 @@ public class PATCHPlatformManager : MonoBehaviour
     public List<PlatformTanda> tandasDePlataformas;
     private int indiceTandaActual = 0;
 
+    [Tooltip("Rompe la tanda que tenga la plataforma más cerca del jugador, en vez de ir en orden fijo. Así se rompe la que estás pisando y se ve en pantalla.")]
+    public bool rompeLaMasCercana = true;
+    [Tooltip("Tag del jugador, para medir qué tanda le queda más cerca.")]
+    public string tagJugador = "Player";
+
+    private readonly List<PlatformTanda> yaRotas = new List<PlatformTanda>();
+
     [Header("Audio")]
     public AudioClip sonidoAviso;
     public AudioClip sonidoRotura;
@@ -34,22 +41,77 @@ public class PATCHPlatformManager : MonoBehaviour
     }
     public void RomperSiguienteTanda()
     {
+        PlatformTanda tanda = ElegirTanda();
+
+        if (tanda == null)
         {
-            if (indiceTandaActual < tandasDePlataformas.Count)
-            {
-                PlatformTanda tanda = tandasDePlataformas[indiceTandaActual];
+            Debug.LogWarning("Se alcanzaron todas las tandas de plataformas a romper.");
+            return;
+        }
 
-                StartCoroutine(DestruirPlataforma(tanda));
+        yaRotas.Add(tanda);
 
-                indiceTandaActual++; 
-            }
-            else
+        StartCoroutine(DestruirPlataforma(tanda));
+    }
+
+    // Antes las tandas se rompian en orden fijo: el primer disparador rompia la tanda 1,
+    // el segundo la 2, y asi. En el nivel 10 eso hacia que se rompieran plataformas que
+    // estaban lejos, fuera de la pantalla, y no se veia nada. Ahora se rompe la tanda que
+    // tiene la plataforma mas cerca del jugador, que es la que esta pisando.
+    private PlatformTanda ElegirTanda()
+    {
+        if (rompeLaMasCercana)
+        {
+            PlatformTanda cercana = TandaMasCercanaAlJugador();
+
+            if (cercana != null) return cercana;
+        }
+
+        return SiguienteEnOrden();
+    }
+
+    private PlatformTanda TandaMasCercanaAlJugador()
+    {
+        GameObject jugador = GameObject.FindGameObjectWithTag(tagJugador);
+
+        if (jugador == null) return null;
+
+        Vector2 donde = jugador.transform.position;
+        PlatformTanda mejor = null;
+        float menor = float.MaxValue;
+
+        foreach (PlatformTanda tanda in tandasDePlataformas)
+        {
+            if (tanda == null || yaRotas.Contains(tanda) || tanda.plataformasARomper == null) continue;
+
+            foreach (GameObject plataforma in tanda.plataformasARomper)
             {
-                Debug.LogWarning("Se alcanzaron todas las tandas de plataformas a romper.");
+                if (plataforma == null) continue;
+
+                float distancia = Vector2.Distance(plataforma.transform.position, donde);
+
+                if (distancia < menor)
+                {
+                    menor = distancia;
+                    mejor = tanda;
+                }
             }
         }
 
+        return mejor;
+    }
 
+    private PlatformTanda SiguienteEnOrden()
+    {
+        while (indiceTandaActual < tandasDePlataformas.Count)
+        {
+            PlatformTanda tanda = tandasDePlataformas[indiceTandaActual];
+            indiceTandaActual++;
+
+            if (tanda != null && !yaRotas.Contains(tanda)) return tanda;
+        }
+
+        return null;
     }
 
     // Apenas la plataforma queda en escombros deja de ser sólida, para que el jugador empiece a caer
