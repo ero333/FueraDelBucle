@@ -1,41 +1,45 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-[RequireComponent(typeof(Collider2D))]
 public class BotonFinal : MonoBehaviour
 {
     [Header("Escena")]
-    public string nombreEscenaSiguiente = "Menu";
+    public string nombreEscenaSiguiente = "AnimFinal";
 
     [Header("Jugador")]
+    public Transform jugador;
     public MonoBehaviour controlJugador;
+    public float distanciaInteraccion = 2.5f;
 
     [Header("Cartel de la tecla")]
     public GameObject carteldeE;
 
     private bool yaInteractuo = false;
-    private bool jugadorCerca = false;
-    private float tiempoHabilitado;
 
     private void Start()
     {
         MostrarCartel(false);
+
+        if (jugador == null && controlJugador != null)
+        {
+            jugador = controlJugador.transform;
+        }
     }
 
     private void Update()
     {
         bool disponible = PuedeInteractuar();
 
-        if (!disponible)
+        bool jugadorCerca = false;
+        if (jugador != null)
         {
-            tiempoHabilitado = Time.unscaledTime + 0.15f;
+            float distancia = Vector2.Distance(transform.position, jugador.position);
+            jugadorCerca = distancia <= distanciaInteraccion;
         }
 
         MostrarCartel(disponible && jugadorCerca && !yaInteractuo);
 
-        if (!disponible) return;
-
-        if (jugadorCerca && Input.GetKeyDown(KeyCode.E))
+        if (disponible && jugadorCerca && !yaInteractuo && Input.GetKeyDown(KeyCode.E))
         {
             Interactuar();
         }
@@ -52,23 +56,12 @@ public class BotonFinal : MonoBehaviour
     private bool PuedeInteractuar()
     {
         if (PauseManager.GameIsPaused || LevelUIManager.PlacaAbierta || DialogoLog.HayDialogoActivo) return false;
-
-        if (Time.timeScale == 0f) return false;
-
-        return Time.unscaledTime >= tiempoHabilitado;
-    }
-
-    private void OnMouseDown()
-    {
-        Interactuar();
+        return true;
     }
 
     private void Interactuar()
     {
-        if (yaInteractuo) return;
-
         yaInteractuo = true;
-
         MostrarCartel(false);
 
         if (controlJugador != null)
@@ -77,22 +70,6 @@ public class BotonFinal : MonoBehaviour
         }
 
         CargarEscenaSiguiente();
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            jugadorCerca = true;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            jugadorCerca = false;
-        }
     }
 
     public void CargarEscenaSiguiente()

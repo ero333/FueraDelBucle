@@ -2830,7 +2830,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   nombreEscenaSiguiente: AnimFinal
+  jugador: {fileID: 960679241}
   controlJugador: {fileID: 2040531482}
+  distanciaInteraccion: 2.5
   carteldeE: {fileID: 1165163050}
 --- !u!1 &1165163050
 GameObject:
